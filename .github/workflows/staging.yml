@@ -22,5 +22,5 @@ jobs:
         with:
           version: latest
 
-      - run: supabase link --project-ref $SUPABASE_PROJECT_ID --workdir ./apps/dropper-supabase
-      - run: supabase db push --workdir ./apps/dropper-supabase
+      - run: supabase link --project-ref $SUPABASE_PROJECT_ID
+      - run: supabase db push
