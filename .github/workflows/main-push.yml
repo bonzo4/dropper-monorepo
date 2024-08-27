@@ -25,7 +25,7 @@ jobs:
         run: git checkout staging
 
       - name: Merge main into staging
-        run: git merge main --no-ff --no-edit
+        run: git rebase main
 
       - name: Push changes to staging
         run: git push origin staging
