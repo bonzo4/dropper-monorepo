@@ -1,11 +1,11 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "../supabase/types";
 import { AirdropPreviewItem } from "../types/airdrop";
 import { useEffect, useState } from "react";
 import { getAirdrops } from "../data/getAirdrops";
+import { DatabaseTypes } from "@repo/app-types/database";
 
 type UseAirdropsOptions = {
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   airdrops: AirdropPreviewItem[];
   searchParams: URLSearchParams;
 };

@@ -1,6 +1,6 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 
-export type AirdropRow = Database["public"]["Tables"]["airdrops"]["Row"];
+export type AirdropRow = DatabaseTypes["public"]["Tables"]["airdrops"]["Row"];
 
 export type AirdropPreviewItem = Pick<
   AirdropRow,

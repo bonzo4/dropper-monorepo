@@ -1,4 +1,4 @@
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { ListingInsert } from "@/lib/types/listing";
 import { uploadImage } from "@/lib/utils/saveImage";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -14,7 +14,7 @@ import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 
 type IconUploadProps = {
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   setListing: (args_0: SetStateAction<ListingInsert>) => void;
   listing: ListingInsert;
 };
