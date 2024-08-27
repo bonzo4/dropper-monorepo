@@ -1,0 +1,17 @@
+{
+  "name": "@repo/app-types",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./database": "./src/database/index.ts",
+    "./types": "./src/database/index.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "typescript": "latest"
+  }
+}

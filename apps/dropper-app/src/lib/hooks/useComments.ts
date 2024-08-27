@@ -1,11 +1,11 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "../supabase/types";
 import { useEffect, useState } from "react";
 import { DropmanView } from "../types/user";
+import { DatabaseTypes } from "@repo/app-types/database";
 // import { AirdropCommentRow } from "../types/comment";
 
 type UseCommentsOptions = {
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   airdropId: number;
   sortBy?: "best" | "newest";
   page?: number;
@@ -18,7 +18,7 @@ export const useComments = ({
   page = 1,
 }: UseCommentsOptions) => {
   const [comments, setComments] = useState<
-    (Database["public"]["Tables"]["airdrop_comments"]["Row"] & {
+    (DatabaseTypes["public"]["Tables"]["airdrop_comments"]["Row"] & {
       user?: DropmanView;
     })[]
   >([]);

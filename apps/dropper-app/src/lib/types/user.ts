@@ -1,5 +1,6 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 
-export type DropmanRow = Database["public"]["Tables"]["dropmans"]["Row"];
+export type DropmanRow = DatabaseTypes["public"]["Tables"]["dropmans"]["Row"];
 
-export type DropmanView = Database["public"]["Views"]["dropmans_view"]["Row"];
+export type DropmanView =
+  DatabaseTypes["public"]["Views"]["dropmans_view"]["Row"];

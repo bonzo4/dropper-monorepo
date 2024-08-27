@@ -1,6 +1,6 @@
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 
-export type BannerRow = Database["public"]["Tables"]["banners"]["Row"];
+export type BannerRow = DatabaseTypes["public"]["Tables"]["banners"]["Row"];
 
 export type GiveawayBannerRow =
-  Database["public"]["Tables"]["giveaway_banners"]["Row"];
+  DatabaseTypes["public"]["Tables"]["giveaway_banners"]["Row"];

@@ -1,5 +1,7 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 
-export type AccessCodeRow = Database["public"]["Tables"]["access_codes"]["Row"];
+export type AccessCodeRow =
+  DatabaseTypes["public"]["Tables"]["access_codes"]["Row"];
 
-export type UserCodeRow = Database["public"]["Tables"]["user_codes"]["Row"];
+export type UserCodeRow =
+  DatabaseTypes["public"]["Tables"]["user_codes"]["Row"];

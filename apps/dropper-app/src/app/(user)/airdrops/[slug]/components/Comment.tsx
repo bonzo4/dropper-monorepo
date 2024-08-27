@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { DropmanView } from "@/lib/types/user";
 // import { AirdropCommentRow } from "@/lib/types/comment";
 import { cn } from "@/lib/utils/classNames";
@@ -7,7 +7,7 @@ import { Arrow } from "@/components/icons";
 import Image from "next/image";
 
 type CommentProps = {
-  comment: Database["public"]["Tables"]["airdrop_comments"]["Row"] & {
+  comment: DatabaseTypes["public"]["Tables"]["airdrop_comments"]["Row"] & {
     user?: DropmanView;
   };
 } & React.HTMLAttributes<HTMLDivElement>;

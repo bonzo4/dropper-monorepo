@@ -1,12 +1,13 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 
-export type ListingRow = Database["public"]["Tables"]["listings"]["Row"];
-export type ListingInsert = Database["public"]["Tables"]["listings"]["Insert"];
+export type ListingRow = DatabaseTypes["public"]["Tables"]["listings"]["Row"];
+export type ListingInsert =
+  DatabaseTypes["public"]["Tables"]["listings"]["Insert"];
 
 export type ListingBumpRow =
-  Database["public"]["Tables"]["listing_bumps"]["Row"];
+  DatabaseTypes["public"]["Tables"]["listing_bumps"]["Row"];
 export type ListingBumpInsert =
-  Database["public"]["Tables"]["listing_bumps"]["Insert"];
+  DatabaseTypes["public"]["Tables"]["listing_bumps"]["Insert"];
 
 export const DEFAULT_LISTING: ListingInsert = {
   ath: 0,

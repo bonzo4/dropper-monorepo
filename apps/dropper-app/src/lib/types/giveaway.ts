@@ -1,18 +1,18 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 
-export type GiveawayRow = Database["public"]["Tables"]["giveaways"]["Row"];
+export type GiveawayRow = DatabaseTypes["public"]["Tables"]["giveaways"]["Row"];
 export type GiveawayRequirementsRow =
-  Database["public"]["Tables"]["giveaway_requirements"]["Row"];
+  DatabaseTypes["public"]["Tables"]["giveaway_requirements"]["Row"];
 
 export type GiveawayInsert =
-  Database["public"]["Tables"]["giveaways"]["Insert"];
+  DatabaseTypes["public"]["Tables"]["giveaways"]["Insert"];
 export type GiveawayRequirementsInsert =
-  Database["public"]["Tables"]["giveaway_requirements"]["Insert"];
+  DatabaseTypes["public"]["Tables"]["giveaway_requirements"]["Insert"];
 
 export type GiveawayEntryRow =
-  Database["public"]["Tables"]["giveaway_entries"]["Row"];
+  DatabaseTypes["public"]["Tables"]["giveaway_entries"]["Row"];
 export type GiveawayWinnerRow =
-  Database["public"]["Tables"]["giveaway_winners"]["Row"];
+  DatabaseTypes["public"]["Tables"]["giveaway_winners"]["Row"];
 
 export const DEFAULT_GIVEAWAY: GiveawayInsert = {
   title: "",

@@ -1,9 +1,9 @@
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 type HandleImageChangeProps = {
   image: File;
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   bucketName: string;
 };
 export async function uploadImage({

@@ -1,4 +1,4 @@
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { GiveawayInsert } from "@/lib/types/giveaway";
 import { uploadImage } from "@/lib/utils/saveImage";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -14,7 +14,7 @@ import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 
 type IconUploadProps = {
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   setGiveaway: (args_0: SetStateAction<GiveawayInsert>) => void;
   giveaway: GiveawayInsert;
 };
