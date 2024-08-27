@@ -2,8 +2,7 @@ import { GiveawayBannerRow } from "@/lib/types/banner";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import GiveawayBannerSlider from "../components/GiveawayBannerSlider";
-import { Dropzone } from "@/components/icons";
-import Ctos from "./components/Listings";
+import Listings from "./components/Listings";
 
 export default async function Home() {
   const banners = await getBanners();
@@ -27,7 +26,7 @@ export default async function Home() {
       <GiveawayBannerSlider
         banners={[...banners, ...banners, ...banners, ...banners]}
       />
-      <Ctos />
+      <Listings />
     </main>
   );
 }
