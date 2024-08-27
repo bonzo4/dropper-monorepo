@@ -1,9 +1,9 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { NextRequest } from "next/server";
 
 export type ProfilePageData = Pick<
-  Database["public"]["Tables"]["dropmans"]["Row"],
+  DatabaseTypes["public"]["Tables"]["dropmans"]["Row"],
   "username" | "created_at" | "exp_points" | "icon" | "drop_points"
 >;
 

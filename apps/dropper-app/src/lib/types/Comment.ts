@@ -1,7 +1,7 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { DropmanView } from "./user";
 
 export type AirdropCommentRow =
-  Database["public"]["Tables"]["airdrop_comments"]["Row"] & {
+  DatabaseTypes["public"]["Tables"]["airdrop_comments"]["Row"] & {
     user?: DropmanView;
   };

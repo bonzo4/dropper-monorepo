@@ -1,4 +1,4 @@
-import { Database } from "../supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { AirdropRow } from "./airdrop";
 
 export enum SectionType {
@@ -8,18 +8,19 @@ export enum SectionType {
 }
 
 export type AirdropTeamMemberRow =
-  Database["public"]["Tables"]["airdrop_team_members"]["Row"];
+  DatabaseTypes["public"]["Tables"]["airdrop_team_members"]["Row"];
 export type AboutSectionRow =
-  Database["public"]["Tables"]["airdrop_about_sections"]["Row"];
+  DatabaseTypes["public"]["Tables"]["airdrop_about_sections"]["Row"];
 export type QuestItemRow =
-  Database["public"]["Tables"]["airdrop_quest_items"]["Row"];
-export type QuestRow = Database["public"]["Tables"]["airdrop_quests"]["Row"];
+  DatabaseTypes["public"]["Tables"]["airdrop_quest_items"]["Row"];
+export type QuestRow =
+  DatabaseTypes["public"]["Tables"]["airdrop_quests"]["Row"];
 export type QuestSectionRow =
-  Database["public"]["Tables"]["airdrop_quest_sections"]["Row"];
+  DatabaseTypes["public"]["Tables"]["airdrop_quest_sections"]["Row"];
 export type CommunityPostRow =
-  Database["public"]["Tables"]["airdrop_community_posts"]["Row"];
+  DatabaseTypes["public"]["Tables"]["airdrop_community_posts"]["Row"];
 export type CommunitySectionRow =
-  Database["public"]["Tables"]["airdrop_community_sections"]["Row"];
+  DatabaseTypes["public"]["Tables"]["airdrop_community_sections"]["Row"];
 
 export type AirdropPageRow = AirdropRow & {
   about_sections: (AboutSectionRow & {

@@ -1,9 +1,9 @@
+import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient, User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-import { Database } from "../supabase/types";
 
 type UseUserOptions = {
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
 };
 
 export function useUser({ supabase }: UseUserOptions) {

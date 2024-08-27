@@ -1,11 +1,11 @@
-import { Database } from "@/lib/supabase/types";
+import { DatabaseTypes } from "@repo/app-types/database";
 import { GiveawayInsert } from "@/lib/types/giveaway";
 import { PublicKey } from "@solana/web3.js";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 type SaveGiveawayOptions = {
   giveaway: GiveawayInsert;
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   giveawayType: "solana" | "spl";
   creatorKey: PublicKey;
 };
@@ -39,7 +39,7 @@ export async function saveGiveaway({
 }
 
 type UpdateGiveawayTxOptions = {
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseClient<DatabaseTypes>;
   giveawayId: number;
   tx: string;
 };

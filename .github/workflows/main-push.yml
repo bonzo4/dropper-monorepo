@@ -1,0 +1,31 @@
+name: Keep staging up-to-date with main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge_to_staging:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git user
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Checkout staging branch
+        run: git checkout staging
+
+      - name: Merge main into staging
+        run: git merge main --no-ff --no-edit
+
+      - name: Push changes to staging
+        run: git push origin staging

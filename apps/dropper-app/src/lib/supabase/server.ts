@@ -1,13 +1,13 @@
+import { DatabaseTypes } from "@repo/app-types/database";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { Database } from "./types";
 
 export function createSupabaseServer() {
   const cookieStore = cookies();
 
   // Create a server's supabase client with newly configured cookie,
   // which could be used to maintain user's session
-  return createServerClient<Database>(
+  return createServerClient<DatabaseTypes>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
