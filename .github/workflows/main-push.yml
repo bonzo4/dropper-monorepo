@@ -22,10 +22,10 @@ jobs:
         run: git fetch --all
 
       - name: Checkout staging branch
-        run: git checkout staging
+        run: git checkout develop
 
       - name: Merge main into staging
-        run: git merge main
+        run: git merge main --no-ff
 
       - name: Push changes to staging
         run: git push origin staging
