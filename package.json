@@ -6,6 +6,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:seed": "npx tsx ./lib/utils/seed",
     "db:start": "supabase start --workdir ./apps/dropper-supabase",
     "db:reset": "supabase reset --workdir ./apps/dropper-supabase",
     "db:stop": "supabase stop --workdir ./apps/dropper-supabase"
@@ -13,7 +14,16 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.0.14",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@snaplet/copycat": "^5.0.0",
+    "@snaplet/seed": "^0.98.0",
+    "postgres": "^3.4.4",
+    "supabase": "^1.190.0",
+    "tsx": "^4.18.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.2",
+    "dotenv": "^16.4.5"
   },
   "engines": {
     "node": ">=18"
