@@ -27,9 +27,7 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <GiveawayBannerSlider
-        banners={[...banners, ...banners, ...banners, ...banners]}
-      />
+      <GiveawayBannerSlider banners={[...banners]} />
       <Giveaways giveaways={giveaways} solValue={solValue} />
     </main>
   );
