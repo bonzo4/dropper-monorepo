@@ -5,15 +5,19 @@
  * Learn more about the Seed Client by following our guide: https://docs.snaplet.dev/seed/getting-started
  */
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "./lib/types";
+import { DatabaseTypes } from "../../../packages/app-types/src/database";
 
-export async function whitelistWallets(supabase: SupabaseClient<Database>) {
-  await supabase.from("whitelisted_wallets").delete().eq(
-    "wallet_address",
-    "9pT6i1LSxsFUd3jX8a3LfPV5A5UqS9mQdU3REPAM9Uev",
-  );
+export async function whitelistWallets(
+  supabase: SupabaseClient<DatabaseTypes>
+) {
+  await supabase
+    .from("solana_wallets")
+    .delete()
+    .eq("address", "9pT6i1LSxsFUd3jX8a3LfPV5A5UqS9mQdU3REPAM9Uev");
 
-  await supabase.from("whitelisted_wallets").insert([{
-    wallet_address: "9pT6i1LSxsFUd3jX8a3LfPV5A5UqS9mQdU3REPAM9Uev",
-  }]);
+  await supabase.from("solana_wallets").insert([
+    {
+      address: "9pT6i1LSxsFUd3jX8a3LfPV5A5UqS9mQdU3REPAM9Uev",
+    },
+  ]);
 }
