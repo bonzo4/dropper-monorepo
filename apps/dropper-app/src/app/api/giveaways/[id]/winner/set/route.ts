@@ -61,7 +61,7 @@ export async function POST(
     }
 
     const txString = await sendTransaction({
-      program,
+      provider: program.provider,
       transactionInstructions: [instruction],
       wallet: managerWallet,
     });

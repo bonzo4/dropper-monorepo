@@ -5,13 +5,13 @@ import {
   TransactionInstruction,
 } from "@solana/web3.js";
 import { computeBudgetInstruction } from "./instructions/computeBudget";
-import { AnchorProvider, Program } from "@coral-xyz/anchor";
+import { AnchorProvider, Program, Provider } from "@coral-xyz/anchor";
 import { DropperGiveaway } from "./types";
 import NodeWallet from "@coral-xyz/anchor/dist/cjs/nodewallet";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 
 type SendTransactionOptions = {
-  provider: AnchorProvider;
+  provider: AnchorProvider | Provider;
   transactionInstructions: TransactionInstruction[];
   wallet?: NodeWallet;
 };

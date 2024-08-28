@@ -4,10 +4,10 @@ import {
   TransactionInstruction,
 } from "@solana/web3.js";
 import { DropperGiveaway } from "../types";
-import { AnchorProvider } from "@coral-xyz/anchor";
+import { AnchorProvider, Provider } from "@coral-xyz/anchor";
 
 type ComputeBudgetInstructionOptions = {
-  provider: AnchorProvider;
+  provider: AnchorProvider | Provider;
   transactionInstructions: TransactionInstruction[];
 };
 
