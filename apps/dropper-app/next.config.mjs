@@ -5,6 +5,11 @@ const nextConfig = {
             {
                 protocol: "http",
                 hostname: "127.0.0.1",
+            },
+            {
+                protocol: "https",
+                hostname: "loremflickr.com",
+
         },
             {
                 protocol: 'https',

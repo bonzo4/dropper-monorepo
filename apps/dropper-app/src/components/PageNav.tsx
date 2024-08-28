@@ -1,14 +1,11 @@
-type GiveawayPageNavProps = {
+type Props = {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  giveawayCount: number;
+  docCount: number;
+  maxDocs: number;
 };
 
-export default function GiveawayPageNav({
-  page,
-  setPage,
-  giveawayCount,
-}: GiveawayPageNavProps) {
+export default function PageNav({ page, setPage, docCount, maxDocs }: Props) {
   return (
     <div className="flex justify-center gap-4">
       <button
@@ -23,9 +20,9 @@ export default function GiveawayPageNav({
       <button
         className="text-white"
         onClick={() => setPage((prev) => prev + 1)}
-        disabled={giveawayCount < 12}
+        disabled={docCount <= maxDocs}
         style={{
-          opacity: giveawayCount < 12 ? "25%" : "100%",
+          opacity: docCount <= maxDocs ? "25%" : "100%",
         }}
       >
         Next

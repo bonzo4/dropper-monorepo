@@ -1,26 +1,26 @@
 "use client";
 
-import { GiveawayBannerRow } from "@/lib/types/banner";
+import { ListingBannerRow } from "@/lib/types/banner";
 import { motion, useDragControls, PanInfo } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "usehooks-ts";
-import GiveawayBannerSliderRow from "./GiveawayBannerRowOptions";
 import SliderNav from "@/components/SliderNav";
+import ListingBannerSliderRow from "./ListingBannerRowOptions";
 
-type BannerSliderProps = {
-  banners: GiveawayBannerRow[];
+type Props = {
+  banners: ListingBannerRow[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const GiveawayBannerSlider = ({ banners }: BannerSliderProps) => {
+const GiveawayBannerSlider = ({ banners }: Props) => {
   const { width } = useWindowSize();
-  const [bannerRows, setBannerRows] = useState<GiveawayBannerRow[][]>([]);
+  const [bannerRows, setBannerRows] = useState<ListingBannerRow[][]>([]);
   const [position, setPosition] = useState(0);
   const controls = useDragControls();
   const [maxDrag, setMaxDrag] = useState(0);
 
   useEffect(() => {
-    const rows: GiveawayBannerRow[][] = [];
-    let row: GiveawayBannerRow[] = [];
+    const rows: ListingBannerRow[][] = [];
+    let row: ListingBannerRow[] = [];
 
     banners.forEach((banner, index) => {
       row.push(banner);
@@ -96,7 +96,7 @@ const GiveawayBannerSlider = ({ banners }: BannerSliderProps) => {
           className="flex flex-row items-center w-full"
         >
           {bannerRows.map((banners, index) => (
-            <GiveawayBannerSliderRow
+            <ListingBannerSliderRow
               banners={banners}
               key={index}
               width={width}

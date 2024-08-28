@@ -3,6 +3,7 @@ import { createUsers } from "./users";
 import { whitelistWallets } from "./wallets";
 import { createCodes } from "./codes";
 import { DatabaseTypes } from "@repo/app-types/database";
+import { createBanners } from "./banners";
 
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ const main = async () => {
 
   await createCodes(supabase);
   await whitelistWallets(supabase);
+  await createBanners(supabase);
 
   console.log("Database seeded successfully!");
 

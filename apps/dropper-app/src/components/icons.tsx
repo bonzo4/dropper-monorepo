@@ -54,8 +54,13 @@ import falling from "@/public/icons/falling.png";
 import logoWhite from "@/public/Dropper_Logo_White.png";
 import logoBlack from "@/public/Dropper_Logo_Black.png";
 import dropzone from "@/public/dropzone.gif";
+import bump from "@/public/icons/bump.png";
 
 type IconProps = {} & Omit<ImageProps, "src" | "alt">;
+
+export const Bump = ({ ...props }: IconProps) => (
+  <Image {...props} src={bump} alt="Bump" />
+);
 
 export const Dropzone = ({ ...props }: IconProps) => (
   <Image {...props} src={dropzone} alt="Dropzone" />

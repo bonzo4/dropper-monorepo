@@ -6,8 +6,8 @@ import { useGiveaways } from "@/lib/hooks/useGiveaways";
 import { useState } from "react";
 import PastGiveawayCard from "./PastGiveawayCard";
 import GiveawayQuery from "./GiveawayQuery";
-import GiveawayPageNav from "./GiveawayPageNav";
 import { CgSpinner } from "react-icons/cg";
+import PageNav from "@/components/PageNav";
 
 type GiveawaysOptions = {
   giveaways: LandingGiveaway[];
@@ -93,10 +93,11 @@ const Giveaways = ({ giveaways, solValue, ...props }: GiveawaysOptions) => {
           ))}
         </div>
       )}
-      <GiveawayPageNav
+      <PageNav
         page={page}
         setPage={setPage}
-        giveawayCount={giveawayData.length}
+        docCount={giveawayData.length}
+        maxDocs={12}
       />
     </div>
   );

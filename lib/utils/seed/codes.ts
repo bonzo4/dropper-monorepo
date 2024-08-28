@@ -5,10 +5,10 @@
  * Learn more about the Seed Client by following our guide: https://docs.snaplet.dev/seed/getting-started
  */
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "./lib/types";
 import { copycat } from "@snaplet/copycat";
+import { DatabaseTypes } from "../../../packages/app-types/src/database";
 
-export async function createCodes(supabase: SupabaseClient<Database>) {
+export async function createCodes(supabase: SupabaseClient<DatabaseTypes>) {
   const accessCodes: { code: string }[] = [];
 
   for (let i = 0; i < 10; i++) {
@@ -19,9 +19,9 @@ export async function createCodes(supabase: SupabaseClient<Database>) {
     });
   }
 
-  const { error: error2 } = await supabase.from("access_codes").insert(
-    accessCodes,
-  );
+  const { error: error2 } = await supabase
+    .from("access_codes")
+    .insert(accessCodes);
 
   if (error2) console.log(error2);
 }

@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
 
   if (!isNaN(pageNumber) && pageNumber > 0) {
     const start = (pageNumber - 1) * 12;
-    const end = start + 11;
+    const end = start + 12;
     query.range(start, end);
   } else {
     query.range(0, 11);

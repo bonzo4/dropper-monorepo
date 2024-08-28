@@ -6,17 +6,20 @@
  */
 import { copycat, faker } from "@snaplet/copycat";
 import { SupabaseClient, User } from "@supabase/supabase-js";
-import { Database } from "./lib/types";
+import { DatabaseTypes } from "../../../packages/app-types/src/database";
 
-export async function createUsers(supabase: SupabaseClient<Database>) {
-  const { data: { users }, error } = await supabase.auth.admin.listUsers();
+export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
+  const {
+    data: { users },
+    error,
+  } = await supabase.auth.admin.listUsers();
   if (error) console.log(error);
 
   if (JSON.stringify(users) !== "[]") {
     await Promise.all(
-      users.map(async (user: User) =>
-        await supabase.auth.admin.deleteUser(user.id)
-      ),
+      users.map(
+        async (user: User) => await supabase.auth.admin.deleteUser(user.id)
+      )
     );
   }
 
