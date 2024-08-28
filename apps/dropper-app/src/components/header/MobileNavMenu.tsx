@@ -55,12 +55,12 @@ export default function MobileNavMenu({ route, profile }: MobileNavMenuProps) {
         href="/listing"
         // className="opacity-50"
       >
-        {route.includes("community") ? (
+        {route.includes("listing") ? (
           <div>
-            <span className="text-primary">CTOS</span>
+            <span className="text-primary">DROPBOARD</span>
           </div>
         ) : (
-          <span className="">CTOS</span>
+          <span className="">DROPBOARD</span>
         )}
       </Link>
       <Link
