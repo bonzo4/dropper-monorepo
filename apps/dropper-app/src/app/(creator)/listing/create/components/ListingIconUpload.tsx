@@ -13,17 +13,17 @@ import {
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 
-type IconUploadProps = {
+type Props = {
   supabase: SupabaseClient<DatabaseTypes>;
   setListing: (args_0: SetStateAction<ListingInsert>) => void;
   listing: ListingInsert;
 };
 
-export default function IconUpload({
+export default function ListingIconUpload({
   supabase,
   setListing,
   listing,
-}: IconUploadProps) {
+}: Props) {
   const [files, setFiles] = useState<File[]>([]);
 
   const onDrop = useCallback(
@@ -39,7 +39,7 @@ export default function IconUpload({
 
   const removeFile = () => {
     setFiles([]);
-    // setListing({ ...listing, "": "" });
+    setListing({ ...listing, icon_url: "" });
     toast.success("Image removed");
   };
 
@@ -54,7 +54,7 @@ export default function IconUpload({
         const imagePath = await uploadImage({
           image,
           supabase,
-          bucketName: "listing_images",
+          bucketName: "listing_icons",
         });
 
         setListing((prev) => ({
@@ -90,17 +90,19 @@ export default function IconUpload({
   }
 
   return (
-    <div
-      {...getRootProps({
-        className:
-          "flex flex-row items-center justify-center w-36 h-36 px-2 outline-dashed rounded-md hover:cursor-pointer",
-      })}
-    >
-      <input {...getInputProps()} />
-      <p className="text-center text-sm">
-        {"Drag 'n' drop or upload your icon here"}
-      </p>
-      {listing.icon_url && <span>{listing.icon_url}</span>}
+    <div className="flex flex-col gap-1 items-center">
+      <div
+        {...getRootProps({
+          className:
+            "flex flex-row items-center justify-center w-36 h-36 px-2 outline-dashed rounded-md hover:cursor-pointer",
+        })}
+      >
+        <input {...getInputProps()} />
+        <p className="text-center text-sm">
+          {"Drag 'n' drop or upload your icon here"}
+        </p>
+        {listing.icon_url && <span>{listing.icon_url}</span>}
+      </div>
     </div>
   );
 }

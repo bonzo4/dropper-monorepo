@@ -7,9 +7,9 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db:seed": "npx tsx ./lib/utils/seed",
-    "db:start": "supabase start --workdir ./apps/dropper-supabase",
-    "db:reset": "supabase reset --workdir ./apps/dropper-supabase",
-    "db:stop": "supabase stop --workdir ./apps/dropper-supabase"
+    "db:start": "supabase start",
+    "db:reset": "supabase db reset",
+    "db:stop": "supabase stop --no-backup"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

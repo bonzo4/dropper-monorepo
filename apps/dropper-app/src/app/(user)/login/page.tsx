@@ -7,19 +7,24 @@ import { useState } from "react";
 import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
 import { mono } from "@/lib/utils/fonts";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const supabase = createSupabaseClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const [newsletter, setNewsletter] = useState(true);
 
   const handleDevLogin = async () => {
-    await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    if (error) return toast.error(error.message);
+    router.refresh();
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {

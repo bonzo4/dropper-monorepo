@@ -104,7 +104,7 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
         });
       }
       const tx = await sendTransaction({
-        program,
+        provider: program.provider,
         transactionInstructions: [instruction],
       });
       await updateGiveawayTx({
@@ -187,7 +187,7 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
         </div>
       </div>
       <div className="flex flex-col gap-2 w-full">
-        <h1 className="relative text-2xl md:text-[36px] py-5 ">REWARD</h1>
+        <span className="relative text-2xl md:text-[36px] py-5 ">REWARD</span>
         <div className="flex flex-col lg:flex-row gap-4 p-2.5">
           <span className={cn(mono.className, "min-w-[180px]")}>
             Reward Type

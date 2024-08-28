@@ -20,4 +20,5 @@ export const DEFAULT_LISTING: ListingInsert = {
   ticker: "",
   tx_string: "",
   icon_url: "",
+  chain: "SOL",
 };

@@ -53,10 +53,10 @@ export default function GiveawayWinner({
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:
@@ -89,7 +89,7 @@ export default function GiveawayWinner({
       }
 
       const tx = await sendTransaction({
-        program,
+        provider: program.provider,
         transactionInstructions: [instruction],
       });
 
