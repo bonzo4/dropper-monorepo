@@ -4,8 +4,8 @@ import { GiveawayBannerRow } from "@/lib/types/banner";
 import { motion, useDragControls, PanInfo } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "usehooks-ts";
-import SliderNav from "./SliderNav";
 import GiveawayBannerSliderRow from "./GiveawayBannerRowOptions";
+import SliderNav from "@/components/SliderNav";
 
 type BannerSliderProps = {
   banners: GiveawayBannerRow[];

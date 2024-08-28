@@ -1,5 +1,5 @@
 import GiveawayCard from "@/app/(user)/components/GiveawayCard";
-import GiveawayPageNav from "@/app/(user)/components/GiveawayPageNav";
+import GiveawayPageNav from "@/components/PageNav";
 import GiveawayQuery from "@/app/(user)/components/GiveawayQuery";
 import PastGiveawayCard from "@/app/(user)/components/PastGiveawayCard";
 import { useGiveaways } from "@/lib/hooks/useGiveaways";
@@ -9,6 +9,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { PublicKey } from "@solana/web3.js";
 import { useRef, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
+import PageNav from "@/components/PageNav";
 
 type Props = {
   publicKey: PublicKey;
@@ -125,10 +126,11 @@ export default function ManageGiveaways({ publicKey }: Props) {
             ))}
           </div>
         )}
-        <GiveawayPageNav
+        <PageNav
           page={page}
           setPage={setPage}
-          giveawayCount={giveawayData.length}
+          docCount={giveawayData.length}
+          maxDocs={12}
         />
       </div>
     </div>
