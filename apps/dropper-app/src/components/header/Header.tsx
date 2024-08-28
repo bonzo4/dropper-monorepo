@@ -71,7 +71,7 @@ export default function Header({ profile, tickers }: HeaderProps) {
       </div>
       {isMenuOpen && (
         <div className="flex absolute right-0 -bottom-[282px] z-10">
-          <MobileNavMenu route="/" profile={profile} />
+          <MobileNavMenu route={pathname} profile={profile} />
         </div>
       )}
     </div>
