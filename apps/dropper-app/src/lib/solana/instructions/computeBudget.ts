@@ -4,23 +4,22 @@ import {
   TransactionInstruction,
 } from "@solana/web3.js";
 import { DropperGiveaway } from "../types";
-import { Program } from "@coral-xyz/anchor";
+import { AnchorProvider } from "@coral-xyz/anchor";
 
 type ComputeBudgetInstructionOptions = {
-  program: Program<DropperGiveaway>;
+  provider: AnchorProvider;
   transactionInstructions: TransactionInstruction[];
 };
 
 export const computeBudgetInstruction = async ({
-  program,
+  provider,
   transactionInstructions,
 }: ComputeBudgetInstructionOptions) => {
-  const priorityFees =
-    await program.provider.connection.getRecentPrioritizationFees({
-      lockedWritableAccounts: transactionInstructions
-        .map((ti) => ti.keys.filter((a) => a.isWritable).map((a) => a.pubkey))
-        .flat(),
-    });
+  const priorityFees = await provider.connection.getRecentPrioritizationFees({
+    lockedWritableAccounts: transactionInstructions
+      .map((ti) => ti.keys.filter((a) => a.isWritable).map((a) => a.pubkey))
+      .flat(),
+  });
   // get average priority fee
   const avgPriorityFee =
     priorityFees.reduce((acc, fee) => acc + fee.prioritizationFee, 0) /

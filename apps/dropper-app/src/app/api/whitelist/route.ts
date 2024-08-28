@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const { data, error } = await supabase
     .from("solana_wallets")
     .select("*")
-    .eq("wallet_address", walletAddress)
+    .eq("address", walletAddress)
     .single();
 
   if (error) {
