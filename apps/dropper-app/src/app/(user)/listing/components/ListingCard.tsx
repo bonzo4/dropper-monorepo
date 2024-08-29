@@ -6,9 +6,10 @@ import Image from "next/image";
 
 type Props = {
   listing: ListingCardData;
+  showBump: (id: number) => void;
 };
 
-export default function ListingCard({ listing }: Props) {
+export default function ListingCard({ listing, showBump }: Props) {
   return (
     <div className="flex flex-col gap-2 p-3 border-2 border-primary rounded-md">
       <div className="flex flex-row gap-2">
@@ -28,12 +29,15 @@ export default function ListingCard({ listing }: Props) {
               <div className="w-[21px] h-[21px] bg-placeholder rounded-sm" />
               <div className="w-[21px] h-[21px] bg-placeholder rounded-sm" />
             </div>
-            <Bump />
+            <Bump
+              className="hover:cursor-pointer"
+              onClick={() => showBump(listing.id)}
+            />
           </div>
           <span
             className={cn(
               mono.className,
-              "text-wrap text-[12px] w-[250px] h-[44px] truncate"
+              "text-wrap text-[12px] w-[210px] lg:w-[250px] h-[44px] truncate"
             )}
           >
             <span>{listing.name}</span>

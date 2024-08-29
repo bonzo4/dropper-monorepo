@@ -6,23 +6,81 @@ import { useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import ListingCard from "./ListingCard";
 import PageNav from "@/components/PageNav";
+import { toast } from "react-toastify";
+import { ListingBump } from "./ListingBump";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { getProvider } from "@/lib/solana/getProvider";
+import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
+import { sendTransaction } from "@/lib/solana/sendTransaction";
+import { createListingBump } from "@/lib/actions/createListingBump";
 
 type Props = {
   listings: ListingCardData[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function Listings({ listings, ...props }: Props) {
+  const wallet = useWallet();
+  const { connection } = useConnection();
   const [page, setPage] = useState(1);
-  const [currentListing, setCurrentListing] =
-    useState<ListingCardData | null>();
+  const [showBumpModal, setShowBumpModal] = useState(false);
+  const [selectedListingId, setSelectedListingId] = useState<number | null>(
+    null
+  );
+  const [bumpDisabled, setBumpDisabled] = useState(false);
 
   const { listingsData, loading } = useListings({
     initialListings: listings,
     page,
   });
 
+  const showBump = (id: number) => {
+    setSelectedListingId(id);
+    setShowBumpModal(true);
+  };
+
+  const hideBump = () => {
+    setSelectedListingId(null);
+    setShowBumpModal(false);
+  };
+
+  const bump = async (id: number) => {
+    try {
+      if (!wallet.publicKey)
+        throw new Error("Please connect a wallet to deploy your drop");
+      const provider = getProvider(wallet, connection);
+      const instruction = await transferSolInstruction({
+        source: wallet.publicKey,
+        solAmount: 0.5,
+      });
+      const tx = await sendTransaction({
+        provider,
+        transactionInstructions: [instruction],
+      });
+
+      await createListingBump({
+        listingId: id,
+        payerKey: wallet.publicKey.toBase58(),
+        tx: tx,
+      });
+      toast.success(`Bumped listing: ${tx}`);
+      hideBump();
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3 px-4 lg:px-0 w-full lg:max-w-[1150px]">
+      {showBumpModal && selectedListingId && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <ListingBump
+            listingId={selectedListingId}
+            hideBump={hideBump}
+            bump={bump}
+            wallet={wallet}
+          />
+        </div>
+      )}
       {listingsData.length === 0 && !loading && (
         <div className="flex w-full py-10 justify-center">
           <span className="opacity-25">No ctos found</span>
@@ -34,9 +92,13 @@ export default function Listings({ listings, ...props }: Props) {
         </div>
       )}
       {!loading && (
-        <div className="relative flex flex-wrap justify-start items-center text-text font-fff-forward grow gap-6 lg:space-y-0 pb-4">
-          {listingsData.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
+        <div className="relative flex flex-wrap lg:justify-start items-center text-text font-fff-forward grow gap-5 lg:space-y-0 pb-4 justify-center">
+          {listingsData.slice(0, 13).map((listing) => (
+            <ListingCard
+              key={listing.id}
+              listing={listing}
+              showBump={showBump}
+            />
           ))}
         </div>
       )}
