@@ -4,7 +4,7 @@ import Link from "next/link";
 import GiveawayBannerSlider from "./components/GiveawayBannerSlider";
 import Giveaways from "./components/Giveaways";
 import { LandingGiveaway } from "../api/giveaways/route";
-import { Dropzone } from "@/components/icons";
+import { Dropzone, DropzoneMobile } from "@/components/icons";
 
 export default async function Home() {
   const banners = await getBanners();
@@ -14,10 +14,8 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center grow gap-[68px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
-        <Dropzone className="" />
-        {/* <h1 className="flex sm:hidden text-md text-center font-bold text-yellow">
-          YOU HAVE ENTERED THE DROP ZONE: WIN DROPS AND EARN TRENDING TOKENS
-        </h1> */}
+        <Dropzone className="hidden sm:flex" />
+        <DropzoneMobile className="flex sm:hidden" />
         <div className="flex flex-row gap-2">
           <Link href="/drops/create">
             <Button className=" ">CREATE DROP</Button>

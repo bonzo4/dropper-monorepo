@@ -19,6 +19,7 @@ import { Solana, SolanaColor } from "@/components/icons";
 import Button from "@/components/ui/Button";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { getProvider } from "@/lib/solana/getProvider";
+import { checkListing } from "../utils/checkListing";
 
 type Props = {
   wallet: WalletContextState;
@@ -39,6 +40,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
     try {
       if (!wallet.publicKey)
         throw new Error("Please connect a wallet to deploy your drop");
+      checkListing(listing);
       const provider = getProvider(wallet, connection);
       const instruction = await transferSolInstruction({
         source: wallet.publicKey,
