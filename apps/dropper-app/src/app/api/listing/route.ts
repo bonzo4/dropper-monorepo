@@ -9,7 +9,7 @@ export type ListingCardData = {
   atv: number;
   icon_url: string;
   description: string;
-  id: string;
+  id: number;
 };
 
 export async function GET(request: NextRequest) {
