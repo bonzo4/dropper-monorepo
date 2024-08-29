@@ -1,6 +1,6 @@
 "use client";
 
-import { ListingCardData } from "@/app/api/listing/route";
+import { ListingCardData } from "@/app/api/listings/route";
 import { useListings } from "@/lib/hooks/useListings";
 import { useState } from "react";
 import { CgSpinner } from "react-icons/cg";

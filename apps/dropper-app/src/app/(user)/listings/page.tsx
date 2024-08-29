@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Listings from "./components/Listings";
 import ListingBannerSlider from "./components/ListingBannerSlider";
-import { ListingCardData } from "@/app/api/listing/route";
+import { ListingCardData } from "@/app/api/listings/route";
 
 export default async function Home() {
   const banners = await getBanners();
@@ -31,7 +31,7 @@ export default async function Home() {
 async function getBanners() {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/listing/banners`,
+      `${process.env.NEXT_PUBLIC_URL}/api/listings/banners`,
       {
         next: {
           revalidate: 60,
@@ -52,9 +52,12 @@ async function getBanners() {
 
 async function getListings() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/listing`, {
-      cache: "no-cache",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/listings`,
+      {
+        cache: "no-cache",
+      }
+    );
 
     if (response.status !== 200) {
       console.log(await response.json());

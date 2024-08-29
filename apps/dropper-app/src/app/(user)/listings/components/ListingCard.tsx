@@ -1,4 +1,4 @@
-import { ListingCardData } from "@/app/api/listing/route";
+import { ListingCardData } from "@/app/api/listings/route";
 import { Bump } from "@/components/icons";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";

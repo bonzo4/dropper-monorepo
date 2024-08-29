@@ -1,4 +1,4 @@
-import { ListingCardData } from "@/app/api/listing/route";
+import { ListingCardData } from "@/app/api/listings/route";
 import { useEffect, useState } from "react";
 import { createSupabaseClient } from "../supabase/client";
 import { ListingRow } from "../types/listing";
@@ -18,7 +18,7 @@ export function useListings({ page = 1, initialListings }: Options) {
     const fetchListings = async () => {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/listing?page=${page}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/listings?page=${page}`,
         {
           cache: "no-cache",
         }
