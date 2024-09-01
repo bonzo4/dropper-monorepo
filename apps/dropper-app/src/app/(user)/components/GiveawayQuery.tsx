@@ -1,4 +1,4 @@
-import { Arrow, ArrowGray } from "@/components/icons";
+import { Arrow, ArrowWhite } from "@/components/icons";
 
 type GiveawayQueryProps = {
   handleType: (type: "ongoing" | "past" | "not_started") => void;
@@ -74,14 +74,17 @@ export default function GiveawayQuery({
           {sortBy === "created_at" && (
             <div className="flex flex-col justify-center items-center gap-1">
               {sort === "ascending" ? (
-                <Arrow height={7} className="-rotate-90" />
+                <Arrow height={8} className="-rotate-90" />
               ) : (
-                <ArrowGray />
+                <ArrowWhite height={8} className="-rotate-90 opacity-25" />
               )}
               {sort === "descending" ? (
-                <Arrow height={7} className="rotate-90" />
+                <Arrow height={8} className="rotate-90 mr-[1px]" />
               ) : (
-                <ArrowGray className="rotate-180" />
+                <ArrowWhite
+                  height={8}
+                  className="rotate-90 mr-[1px]  opacity-25"
+                />
               )}
             </div>
           )}
@@ -101,14 +104,17 @@ export default function GiveawayQuery({
           {sortBy === "usd_value" && (
             <div className="flex flex-col justify-center items-center gap-1">
               {sort === "ascending" ? (
-                <Arrow height={7} className="-rotate-90" />
+                <Arrow height={8} className="-rotate-90" />
               ) : (
-                <ArrowGray />
+                <ArrowWhite height={8} className="-rotate-90  opacity-25" />
               )}
               {sort === "descending" ? (
-                <Arrow height={7} className="rotate-90" />
+                <Arrow height={8} className="rotate-90 mr-[1px]" />
               ) : (
-                <ArrowGray className="rotate-180" />
+                <ArrowWhite
+                  height={8}
+                  className="rotate-90 mr-[1px]  opacity-25"
+                />
               )}
             </div>
           )}
@@ -128,14 +134,17 @@ export default function GiveawayQuery({
           {sortBy === "end_time" && (
             <div className="flex flex-col justify-center items-center gap-1">
               {sort === "ascending" ? (
-                <Arrow height={7} className="-rotate-90" />
+                <Arrow height={8} className="-rotate-90" />
               ) : (
-                <ArrowGray />
+                <ArrowWhite height={8} className="-rotate-90  opacity-25" />
               )}
               {sort === "descending" ? (
-                <Arrow height={7} className="rotate-90" />
+                <Arrow height={8} className="rotate-90  mr-[1px] " />
               ) : (
-                <ArrowGray className="rotate-180" />
+                <ArrowWhite
+                  height={8}
+                  className="rotate-90 mr-[1px]  opacity-25"
+                />
               )}
             </div>
           )}
@@ -155,14 +164,14 @@ export default function GiveawayQuery({
           {sortBy === "entries" && (
             <div className="flex flex-col justify-center items-center gap-1">
               {sort === "ascending" ? (
-                <Arrow height={7} className="-rotate-90" />
+                <Arrow height={8} className="-rotate-90" />
               ) : (
-                <ArrowGray />
+                <ArrowWhite height={8} className="-rotate-90  opacity-25" />
               )}
               {sort === "descending" ? (
-                <Arrow height={7} className="rotate-90" />
+                <Arrow height={8} className="rotate-90  mr-[1px]" />
               ) : (
-                <ArrowGray className="rotate-180" />
+                <ArrowWhite height={8} className="rotate-90  opacity-25" />
               )}
             </div>
           )}

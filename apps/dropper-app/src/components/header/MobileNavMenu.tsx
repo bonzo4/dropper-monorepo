@@ -52,10 +52,10 @@ export default function MobileNavMenu({ route, profile }: MobileNavMenuProps) {
         )}
       </Link>
       <Link
-        href="/listing"
+        href="/listings"
         // className="opacity-50"
       >
-        {route.includes("listing") ? (
+        {route.includes("listings") ? (
           <div>
             <span className="text-primary">DROPBOARD</span>
           </div>

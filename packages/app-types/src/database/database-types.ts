@@ -1348,6 +1348,7 @@ export type Database = {
           name: string
           telegram_url: string | null
           ticker: string
+          token_address: string
           twitter_url: string | null
           tx_string: string
         }
@@ -1366,6 +1367,7 @@ export type Database = {
           name: string
           telegram_url?: string | null
           ticker: string
+          token_address: string
           twitter_url?: string | null
           tx_string: string
         }
@@ -1384,6 +1386,7 @@ export type Database = {
           name?: string
           telegram_url?: string | null
           ticker?: string
+          token_address?: string
           twitter_url?: string | null
           tx_string?: string
         }

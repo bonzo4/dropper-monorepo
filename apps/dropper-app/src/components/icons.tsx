@@ -1,6 +1,6 @@
 import Image, { ImageLoaderProps, ImageProps } from "next/image";
 import arrow from "@/public/icons/arrow.png";
-import arrowGray from "@/public/icons/arrow-gray.png";
+import arrowWhite from "@/public/icons/arrow-white.png";
 import whiteArrow from "@/public/icons/white-arrow.png";
 import headerLogo from "@/public/dropper-logo.png";
 import headerIcon from "@/public/header-icon.png";
@@ -201,8 +201,8 @@ export const Arrow = (props: IconProps) => (
   <Image {...props} src={arrow} alt="Arrow" />
 );
 
-export const ArrowGray = (props: IconProps) => (
-  <Image {...props} src={arrowGray} alt="Arrow" />
+export const ArrowWhite = (props: IconProps) => (
+  <Image {...props} src={arrowWhite} alt="Arrow" />
 );
 
 export const WhiteArrow = ({ ...props }: IconProps) => (

@@ -27,7 +27,9 @@ type GiveawayCardProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const GiveawayCard = ({ giveaway, solValue, ...props }: GiveawayCardProps) => {
-  const renderer = ({ hours, minutes, seconds, completed }: any) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+    const dayHours = days * 24;
+    hours = hours + dayHours;
     if (completed) {
       // Render a completed state
       return (
@@ -45,10 +47,10 @@ const GiveawayCard = ({ giveaway, solValue, ...props }: GiveawayCardProps) => {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:
@@ -111,10 +113,8 @@ const GiveawayCard = ({ giveaway, solValue, ...props }: GiveawayCardProps) => {
         </Paragraph>
         <div className="flex flex-row gap-6">
           <div className="flex flex-col items-start justify-center">
-            <span className="relative text-[9px] md:text-[14px] tracking-widest">
-              Reward
-            </span>
-            <Paragraph className="relative text-[10px] md:text-[16px] text-primary font-semibold">
+            <span className="relative text-[14px] tracking-widest">Reward</span>
+            <Paragraph className="relative text-[16px] text-primary font-semibold">
               {numString(giveaway.reward_amount)} $
               {giveaway.token_address ? `$${giveaway.ticker}` : "SOL"}
             </Paragraph>

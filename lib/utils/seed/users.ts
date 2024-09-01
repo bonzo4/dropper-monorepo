@@ -42,4 +42,6 @@ export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
       },
     });
   }
+
+  console.log("users created");
 }

@@ -15,6 +15,8 @@ export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
 
   await supabase.from("giveaway_banners").insert(giveawayBanners);
 
+  console.log("giveaway banners created");
+
   const listingBanners: { image_url: string; order: number }[] = [];
 
   for (let i = 0; i < 16; i++) {
@@ -26,4 +28,6 @@ export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
   }
 
   await supabase.from("listing_banners").insert(listingBanners);
+
+  console.log("listing banners created");
 }

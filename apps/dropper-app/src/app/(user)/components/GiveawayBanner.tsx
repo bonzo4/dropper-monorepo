@@ -13,7 +13,7 @@ export default function GiveawayBanner({ banner }: GiveawayBannerProps) {
         href={banner.out_url}
         target="_blank"
         rel="noreferrer"
-        className="w-[324px] h-[125px] relative rounded-[10px]"
+        className="w-[324px] h-[125px] relative rounded-[10px]  overflow-hidden"
       >
         <Image src={banner.image_url} alt="banner" width={324} height={125} />
       </a>
@@ -23,7 +23,7 @@ export default function GiveawayBanner({ banner }: GiveawayBannerProps) {
   if (banner.giveaway_id) {
     return (
       <Link href={`/drops/${banner.giveaway_id}`}>
-        <a className="w-[324px] h-[125px] relative rounded-[10px]">
+        <a className="w-[324px] h-[125px] relative rounded-[10px]  overflow-hidden">
           <Image src={banner.image_url} alt="banner" width={324} height={125} />
         </a>
       </Link>
@@ -31,7 +31,7 @@ export default function GiveawayBanner({ banner }: GiveawayBannerProps) {
   }
 
   return (
-    <div className="w-[324px] h-[125px] relative rounded-[10px]">
+    <div className="w-[324px] h-[125px] relative rounded-[10px]  overflow-hidden">
       <Image src={banner.image_url} alt="banner" width={324} height={125} />
     </div>
   );

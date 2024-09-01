@@ -2,14 +2,14 @@
 import { DropmanView } from "@/lib/types/user";
 import { usePathname, useRouter } from "next/navigation";
 import { useWindowSize } from "usehooks-ts";
-import Ticker from "./Ticker";
 import { Dropper, HeaderLogo, Login, Menu } from "@/components/icons";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
-import DesktopNavMenu from "./DesktopNavMenu";
 import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
 import { useState } from "react";
+import Ticker from "./Ticker";
+import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
 
 type HeaderProps = {
@@ -42,9 +42,9 @@ export default function Header({ profile, tickers }: HeaderProps) {
                 className="flex flex-row items-center gap-4"
               >
                 {/* <span className="text-[#FDE400]">⚡68/100</span> */}
-                <div className="flex flex-row items-center bg-secondary rounded-md p-[6px] gap-2">
+                <div className="flex flex-row items-center bg-secondary rounded-md p-[6px] gap-2 w-[179px]">
                   <Dropper />
-                  <span>{profile.username}</span>
+                  <span className="truncate">{profile.username}</span>
                   {profile.icon ? (
                     <Image
                       src={profile.icon}

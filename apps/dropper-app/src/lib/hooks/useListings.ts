@@ -1,24 +1,22 @@
-import { ListingCardData } from "@/app/api/listing/route";
+import { ListingCardData } from "@/app/api/listings/route";
 import { useEffect, useState } from "react";
 import { createSupabaseClient } from "../supabase/client";
 import { ListingRow } from "../types/listing";
 
 type Options = {
-  initialListings: ListingCardData[];
   page?: number;
 };
 
-export function useListings({ page = 1, initialListings }: Options) {
+export function useListings({ page }: Options) {
   const supabase = createSupabaseClient();
-  const [loading, setLoading] = useState(false);
-  const [listingsData, setListings] =
-    useState<ListingCardData[]>(initialListings);
+  const [loading, setLoading] = useState(true);
+  const [listingsData, setListings] = useState<ListingCardData[]>([]);
 
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/listing?page=${page}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/listings?page=${page}`,
         {
           cache: "no-cache",
         }
@@ -35,6 +33,7 @@ export function useListings({ page = 1, initialListings }: Options) {
     };
 
     if (page === 1) {
+      fetchListings();
       const channel = supabase
         .channel("realtime listings")
         .on(

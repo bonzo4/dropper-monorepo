@@ -3,27 +3,26 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Listings from "./components/Listings";
 import ListingBannerSlider from "./components/ListingBannerSlider";
-import { ListingCardData } from "@/app/api/listing/route";
+import { ListingCardData } from "@/app/api/listings/route";
 
 export default async function Home() {
   const banners = await getBanners();
-  const listings = await getListings();
 
   return (
-    <main className="flex flex-col items-center grow gap-[68px] py-16">
+    <main className="relative flex flex-col items-center grow gap-[68px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
         {/* <Dropzone className="" /> */}
         <h1 className="flex text-md text-center font-bold text-yellow">
           YOU HAVE ENTERED THE DROP BOARD: ...
         </h1>
         <div className="flex flex-row gap-2">
-          <Link href="/listing/create">
+          <Link href="/listings/create">
             <Button className=" ">CREATE CTO</Button>
           </Link>
         </div>
       </div>
       <ListingBannerSlider banners={[...banners]} />
-      <Listings listings={listings} />
+      <Listings />
     </main>
   );
 }
@@ -31,7 +30,7 @@ export default async function Home() {
 async function getBanners() {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/listing/banners`,
+      `${process.env.NEXT_PUBLIC_URL}/api/listings/banners`,
       {
         next: {
           revalidate: 60,
@@ -52,9 +51,12 @@ async function getBanners() {
 
 async function getListings() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/listing`, {
-      cache: "no-cache",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/listings`,
+      {
+        cache: "no-cache",
+      }
+    );
 
     if (response.status !== 200) {
       console.log(await response.json());
