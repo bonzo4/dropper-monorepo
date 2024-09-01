@@ -11,9 +11,16 @@ type Props = {
   hideBump: () => void;
   bump: (id: number) => void;
   wallet: WalletContextState;
+  bumpDisabled: boolean;
 };
 
-export function ListingBump({ listingId, hideBump, bump, wallet }: Props) {
+export function ListingBump({
+  listingId,
+  hideBump,
+  bump,
+  wallet,
+  bumpDisabled,
+}: Props) {
   return (
     <div className="relative flex flex-col items-center gap-4 px-2 sm:px-10 py-6 border-2 border-primary bg-secondary rounded-md">
       <Mark
@@ -40,7 +47,11 @@ export function ListingBump({ listingId, hideBump, bump, wallet }: Props) {
       <div className="flex flex-row items-center gap-2">
         <WalletMultiButton />
         {wallet.publicKey && (
-          <Button className="px-4" onClick={() => bump(listingId)}>
+          <Button
+            className="px-4"
+            onClick={() => bump(listingId)}
+            disabled={bumpDisabled}
+          >
             Pay
           </Button>
         )}

@@ -4,15 +4,13 @@ import { createSupabaseClient } from "../supabase/client";
 import { ListingRow } from "../types/listing";
 
 type Options = {
-  initialListings: ListingCardData[];
   page?: number;
 };
 
-export function useListings({ page = 1, initialListings }: Options) {
+export function useListings({ page }: Options) {
   const supabase = createSupabaseClient();
-  const [loading, setLoading] = useState(false);
-  const [listingsData, setListings] =
-    useState<ListingCardData[]>(initialListings);
+  const [loading, setLoading] = useState(true);
+  const [listingsData, setListings] = useState<ListingCardData[]>([]);
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -35,6 +33,7 @@ export function useListings({ page = 1, initialListings }: Options) {
     };
 
     if (page === 1) {
+      fetchListings();
       const channel = supabase
         .channel("realtime listings")
         .on(

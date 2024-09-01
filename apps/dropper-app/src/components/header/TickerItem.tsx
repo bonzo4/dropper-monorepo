@@ -16,7 +16,9 @@ type TickerItemOptions = {
 export default function TickerItem({ ticker, index }: TickerItemOptions) {
   const endDate = new Date(ticker.end_time);
 
-  const renderer = ({ hours, minutes, seconds, completed }: any) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+    const dayHours = days * 24;
+    hours = hours + dayHours;
     if (completed) {
       // Render a completed state
       return (
@@ -35,10 +37,10 @@ export default function TickerItem({ ticker, index }: TickerItemOptions) {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:

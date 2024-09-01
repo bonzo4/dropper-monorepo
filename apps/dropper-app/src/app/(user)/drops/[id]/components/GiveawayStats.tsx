@@ -28,7 +28,9 @@ const GiveawayStats = ({
     return () => clearInterval(interval);
   }, []);
 
-  const renderer = ({ hours, minutes, seconds, completed }: any) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+    const dayHours = days * 24;
+    hours = hours + dayHours;
     if (completed) {
       // Render a completed state
       return (
@@ -45,10 +47,10 @@ const GiveawayStats = ({
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:
@@ -72,8 +74,8 @@ const GiveawayStats = ({
             {startDate > now
               ? "Not Started"
               : endDate > now
-              ? "Ongoing"
-              : "Ended"}
+                ? "Ongoing"
+                : "Ended"}
           </span>
         </div>
         <div className="flex flex-col space-y-2">

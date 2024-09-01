@@ -20,4 +20,6 @@ export async function whitelistWallets(
       address: "9pT6i1LSxsFUd3jX8a3LfPV5A5UqS9mQdU3REPAM9Uev",
     },
   ]);
+
+  console.log("wallets whitelisted");
 }

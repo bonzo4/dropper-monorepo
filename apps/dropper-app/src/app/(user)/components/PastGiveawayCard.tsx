@@ -5,9 +5,6 @@ import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
 import { LandingGiveaway } from "../../api/giveaways/route";
-import Countdown from "react-countdown";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
 import {
   BaseBadge,
   BNBBadge,

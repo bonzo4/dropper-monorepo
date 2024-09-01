@@ -7,23 +7,22 @@ import { ListingCardData } from "@/app/api/listings/route";
 
 export default async function Home() {
   const banners = await getBanners();
-  const listings = await getListings();
 
   return (
-    <main className="flex flex-col items-center grow gap-[68px] py-16">
+    <main className="relative flex flex-col items-center grow gap-[68px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
         {/* <Dropzone className="" /> */}
         <h1 className="flex text-md text-center font-bold text-yellow">
           YOU HAVE ENTERED THE DROP BOARD: ...
         </h1>
         <div className="flex flex-row gap-2">
-          <Link href="/listing/create">
+          <Link href="/listings/create">
             <Button className=" ">CREATE CTO</Button>
           </Link>
         </div>
       </div>
       <ListingBannerSlider banners={[...banners]} />
-      <Listings listings={listings} />
+      <Listings />
     </main>
   );
 }

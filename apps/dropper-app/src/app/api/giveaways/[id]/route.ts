@@ -5,6 +5,8 @@ import { NextRequest } from "next/server";
 export type GiveawayPageData = {
   giveaway_requirements: GiveawayRequirementsRow | null;
   entryIcons: string[];
+  prevGiveawayId: number | null;
+  nextGiveawayId: number | null;
 } & GiveawayRow;
 
 export async function GET(
@@ -50,7 +52,33 @@ export async function GET(
       })
     );
   }
-  const giveaway = { ...data, entryIcons };
+
+  let nextGiveawayId = null;
+  let prevGiveawayId = null;
+
+  const { data: next } = await supabase
+    .from("giveaways")
+    .select("id")
+    .lt("created_at", data.created_at)
+    .order("id", { ascending: false })
+    .range(0, 0)
+    .single();
+  if (next) {
+    nextGiveawayId = next.id;
+  }
+
+  const { data: prev } = await supabase
+    .from("giveaways")
+    .select("id")
+    .gt("created_at", data.created_at)
+    .order("id", { ascending: true })
+    .range(0, 0)
+    .single();
+  if (prev) {
+    prevGiveawayId = prev.id;
+  }
+
+  const giveaway = { ...data, entryIcons, nextGiveawayId, prevGiveawayId };
 
   return new Response(JSON.stringify(giveaway), {
     status: 200,

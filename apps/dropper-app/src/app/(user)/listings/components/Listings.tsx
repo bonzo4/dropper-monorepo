@@ -14,11 +14,7 @@ import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
 import { createListingBump } from "@/lib/actions/createListingBump";
 
-type Props = {
-  listings: ListingCardData[];
-} & React.HTMLAttributes<HTMLDivElement>;
-
-export default function Listings({ listings, ...props }: Props) {
+export default function Listings() {
   const wallet = useWallet();
   const { connection } = useConnection();
   const [page, setPage] = useState(1);
@@ -29,13 +25,13 @@ export default function Listings({ listings, ...props }: Props) {
   const [bumpDisabled, setBumpDisabled] = useState(false);
 
   const { listingsData, loading } = useListings({
-    initialListings: listings,
     page,
   });
 
   const showBump = (id: number) => {
     setSelectedListingId(id);
     setShowBumpModal(true);
+    return false;
   };
 
   const hideBump = () => {
@@ -44,6 +40,7 @@ export default function Listings({ listings, ...props }: Props) {
   };
 
   const bump = async (id: number) => {
+    setBumpDisabled(true);
     try {
       if (!wallet.publicKey)
         throw new Error("Please connect a wallet to deploy your drop");
@@ -67,6 +64,7 @@ export default function Listings({ listings, ...props }: Props) {
     } catch (error: any) {
       toast.error(error.message);
     }
+    setBumpDisabled(false);
   };
 
   return (
@@ -78,6 +76,7 @@ export default function Listings({ listings, ...props }: Props) {
             hideBump={hideBump}
             bump={bump}
             wallet={wallet}
+            bumpDisabled={bumpDisabled}
           />
         </div>
       )}
@@ -93,7 +92,7 @@ export default function Listings({ listings, ...props }: Props) {
       )}
       {!loading && (
         <div className="relative flex flex-wrap lg:justify-start items-center text-text font-fff-forward grow gap-5 lg:space-y-0 pb-4 justify-center">
-          {listingsData.slice(0, 13).map((listing) => (
+          {listingsData.slice(0, 12).map((listing) => (
             <ListingCard
               key={listing.id}
               listing={listing}

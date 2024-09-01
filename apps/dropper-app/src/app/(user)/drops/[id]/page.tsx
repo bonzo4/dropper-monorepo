@@ -6,6 +6,7 @@ import GiveawayEntry from "./components/GiveawayEntry";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
 import { headers } from "next/headers";
+import GiveawayRouter from "./components/GiveawayRouter";
 
 export default async function GiveawayPage({
   params: { id },
@@ -27,6 +28,10 @@ export default async function GiveawayPage({
   return (
     <div className="flex flex-col items-center justify-start grow py-20">
       <div className="w-full relative overflow-hidden flex flex-col items-start justify-start gap-[40px] max-w-[737px]">
+        <GiveawayRouter
+          nextGiveawayId={giveaway.nextGiveawayId}
+          prevGiveawayId={giveaway.prevGiveawayId}
+        />
         <GiveawayInfo giveaway={giveaway} />
         <Paragraph className="px-20">{giveaway.description}</Paragraph>
         <GiveawayStats giveaway={giveaway} solValue={solValue} />

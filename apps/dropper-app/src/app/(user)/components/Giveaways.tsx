@@ -72,8 +72,8 @@ const Giveaways = ({ giveaways, solValue, ...props }: GiveawaysOptions) => {
         </div>
       )}
       {!loading && type === "ongoing" && (
-        <div className="relative flex flex-wrap justify-start items-center text-text font-fff-forward grow gap-6 lg:space-y-0 pb-4">
-          {giveawayData.map((giveaway) => (
+        <div className="relative flex flex-wrap justify-center lg:justify-start items-center text-text font-fff-forward grow gap-6 lg:space-y-0 pb-4">
+          {giveawayData.slice(0, 12).map((giveaway) => (
             <GiveawayCard
               key={giveaway.id}
               giveaway={giveaway}
@@ -83,8 +83,8 @@ const Giveaways = ({ giveaways, solValue, ...props }: GiveawaysOptions) => {
         </div>
       )}
       {!loading && type === "past" && (
-        <div className="relative flex flex-wrap justify-start items-center text-text font-fff-forward grow gap-6 lg:space-y-0 pb-4">
-          {giveawayData.map((giveaway) => (
+        <div className="relative flex flex-wrap justify-center lg:justify-start items-center text-text font-fff-forward grow gap-6 lg:space-y-0 pb-4">
+          {giveawayData.slice(0, 12).map((giveaway) => (
             <PastGiveawayCard
               key={giveaway.id}
               giveaway={giveaway}

@@ -13,7 +13,7 @@ export default function ListingBanner({ banner }: Props) {
         href={banner.out_url}
         target="_blank"
         rel="noreferrer"
-        className="w-[324px] h-[125px] relative rounded-[10px]"
+        className="w-[324px] h-[125px] relative rounded-[10px] overflow-hidden"
       >
         <Image src={banner.image_url} alt="banner" width={324} height={125} />
       </a>
@@ -22,8 +22,8 @@ export default function ListingBanner({ banner }: Props) {
 
   if (banner.listing_id) {
     return (
-      <Link href={`/listing/${banner.listing_id}`}>
-        <a className="w-[324px] h-[125px] relative rounded-[10px]">
+      <Link href={`/listings/${banner.listing_id}`}>
+        <a className="w-[324px] h-[125px] relative rounded-[10px] overflow-hidden">
           <Image src={banner.image_url} alt="banner" width={324} height={125} />
         </a>
       </Link>
@@ -31,7 +31,7 @@ export default function ListingBanner({ banner }: Props) {
   }
 
   return (
-    <div className="w-[324px] h-[125px] relative rounded-[10px]">
+    <div className="w-[324px] h-[125px] relative rounded-[10px] overflow-hidden">
       <Image src={banner.image_url} alt="banner" width={324} height={125} />
     </div>
   );

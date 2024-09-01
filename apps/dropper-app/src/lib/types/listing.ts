@@ -21,4 +21,5 @@ export const DEFAULT_LISTING: ListingInsert = {
   tx_string: "",
   icon_url: "",
   chain: "SOL",
+  token_address: "",
 };

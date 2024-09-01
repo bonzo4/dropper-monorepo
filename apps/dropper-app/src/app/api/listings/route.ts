@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     const end = start + 12;
     query.range(start, end);
   } else {
-    query.range(0, 11);
+    query.range(0, 12);
   }
 
   const { data, error } = await query;

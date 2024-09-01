@@ -4,6 +4,8 @@ import { whitelistWallets } from "./wallets";
 import { createCodes } from "./codes";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { createBanners } from "./banners";
+import { createGiveaways } from "./giveaways";
+import { createListings } from "./listings";
 
 require("dotenv").config();
 
@@ -21,6 +23,8 @@ const main = async () => {
   await createCodes(supabase);
   await whitelistWallets(supabase);
   await createBanners(supabase);
+  await createGiveaways(supabase);
+  await createListings(supabase);
 
   console.log("Database seeded successfully!");
 

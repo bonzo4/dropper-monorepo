@@ -24,4 +24,6 @@ export async function createCodes(supabase: SupabaseClient<DatabaseTypes>) {
     .insert(accessCodes);
 
   if (error2) console.log(error2);
+
+  console.log("access codes created");
 }
