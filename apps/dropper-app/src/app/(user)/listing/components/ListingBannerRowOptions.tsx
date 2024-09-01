@@ -1,4 +1,4 @@
-import { ListingBannerRow } from "@/lib/types/banner";
+import { ListingBannerRow } from "@repo/types/banner";
 import ListingBanner from "./ListingBanner";
 
 type Props = {

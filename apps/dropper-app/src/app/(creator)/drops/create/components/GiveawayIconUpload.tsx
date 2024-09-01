@@ -1,5 +1,5 @@
-import { DatabaseTypes } from "@repo/app-types/database";
-import { GiveawayInsert } from "@/lib/types/giveaway";
+import { DatabaseTypes } from "@repo/types/database";
+import { GiveawayInsert } from "@repo/types/giveaway";
 import { uploadImage } from "@/lib/utils/saveImage";
 import { SupabaseClient } from "@supabase/supabase-js";
 import Image from "next/image";

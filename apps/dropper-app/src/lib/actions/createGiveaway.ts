@@ -1,6 +1,9 @@
 "use server";
 import { createSupabaseServer } from "../supabase/server";
-import { GiveawayInsert, GiveawayRequirementsInsert } from "../types/giveaway";
+import {
+  GiveawayInsert,
+  GiveawayRequirementsInsert,
+} from "@repo/types/giveaway";
 import { getRugScore } from "./getRugScore";
 import { getTokenPrice } from "./getTokenPrice";
 

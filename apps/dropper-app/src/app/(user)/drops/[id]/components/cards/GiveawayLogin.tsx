@@ -1,5 +1,5 @@
-import { Notification, Confetti, Hold } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { NotificationIcon, Confetti, Hold } from "@repo/ui/Icons";
+import Button from "@repo/ui/Button";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import Link from "next/link";
@@ -30,10 +30,10 @@ export default function GiveawayLogin({ endDate }: GiveawayLoginProps) {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:
@@ -47,7 +47,7 @@ export default function GiveawayLogin({ endDate }: GiveawayLoginProps) {
   return (
     <div className="relative flex flex-col items-center w-[300px] md:w-[570px] border-2 border-orange rounded-md p-4 gap-5">
       <div className="flex w-full justify-end">
-        <Notification width={26} height={20} />
+        <NotificationIcon width={26} height={20} />
       </div>
       <Hold width={80} height={74} />
       <span className="text-xl">HOLD UP...</span>

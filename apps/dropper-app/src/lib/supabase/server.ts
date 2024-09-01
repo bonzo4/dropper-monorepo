@@ -1,4 +1,4 @@
-import { DatabaseTypes } from "@repo/app-types/database";
+import { DatabaseTypes } from "@repo/types/database";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 

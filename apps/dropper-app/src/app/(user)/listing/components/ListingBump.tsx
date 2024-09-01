@@ -1,5 +1,5 @@
-import { Mark, SolanaMulti } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { Mark, SolanaMulti } from "@repo/ui/Icons";
+import Button from "@repo/ui/Button";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import { WalletContextState } from "@solana/wallet-adapter-react";

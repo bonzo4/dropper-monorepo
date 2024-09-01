@@ -2,7 +2,7 @@
 import Banner from "./Banner";
 import { useBanners } from "@/lib/hooks/useBanners";
 import { createSupabaseClient } from "@/lib/supabase/client";
-import { BannerRow } from "@/lib/types/banner";
+import { BannerRow } from "@repo/types/banner";
 import { motion, useAnimate } from "framer-motion";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";

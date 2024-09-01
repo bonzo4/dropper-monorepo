@@ -6,7 +6,7 @@
  */
 import { copycat, faker } from "@snaplet/copycat";
 import { SupabaseClient, User } from "@supabase/supabase-js";
-import { DatabaseTypes } from "../../../packages/app-types/src/database";
+import { DatabaseTypes } from "@repo/types/database";
 
 export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
   const {

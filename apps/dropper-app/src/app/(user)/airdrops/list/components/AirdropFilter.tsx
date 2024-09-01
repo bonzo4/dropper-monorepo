@@ -1,6 +1,6 @@
-import Button from "@/components/ui/Button";
-import Select from "@/components/ui/Select";
-import { Filter } from "@/components/icons";
+import Button from "@repo/ui/Button";
+import Select from "@repo/ui/Select";
+import { Filter } from "@repo/ui/Icons";
 import { useState } from "react";
 
 type AirdropFilterProps = {

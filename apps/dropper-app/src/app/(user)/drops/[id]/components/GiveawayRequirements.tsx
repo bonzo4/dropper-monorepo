@@ -1,5 +1,5 @@
-import GiveawayTab from "@/components/ui/GiveawayTab";
-import { GiveawayRequirementsRow } from "@/lib/types/giveaway";
+import GiveawayTab from "@repo/ui/GiveawayTab";
+import { GiveawayRequirementsRow } from "@repo/types/giveaway";
 import { SetStateAction } from "react";
 
 type GiveawayRequirementsProps = {

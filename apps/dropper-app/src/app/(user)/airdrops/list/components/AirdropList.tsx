@@ -1,7 +1,7 @@
 "use client";
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import { AirdropPreviewItem } from "@repo/types/airdrop";
+import Input from "@repo/ui/Input";
+import Button from "@repo/ui/Button";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useAirdrops } from "@/lib/hooks/useAirdrops";

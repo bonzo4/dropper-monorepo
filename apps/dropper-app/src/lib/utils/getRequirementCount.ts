@@ -1,4 +1,4 @@
-import { GiveawayRequirementsRow } from "../types/giveaway";
+import { GiveawayRequirementsRow } from "@repo/types/giveaway";
 
 export function getRequirementCount(
   requirements: GiveawayRequirementsRow | null

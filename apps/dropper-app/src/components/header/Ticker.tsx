@@ -1,11 +1,10 @@
-import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
-import TickerItem from "./TickerItem";
 import Marquee from "react-fast-marquee";
-import { useState } from "react";
+import { GiveawayTicker } from "@repo/types/giveaway";
+import TickerItem from "./TickerItem";
 
 type TickerOptions = {
   width: number;
-  tickers: TickerGiveaway[];
+  tickers: GiveawayTicker[];
 };
 
 export default function Ticker({ width, tickers }: TickerOptions) {

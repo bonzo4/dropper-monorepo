@@ -1,5 +1,5 @@
-import { DatabaseTypes } from "@repo/app-types/database";
-import { ListingInsert } from "@/lib/types/listing";
+import { DatabaseTypes } from "@repo/types/database";
+import { ListingInsert } from "@repo/types/listings";
 import { uploadImage } from "@/lib/utils/saveImage";
 import { SupabaseClient } from "@supabase/supabase-js";
 import Image from "next/image";

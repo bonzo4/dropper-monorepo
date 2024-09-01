@@ -13,13 +13,13 @@ import {
   TelegramColor,
   X,
   XColor,
-} from "@/components/icons";
-import Checkbox from "@/components/ui/Checkbox";
-import Input from "@/components/ui/Input";
+} from "@repo/ui/Icons";
+import Checkbox from "@repo/ui/Checkbox";
+import Input from "@repo/ui/Input";
 import {
   DEFAULT_GIVEAWAY_REQUIREMENTS,
   GiveawayRequirementsInsert,
-} from "@/lib/types/giveaway";
+} from "@repo/types/giveaway";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import { ChangeEvent, SetStateAction, useEffect } from "react";

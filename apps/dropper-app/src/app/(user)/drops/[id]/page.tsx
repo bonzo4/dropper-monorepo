@@ -1,10 +1,10 @@
 import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 import GiveawayInfo from "./components/GiveawayInfo";
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui/Paragraph";
 import GiveawayStats from "./components/GiveawayStats";
 import GiveawayEntry from "./components/GiveawayEntry";
 import { createSupabaseServer } from "@/lib/supabase/server";
-import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
+import { GiveawayEntryRow, GiveawayWinnerRow } from "@repo/types/giveaway";
 import { headers } from "next/headers";
 
 export default async function GiveawayPage({

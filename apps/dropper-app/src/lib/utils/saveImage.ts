@@ -1,4 +1,4 @@
-import { DatabaseTypes } from "@repo/app-types/database";
+import { DatabaseTypes } from "@repo/types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 type HandleImageChangeProps = {

@@ -1,5 +1,5 @@
-import { GiveawayBannerRow, ListingBannerRow } from "@/lib/types/banner";
-import Button from "@/components/ui/Button";
+import { ListingBannerRow } from "@repo/types/banner";
+import Button from "@repo/ui/Button";
 import Link from "next/link";
 import Listings from "./components/Listings";
 import ListingBannerSlider from "./components/ListingBannerSlider";

@@ -1,7 +1,7 @@
 import {
   GiveawayInsert,
   GiveawayRequirementsInsert,
-} from "@/lib/types/giveaway";
+} from "@repo/types/giveaway";
 
 export function checkGiveaway(
   giveaway: GiveawayInsert,

@@ -1,0 +1,21 @@
+{
+  "name": "@repo/types",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "exports": {
+    "./database": "./src/database/index.ts",
+    "./codes": "./src/app/codes.ts",
+    "./banner": "./src/app/banner.ts",
+    "./airdrop": "./src/app/airdrop.ts",
+    "./giveaway": "./src/app/giveaway.ts",
+    "./listings": "./src/app/listings.ts",
+    "./user": "./src/app/user.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "typescript": "latest"
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 import { Tweet } from "react-twitter-widgets";
-import { CommunityPostRow } from "@/lib/types/sections";
+import { CommunityPostRow } from "@repo/types/airdrop";
 
 type CommunityPostProps = {
   post: CommunityPostRow;

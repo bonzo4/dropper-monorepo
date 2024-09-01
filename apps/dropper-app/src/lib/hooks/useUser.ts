@@ -1,4 +1,4 @@
-import { DatabaseTypes } from "@repo/app-types/database";
+import { DatabaseTypes } from "@repo/types/database";
 import { SupabaseClient, User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 

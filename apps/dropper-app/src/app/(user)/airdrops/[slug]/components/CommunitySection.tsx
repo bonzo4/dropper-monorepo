@@ -1,4 +1,4 @@
-import { CommunityPostRow, CommunitySectionRow } from "@/lib/types/sections";
+import { CommunityPostRow, CommunitySectionRow } from "@repo/types/airdrop";
 import CommunityPost from "./CommunityPost";
 
 type CommunitySectionProps = {

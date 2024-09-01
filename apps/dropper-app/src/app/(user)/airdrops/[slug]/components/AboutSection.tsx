@@ -1,6 +1,6 @@
-import { AboutSectionRow, AirdropTeamMemberRow } from "@/lib/types/sections";
+import { AboutSectionRow, AirdropTeamMemberRow } from "@repo/types/airdrop";
 import { cn } from "@/lib/utils/classNames";
-import { Telegram, Twitter } from "@/components/icons";
+import { Telegram, Twitter } from "@repo/ui/Icons";
 import Image from "next/image";
 
 type AboutSectionProps = {

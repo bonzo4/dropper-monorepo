@@ -1,11 +1,11 @@
-import { Notification, Confetti } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { NotificationIcon, Confetti } from "@repo/ui/Icons";
+import Button from "@repo/ui/Button";
 import { claimGiveaway } from "@/lib/actions/claimGiveaway";
 import { claimSolGiveawayInstruction } from "@/lib/solana/instructions/claimSolGiveaway";
 import { claimSplGiveawayInstruction } from "@/lib/solana/instructions/claimSplGiveaway";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
-import { GiveawayWinnerRow } from "@/lib/types/giveaway";
+import { GiveawayWinnerRow } from "@repo/types/giveaway";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import {
@@ -111,7 +111,7 @@ export default function GiveawayWinner({
   return (
     <div className="relative flex flex-col items-center w-[300px] md:w-[570px] border-2 border-primary rounded-md p-4 gap-5">
       <div className="absolute top-1 right-2">
-        <Notification width={26} height={20} />
+        <NotificationIcon width={26} height={20} />
       </div>
       <Confetti width={80} height={74} />
       <span className="text-xl">CONGRATULATIONS</span>

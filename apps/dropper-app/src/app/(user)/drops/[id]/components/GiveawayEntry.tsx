@@ -1,9 +1,9 @@
 "use client";
 
-import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
+import { GiveawayEntryRow, GiveawayWinnerRow } from "@repo/types/giveaway";
 import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import Button from "@repo/ui/Button";
 import { toast } from "react-toastify";
 import { getRequirementCount } from "@/lib/utils/getRequirementCount";
 import { User } from "@supabase/supabase-js";

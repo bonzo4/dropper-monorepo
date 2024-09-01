@@ -1,7 +1,7 @@
 "use server";
 
 import { createSupabaseServer } from "../supabase/server";
-import { ListingInsert } from "../types/listing";
+import { ListingInsert } from "@repo/types/listings";
 
 type Options = {
   listing: string;

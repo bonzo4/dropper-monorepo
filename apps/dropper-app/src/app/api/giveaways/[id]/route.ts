@@ -1,5 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
-import { GiveawayRequirementsRow, GiveawayRow } from "@/lib/types/giveaway";
+import { GiveawayRequirementsRow, GiveawayRow } from "@repo/types/giveaway";
 import { NextRequest } from "next/server";
 
 export type GiveawayPageData = {

@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
-import { Notification, Confetti, Hourglass } from "@/components/icons";
+import { NotificationIcon, Confetti, Hourglass } from "@repo/ui/Icons";
 import Countdown from "react-countdown";
-import Button from "@/components/ui/Button";
-import { GiveawayEntryRow } from "@/lib/types/giveaway";
+import Button from "@repo/ui/Button";
+import { GiveawayEntryRow } from "@repo/types/giveaway";
 
 type GiveawayNotStartedOptions = {
   startDate: Date;
@@ -32,10 +32,10 @@ export default function GiveawayNotStarted({
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:
@@ -49,7 +49,7 @@ export default function GiveawayNotStarted({
   return (
     <div className="relative flex flex-col items-center w-[300px] md:w-[570px] border-2 border-yellow rounded-md p-4 gap-5">
       <div className="flex w-full justify-end">
-        <Notification width={26} height={20} />
+        <NotificationIcon width={26} height={20} />
       </div>
       <Hourglass width={80} height={74} />
       <span className="text-xl">PLEASE WAIT...</span>

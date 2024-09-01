@@ -1,6 +1,6 @@
 "use client";
 
-import { GiveawayBannerRow } from "@/lib/types/banner";
+import { GiveawayBannerRow } from "@repo/types/banner";
 import { motion, useDragControls, PanInfo } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "usehooks-ts";

@@ -1,4 +1,4 @@
-import { Arrow } from "@/components/icons";
+import { Arrow } from "@repo/ui/Icons";
 
 type AirdropListHeaderProps = {
   setSortBy: (sortBy: string) => void;

@@ -1,20 +1,33 @@
-"use client";
+import { cn } from "./utils/classNames";
 
-import { ReactNode } from "react";
+type ButtonProps = {} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-interface ButtonProps {
-  children: ReactNode;
-  className?: string;
-  appName: string;
-}
+const Button = (props: ButtonProps) => {
+  if (props.disabled)
+    return (
+      <button
+        {...props}
+        disabled
+        className={cn(
+          "relative rounded-lg bg-secondary box-border flex flex-row items-center justify-center py-1 px-3 text-left text-[12px] md:text-[14px] text-primary font-fff-forward border-[2px] border-solid border-primary opacity-25",
+          props.className
+        )}
+      >
+        {props.children}
+      </button>
+    );
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
   return (
     <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+      {...props}
+      className={cn(
+        "relative rounded-lg bg-secondary box-border flex flex-row items-center justify-center py-1 px-3 text-left text-[12px] md:text-[14px] text-primary font-fff-forward border-[2px] border-solid border-primary hover:bg-white hover:bg-opacity-25 ",
+        props.className
+      )}
     >
-      {children}
+      {props.children}
     </button>
   );
 };
+
+export default Button;

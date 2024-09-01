@@ -1,9 +1,9 @@
-import { WhiteArrow } from "@/components/icons";
+import { WhiteArrow } from "@repo/ui/Icons";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import Button from "@repo/ui/Button";
 import Image from "next/image";
-import { BannerRow } from "@/lib/types/banner";
-import { Paragraph } from "@/components/ui/Paragraph";
+import { BannerRow } from "@repo/types/banner";
+import { Paragraph } from "@repo/ui/Paragraph";
 
 type BannerProps = {
   banner: BannerRow;

@@ -1,6 +1,6 @@
 import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 import { User } from "@supabase/supabase-js";
-import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
+import { GiveawayEntryRow, GiveawayWinnerRow } from "@repo/types/giveaway";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useEffect, useMemo, useState } from "react";
 import GiveawayClaimed from "./GiveawayClaimed";

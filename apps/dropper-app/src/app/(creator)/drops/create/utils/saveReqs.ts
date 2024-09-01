@@ -1,5 +1,5 @@
-import { DatabaseTypes } from "@repo/app-types/database";
-import { GiveawayRequirementsInsert } from "@/lib/types/giveaway";
+import { DatabaseTypes } from "@repo/types/database";
+import { GiveawayRequirementsInsert } from "@repo/types/giveaway";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 type SaveGiveawayRequirementsOptions = {

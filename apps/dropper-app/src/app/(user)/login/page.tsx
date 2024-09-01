@@ -1,14 +1,16 @@
 "use client";
-import Button from "@/components/ui/Button";
+import Button from "@repo/ui/Button";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/classNames";
-import { Google, Icon, Logo, LogoWhite } from "@/components/icons";
+import { Google } from "@repo/ui/Icons";
 import { useState } from "react";
-import Checkbox from "@/components/ui/Checkbox";
-import Input from "@/components/ui/Input";
+import Checkbox from "@repo/ui/Checkbox";
+import Input from "@repo/ui/Input";
 import { mono } from "@/lib/utils/fonts";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import logo from "@/public/logo.png";
+import Image from "next/image";
 
 export default function Login() {
   const supabase = createSupabaseClient();
@@ -38,7 +40,7 @@ export default function Login() {
   return (
     <main className="flex flex-col items-center justify-center grow gap-12">
       <div className="flex flex-col items-center justify-center px-5 ">
-        <LogoWhite height={100} />
+        <Image src={logo} alt="logo" height={100} />
       </div>
       <div className="flex flex-col items-center justify-center gap-[20px]">
         <div className="self-stretch flex flex-col items-center justify-center gap-[20px] text-primary ">

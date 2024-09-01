@@ -1,8 +1,8 @@
 "use client";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Input from "@/components/ui/Input";
-import TextArea from "@/components/ui/TextArea";
+import Button from "@repo/ui/Button";
+import Checkbox from "@repo/ui/Checkbox";
+import Input from "@repo/ui/Input";
+import TextArea from "@repo/ui/TextArea";
 import { createSolGiveawayInstruction } from "@/lib/solana/instructions/createSolGiveaway";
 import { createSplGiveawayInstruction } from "@/lib/solana/instructions/createSplGiveaway";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
@@ -11,22 +11,20 @@ import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import {
   useConnection,
-  useWallet,
   WalletContextState,
 } from "@solana/wallet-adapter-react";
 import { TransactionInstruction } from "@solana/web3.js";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useIsMounted } from "usehooks-ts";
 import { toast } from "react-toastify";
 import {
   DEFAULT_GIVEAWAY,
   DEFAULT_GIVEAWAY_REQUIREMENTS,
   GiveawayInsert,
   GiveawayRequirementsInsert,
-} from "@/lib/types/giveaway";
+} from "@repo/types/giveaway";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import GiveawayReqInputs from "./GiveawayReqInputs";
-import { Solana, SolanaColor, Spl, SplColor } from "@/components/icons";
+import { Solana, SolanaColor, Spl, SplColor } from "@repo/ui/Icons";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { checkGiveaway, checkGiveawayRequirements } from "../utils/checks";
 import { createGiveaway } from "@/lib/actions/createGiveaway";

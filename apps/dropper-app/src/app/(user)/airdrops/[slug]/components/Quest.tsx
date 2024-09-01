@@ -1,9 +1,9 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { Arrow, WhiteArrow } from "@/components/icons";
+import Button from "@repo/ui/Button";
+import { Arrow, WhiteArrow } from "@repo/ui/Icons";
 import { useState } from "react";
 import QuestItem from "./QuestItem";
-import { QuestItemRow, QuestRow } from "@/lib/types/sections";
+import { QuestItemRow, QuestRow } from "@repo/types/airdrop";
 
 type QuestProps = {
   quest: QuestRow & { quest_items: QuestItemRow[] };

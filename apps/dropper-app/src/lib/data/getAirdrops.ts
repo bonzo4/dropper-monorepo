@@ -1,4 +1,4 @@
-import { AirdropPreviewItem } from "../types/airdrop";
+import { AirdropPreviewItem } from "@repo/types/airdrop";
 
 export async function getAirdrops(searchParams: URLSearchParams) {
   const response = await fetch(

@@ -1,15 +1,15 @@
 "use client";
-import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
-import { Dropper } from "@/components/icons";
-import { numString } from "@/lib/utils/numString";
+import { Dropper } from "@repo/ui/Icons";
 import Image from "next/image";
 import Link from "next/link";
 import Countdown from "react-countdown";
+import { GiveawayTicker } from "@repo/types/giveaway";
+import { cn } from "@/lib/utils/classNames";
+import { mono } from "@/lib/utils/fonts";
+import { numString } from "@/lib/utils/numString";
 
 type TickerItemOptions = {
-  ticker: TickerGiveaway;
+  ticker: GiveawayTicker;
   index: number;
 };
 
@@ -35,10 +35,10 @@ export default function TickerItem({ ticker, index }: TickerItemOptions) {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:

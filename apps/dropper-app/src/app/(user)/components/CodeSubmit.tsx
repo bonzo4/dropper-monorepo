@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
+import Button from "@repo/ui/Button";
+import Input from "@repo/ui/Input";
 import { submitCode } from "@/lib/actions/submitCode";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/classNames";

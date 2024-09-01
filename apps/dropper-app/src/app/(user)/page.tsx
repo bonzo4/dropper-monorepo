@@ -1,10 +1,12 @@
-import { GiveawayBannerRow } from "@/lib/types/banner";
-import Button from "@/components/ui/Button";
+import { GiveawayBannerRow } from "@repo/types/banner";
+import Button from "@repo/ui/Button";
 import Link from "next/link";
-import GiveawayBannerSlider from "./components/GiveawayBannerSlider";
 import Giveaways from "./components/Giveaways";
 import { LandingGiveaway } from "../api/giveaways/route";
-import { Dropzone, DropzoneMobile } from "@/components/icons";
+import Image from "next/image";
+import dropzone from "@/public/dropzone.gif";
+import dropzoneMobile from "@/public/dropzone-mobile.gif";
+import GiveawayBannerSlider from "./components/GiveawayBannerSlider";
 
 export default async function Home() {
   const banners = await getBanners();
@@ -14,8 +16,8 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center grow gap-[68px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
-        <Dropzone className="hidden sm:flex" />
-        <DropzoneMobile className="flex sm:hidden" />
+        <Image src={dropzone} alt="dropzone" className="hidden sm:flex" />
+        <Image src={dropzoneMobile} alt="dropzone" className="flex sm:hidden" />
         <div className="flex flex-row gap-2">
           <Link href="/drops/create">
             <Button className=" ">CREATE DROP</Button>

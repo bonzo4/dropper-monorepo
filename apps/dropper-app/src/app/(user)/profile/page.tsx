@@ -1,4 +1,4 @@
-import Tab from "@/components/ui/Tab";
+import Tab from "@repo/ui/Tab";
 import { headers } from "next/headers";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";

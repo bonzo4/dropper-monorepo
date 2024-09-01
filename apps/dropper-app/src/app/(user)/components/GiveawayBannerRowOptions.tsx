@@ -1,4 +1,4 @@
-import { GiveawayBannerRow } from "@/lib/types/banner";
+import { GiveawayBannerRow } from "@repo/types/banner";
 import GiveawayBanner from "./GiveawayBanner";
 
 type GiveawayBannerRowOptions = {

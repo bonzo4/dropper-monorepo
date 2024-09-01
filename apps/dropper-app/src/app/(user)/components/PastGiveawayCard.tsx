@@ -1,6 +1,6 @@
 "use client";
-import { Paragraph } from "@/components/ui/Paragraph";
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
+import { Paragraph } from "@repo/ui/Paragraph";
+import { AirdropPreviewItem } from "@repo/types/airdrop";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";

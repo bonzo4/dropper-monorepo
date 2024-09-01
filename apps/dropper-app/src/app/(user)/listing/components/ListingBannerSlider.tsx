@@ -1,6 +1,6 @@
 "use client";
 
-import { ListingBannerRow } from "@/lib/types/banner";
+import { ListingBannerRow } from "@repo/types/banner";
 import { motion, useDragControls, PanInfo } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "usehooks-ts";
@@ -11,7 +11,7 @@ type Props = {
   banners: ListingBannerRow[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const GiveawayBannerSlider = ({ banners }: Props) => {
+const ListingBannerSlider = ({ banners }: Props) => {
   const { width } = useWindowSize();
   const [bannerRows, setBannerRows] = useState<ListingBannerRow[][]>([]);
   const [position, setPosition] = useState(0);
@@ -113,4 +113,4 @@ const GiveawayBannerSlider = ({ banners }: Props) => {
   );
 };
 
-export default GiveawayBannerSlider;
+export default ListingBannerSlider;

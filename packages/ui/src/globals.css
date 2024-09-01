@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar-thumb {
+  @apply bg-transparent shadow-sm;
+}
+::-webkit-scrollbar {
+  @apply w-[5px] bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary /*color trackbar*/;
+}
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.glow {
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  text-shadow:
+    0 0 10px #00fdd0,
+    0 0 20px #00fdd0,
+    0 0 30px #00fdd0,
+    0 0 40px #00fdd0,
+    0 0 50px #00fdd0,
+    0 0 60px #00fdd0,
+    0 0 60px #00fdd0;
+  /* animation: glow 1s ease-in-out infinite alternate; */
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow:
+      0 0 5px #00fdd0,
+      0 0 10px #00fdd0,
+      0 0 15px #00fdd0,
+      0 0 20px #00fdd0,
+      0 0 25px #00fdd0,
+      0 0 30px #00fdd0,
+      0 0 35px #00fdd0;
+  }
+
+  to {
+    text-shadow:
+      0 0 20px #00fdd0,
+      0 0 30px #00fdd0,
+      0 0 40px #00fdd0,
+      0 0 50px #00fdd0,
+      0 0 60px #00fdd0,
+      0 0 70px #00fdd0,
+      0 0 80px #00fdd0;
+  }
+}

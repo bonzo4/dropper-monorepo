@@ -1,4 +1,4 @@
-import { ListingInsert } from "@/lib/types/listing";
+import { ListingInsert } from "@repo/types/listings";
 
 export function checkListing(listing: ListingInsert) {
   if (!listing.name) {

@@ -1,7 +1,7 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-import { DropmanView } from "../types/user";
-import { DatabaseTypes } from "@repo/app-types/database";
+import { DropmanView } from "@repo/types/user";
+import { DatabaseTypes } from "@repo/types/database";
 // import { AirdropCommentRow } from "../types/comment";
 
 type UseCommentsOptions = {

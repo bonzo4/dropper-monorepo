@@ -1,9 +1,9 @@
 "use client";
-import { GiveawayRow } from "@/lib/types/giveaway";
-import { AirdropPageRow } from "@/lib/types/sections";
+import { GiveawayRow } from "@repo/types/giveaway";
+import { AirdropPageRow } from "@repo/types/airdrop";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
-import { Arrow } from "@/components/icons";
+import { Arrow } from "@repo/ui/Icons";
 import { numString } from "@/lib/utils/numString";
 import Countdown from "react-countdown";
 import { useEffect, useState } from "react";
@@ -45,10 +45,10 @@ const GiveawayStats = ({
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:
@@ -72,8 +72,8 @@ const GiveawayStats = ({
             {startDate > now
               ? "Not Started"
               : endDate > now
-              ? "Ongoing"
-              : "Ended"}
+                ? "Ongoing"
+                : "Ended"}
           </span>
         </div>
         <div className="flex flex-col space-y-2">

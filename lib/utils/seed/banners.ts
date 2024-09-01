@@ -1,6 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { copycat, faker } from "@snaplet/copycat";
-import { DatabaseTypes } from "../../../packages/app-types/src/database";
+import { DatabaseTypes } from "@repo/types/database";
 
 export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
   const giveawayBanners: { image_url: string; order: number }[] = [];

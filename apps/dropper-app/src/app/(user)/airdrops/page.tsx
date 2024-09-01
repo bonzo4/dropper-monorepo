@@ -1,7 +1,7 @@
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
+import { AirdropPreviewItem } from "@repo/types/airdrop";
 import BannerSlider from "./components/BannerSlider";
 import Airdrops from "./components/Airdrops";
-import { BannerRow } from "@/lib/types/banner";
+import { BannerRow } from "@repo/types/banner";
 
 export default async function Home() {
   const banners = await getBanners();

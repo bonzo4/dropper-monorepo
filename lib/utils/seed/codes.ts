@@ -6,7 +6,7 @@
  */
 import { SupabaseClient } from "@supabase/supabase-js";
 import { copycat } from "@snaplet/copycat";
-import { DatabaseTypes } from "../../../packages/app-types/src/database";
+import { DatabaseTypes } from "@repo/types/database";
 
 export async function createCodes(supabase: SupabaseClient<DatabaseTypes>) {
   const accessCodes: { code: string }[] = [];

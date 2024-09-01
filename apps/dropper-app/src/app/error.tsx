@@ -1,6 +1,6 @@
 "use client"; // Error components must be Client Components
 
-import Button from "@/components/ui/Button";
+import Button from "@repo/ui/Button";
 import { useRouter } from "next/navigation";
 
 export default function Error({

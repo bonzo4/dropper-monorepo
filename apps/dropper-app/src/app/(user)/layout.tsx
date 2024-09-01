@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { dropper } from "@/lib/utils/fonts";
 import { cn } from "@/lib/utils/classNames";
-import Header from "@/components/header/Header";
 import { createSupabaseServer } from "@/lib/supabase/server";
-import { DropmanView } from "@/lib/types/user";
-import { TickerGiveaway } from "../api/giveaways/tickers/route";
+import { DropmanView } from "@repo/types/user";
 import Login from "./login/page";
-import { AccessCodeRow, UserCodeRow } from "@/lib/types/accessCode";
+import { AccessCodeRow, UserCodeRow } from "@repo/types/codes";
 import Code from "./code/page";
+import { GiveawayTicker } from "@repo/types/giveaway";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Dropper",
@@ -76,7 +76,7 @@ function LayoutWrapper({
 }: {
   profile: DropmanView | null;
   children: React.ReactNode;
-  tickers: TickerGiveaway[];
+  tickers: GiveawayTicker[];
 }) {
   return (
     <html lang="en">
@@ -108,7 +108,7 @@ async function getTickers() {
       throw new Error("Failed to fetch tickers");
     }
 
-    return response.json() as Promise<TickerGiveaway[]>;
+    return response.json() as Promise<GiveawayTicker[]>;
   } catch (error) {
     console.error(error);
     return [];

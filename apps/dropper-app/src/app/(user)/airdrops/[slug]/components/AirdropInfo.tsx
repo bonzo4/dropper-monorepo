@@ -1,5 +1,5 @@
-import { AirdropRow } from "@/lib/types/airdrop";
-import { Discord, Docs, Telegram, Twitter, Web } from "@/components/icons";
+import { AirdropRow } from "@repo/types/airdrop";
+import { Discord, Docs, Telegram, Twitter, Web } from "@repo/ui/Icons";
 import Image from "next/image";
 
 type AirdropInfoProps = {

@@ -1,7 +1,7 @@
 import { ListingCardData } from "@/app/api/listing/route";
 import { useEffect, useState } from "react";
 import { createSupabaseClient } from "../supabase/client";
-import { ListingRow } from "../types/listing";
+import { ListingRow } from "@repo/types/listings";
 
 type Options = {
   initialListings: ListingCardData[];

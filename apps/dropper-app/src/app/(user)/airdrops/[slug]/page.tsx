@@ -1,4 +1,4 @@
-import Tab from "@/components/ui/Tab";
+import Tab from "@repo/ui/Tab";
 import AboutSection from "./components/AboutSection";
 import QuestsSections from "./components/QuestSection";
 import {
@@ -11,7 +11,7 @@ import {
   QuestRow,
   QuestSectionRow,
   SectionType,
-} from "@/lib/types/sections";
+} from "@repo/types/airdrop";
 import AirdropInfo from "./components/AirdropInfo";
 import AirdropStats from "./components/AirdropStats";
 import Image from "next/image";

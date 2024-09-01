@@ -1,5 +1,5 @@
 import { ListingCardData } from "@/app/api/listing/route";
-import { Bump } from "@/components/icons";
+import { Bump } from "@repo/ui/Icons";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import Image from "next/image";

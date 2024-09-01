@@ -1,8 +1,8 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
 import { useEffect, useState } from "react";
-import { BannerRow } from "../types/banner";
-import { DatabaseTypes } from "@repo/app-types/database";
+import { BannerRow } from "@repo/types/banner";
+import { DatabaseTypes } from "@repo/types/database";
 
 type UseBannerOptions = {
   supabase: SupabaseClient<DatabaseTypes>;

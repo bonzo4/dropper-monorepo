@@ -5,7 +5,7 @@
  * Learn more about the Seed Client by following our guide: https://docs.snaplet.dev/seed/getting-started
  */
 import { SupabaseClient } from "@supabase/supabase-js";
-import { DatabaseTypes } from "../../../packages/app-types/src/database";
+import { DatabaseTypes } from "@repo/types/database";
 
 export async function whitelistWallets(
   supabase: SupabaseClient<DatabaseTypes>

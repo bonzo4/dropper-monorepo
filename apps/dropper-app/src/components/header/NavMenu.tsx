@@ -1,11 +1,11 @@
 import { PiGlobeBold } from "react-icons/pi";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
-import { Arrow, Contributor, Launchpad, List, Login } from "@/components/icons";
+import { Arrow, Contributor, Launchpad, List, Login } from "@repo/ui/Icons";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import Link from "next/link";
-import { DropmanView } from "@/lib/types/user";
+import { DropmanView } from "@repo/types/user";
 import Image from "next/image";
+import Button from "@repo/ui/Button";
+import Input from "@repo/ui/Input";
 
 type NavMenuProps = {
   profile: DropmanView | null;

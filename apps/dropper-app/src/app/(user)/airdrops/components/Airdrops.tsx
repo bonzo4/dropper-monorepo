@@ -1,4 +1,4 @@
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
+import { AirdropPreviewItem } from "@repo/types/airdrop";
 import AirdropCard from "./AirdropCard";
 
 type AirdropsOptions = {

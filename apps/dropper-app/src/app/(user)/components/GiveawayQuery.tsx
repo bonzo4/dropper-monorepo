@@ -1,4 +1,4 @@
-import { Arrow, ArrowGray } from "@/components/icons";
+import { Arrow, ArrowGray } from "@repo/ui/Icons";
 
 type GiveawayQueryProps = {
   handleType: (type: "ongoing" | "past" | "not_started") => void;

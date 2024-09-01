@@ -1,9 +1,9 @@
-import Button from "@/components/ui/Button";
-import { DatabaseTypes } from "@repo/app-types/database";
-import { DropmanView } from "@/lib/types/user";
-// import { AirdropCommentRow } from "@/lib/types/comment";
+import Button from "@repo/ui/Button";
+import { DatabaseTypes } from "@repo/types/database";
+import { DropmanView } from "@repo/types/user";
+// import { AirdropCommentRow } from "@repo/types/comment";
 import { cn } from "@/lib/utils/classNames";
-import { Arrow } from "@/components/icons";
+import { Arrow } from "@repo/ui/Icons";
 import Image from "next/image";
 
 type CommentProps = {

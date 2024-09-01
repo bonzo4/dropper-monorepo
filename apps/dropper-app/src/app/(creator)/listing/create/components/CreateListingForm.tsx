@@ -3,7 +3,7 @@ import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
 import { createSupabaseClient } from "@/lib/supabase/client";
-import { DEFAULT_LISTING, ListingInsert } from "@/lib/types/listing";
+import { DEFAULT_LISTING, ListingInsert } from "@repo/types/listings";
 import {
   useConnection,
   WalletContextState,
@@ -11,12 +11,12 @@ import {
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ListingIconUpload from "./ListingIconUpload";
-import Input from "@/components/ui/Input";
-import TextArea from "@/components/ui/TextArea";
+import Input from "@repo/ui/Input";
+import TextArea from "@repo/ui/TextArea";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
-import { Solana, SolanaColor } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { Solana, SolanaColor } from "@repo/ui/Icons";
+import Button from "@repo/ui/Button";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { getProvider } from "@/lib/solana/getProvider";
 import { checkListing } from "../utils/checkListing";

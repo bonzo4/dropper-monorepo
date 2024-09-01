@@ -5,8 +5,8 @@ import { createSupabaseClient } from "@/lib/supabase/client";
 import { useState } from "react";
 import Comment from "./Comment";
 import { useUser } from "@/lib/hooks/useUser";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import Input from "@repo/ui/Input";
+import Button from "@repo/ui/Button";
 
 type CommentSectionProps = {
   airdropId: number;

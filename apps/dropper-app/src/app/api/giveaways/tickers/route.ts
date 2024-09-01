@@ -1,15 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { NextRequest } from "next/server";
 
-export type TickerGiveaway = {
-  id: string;
-  icon_url: string;
-  end_time: string;
-  reward_amount: number;
-  ticker: string;
-  token_address: string;
-};
-
 export async function GET(request: NextRequest) {
   const supabase = createSupabaseServer();
 

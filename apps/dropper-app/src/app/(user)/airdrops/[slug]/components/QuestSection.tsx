@@ -1,4 +1,4 @@
-import { QuestItemRow, QuestRow, QuestSectionRow } from "@/lib/types/sections";
+import { QuestItemRow, QuestRow, QuestSectionRow } from "@repo/types/airdrop";
 import Quest from "./Quest";
 
 type QuestsSectionsProps = {

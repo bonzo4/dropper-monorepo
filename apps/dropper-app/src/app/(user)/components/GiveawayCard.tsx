@@ -1,6 +1,6 @@
 "use client";
-import { Paragraph } from "@/components/ui/Paragraph";
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
+import { Paragraph } from "@repo/ui/Paragraph";
+import { AirdropPreviewItem } from "@repo/types/airdrop";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,10 +45,10 @@ const GiveawayCard = ({ giveaway, solValue, ...props }: GiveawayCardProps) => {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:

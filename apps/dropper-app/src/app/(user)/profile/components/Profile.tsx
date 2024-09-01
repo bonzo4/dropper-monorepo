@@ -1,6 +1,6 @@
 "use client";
 import { ProfilePageData } from "@/app/api/profile/route";
-import Button from "@/components/ui/Button";
+import Button from "@repo/ui/Button";
 import Image from "next/image";
 import { logout } from "../../../../lib/actions/logout";
 
