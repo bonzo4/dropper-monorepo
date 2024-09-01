@@ -36,7 +36,7 @@ export async function GET(
     .from("listings")
     .select("id")
     .lt("last_bump", data.last_bump)
-    .order("id", { ascending: false })
+    .order("last_bump", { ascending: false })
     .range(0, 0)
     .single();
   if (next) {

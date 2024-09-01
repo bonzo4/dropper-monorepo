@@ -26,12 +26,12 @@ export default async function GiveawayPage({
 
   if (!giveaway) return null;
   return (
-    <div className="flex flex-col items-center justify-start grow py-20">
+    <div className=" relative flex flex-col items-center justify-start grow py-20">
+      <GiveawayRouter
+        nextGiveawayId={giveaway.nextGiveawayId}
+        prevGiveawayId={giveaway.prevGiveawayId}
+      />
       <div className="w-full relative overflow-hidden flex flex-col items-start justify-start gap-[40px] max-w-[737px]">
-        <GiveawayRouter
-          nextGiveawayId={giveaway.nextGiveawayId}
-          prevGiveawayId={giveaway.prevGiveawayId}
-        />
         <GiveawayInfo giveaway={giveaway} />
         <Paragraph className="px-20">{giveaway.description}</Paragraph>
         <GiveawayStats giveaway={giveaway} solValue={solValue} />

@@ -60,7 +60,7 @@ export async function GET(
     .from("giveaways")
     .select("id")
     .lt("created_at", data.created_at)
-    .order("id", { ascending: false })
+    .order("created_at", { ascending: false })
     .range(0, 0)
     .single();
   if (next) {
@@ -71,7 +71,7 @@ export async function GET(
     .from("giveaways")
     .select("id")
     .gt("created_at", data.created_at)
-    .order("id", { ascending: true })
+    .order("created_at", { ascending: true })
     .range(0, 0)
     .single();
   if (prev) {
