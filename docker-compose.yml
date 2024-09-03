@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  dropper-app:
+    container_name: dropper-app
+    build:
+      context: .
+      dockerfile: ./apps/dropper-app/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    env_file: "./apps/dropper-app/.env.local"
+
+    
