@@ -55,4 +55,4 @@ ENV PORT=3000
 # # https://nextjs.org/docs/pages/api-reference/next-config-js/output
 # ENV HOSTNAME="0.0.0.0"
 
-CMD HOSTNAME="127.0.0.1" node /app/apps/dropper-app/server.js
+CMD node /app/apps/dropper-app/server.js

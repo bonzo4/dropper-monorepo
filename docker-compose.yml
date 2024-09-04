@@ -12,5 +12,9 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     env_file: "./apps/dropper-app/.env.local"
+    networks:
+      - dropper-server
 
-    
+networks:
+  dropper-server:
+    external: true
