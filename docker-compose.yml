@@ -13,19 +13,19 @@ services:
       - "host.docker.internal:host-gateway"
     # env_file: "./apps/dropper-app/.env.local"
 
-  caddy:
-    image: caddy:2-alpine
-    container_name: caddy
-    ports:
-      - "80:80"    # HTTP
-      - "443:443"  # HTTPS
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - dropper-app
+#   caddy:
+#     image: caddy:2-alpine
+#     container_name: caddy
+#     ports:
+#       - "80:80"    # HTTP
+#       - "443:443"  # HTTPS
+#     volumes:
+#       - ./Caddyfile:/etc/caddy/Caddyfile
+#       - caddy_data:/data
+#       - caddy_config:/config
+#     depends_on:
+#       - dropper-app
 
-volumes:
-  caddy_data:
-  caddy_config:
+# volumes:
+#   caddy_data:
+#   caddy_config:
