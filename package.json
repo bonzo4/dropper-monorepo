@@ -4,7 +4,6 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "start": "turbo start",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db:seed": "npx tsx ./lib/utils/seed",
