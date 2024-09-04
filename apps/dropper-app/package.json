@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "20"
+  },
   "dependencies": {
     "@repo/app-types": "*",
     "@coral-xyz/anchor": "^0.30.1",
