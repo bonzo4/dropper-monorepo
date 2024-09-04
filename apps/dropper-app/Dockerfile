@@ -48,8 +48,8 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/dropper-app/.next/standalo
 COPY --from=installer --chown=nextjs:nodejs /app/apps/dropper-app/.next/static ./apps/dropper-app/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/dropper-app/public ./apps/dropper-app/public
 
-EXPOSE 3000
-ENV PORT=3000
+# EXPOSE 3000
+# ENV PORT=3000
 
 # # server.js is created by next build from the standalone output
 # # https://nextjs.org/docs/pages/api-reference/next-config-js/output
