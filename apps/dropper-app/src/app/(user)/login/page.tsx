@@ -61,20 +61,36 @@ export default function Login() {
             </div>
           )}
           {process.env.NEXT_PUBLIC_ENV !== "development" && (
-            <Button
-              className="self-stretch rounded-lg bg-secondary flex flex-row items-center justify-center py-2 pr-2.5 pl-3 gap-[8px]"
-              onClick={() => {
-                supabase.auth.signInWithOAuth({
-                  provider: "google",
-                  options: {
-                    redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
-                  },
-                });
-              }}
-            >
-              <Google width={20} />
-              <span className="relative text-[14px]">Login with Google</span>
-            </Button>
+            <div className="flex flex-col gap-2">
+              <Input
+                className={cn(mono.className)}
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Email"
+              />
+              <Button
+                className="self-stretch rounded-lg bg-secondary flex flex-row items-center justify-center py-2 pr-2.5 pl-3 gap-[8px]"
+                onClick={() => {
+                  supabase.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                      emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
+                    },
+                  });
+                  // supabase.auth.signInWithOAuth({
+                  //   provider: "google",
+                  //   options: {
+                  //     redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
+                  //   },
+                  // });
+                }}
+              >
+                {/* <Google width={20} /> */}
+                <span className="relative text-[14px]">
+                  Login with Magic Link
+                </span>
+              </Button>
+            </div>
           )}
         </div>
         <div className="overflow-hidden flex flex-row items-start justify-start gap-[10px] ">
