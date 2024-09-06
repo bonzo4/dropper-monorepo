@@ -20,6 +20,7 @@ export default function Login() {
   const supabase = createSupabaseClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
   const router = useRouter();
 
   const [newsletter, setNewsletter] = useState(true);
@@ -31,6 +32,18 @@ export default function Login() {
     });
     if (error) return toast.error(error.message);
     router.refresh();
+  };
+
+  const handleMagicLinkLogin = async () => {
+    const { data, error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
+      },
+    });
+    console.log(data);
+    if (error) return toast.error(error.message);
+    setEmailSent(true);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,8 +79,8 @@ export default function Login() {
               <Button onClick={handleDevLogin}>Login</Button>
             </div>
           )}
-          {process.env.NEXT_PUBLIC_ENV !== "development" && (
-            <div className="flex flex-col gap-2">
+          {process.env.NEXT_PUBLIC_ENV !== "development" && !emailSent && (
+            <div className="flex flex-col gap-4">
               <Input
                 className={cn(mono.className)}
                 value={email}
@@ -76,27 +89,18 @@ export default function Login() {
               />
               <Button
                 className="self-stretch rounded-lg bg-secondary flex flex-row items-center justify-center py-2 pr-2.5 pl-3 gap-[8px]"
-                onClick={() => {
-                  supabase.auth.signInWithOtp({
-                    email: email,
-                    options: {
-                      emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
-                    },
-                  });
-                  // supabase.auth.signInWithOAuth({
-                  //   provider: "google",
-                  //   options: {
-                  //     redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
-                  //   },
-                  // });
-                }}
+                onClick={handleMagicLinkLogin}
               >
-                {/* <Google width={20} /> */}
-                <Notification />
+                <Notification width={20} />
                 <span className="relative text-[14px]">
                   Login with Magic Link
                 </span>
               </Button>
+            </div>
+          )}
+          {process.env.NEXT_PUBLIC_ENV !== "development" && emailSent && (
+            <div>
+              <span>Login Email sent, please check your inbox.</span>
             </div>
           )}
         </div>
