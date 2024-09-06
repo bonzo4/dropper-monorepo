@@ -2,7 +2,13 @@
 import Button from "@/components/ui/Button";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/classNames";
-import { Google, Icon, Logo, LogoWhite } from "@/components/icons";
+import {
+  Google,
+  Icon,
+  Logo,
+  LogoWhite,
+  Notification,
+} from "@/components/icons";
 import { useState } from "react";
 import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
@@ -86,6 +92,7 @@ export default function Login() {
                 }}
               >
                 {/* <Google width={20} /> */}
+                <Notification />
                 <span className="relative text-[14px]">
                   Login with Magic Link
                 </span>
