@@ -1,10 +1,8 @@
 "use client";
 import { Paragraph } from "@/components/ui/Paragraph";
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
-import { LandingGiveaway } from "../../api/giveaways/route";
 import {
   BaseBadge,
   BNBBadge,
@@ -17,17 +15,13 @@ import {
   SolBadge,
   TrendingBadge,
 } from "@/lib/utils/badges";
+import { LandingGiveaway } from "@/lib/data/giveaway/getGiveaways";
 
 type PastGiveawayCardProps = {
   giveaway: LandingGiveaway;
-  solValue: number;
-} & React.HTMLAttributes<HTMLDivElement>;
+};
 
-const PastGiveawayCard = ({
-  giveaway,
-  solValue,
-  ...props
-}: PastGiveawayCardProps) => {
+const PastGiveawayCard = ({ giveaway }: PastGiveawayCardProps) => {
   const endDate = new Date(giveaway.end_time);
 
   return (
@@ -95,10 +89,7 @@ const PastGiveawayCard = ({
               USDC VAL. 🔥
             </span>
             <Paragraph className="relative text-[16px] text-white opacity-25 font-semibold">
-              $
-              {giveaway.token_address
-                ? giveaway.usd_value.toFixed(2)
-                : (solValue * giveaway.reward_amount).toFixed(2)}
+              ${giveaway.usd_value.toFixed(2)}
             </Paragraph>
           </div>
         </div>

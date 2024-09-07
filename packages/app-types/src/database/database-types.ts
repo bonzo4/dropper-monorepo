@@ -1489,7 +1489,7 @@ export type Database = {
           {
             foreignKeyName: "user_codes_access_code_fkey"
             columns: ["access_code"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "access_codes"
             referencedColumns: ["code"]
           },

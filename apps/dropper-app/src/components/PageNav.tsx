@@ -1,16 +1,23 @@
 type Props = {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  prevPage: (page: number) => void;
+  nextPage: (page: number) => void;
   docCount: number;
   maxDocs: number;
 };
 
-export default function PageNav({ page, setPage, docCount, maxDocs }: Props) {
+export default function PageNav({
+  page,
+  prevPage,
+  nextPage,
+  docCount,
+  maxDocs,
+}: Props) {
   return (
     <div className="flex justify-center gap-4">
       <button
         className="text-white"
-        onClick={() => setPage((prev) => prev - 1)}
+        onClick={() => prevPage(page)}
         disabled={page === 1}
         style={{ opacity: page === 1 ? "25%" : "100%" }}
       >
@@ -19,7 +26,7 @@ export default function PageNav({ page, setPage, docCount, maxDocs }: Props) {
       <span className="text-white">{page}</span>
       <button
         className="text-white"
-        onClick={() => setPage((prev) => prev + 1)}
+        onClick={() => nextPage(page)}
         disabled={docCount <= maxDocs}
         style={{
           opacity: docCount <= maxDocs ? "25%" : "100%",

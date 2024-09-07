@@ -1,10 +1,9 @@
 import { Arrow, ArrowWhite } from "@/components/icons";
+import { LandingGiveawayQuery } from "@/lib/data/giveaway/getGiveaways";
 
 type GiveawayQueryProps = {
   handleType: (type: "ongoing" | "past" | "not_started") => void;
-  type: "ongoing" | "past" | "not_started";
-  sortBy: "usd_value" | "end_time" | "entries" | "created_at";
-  sort: "ascending" | "descending";
+  query: LandingGiveawayQuery;
   handleOrder: (
     sortBy: "usd_value" | "end_time" | "entries" | "created_at"
   ) => void;
@@ -14,9 +13,7 @@ type GiveawayQueryProps = {
 export default function GiveawayQuery({
   loading,
   handleType,
-  type,
-  sortBy,
-  sort,
+  query: { type = "ongoing", sortBy = "created_at", sort = "descending" },
   handleOrder,
 }: GiveawayQueryProps) {
   return (

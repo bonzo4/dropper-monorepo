@@ -1,64 +1,47 @@
-import { LandingGiveaway } from "@/app/api/giveaways/route";
-import { set } from "@coral-xyz/anchor/dist/cjs/utils/features";
+import { DatabaseTypes } from "@repo/app-types/database";
+import { SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import {
+  getGiveaways,
+  LandingGiveaway,
+  LandingGiveawayQuery,
+} from "../data/giveaway/getGiveaways";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Options = {
-  initialGiveaways: LandingGiveaway[];
-  type?: "ongoing" | "past" | "not_started";
-  page?: number;
-  sortBy?: "usd_value" | "end_time" | "entries" | "created_at";
-  sort?: "ascending" | "descending";
-  walletKey?: string;
+  supabase: SupabaseClient<DatabaseTypes>;
+  query: LandingGiveawayQuery;
 };
 
-export function useGiveaways({
-  initialGiveaways,
-  type = "ongoing",
-  page = 1,
-  sortBy = "created_at",
-  sort = "descending",
-  walletKey,
-}: Options) {
+export function useGiveaways({ supabase, query }: Options) {
   const [loading, setLoading] = useState(false);
-  const [giveawayData, setGiveawayData] =
-    useState<LandingGiveaway[]>(initialGiveaways);
+  const [giveaways, setGiveaways] = useState<LandingGiveaway[]>([]);
+
+  const [queryRef, setQueryRef] = useState(JSON.stringify(query));
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   useEffect(() => {
-    // Fetch new data only if necessary
+    if (queryRef === JSON.stringify(query)) return;
+    const urlQuery = new URLSearchParams(query as any);
+    replace(`${pathname}?${urlQuery.toString()}`);
+    setQueryRef(JSON.stringify(query));
+  }, [pathname, query, queryRef, replace]);
+
+  useEffect(() => {
     const fetchGiveaways = async () => {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/giveaways?page=${page}&type=${type}&sortBy=${sortBy}&sort=${sort}&walletKey=${walletKey}`,
-        {
-          cache: "no-cache",
-        }
-      );
-
-      if (response.status !== 200) {
-        setGiveawayData([]);
-      } else {
-        const data = (await response.json()) as LandingGiveaway[];
-        setGiveawayData(data);
-      }
-
+      const giveawaysData = await getGiveaways({
+        supabase,
+        query: JSON.parse(queryRef),
+      });
+      setGiveaways(giveawaysData);
       setLoading(false);
     };
 
-    // Skip fetching on initial render if initialGiveaways is provided
-    if (
-      initialGiveaways &&
-      page === 1 &&
-      type === "ongoing" &&
-      sortBy === "created_at" &&
-      sort === "descending"
-    ) {
-      setGiveawayData(initialGiveaways);
-      return;
-    }
-
     fetchGiveaways();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, type, sortBy, sort, walletKey]);
+  }, [queryRef, supabase]);
 
-  return { giveawayData, loading } as const;
+  return { giveaways, loading } as const;
 }

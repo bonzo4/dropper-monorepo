@@ -1,21 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { NextRequest } from "next/server";
 
-export type LandingGiveaway = {
-  id: string;
-  title: string;
-  description: string;
-  icon_url: string;
-  usd_value: number;
-  end_time: string;
-  entries: number;
-  badges: string[];
-  reward_amount: number;
-  winner_amount: number;
-  ticker: string;
-  token_address: string;
-};
-
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   let type = searchParams.get("type") as
