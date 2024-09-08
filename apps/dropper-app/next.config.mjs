@@ -4,11 +4,11 @@ const __dirname = path.resolve();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-//     output: "standalone",
-//      transpilePackages: ["@repo/ui", "@repo/app-types"],
-//     experimental: {
-//     outputFileTracingRoot: path.join(__dirname, "../../"),
-//   },
+    output: "standalone",
+     transpilePackages: ["@repo/ui", "@repo/app-types"],
+    experimental: {
+    outputFileTracingRoot: path.join(__dirname, "../../"),
+  },
     images: {
         remotePatterns: [
             {

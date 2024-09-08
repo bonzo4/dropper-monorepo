@@ -7,7 +7,7 @@ type DesktopNavMenuProps = {
 
 export default function DesktopNavMenu({ route }: DesktopNavMenuProps) {
   return (
-    <nav className="lg:flex flex-row items-center gap-11 hidden">
+    <nav className="absolute lg:flex flex-row items-center gap-11 hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
       <Link href="/">
         {route === "/" || route.includes("/drops") ? (
           <div>

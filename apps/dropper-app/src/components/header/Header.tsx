@@ -6,11 +6,11 @@ import { Dropper, HeaderLogo, Login, Menu } from "@/components/icons";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
-import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
 import { useState } from "react";
 import Ticker from "./Ticker";
 import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
+import { TickerGiveaway } from "@/lib/data/getTickers";
 
 type HeaderProps = {
   profile: DropmanView | null;
@@ -26,7 +26,7 @@ export default function Header({ profile, tickers }: HeaderProps) {
     <div className="relative flex flex-col ">
       <div className="flex flex-col overflow-hidden">
         <Ticker width={width} tickers={tickers} />
-        <div className="w-full min-h-[72px] flex flex-row items-center justify-between p-4">
+        <div className=" relative w-full min-h-[72px] flex flex-row items-center justify-between p-4">
           <Link href={"/"}>
             <HeaderLogo height={34} className="" />
           </Link>
@@ -42,7 +42,7 @@ export default function Header({ profile, tickers }: HeaderProps) {
                 className="flex flex-row items-center gap-4"
               >
                 {/* <span className="text-[#FDE400]">⚡68/100</span> */}
-                <div className="flex flex-row items-center bg-secondary rounded-md p-[6px] gap-2 w-[179px]">
+                <div className="flex flex-row items-center bg-secondary rounded-md p-[6px] gap-2 max-w-[179px]">
                   <Dropper />
                   <span className="truncate">{profile.username}</span>
                   {profile.icon ? (

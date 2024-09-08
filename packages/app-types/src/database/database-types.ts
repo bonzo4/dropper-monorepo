@@ -136,6 +136,53 @@ export type Database = {
           },
         ]
       }
+      airdrop_banners: {
+        Row: {
+          created_at: string
+          description: string | null
+          drop_url: string | null
+          drop_url_text: string | null
+          id: number
+          image_url: string
+          order: number | null
+          out_url: string | null
+          out_url_text: string | null
+          title: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          drop_url?: string | null
+          drop_url_text?: string | null
+          id?: number
+          image_url: string
+          order?: number | null
+          out_url?: string | null
+          out_url_text?: string | null
+          title?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          drop_url?: string | null
+          drop_url_text?: string | null
+          id?: number
+          image_url?: string
+          order?: number | null
+          out_url?: string | null
+          out_url_text?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "banners_drop_url_fkey"
+            columns: ["drop_url"]
+            isOneToOne: false
+            referencedRelation: "airdrops"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
       airdrop_comments: {
         Row: {
           airdrop_id: number
@@ -504,53 +551,6 @@ export type Database = {
           speed?: number | null
         }
         Relationships: []
-      }
-      banners: {
-        Row: {
-          created_at: string
-          description: string | null
-          drop_url: string | null
-          drop_url_text: string | null
-          id: number
-          image_url: string
-          order: number | null
-          out_url: string | null
-          out_url_text: string | null
-          title: string | null
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          drop_url?: string | null
-          drop_url_text?: string | null
-          id?: number
-          image_url: string
-          order?: number | null
-          out_url?: string | null
-          out_url_text?: string | null
-          title?: string | null
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          drop_url?: string | null
-          drop_url_text?: string | null
-          id?: number
-          image_url?: string
-          order?: number | null
-          out_url?: string | null
-          out_url_text?: string | null
-          title?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "banners_drop_url_fkey"
-            columns: ["drop_url"]
-            isOneToOne: false
-            referencedRelation: "airdrops"
-            referencedColumns: ["slug"]
-          },
-        ]
       }
       chest_gear: {
         Row: {
@@ -1489,7 +1489,7 @@ export type Database = {
           {
             foreignKeyName: "user_codes_access_code_fkey"
             columns: ["access_code"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "access_codes"
             referencedColumns: ["code"]
           },
@@ -1555,6 +1555,10 @@ export type Database = {
         Args: {
           giveaway_doc_id: number
         }
+        Returns: undefined
+      }
+      update_giveaway_sol_usd_value: {
+        Args: Record<PropertyKey, never>
         Returns: undefined
       }
     }

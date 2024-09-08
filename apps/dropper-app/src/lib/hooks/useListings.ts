@@ -1,7 +1,7 @@
-import { ListingCardData } from "@/app/api/listings/route";
 import { useEffect, useState } from "react";
 import { createSupabaseClient } from "../supabase/client";
 import { ListingRow } from "../types/listing";
+import { getListings, ListingCardData } from "../data/listings/getListings";
 
 type Options = {
   page?: number;
@@ -15,20 +15,8 @@ export function useListings({ page }: Options) {
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/listings?page=${page}`,
-        {
-          cache: "no-cache",
-        }
-      );
-
-      if (response.status !== 200) {
-        setListings([]);
-      } else {
-        const data = (await response.json()) as ListingCardData[];
-        setListings(data);
-      }
-
+      const listings = await getListings({ supabase, page });
+      setListings(listings);
       setLoading(false);
     };
 
