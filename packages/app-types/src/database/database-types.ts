@@ -609,6 +609,39 @@ export type Database = {
         }
         Relationships: []
       }
+      direct_referrals: {
+        Row: {
+          created_at: string
+          referrer_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          referrer_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          referrer_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "direct_referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "direct_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       drop_rate_configs: {
         Row: {
           acceleration_rate: number
@@ -1392,6 +1425,39 @@ export type Database = {
         }
         Relationships: []
       }
+      secondary_referrals: {
+        Row: {
+          created_at: string
+          referrer_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          referrer_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          referrer_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "secondary_referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "secondary_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       solana_wallets: {
         Row: {
           address: string
@@ -1469,6 +1535,39 @@ export type Database = {
         }
         Relationships: []
       }
+      tertiary_referrals: {
+        Row: {
+          created_at: string
+          referrer_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          referrer_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          referrer_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tertiary_referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tertiary_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_codes: {
         Row: {
           access_code: string
@@ -1501,6 +1600,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_points: {
+        Row: {
+          activity_points: number
+          created_at: string
+          referral_points: number
+          user_id: string
+        }
+        Insert: {
+          activity_points: number
+          created_at?: string
+          referral_points?: number
+          user_id: string
+        }
+        Update: {
+          activity_points?: number
+          created_at?: string
+          referral_points?: number
+          user_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {
