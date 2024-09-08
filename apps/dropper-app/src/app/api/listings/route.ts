@@ -1,23 +1,12 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { NextRequest } from "next/server";
 
-export type ListingCardData = {
-  ticker: string;
-  name: string;
-  holder_count: number;
-  ath: number;
-  atv: number;
-  icon_url: string;
-  description: string;
-  id: number;
-};
-
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const supabase = createSupabaseServer();
 
   let page = searchParams.get("page");
-  let pageNumber = page ? parseInt(page) : 0;
+  let pageNumber = page ? parseInt(page) : 1;
 
   const query = supabase
     .from("listings")
@@ -25,7 +14,7 @@ export async function GET(request: NextRequest) {
     .order("last_bump", { ascending: false })
     .neq("tx_string", null);
 
-  if (!isNaN(pageNumber) && pageNumber > 0) {
+  if (!isNaN(pageNumber) && pageNumber > 1) {
     const start = (pageNumber - 1) * 12;
     const end = start + 12;
     query.range(start, end);

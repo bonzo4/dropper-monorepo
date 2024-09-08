@@ -1,7 +1,6 @@
-import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
 import TickerItem from "./TickerItem";
 import Marquee from "react-fast-marquee";
-import { useState } from "react";
+import { TickerGiveaway } from "@/lib/data/getTickers";
 
 type TickerOptions = {
   width: number;

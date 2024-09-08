@@ -6,11 +6,11 @@ import { Dropper, HeaderLogo, Login, Menu } from "@/components/icons";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
-import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
 import { useState } from "react";
 import Ticker from "./Ticker";
 import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
+import { TickerGiveaway } from "@/lib/data/getTickers";
 
 type HeaderProps = {
   profile: DropmanView | null;

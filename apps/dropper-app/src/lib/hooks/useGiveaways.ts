@@ -18,16 +18,10 @@ export function useGiveaways({ supabase, query }: Options) {
   const [giveaways, setGiveaways] = useState<LandingGiveaway[]>([]);
 
   const [queryRef, setQueryRef] = useState(JSON.stringify(query));
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
 
   useEffect(() => {
-    if (queryRef === JSON.stringify(query)) return;
-    const urlQuery = new URLSearchParams(query as any);
-    replace(`${pathname}?${urlQuery.toString()}`);
     setQueryRef(JSON.stringify(query));
-  }, [pathname, query, queryRef, replace]);
+  }, [query]);
 
   useEffect(() => {
     const fetchGiveaways = async () => {

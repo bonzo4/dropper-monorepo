@@ -1,5 +1,4 @@
 "use client";
-import { TickerGiveaway } from "@/app/api/giveaways/tickers/route";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import { Dropper } from "@/components/icons";
@@ -7,6 +6,7 @@ import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
 import Countdown from "react-countdown";
+import { TickerGiveaway } from "@/lib/data/getTickers";
 
 type TickerItemOptions = {
   ticker: TickerGiveaway;

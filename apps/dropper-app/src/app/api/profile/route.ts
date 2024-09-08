@@ -2,11 +2,6 @@ import { createSupabaseServer } from "@/lib/supabase/server";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { NextRequest } from "next/server";
 
-export type ProfilePageData = Pick<
-  DatabaseTypes["public"]["Tables"]["dropmans"]["Row"],
-  "username" | "created_at" | "exp_points" | "icon" | "drop_points"
->;
-
 export async function GET(request: NextRequest) {
   try {
     const supabase = createSupabaseServer();
