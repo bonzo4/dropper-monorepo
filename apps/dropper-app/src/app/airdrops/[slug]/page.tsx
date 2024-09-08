@@ -17,26 +17,29 @@ import AirdropStats from "./components/AirdropStats";
 import Image from "next/image";
 import CommunitySection from "./components/CommunitySection";
 import CommentSection from "./components/CommentSection";
+import { createSupabaseServer } from "@/lib/supabase/server";
+import { getAirdropPageData } from "@/lib/data/airdrops/getAirdropPage";
 
 export default async function Airdrop({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const airdrop = await getAirdropPage(slug);
+  const supabase = createSupabaseServer();
+  const airdrop = await getAirdropPageData({ supabase, slug });
 
   if (!airdrop || !airdrop.is_published) return null;
 
   const sections = [
-    ...airdrop.about_sections.map((section) => ({
+    ...airdrop.airdrop_about_sections.map((section) => ({
       ...section,
       type: SectionType.About,
     })),
-    ...airdrop.quest_sections.map((section) => ({
+    ...airdrop.airdrop_quest_sections.map((section) => ({
       ...section,
       type: SectionType.Quests,
     })),
-    ...airdrop.community_sections.map((section) => ({
+    ...airdrop.airdrop_community_sections.map((section) => ({
       ...section,
       type: SectionType.Community,
     })),
@@ -79,7 +82,9 @@ export default async function Airdrop({
                   <QuestsSections
                     section={
                       section as QuestSectionRow & {
-                        quests: (QuestRow & { quest_items: QuestItemRow[] })[];
+                        airdrop_quests: (QuestRow & {
+                          airdrop_quest_items: QuestItemRow[];
+                        })[];
                       }
                     }
                   />
@@ -95,7 +100,7 @@ export default async function Airdrop({
                   <CommunitySection
                     section={
                       section as CommunitySectionRow & {
-                        community_posts: CommunityPostRow[];
+                        airdrop_community_posts: CommunityPostRow[];
                       }
                     }
                   />
@@ -109,23 +114,4 @@ export default async function Airdrop({
       </div>
     </div>
   );
-}
-
-async function getAirdropPage(slug: string) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/airdrops/${slug}`
-    );
-
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch airdrop page");
-    }
-
-    const data = await response.json();
-
-    return data as AirdropPageRow;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 }

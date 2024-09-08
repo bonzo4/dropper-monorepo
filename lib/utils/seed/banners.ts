@@ -30,4 +30,18 @@ export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
   await supabase.from("listing_banners").insert(listingBanners);
 
   console.log("listing banners created");
+
+  const airdropBanners: { image_url: string; order: number }[] = [];
+
+  for (let i = 0; i < 16; i++) {
+    const image_url = faker.image.urlLoremFlickr();
+    airdropBanners.push({
+      image_url,
+      order: i,
+    });
+  }
+
+  await supabase.from("airdrop_banners").insert(airdropBanners);
+
+  console.log("airdrop banners created");
 }

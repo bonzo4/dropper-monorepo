@@ -23,13 +23,13 @@ export type CommunitySectionRow =
   DatabaseTypes["public"]["Tables"]["airdrop_community_sections"]["Row"];
 
 export type AirdropPageRow = AirdropRow & {
-  about_sections: (AboutSectionRow & {
+  airdrop_about_sections: (AboutSectionRow & {
     airdrop_team_members: AirdropTeamMemberRow[];
   })[];
-  quest_sections: (QuestSectionRow & {
-    quests: (QuestRow & { quest_items: QuestItemRow[] })[];
+  airdrop_quest_sections: (QuestSectionRow & {
+    airdrop_quests: (QuestRow & { airdrop_quest_items: QuestItemRow[] })[];
   })[];
-  community_sections: (CommunitySectionRow & {
-    community_posts: CommunityPostRow[];
+  airdrop_community_sections: (CommunitySectionRow & {
+    airdrop_community_posts: CommunityPostRow[];
   })[];
 };

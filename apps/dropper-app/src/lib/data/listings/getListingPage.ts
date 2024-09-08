@@ -1,18 +1,16 @@
-import { createSupabaseServer } from "@/lib/supabase/server";
 import { ListingRow } from "@/lib/types/listing";
-import { NextRequest } from "next/server";
 
 export type ListingPageData = {
   nextListingId: number | null;
   prevListingId: number | null;
 } & ListingRow;
 
-export async function GET(
-  request: NextRequest,
-  { params: { id } }: { params: { id: number } }
-) {
-  const supabase = createSupabaseServer();
+type Options = {
+  supabase: any;
+  id: number;
+};
 
+export async function getListingPage({ supabase, id }: Options) {
   const { data, error } = await supabase
     .from("listings")
     .select("*")
@@ -20,13 +18,7 @@ export async function GET(
     .single();
 
   if (error) {
-    return new Response(JSON.stringify(error), {
-      status: 500,
-      headers: {
-        "content-type": "application/json",
-        "Access-Control-Allow-Origin": process.env.NEXT_PUBLIC_URL!,
-      },
-    });
+    throw new Error(error.message);
   }
 
   let nextListingId = null;
@@ -54,14 +46,5 @@ export async function GET(
     prevListingId = prev.id;
   }
 
-  return new Response(
-    JSON.stringify({ ...data, nextListingId, prevListingId }),
-    {
-      status: 200,
-      headers: {
-        "content-type": "application/json",
-        "Access-Control-Allow-Origin": process.env.NEXT_PUBLIC_URL!,
-      },
-    }
-  );
+  return { ...data, nextListingId, prevListingId };
 }

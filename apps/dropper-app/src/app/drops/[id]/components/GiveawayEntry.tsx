@@ -1,7 +1,6 @@
 "use client";
 
 import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
-import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { toast } from "react-toastify";
@@ -13,6 +12,7 @@ import ToastStyling from "@/components/ToastStyling";
 import { useWallet } from "@solana/wallet-adapter-react";
 import Wallet from "@/components/Wallet";
 import GiveawayRequirements from "./GiveawayRequirements";
+import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";
 
 type GiveawayEntryProps = {
   giveaway: GiveawayPageData;

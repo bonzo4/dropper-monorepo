@@ -1,8 +1,8 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { AirdropPreviewItem } from "../types/airdrop";
 import { useEffect, useState } from "react";
-import { getAirdrops } from "../data/getAirdrops";
 import { DatabaseTypes } from "@repo/app-types/database";
+import { getAirdrops } from "../data/airdrops/getAirdrops";
 
 type UseAirdropsOptions = {
   supabase: SupabaseClient<DatabaseTypes>;
@@ -20,7 +20,7 @@ export function useAirdrops({
 
   useEffect(() => {
     const refetchAirdrops = async () => {
-      const data = await getAirdrops(searchParams);
+      const data = await getAirdrops({ supabase });
       setAirdrops(data);
     };
     refetchAirdrops();

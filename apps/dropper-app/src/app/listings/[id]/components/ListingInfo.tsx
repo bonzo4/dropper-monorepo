@@ -1,4 +1,4 @@
-import { ListingPageData } from "@/app/api/listings/[id]/route";
+import { ListingPageData } from "@/lib/data/listings/getListingPage";
 import Image from "next/image";
 
 type Props = {

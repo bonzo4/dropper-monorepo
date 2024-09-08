@@ -6,6 +6,7 @@ import { DatabaseTypes } from "@repo/app-types/database";
 import { createBanners } from "./banners";
 import { createGiveaways } from "./giveaways";
 import { createListings } from "./listings";
+import { createAirdrops } from "./airdrops";
 
 require("dotenv").config();
 
@@ -25,6 +26,7 @@ const main = async () => {
   await createBanners(supabase);
   await createGiveaways(supabase);
   await createListings(supabase);
+  await createAirdrops(supabase);
 
   console.log("Database seeded successfully!");
 

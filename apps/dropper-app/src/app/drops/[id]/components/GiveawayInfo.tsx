@@ -1,5 +1,5 @@
+import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";
 import Image from "next/image";
-import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 
 type GiveawayInfoProps = {
   giveaway: GiveawayPageData;

@@ -1,14 +1,12 @@
 "use client";
-import Banner from "./Banner";
-import { useBanners } from "@/lib/hooks/useBanners";
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { BannerRow } from "@/lib/types/banner";
-import { motion, useAnimate } from "framer-motion";
+import Banner from "./AirdropBanner";
+import { AirdropBannerRow } from "@/lib/types/banner";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 
 type BannerSliderProps = {
-  banners: BannerRow[];
+  banners: AirdropBannerRow[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const BannerSlider = ({ banners }: BannerSliderProps) => {

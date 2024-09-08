@@ -1,12 +1,11 @@
 import { WhiteArrow } from "@/components/icons";
-import { useState } from "react";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import { BannerRow } from "@/lib/types/banner";
 import { Paragraph } from "@/components/ui/Paragraph";
+import { AirdropBannerRow } from "@/lib/types/banner";
 
 type BannerProps = {
-  banner: BannerRow;
+  banner: AirdropBannerRow;
   handleNext?: () => void;
   handlePrev?: () => void;
   index?: number;

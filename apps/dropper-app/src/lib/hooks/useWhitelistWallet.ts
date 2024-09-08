@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { createSupabaseClient } from "../supabase/client";
 
 type UseWhitelistWalletOptions = {
   publicKey: string | null;
 };
 
 export function useWhitelistWallet({ publicKey }: UseWhitelistWalletOptions) {
+  const supabase = createSupabaseClient();
   const [isWhitelisted, setIsWhitelisted] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -12,18 +14,20 @@ export function useWhitelistWallet({ publicKey }: UseWhitelistWalletOptions) {
     const checkWhitelist = async () => {
       if (!publicKey) return setIsWhitelisted(false);
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/whitelist?dev=true&key=${publicKey}`,
-        {
-          cache: "no-cache",
-        }
-      );
+
+      const { data, error } = await supabase
+        .from("solana_wallets")
+        .select("*")
+        .eq("address", publicKey)
+        .single();
+
+      if (data) setIsWhitelisted(true);
+      else setIsWhitelisted(false);
+
       setLoading(false);
-      if (response.status != 200) return setIsWhitelisted(false);
-      setIsWhitelisted(true);
     };
     checkWhitelist();
-  }, [publicKey]);
+  }, [publicKey, supabase]);
 
   return { isWhitelisted, loading } as const;
 }

@@ -3,7 +3,7 @@ import Quest from "./Quest";
 
 type QuestsSectionsProps = {
   section: QuestSectionRow & {
-    quests: (QuestRow & { quest_items: QuestItemRow[] })[];
+    airdrop_quests: (QuestRow & { airdrop_quest_items: QuestItemRow[] })[];
   };
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -15,7 +15,7 @@ const QuestsSections = ({ section, ...props }: QuestsSectionsProps) => {
     >
       <h2 className="relative text-left  text-primary ">Quests</h2>
       <div className="self-stretch flex flex-col items-start justify-center py-0 px-9 gap-[32px] text-text">
-        {section.quests
+        {section.airdrop_quests
           .sort((a, b) => a.order - b.order)
           .map((quest) => (
             <Quest key={quest.id} quest={quest} />

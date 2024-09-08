@@ -1,4 +1,3 @@
-import { ListingPageData } from "@/app/api/listings/[id]/route";
 import { Paragraph } from "@/components/ui/Paragraph";
 import ListingInfo from "./components/ListingInfo";
 import Button from "@/components/ui/Button";
@@ -10,13 +9,16 @@ import {
 } from "@/components/icons";
 import Link from "next/link";
 import ListingRouter from "./components/ListingsRouter";
+import { getListingPage } from "@/lib/data/listings/getListingPage";
+import { createSupabaseServer } from "@/lib/supabase/server";
 
 export default async function ListingPage({
   params: { id },
 }: {
   params: { id: number };
 }) {
-  const listing = await getListing(id);
+  const supabase = createSupabaseServer();
+  const listing = await getListingPage({ supabase, id });
 
   if (!listing) return null;
 
@@ -52,24 +54,4 @@ export default async function ListingPage({
       </div>
     </main>
   );
-}
-
-async function getListing(id: number) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/listings/${id}`,
-      {
-        cache: "no-cache",
-      }
-    );
-
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch listing");
-    }
-
-    return response.json() as Promise<ListingPageData>;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 }

@@ -1,4 +1,3 @@
-import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 import GiveawayInfo from "./components/GiveawayInfo";
 import { Paragraph } from "@/components/ui/Paragraph";
 import GiveawayStats from "./components/GiveawayStats";

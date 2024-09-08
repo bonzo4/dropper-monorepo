@@ -1,11 +1,13 @@
-import { AirdropPreviewItem } from "@/lib/types/airdrop";
-import BannerSlider from "./components/BannerSlider";
+import BannerSlider from "./components/AirdropBannerSlider";
 import Airdrops from "./components/Airdrops";
-import { BannerRow } from "@/lib/types/banner";
+import { createSupabaseServer } from "@/lib/supabase/server";
+import { getAirdropBanners } from "@/lib/data/airdrops/getAirDropBanners";
+import { getFeaturedAirdrops } from "@/lib/data/airdrops/getFeatured";
 
 export default async function Home() {
-  const banners = await getBanners();
-  const airdrops = await getFeaturedAirdrops();
+  const supabase = createSupabaseServer();
+  const banners = await getAirdropBanners({ supabase });
+  const airdrops = await getFeaturedAirdrops({ supabase });
 
   return (
     <main className="flex flex-col items-center grow space-y-4">
@@ -13,45 +15,4 @@ export default async function Home() {
       <Airdrops airdrops={airdrops} />
     </main>
   );
-}
-
-async function getBanners() {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/banners`, {
-      next: {
-        revalidate: 60,
-      },
-    });
-
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch banners");
-    }
-
-    return response.json() as Promise<BannerRow[]>;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-async function getFeaturedAirdrops() {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/airdrops/featured`,
-      {
-        next: {
-          revalidate: 60,
-        },
-      }
-    );
-
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch featured airdrops");
-    }
-
-    return response.json() as Promise<AirdropPreviewItem[]>;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
 }

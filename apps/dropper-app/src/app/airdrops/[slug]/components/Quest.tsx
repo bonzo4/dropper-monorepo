@@ -6,7 +6,7 @@ import QuestItem from "./QuestItem";
 import { QuestItemRow, QuestRow } from "@/lib/types/sections";
 
 type QuestProps = {
-  quest: QuestRow & { quest_items: QuestItemRow[] };
+  quest: QuestRow & { airdrop_quest_items: QuestItemRow[] };
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const Quest = ({ quest, ...props }: QuestProps) => {
@@ -38,7 +38,7 @@ const Quest = ({ quest, ...props }: QuestProps) => {
       </div>
       {show && (
         <div className="w-full flex flex-col items-start justify-center py-0 px-10 gap-[10px] text-sm text-text font-made-outer-sans">
-          {quest.quest_items
+          {quest.airdrop_quest_items
             .sort((a, b) => a.order - b.order)
             .map((item) => (
               <QuestItem key={item.id} item={item} />

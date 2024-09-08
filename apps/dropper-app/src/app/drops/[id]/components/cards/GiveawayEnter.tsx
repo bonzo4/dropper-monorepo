@@ -1,20 +1,17 @@
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
-import { Notification, Confetti, Eyes } from "@/components/icons";
+import { Notification, Eyes } from "@/components/icons";
 import Countdown from "react-countdown";
 import Button from "@/components/ui/Button";
-import { GiveawayEntryRow } from "@/lib/types/giveaway";
 import { WalletContextState } from "@solana/wallet-adapter-react";
 import {
   WalletConnectButton,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
-import { useState } from "react";
 import { enterGiveaway } from "@/lib/actions/enterGiveaway";
-import { User } from "@supabase/supabase-js";
-import { GiveawayPageData } from "@/app/api/giveaways/[id]/route";
 import { getRequirementCount } from "@/lib/utils/getRequirementCount";
 import { toast } from "react-toastify";
+import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";
 
 type GiveawayEnterOptions = {
   endDate: Date;

@@ -3,10 +3,12 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Listings from "./components/Listings";
 import ListingBannerSlider from "./components/ListingBannerSlider";
-import { ListingCardData } from "@/lib/data/listings/getListings";
+import { getListingBanners } from "@/lib/data/listings/getListingBanners";
+import { createSupabaseServer } from "@/lib/supabase/server";
 
-export default async function Home() {
-  const banners = await getBanners();
+export default async function ListingsPage() {
+  const supabase = createSupabaseServer();
+  const banners = await getListingBanners({ supabase });
 
   return (
     <main className="relative flex flex-col items-center grow gap-[68px] py-16">
@@ -25,47 +27,4 @@ export default async function Home() {
       <Listings />
     </main>
   );
-}
-
-async function getBanners() {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/listings/banners`,
-      {
-        next: {
-          revalidate: 60,
-        },
-      }
-    );
-
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch banners");
-    }
-
-    return response.json() as Promise<ListingBannerRow[]>;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
-
-async function getListings() {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/listings`,
-      {
-        cache: "no-cache",
-      }
-    );
-
-    if (response.status !== 200) {
-      console.log(await response.json());
-      throw new Error("Failed to fetch listings");
-    }
-
-    return response.json() as Promise<ListingCardData[]>;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
 }
