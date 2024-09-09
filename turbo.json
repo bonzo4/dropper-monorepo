@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["NEXT_PUBLIC_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY", "NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_ENV"],
+  "globalEnv": ["NEXT_PUBLIC_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY", "NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_ENV", "BEE_HIIV_TOKEN", "BEE_HIIV_ID", "BIRDEYE_KEY", "LOOPS_KEY", "NEXT_PUBLIC_VAULT_KEY"],
   "ui": "tui",
   "tasks": {
     "build": {
