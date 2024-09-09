@@ -9,6 +9,7 @@ type SetSplGiveawayWinnersInstructionOptions = {
   giveawayId: number;
   program: Program<DropperGiveaway>;
   wallet: NodeWallet;
+  creatorKey: PublicKey;
 };
 
 export async function setSplGiveawayWinnersInstruction({
@@ -16,11 +17,16 @@ export async function setSplGiveawayWinnersInstruction({
   giveawayId,
   program,
   wallet,
+  creatorKey,
 }: SetSplGiveawayWinnersInstructionOptions) {
   if (!program.provider.publicKey) throw new Error("Wallet not connected");
 
   const instruction = await program.methods
-    .setSplGiveawayWinners({ winnerKeys, giveawayId: new BN(giveawayId) })
+    .setSplGiveawayWinners({
+      winnerKeys,
+      giveawayId: new BN(giveawayId),
+      creatorKey,
+    })
     .accounts({
       signer: program.provider.publicKey,
     })

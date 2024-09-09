@@ -41,26 +41,34 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "giveawayId";
-              }
+              },
+              {
+                kind: "arg";
+                path: "creatorKey";
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
           name: "giveawayId";
           type: "u64";
-        }
+        },
+        {
+          name: "creatorKey";
+          type: "pubkey";
+        },
       ];
     },
     {
@@ -115,13 +123,13 @@ export type DropperGiveaway = {
                   126,
                   255,
                   0,
-                  169
+                  169,
                 ];
               },
               {
                 kind: "account";
                 path: "tokenMint";
-              }
+              },
             ];
             program: {
               kind: "const";
@@ -157,7 +165,7 @@ export type DropperGiveaway = {
                 219,
                 233,
                 248,
-                89
+                89,
               ];
             };
           };
@@ -181,13 +189,17 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "giveawayId";
-              }
+              },
+              {
+                kind: "arg";
+                path: "creatorKey";
+              },
             ];
           };
         },
@@ -216,13 +228,13 @@ export type DropperGiveaway = {
                   97,
                   117,
                   108,
-                  116
+                  116,
                 ];
               },
               {
                 kind: "account";
                 path: "giveaway";
-              }
+              },
             ];
           };
         },
@@ -241,13 +253,17 @@ export type DropperGiveaway = {
         {
           name: "associatedTokenProgram";
           address: "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL";
-        }
+        },
       ];
       args: [
         {
           name: "giveawayId";
           type: "u64";
-        }
+        },
+        {
+          name: "creatorKey";
+          type: "pubkey";
+        },
       ];
     },
     {
@@ -283,20 +299,24 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "options.giveaway_id";
-              }
+              },
+              {
+                kind: "account";
+                path: "signer";
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
@@ -306,7 +326,7 @@ export type DropperGiveaway = {
               name: "createSolGiveawayOptions";
             };
           };
-        }
+        },
       ];
     },
     {
@@ -366,13 +386,13 @@ export type DropperGiveaway = {
                   126,
                   255,
                   0,
-                  169
+                  169,
                 ];
               },
               {
                 kind: "account";
                 path: "tokenMint";
-              }
+              },
             ];
             program: {
               kind: "const";
@@ -408,7 +428,7 @@ export type DropperGiveaway = {
                 219,
                 233,
                 248,
-                89
+                89,
               ];
             };
           };
@@ -432,13 +452,17 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "options.giveaway_id";
-              }
+              },
+              {
+                kind: "account";
+                path: "signer";
+              },
             ];
           };
         },
@@ -467,13 +491,13 @@ export type DropperGiveaway = {
                   97,
                   117,
                   108,
-                  116
+                  116,
                 ];
               },
               {
                 kind: "account";
                 path: "giveaway";
-              }
+              },
             ];
           };
         },
@@ -491,7 +515,7 @@ export type DropperGiveaway = {
         {
           name: "associatedTokenProgram";
           address: "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL";
-        }
+        },
       ];
       args: [
         {
@@ -501,7 +525,7 @@ export type DropperGiveaway = {
               name: "createSplGiveawayOptions";
             };
           };
-        }
+        },
       ];
     },
     {
@@ -536,26 +560,34 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "giveawayId";
-              }
+              },
+              {
+                kind: "arg";
+                path: "creatorKey";
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
           name: "giveawayId";
           type: "u64";
-        }
+        },
+        {
+          name: "creatorKey";
+          type: "pubkey";
+        },
       ];
     },
     {
@@ -614,13 +646,13 @@ export type DropperGiveaway = {
                   126,
                   255,
                   0,
-                  169
+                  169,
                 ];
               },
               {
                 kind: "account";
                 path: "tokenMint";
-              }
+              },
             ];
             program: {
               kind: "const";
@@ -656,7 +688,7 @@ export type DropperGiveaway = {
                 219,
                 233,
                 248,
-                89
+                89,
               ];
             };
           };
@@ -680,13 +712,17 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "giveawayId";
-              }
+              },
+              {
+                kind: "arg";
+                path: "creatorKey";
+              },
             ];
           };
         },
@@ -715,13 +751,13 @@ export type DropperGiveaway = {
                   97,
                   117,
                   108,
-                  116
+                  116,
                 ];
               },
               {
                 kind: "account";
                 path: "giveaway";
-              }
+              },
             ];
           };
         },
@@ -740,13 +776,17 @@ export type DropperGiveaway = {
         {
           name: "associatedTokenProgram";
           address: "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL";
-        }
+        },
       ];
       args: [
         {
           name: "giveawayId";
           type: "u64";
-        }
+        },
+        {
+          name: "creatorKey";
+          type: "pubkey";
+        },
       ];
     },
     {
@@ -781,26 +821,34 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "giveawayId";
-              }
+              },
+              {
+                kind: "arg";
+                path: "creatorKey";
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
           name: "giveawayId";
           type: "u64";
-        }
+        },
+        {
+          name: "creatorKey";
+          type: "pubkey";
+        },
       ];
     },
     {
@@ -859,13 +907,13 @@ export type DropperGiveaway = {
                   126,
                   255,
                   0,
-                  169
+                  169,
                 ];
               },
               {
                 kind: "account";
                 path: "tokenMint";
-              }
+              },
             ];
             program: {
               kind: "const";
@@ -901,7 +949,7 @@ export type DropperGiveaway = {
                 219,
                 233,
                 248,
-                89
+                89,
               ];
             };
           };
@@ -925,13 +973,17 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "giveawayId";
-              }
+              },
+              {
+                kind: "arg";
+                path: "creatorKey";
+              },
             ];
           };
         },
@@ -960,13 +1012,13 @@ export type DropperGiveaway = {
                   97,
                   117,
                   108,
-                  116
+                  116,
                 ];
               },
               {
                 kind: "account";
                 path: "giveaway";
-              }
+              },
             ];
           };
         },
@@ -985,13 +1037,17 @@ export type DropperGiveaway = {
         {
           name: "associatedTokenProgram";
           address: "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL";
-        }
+        },
       ];
       args: [
         {
           name: "giveawayId";
           type: "u64";
-        }
+        },
+        {
+          name: "creatorKey";
+          type: "pubkey";
+        },
       ];
     },
     {
@@ -1022,20 +1078,24 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "options.giveaway_id";
-              }
+              },
+              {
+                kind: "arg";
+                path: "options.creator_key";
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
@@ -1045,7 +1105,7 @@ export type DropperGiveaway = {
               name: "setSolGiveawayWinnersOptions";
             };
           };
-        }
+        },
       ];
     },
     {
@@ -1076,20 +1136,24 @@ export type DropperGiveaway = {
                   97,
                   119,
                   97,
-                  121
+                  121,
                 ];
               },
               {
                 kind: "arg";
                 path: "options.giveaway_id";
-              }
+              },
+              {
+                kind: "arg";
+                path: "options.creator_key";
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
@@ -1099,9 +1163,9 @@ export type DropperGiveaway = {
               name: "setSplGiveawayWinnersOptions";
             };
           };
-        }
+        },
       ];
-    }
+    },
   ];
   accounts: [
     {
@@ -1111,7 +1175,7 @@ export type DropperGiveaway = {
     {
       name: "splGiveaway";
       discriminator: [146, 62, 250, 198, 146, 57, 131, 208];
-    }
+    },
   ];
   errors: [
     {
@@ -1127,7 +1191,7 @@ export type DropperGiveaway = {
       code: 6002;
       name: "noPrizesLeft";
       msg: "There are no more giveaways";
-    }
+    },
   ];
   types: [
     {
@@ -1146,7 +1210,7 @@ export type DropperGiveaway = {
           {
             name: "lamportsAmount";
             type: "u64";
-          }
+          },
         ];
       };
     },
@@ -1166,7 +1230,7 @@ export type DropperGiveaway = {
           {
             name: "rewardAmount";
             type: "u64";
-          }
+          },
         ];
       };
     },
@@ -1184,7 +1248,11 @@ export type DropperGiveaway = {
             type: {
               vec: "pubkey";
             };
-          }
+          },
+          {
+            name: "creatorKey";
+            type: "pubkey";
+          },
         ];
       };
     },
@@ -1202,7 +1270,11 @@ export type DropperGiveaway = {
             type: {
               vec: "pubkey";
             };
-          }
+          },
+          {
+            name: "creatorKey";
+            type: "pubkey";
+          },
         ];
       };
     },
@@ -1230,7 +1302,7 @@ export type DropperGiveaway = {
                 vec: "pubkey";
               };
             };
-          }
+          },
         ];
       };
     },
@@ -1262,9 +1334,9 @@ export type DropperGiveaway = {
                 vec: "pubkey";
               };
             };
-          }
+          },
         ];
       };
-    }
+    },
   ];
 };

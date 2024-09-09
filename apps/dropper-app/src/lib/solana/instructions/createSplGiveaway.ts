@@ -1,6 +1,4 @@
-import { WalletContextState } from "@solana/wallet-adapter-react";
-import { Connection, PublicKey } from "@solana/web3.js";
-import { getDropperGiveaway } from "../program";
+import { PublicKey } from "@solana/web3.js";
 import { BN, Program } from "@coral-xyz/anchor";
 import { getMint, Mint } from "@solana/spl-token";
 import { DropperGiveaway } from "../types";

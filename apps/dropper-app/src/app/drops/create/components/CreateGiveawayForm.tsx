@@ -32,6 +32,7 @@ import { checkGiveaway, checkGiveawayRequirements } from "../utils/checks";
 import { createGiveaway } from "@/lib/actions/createGiveaway";
 import { updateGiveawayTx } from "@/lib/actions/updateGiveawayTx";
 import IconUpload from "./GiveawayIconUpload";
+import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
 
 type Props = {
   wallet: WalletContextState;
@@ -103,9 +104,13 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
           winnersAmount: giveaway.winner_amount,
         });
       }
+      const payInstruction = await transferSolInstruction({
+        source: wallet.publicKey,
+        solAmount: 0.1,
+      });
       const tx = await sendTransaction({
         provider: program.provider,
-        transactionInstructions: [instruction],
+        transactionInstructions: [instruction, payInstruction],
       });
       await updateGiveawayTx({
         tx,
