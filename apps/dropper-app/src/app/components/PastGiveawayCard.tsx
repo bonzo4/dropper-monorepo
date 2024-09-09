@@ -14,7 +14,7 @@ import {
   PumpFunBadge,
   SolBadge,
   TrendingBadge,
-} from "@/lib/utils/badges";
+} from "@/components/badges";
 import { LandingGiveaway } from "@/lib/data/giveaway/getGiveaways";
 
 type PastGiveawayCardProps = {
@@ -40,7 +40,7 @@ const PastGiveawayCard = ({ giveaway }: PastGiveawayCardProps) => {
               <div className="flex flex-row gap-1">
                 {giveaway.badges
                   .sort(() => Math.random() - 0.5)
-                  .slice(0, 4)
+                  .slice(0, 6)
                   .map((badge) =>
                     badge === "BASE" ? (
                       <BaseBadge key={badge} />
@@ -66,7 +66,7 @@ const PastGiveawayCard = ({ giveaway }: PastGiveawayCardProps) => {
                   )}
               </div>
             )}
-            <h3 className="relative text-[20px] md:text-[32px] truncate w-[160px] -mt-2">
+            <h3 className="relative text-[28px] md:text-[32px] truncate w-[160px] -mt-2">
               ${giveaway.ticker}
             </h3>
           </div>

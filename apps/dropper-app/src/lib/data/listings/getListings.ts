@@ -7,6 +7,7 @@ export type ListingCardData = {
   holder_count: number;
   ath: number;
   atv: number;
+  total_supply: number;
   icon_url: string;
   description: string;
   id: number;
@@ -21,7 +22,9 @@ export async function getListings({ supabase, page = 1 }: Options) {
   try {
     const query = supabase
       .from("listings")
-      .select("ticker, name, holder_count, ath, atv, icon_url, description, id")
+      .select(
+        "ticker, name, holder_count, ath, atv, icon_url, description, id, total_supply"
+      )
       .order("last_bump", { ascending: false })
       .neq("tx_string", null);
 

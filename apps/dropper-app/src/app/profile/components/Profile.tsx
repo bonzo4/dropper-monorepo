@@ -16,7 +16,7 @@ export default function Profile({ profile }: ProfileProps) {
   };
 
   return (
-    <div className="flex flex-row w-full px-4">
+    <div className="flex flex-row w-full px-4 ">
       <div className="flex flex-row grow gap-5">
         <Image
           src={profile.icon}
@@ -25,8 +25,10 @@ export default function Profile({ profile }: ProfileProps) {
           alt={"icon"}
           className="w-[100px] h-[100px] md:w-[120px] md:h-[120px]"
         />
-        <div className="flex flex-col md:gap-5">
-          <span className="text-xl md:text-5xl">{profile.username}</span>
+        <div className="flex flex-col md:gap-5 max-w-[100px] lg:max-w-[250px] overflow-hidden ">
+          <span className="text-xl md:text-5xl truncate">
+            {profile.username}
+          </span>
           <span className=" text-sm flex md:text-lg flex-col md:flex-row">
             <span>Joined At:</span>{" "}
             <span>
@@ -36,7 +38,7 @@ export default function Profile({ profile }: ProfileProps) {
           </span>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row grow justify-end items-end gap-2 md:gap-5">
+      <div className="flex flex-col md:flex-row grow justify-end items-end gap-2 md:gap-5 ">
         <Button className="flex gap-1">
           <span>Edit </span> <span className="md:flex">Profile</span>
         </Button>

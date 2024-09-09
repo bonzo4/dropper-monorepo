@@ -210,7 +210,7 @@ export const WhiteArrow = ({ ...props }: IconProps) => (
 );
 
 export const HeaderLogo = ({ ...props }: IconProps) => (
-  <Image {...props} src={headerLogo} alt="Header Logo" />
+  <Image {...props} src={headerLogo} alt="Header Logo" priority={true} />
 );
 
 export const HeaderIcon = ({ ...props }: IconProps) => (

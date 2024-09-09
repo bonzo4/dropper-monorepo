@@ -4,9 +4,10 @@ import Link from "next/link";
 
 type Props = {
   banner: ListingBannerRow;
+  index: number;
 };
 
-export default function ListingBanner({ banner }: Props) {
+export default function ListingBanner({ banner, index }: Props) {
   if (banner.out_url) {
     return (
       <a
@@ -15,7 +16,14 @@ export default function ListingBanner({ banner }: Props) {
         rel="noreferrer"
         className="w-[324px] h-[125px] relative rounded-[10px] overflow-hidden"
       >
-        <Image src={banner.image_url} alt="banner" width={324} height={125} />
+        <Image
+          src={banner.image_url}
+          alt="banner"
+          width={324}
+          height={125}
+          className="w-auto h-auto"
+          priority={index < 4}
+        />
       </a>
     );
   }
@@ -24,7 +32,14 @@ export default function ListingBanner({ banner }: Props) {
     return (
       <Link href={`/listings/${banner.listing_id}`}>
         <a className="w-[324px] h-[125px] relative rounded-[10px] overflow-hidden">
-          <Image src={banner.image_url} alt="banner" width={324} height={125} />
+          <Image
+            src={banner.image_url}
+            alt="banner"
+            width={324}
+            height={125}
+            className="w-auto h-auto"
+            priority={index < 4}
+          />
         </a>
       </Link>
     );
@@ -32,7 +47,14 @@ export default function ListingBanner({ banner }: Props) {
 
   return (
     <div className="w-[324px] h-[125px] relative rounded-[10px] overflow-hidden">
-      <Image src={banner.image_url} alt="banner" width={324} height={125} />
+      <Image
+        src={banner.image_url}
+        alt="banner"
+        width={324}
+        height={125}
+        className="w-auto h-auto"
+        priority={index < 4}
+      />
     </div>
   );
 }

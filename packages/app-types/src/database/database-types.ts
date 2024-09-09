@@ -142,9 +142,10 @@ export type Database = {
           description: string | null
           drop_url: string | null
           drop_url_text: string | null
+          enabled: boolean
           id: number
           image_url: string
-          order: number | null
+          order: number
           out_url: string | null
           out_url_text: string | null
           title: string | null
@@ -154,9 +155,10 @@ export type Database = {
           description?: string | null
           drop_url?: string | null
           drop_url_text?: string | null
+          enabled?: boolean
           id?: number
           image_url: string
-          order?: number | null
+          order: number
           out_url?: string | null
           out_url_text?: string | null
           title?: string | null
@@ -166,9 +168,10 @@ export type Database = {
           description?: string | null
           drop_url?: string | null
           drop_url_text?: string | null
+          enabled?: boolean
           id?: number
           image_url?: string
-          order?: number | null
+          order?: number
           out_url?: string | null
           out_url_text?: string | null
           title?: string | null
@@ -863,26 +866,29 @@ export type Database = {
       giveaway_banners: {
         Row: {
           created_at: string
+          enabled: boolean
           giveaway_id: number | null
           id: number
           image_url: string
-          order: number | null
+          order: number
           out_url: string | null
         }
         Insert: {
           created_at?: string
+          enabled?: boolean
           giveaway_id?: number | null
           id?: number
           image_url: string
-          order?: number | null
+          order: number
           out_url?: string | null
         }
         Update: {
           created_at?: string
+          enabled?: boolean
           giveaway_id?: number | null
           id?: number
           image_url?: string
-          order?: number | null
+          order?: number
           out_url?: string | null
         }
         Relationships: [
@@ -1223,26 +1229,29 @@ export type Database = {
       listing_banners: {
         Row: {
           created_at: string
+          enabled: boolean
           id: number
           image_url: string
           listing_id: number | null
-          order: number | null
+          order: number
           out_url: string | null
         }
         Insert: {
           created_at?: string
+          enabled?: boolean
           id?: number
           image_url: string
           listing_id?: number | null
-          order?: number | null
+          order: number
           out_url?: string | null
         }
         Update: {
           created_at?: string
+          enabled?: boolean
           id?: number
           image_url?: string
           listing_id?: number | null
-          order?: number | null
+          order?: number
           out_url?: string | null
         }
         Relationships: [
@@ -1353,6 +1362,7 @@ export type Database = {
           telegram_url: string | null
           ticker: string
           token_address: string
+          total_supply: number
           twitter_url: string | null
           tx_string: string
           user_id: string | null
@@ -1373,6 +1383,7 @@ export type Database = {
           telegram_url?: string | null
           ticker: string
           token_address: string
+          total_supply: number
           twitter_url?: string | null
           tx_string: string
           user_id?: string | null
@@ -1393,6 +1404,7 @@ export type Database = {
           telegram_url?: string | null
           ticker?: string
           token_address?: string
+          total_supply?: number
           twitter_url?: string | null
           tx_string?: string
           user_id?: string | null

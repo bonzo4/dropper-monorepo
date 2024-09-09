@@ -10,6 +10,7 @@ export async function getGiveawayBanners({ supabase }: Options) {
     const query = supabase
       .from("giveaway_banners")
       .select("*")
+      .eq("enabled", true)
       .order("order", { ascending: true });
 
     const { data, error } = await query;

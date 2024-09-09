@@ -1,10 +1,14 @@
 import { Bump } from "@/components/icons";
 import { ListingCardData } from "@/lib/data/listings/getListings";
+import { SolBadge } from "@/components/badges";
 import { cn } from "@/lib/utils/classNames";
 import { mono } from "@/lib/utils/fonts";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
+import McapBadge from "./McapBadge";
+import VolumeBadge from "./VolumeBadge";
+import HolderBadge from "./HolderBadge";
 
 type Props = {
   listing: ListingCardData;
@@ -29,14 +33,14 @@ export default function ListingCard({ listing, showBump }: Props) {
               className="text-primary truncate -my-2 hover:underline"
             >
               <span className="text-2xl text-primary truncate">
-                ${listing.ticker}
+                ${listing.ticker.slice(0, 5)}
               </span>
             </Link>
             <div className="flex flex-row gap-[2px]">
-              <div className="w-[21px] h-[21px] bg-placeholder rounded-sm" />
-              <div className="w-[21px] h-[21px] bg-placeholder rounded-sm" />
-              <div className="w-[21px] h-[21px] bg-placeholder rounded-sm" />
-              <div className="w-[21px] h-[21px] bg-placeholder rounded-sm" />
+              <SolBadge />
+              <McapBadge mcap={listing.ath * listing.total_supply} />
+              <VolumeBadge volume={listing.atv} />
+              <HolderBadge holders={listing.holder_count} />
             </div>
             <Bump
               className="hover:cursor-pointer"

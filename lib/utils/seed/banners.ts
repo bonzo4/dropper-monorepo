@@ -3,13 +3,18 @@ import { copycat, faker } from "@snaplet/copycat";
 import { DatabaseTypes } from "../../../packages/app-types/src/database";
 
 export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
-  const giveawayBanners: { image_url: string; order: number }[] = [];
+  const giveawayBanners: {
+    image_url: string;
+    order: number;
+    enabled: boolean;
+  }[] = [];
 
   for (let i = 0; i < 16; i++) {
     const image_url = faker.image.urlLoremFlickr();
     giveawayBanners.push({
       image_url,
       order: i,
+      enabled: true,
     });
   }
 
@@ -17,13 +22,18 @@ export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
 
   console.log("giveaway banners created");
 
-  const listingBanners: { image_url: string; order: number }[] = [];
+  const listingBanners: {
+    image_url: string;
+    order: number;
+    enabled: boolean;
+  }[] = [];
 
   for (let i = 0; i < 16; i++) {
     const image_url = faker.image.urlLoremFlickr();
     listingBanners.push({
       image_url,
       order: i,
+      enabled: true,
     });
   }
 
@@ -31,13 +41,18 @@ export async function createBanners(supabase: SupabaseClient<DatabaseTypes>) {
 
   console.log("listing banners created");
 
-  const airdropBanners: { image_url: string; order: number }[] = [];
+  const airdropBanners: {
+    image_url: string;
+    order: number;
+    enabled: boolean;
+  }[] = [];
 
   for (let i = 0; i < 16; i++) {
     const image_url = faker.image.urlLoremFlickr();
     airdropBanners.push({
       image_url,
       order: i,
+      enabled: true,
     });
   }
 

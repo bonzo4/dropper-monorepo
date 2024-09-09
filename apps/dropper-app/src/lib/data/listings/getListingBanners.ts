@@ -10,6 +10,7 @@ export async function getListingBanners({ supabase }: Options) {
     const { data, error } = await supabase
       .from("listing_banners")
       .select()
+      .eq("enabled", true)
       .order("order", { ascending: true });
 
     if (error) {

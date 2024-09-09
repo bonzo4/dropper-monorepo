@@ -13,18 +13,22 @@ import eth from "@/public/badges/badge eth.png";
 import game from "@/public/badges/badge game.png";
 import gaspump from "@/public/badges/badge gaspump.png";
 import holder1k from "@/public/badges/badge holder 1k.png";
+import holder5k from "@/public/badges/badge holder 5k.png";
 import holder10k from "@/public/badges/badge holder 10k.png";
 import holder20k from "@/public/badges/badge holder 20k.png";
 import lmao from "@/public/badges/badge lmao.png";
 import mcap1m from "@/public/badges/badge mcap 1m.png";
 import mcap5m from "@/public/badges/badge mcap 5m.png";
 import mcap10m from "@/public/badges/badge mcap 10m.png";
+import mcap25m from "@/public/badges/badge mcap 25m.png";
 import mcap25k from "@/public/badges/badge mcap 25k.png";
 import mcap50k from "@/public/badges/badge mcap 50k.png";
 import mcap50m from "@/public/badges/badge mcap 50m.png";
 import mcap75m from "@/public/badges/badge mcap 75m.png";
 import mcap100k from "@/public/badges/badge mcap 100k.png";
 import mcap100m from "@/public/badges/badge mcap 100m.png";
+import mcap500k from "@/public/badges/badge mcap 500k.png";
+import mcap750k from "@/public/badges/badge mcap 750k.png";
 import mcap250k from "@/public/badges/badge mcap 250k.png";
 import moonshot from "@/public/badges/badge moonshot.png";
 import ntwrkPartner from "@/public/badges/badge ntwrk partner.png";
@@ -73,6 +77,10 @@ export const GaspumpBadge = ({ ...props }: BadgeProps) => (
   <Image width={21} height={21} {...props} src={gaspump} alt="Gaspump" />
 );
 
+export const Holder5kBadge = ({ ...props }: BadgeProps) => (
+  <Image width={21} height={21} {...props} src={holder5k} alt="Holder 5k" />
+);
+
 export const Holder1kBadge = ({ ...props }: BadgeProps) => (
   <Image width={21} height={21} {...props} src={holder1k} alt="Holder 1k" />
 );
@@ -101,6 +109,10 @@ export const Mcap10mBadge = ({ ...props }: BadgeProps) => (
   <Image width={21} height={21} {...props} src={mcap10m} alt="Mcap 10m" />
 );
 
+export const Mcap25mBadge = ({ ...props }: BadgeProps) => (
+  <Image width={21} height={21} {...props} src={mcap25m} alt="Mcap 25m" />
+);
+
 export const Mcap25kBadge = ({ ...props }: BadgeProps) => (
   <Image width={21} height={21} {...props} src={mcap25k} alt="Mcap 25k" />
 );
@@ -127,6 +139,14 @@ export const Mcap100mBadge = ({ ...props }: BadgeProps) => (
 
 export const Mcap250kBadge = ({ ...props }: BadgeProps) => (
   <Image width={21} height={21} {...props} src={mcap250k} alt="Mcap 250k" />
+);
+
+export const Mcap500kBadge = ({ ...props }: BadgeProps) => (
+  <Image width={21} height={21} {...props} src={mcap500k} alt="Mcap 500k" />
+);
+
+export const Mcap750kBadge = ({ ...props }: BadgeProps) => (
+  <Image width={21} height={21} {...props} src={mcap750k} alt="Mcap 750k" />
 );
 
 export const MoonshotBadge = ({ ...props }: BadgeProps) => (

@@ -51,7 +51,7 @@ export default function TickerItem({ ticker, index }: TickerItemOptions) {
     }
   };
   return (
-    <Link href={`/drops/${ticker.id}`}>
+    <Link href={`/drops/${ticker.id}`} className="hover:underline">
       <div className="flex flex-row gap-1 items-center mr-8">
         <span className="text-placeholder">#{index + 1}</span>
         <Image width={14} height={14} src={ticker.icon_url} alt="icon" />
