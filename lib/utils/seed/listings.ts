@@ -5,7 +5,10 @@ import { DatabaseTypes } from "../../../packages/app-types/src/database";
 export type ListingInsert =
   DatabaseTypes["public"]["Tables"]["listings"]["Insert"];
 
-export async function createListings(supabase: SupabaseClient<DatabaseTypes>) {
+export async function createListings(
+  supabase: SupabaseClient<DatabaseTypes>,
+  userId: string
+) {
   const listings: ListingInsert[] = [];
   for (let i = 0; i < 100; i++) {
     listings.push({
@@ -20,17 +23,17 @@ export async function createListings(supabase: SupabaseClient<DatabaseTypes>) {
       tx_string: faker.lorem.word(),
       ath: faker.number.float({
         min: 0,
-        max: 100,
+        max: 1,
       }),
       atv: faker.number.float({
         min: 0,
-        max: 1000000,
+        max: 20_000_000,
       }),
       chain: "SOL",
       creator_key: faker.lorem.word(),
       holder_count: faker.number.int({
         min: 0,
-        max: 10000,
+        max: 20000,
       }),
       twitter_url: faker.internet.url(),
       telegram_url: faker.internet.url(),
@@ -38,6 +41,10 @@ export async function createListings(supabase: SupabaseClient<DatabaseTypes>) {
       created_at: faker.date.past().toISOString(),
       last_bump: faker.date.past().toISOString(),
       token_address: faker.lorem.words(),
+      total_supply: faker.number.int({
+        min: 0,
+        max: 100_000_000,
+      }),
     });
   }
 

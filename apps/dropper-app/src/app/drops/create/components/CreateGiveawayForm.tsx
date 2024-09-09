@@ -29,9 +29,11 @@ import GiveawayReqInputs from "./GiveawayReqInputs";
 import { Solana, SolanaColor, Spl, SplColor } from "@/components/icons";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { checkGiveaway, checkGiveawayRequirements } from "../utils/checks";
-import { createGiveaway } from "@/lib/actions/createGiveaway";
-import { updateGiveawayTx } from "@/lib/actions/updateGiveawayTx";
+import { createGiveaway } from "@/lib/actions/giveaways/createGiveaway";
+import { updateGiveawayTx } from "@/lib/actions/giveaways/updateGiveawayTx";
 import IconUpload from "./GiveawayIconUpload";
+import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
+import { GiveawayBadges } from "@/lib/types/enums";
 
 type Props = {
   wallet: WalletContextState;
@@ -77,11 +79,16 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
       let instruction: TransactionInstruction;
       checkGiveaway(giveaway, giveawayType);
       checkGiveawayRequirements(requirements);
+      let badges: GiveawayBadges[] = ["SOL"];
+      if (requirements.pumpdotfun_url) badges.push("PUMP_FUN");
+      if (requirements.moonshot_url) badges.push("MOON");
+      if (requirements.degenpumpfun_url) badges.push("DEGEN_PUMP");
       let response = await createGiveaway({
         giveaway: JSON.stringify(giveaway),
         requirements: JSON.stringify(requirements),
         giveawayType,
         creatorKey: wallet.publicKey.toBase58(),
+        badges,
       });
       const responseData = JSON.parse(response);
       if (responseData.status === "error") throw new Error(responseData.error);
@@ -103,14 +110,21 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
           winnersAmount: giveaway.winner_amount,
         });
       }
+      const payInstruction = await transferSolInstruction({
+        source: wallet.publicKey,
+        solAmount: 0.1,
+      });
       const tx = await sendTransaction({
         provider: program.provider,
-        transactionInstructions: [instruction],
+        transactionInstructions: [instruction, payInstruction],
       });
-      await updateGiveawayTx({
+      const response2 = await updateGiveawayTx({
         tx,
         giveawayId: responseData.giveawayId,
       });
+      const response2Data = JSON.parse(response2);
+      if (response2Data.status === "error")
+        throw new Error(response2Data.error);
       setTxString(tx);
       toast.success(`Success:\nTX: ${tx}`, { autoClose: false });
     } catch (error: any) {

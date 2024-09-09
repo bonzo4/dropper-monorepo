@@ -9,17 +9,19 @@ type RepoSolGiveawayInstructionOptions = {
   destinationKey: PublicKey;
   program: Program<DropperGiveaway>;
   giveawayId: number;
+  creatorKey: PublicKey;
 };
 
 export async function repoSolGiveawayInstruction({
   destinationKey,
   program,
   giveawayId,
+  creatorKey,
 }: RepoSolGiveawayInstructionOptions) {
   if (!program.provider.publicKey) throw new Error("Wallet not connected");
 
   const instruction = await program.methods
-    .repoSolGiveaway(new BN(giveawayId))
+    .repoSolGiveaway(new BN(giveawayId), creatorKey)
     .accounts({
       signer: program.provider.publicKey,
       destinationAccount: destinationKey,

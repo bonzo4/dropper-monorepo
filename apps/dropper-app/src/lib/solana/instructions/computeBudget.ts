@@ -1,9 +1,4 @@
-import {
-  ComputeBudgetProgram,
-  Connection,
-  TransactionInstruction,
-} from "@solana/web3.js";
-import { DropperGiveaway } from "../types";
+import { ComputeBudgetProgram, TransactionInstruction } from "@solana/web3.js";
 import { AnchorProvider, Provider } from "@coral-xyz/anchor";
 
 type ComputeBudgetInstructionOptions = {

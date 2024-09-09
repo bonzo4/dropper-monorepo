@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { getRequirementCount } from "@/lib/utils/getRequirementCount";
 import { User } from "@supabase/supabase-js";
 import GiveawayCard from "./cards/GiveawayCard";
-import { enterGiveaway } from "@/lib/actions/enterGiveaway";
+import { enterGiveaway } from "@/lib/actions/giveaways/enterGiveaway";
 import ToastStyling from "@/components/ToastStyling";
 import { useWallet } from "@solana/wallet-adapter-react";
 import Wallet from "@/components/Wallet";

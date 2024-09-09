@@ -142,9 +142,10 @@ export type Database = {
           description: string | null
           drop_url: string | null
           drop_url_text: string | null
+          enabled: boolean
           id: number
           image_url: string
-          order: number | null
+          order: number
           out_url: string | null
           out_url_text: string | null
           title: string | null
@@ -154,9 +155,10 @@ export type Database = {
           description?: string | null
           drop_url?: string | null
           drop_url_text?: string | null
+          enabled?: boolean
           id?: number
           image_url: string
-          order?: number | null
+          order: number
           out_url?: string | null
           out_url_text?: string | null
           title?: string | null
@@ -166,9 +168,10 @@ export type Database = {
           description?: string | null
           drop_url?: string | null
           drop_url_text?: string | null
+          enabled?: boolean
           id?: number
           image_url?: string
-          order?: number | null
+          order?: number
           out_url?: string | null
           out_url_text?: string | null
           title?: string | null
@@ -594,20 +597,38 @@ export type Database = {
         }
         Relationships: []
       }
-      creator_wallets: {
+      direct_referrals: {
         Row: {
           created_at: string
-          public_key: string
+          referrer_id: string
+          user_id: string
         }
         Insert: {
           created_at?: string
-          public_key: string
+          referrer_id: string
+          user_id: string
         }
         Update: {
           created_at?: string
-          public_key?: string
+          referrer_id?: string
+          user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "direct_referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "direct_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       drop_rate_configs: {
         Row: {
@@ -845,26 +866,29 @@ export type Database = {
       giveaway_banners: {
         Row: {
           created_at: string
+          enabled: boolean
           giveaway_id: number | null
           id: number
           image_url: string
-          order: number | null
+          order: number
           out_url: string | null
         }
         Insert: {
           created_at?: string
+          enabled?: boolean
           giveaway_id?: number | null
           id?: number
           image_url: string
-          order?: number | null
+          order: number
           out_url?: string | null
         }
         Update: {
           created_at?: string
+          enabled?: boolean
           giveaway_id?: number | null
           id?: number
           image_url?: string
-          order?: number | null
+          order?: number
           out_url?: string | null
         }
         Relationships: [
@@ -960,38 +984,6 @@ export type Database = {
           },
         ]
       }
-      giveaway_stats: {
-        Row: {
-          created_at: string
-          giveaways_created: number
-          giveaways_entered: number
-          giveaways_won: number
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          giveaways_created?: number
-          giveaways_entered?: number
-          giveaways_won?: number
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          giveaways_created?: number
-          giveaways_entered?: number
-          giveaways_won?: number
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "giveaway_stats_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       giveaway_winners: {
         Row: {
           created_at: string
@@ -1036,7 +1028,7 @@ export type Database = {
       }
       giveaways: {
         Row: {
-          badges: Database["public"]["Enums"]["badges"][]
+          badges: Database["public"]["Enums"]["giveaway_badges"][]
           created_at: string
           creator_key: string
           description: string
@@ -1051,12 +1043,13 @@ export type Database = {
           ticker: string
           title: string
           token_address: string | null
-          tx: string | null
+          tx_string: string | null
           usd_value: number
+          user_id: string | null
           winner_amount: number
         }
         Insert: {
-          badges: Database["public"]["Enums"]["badges"][]
+          badges?: Database["public"]["Enums"]["giveaway_badges"][]
           created_at?: string
           creator_key?: string
           description: string
@@ -1071,12 +1064,13 @@ export type Database = {
           ticker: string
           title: string
           token_address?: string | null
-          tx?: string | null
+          tx_string?: string | null
           usd_value: number
+          user_id?: string | null
           winner_amount: number
         }
         Update: {
-          badges?: Database["public"]["Enums"]["badges"][]
+          badges?: Database["public"]["Enums"]["giveaway_badges"][]
           created_at?: string
           creator_key?: string
           description?: string
@@ -1091,11 +1085,20 @@ export type Database = {
           ticker?: string
           title?: string
           token_address?: string | null
-          tx?: string | null
+          tx_string?: string | null
           usd_value?: number
+          user_id?: string | null
           winner_amount?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "giveaways_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       head_gear: {
         Row: {
@@ -1226,26 +1229,29 @@ export type Database = {
       listing_banners: {
         Row: {
           created_at: string
+          enabled: boolean
           id: number
           image_url: string
           listing_id: number | null
-          order: number | null
+          order: number
           out_url: string | null
         }
         Insert: {
           created_at?: string
+          enabled?: boolean
           id?: number
           image_url: string
           listing_id?: number | null
-          order?: number | null
+          order: number
           out_url?: string | null
         }
         Update: {
           created_at?: string
+          enabled?: boolean
           id?: number
           image_url?: string
           listing_id?: number | null
-          order?: number | null
+          order?: number
           out_url?: string | null
         }
         Relationships: [
@@ -1265,6 +1271,7 @@ export type Database = {
           listing_id: number
           payer_key: string
           tx_string: string
+          user_id: string
         }
         Insert: {
           created_at?: string
@@ -1272,6 +1279,7 @@ export type Database = {
           listing_id: number
           payer_key: string
           tx_string: string
+          user_id: string
         }
         Update: {
           created_at?: string
@@ -1279,6 +1287,7 @@ export type Database = {
           listing_id?: number
           payer_key?: string
           tx_string?: string
+          user_id?: string
         }
         Relationships: [
           {
@@ -1286,6 +1295,13 @@ export type Database = {
             columns: ["listing_id"]
             isOneToOne: false
             referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listing_bumps_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -1296,24 +1312,21 @@ export type Database = {
           created_at: string
           id: number
           listing_id: number
-          user_id: string | null
-          wallet_address: string | null
+          user_id: string
         }
         Insert: {
           content: string
           created_at?: string
           id?: number
           listing_id: number
-          user_id?: string | null
-          wallet_address?: string | null
+          user_id?: string
         }
         Update: {
           content?: string
           created_at?: string
           id?: number
           listing_id?: number
-          user_id?: string | null
-          wallet_address?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -1349,8 +1362,10 @@ export type Database = {
           telegram_url: string | null
           ticker: string
           token_address: string
+          total_supply: number
           twitter_url: string | null
           tx_string: string
+          user_id: string | null
         }
         Insert: {
           ath: number
@@ -1368,8 +1383,10 @@ export type Database = {
           telegram_url?: string | null
           ticker: string
           token_address: string
+          total_supply: number
           twitter_url?: string | null
           tx_string: string
+          user_id?: string | null
         }
         Update: {
           ath?: number
@@ -1387,10 +1404,53 @@ export type Database = {
           telegram_url?: string | null
           ticker?: string
           token_address?: string
+          total_supply?: number
           twitter_url?: string | null
           tx_string?: string
+          user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "listings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      secondary_referrals: {
+        Row: {
+          created_at: string
+          referrer_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          referrer_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          referrer_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "secondary_referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "secondary_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       solana_wallets: {
         Row: {
@@ -1421,53 +1481,38 @@ export type Database = {
           },
         ]
       }
-      spl_giveaways: {
+      tertiary_referrals: {
         Row: {
           created_at: string
-          description: string
-          end_time: string
-          icon_url: string
-          id: number
-          reward_amount: number
-          start_time: string
-          status: string
-          ticker: string
-          title: string
-          token_address: string
+          referrer_id: string
           user_id: string
-          winner_count: number
         }
         Insert: {
           created_at?: string
-          description: string
-          end_time: string
-          icon_url: string
-          id?: number
-          reward_amount: number
-          start_time: string
-          status: string
-          ticker: string
-          title: string
-          token_address: string
+          referrer_id: string
           user_id: string
-          winner_count: number
         }
         Update: {
           created_at?: string
-          description?: string
-          end_time?: string
-          icon_url?: string
-          id?: number
-          reward_amount?: number
-          start_time?: string
-          status?: string
-          ticker?: string
-          title?: string
-          token_address?: string
+          referrer_id?: string
           user_id?: string
-          winner_count?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "tertiary_referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tertiary_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_codes: {
         Row: {
@@ -1501,6 +1546,59 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_giveaway_stats: {
+        Row: {
+          created_at: string
+          giveaways_created: number
+          giveaways_entered: number
+          giveaways_won: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          giveaways_created?: number
+          giveaways_entered?: number
+          giveaways_won?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          giveaways_created?: number
+          giveaways_entered?: number
+          giveaways_won?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "giveaway_stats_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_points: {
+        Row: {
+          activity_points: number
+          created_at: string
+          referral_points: number
+          user_id: string
+        }
+        Insert: {
+          activity_points?: number
+          created_at?: string
+          referral_points?: number
+          user_id: string
+        }
+        Update: {
+          activity_points?: number
+          created_at?: string
+          referral_points?: number
+          user_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {
@@ -1563,7 +1661,17 @@ export type Database = {
       }
     }
     Enums: {
-      badges:
+      chains:
+        | "SOL"
+        | "TRON"
+        | "TON"
+        | "ETH"
+        | "MATIC"
+        | "BASE"
+        | "COSMOS"
+        | "BNB"
+        | "ADA"
+      giveaway_badges:
         | "GOLD"
         | "FIST"
         | "CTO"
@@ -1575,16 +1683,7 @@ export type Database = {
         | "MATIC"
         | "SOL"
         | "BASE"
-      chains:
-        | "SOL"
-        | "TRON"
-        | "TON"
-        | "ETH"
-        | "MATIC"
-        | "BASE"
-        | "COSMOS"
-        | "BNB"
-        | "ADA"
+        | "DEGEN_PUMP"
       rarities: "COMMON" | "UNCOMMON" | "RARE" | "MYTHIC" | "LEGENDARY"
       roles: "ADMIN" | "WRITER"
     }

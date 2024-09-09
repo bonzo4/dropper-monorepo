@@ -10,14 +10,14 @@ import {
   BaseBadge,
   BNBBadge,
   CTOBadge,
-  FistBadge,
+  DegenPumpFunBadge,
   GoldBadge,
   MaticBadge,
   MoonBadge,
   PumpFunBadge,
   SolBadge,
   TrendingBadge,
-} from "@/lib/utils/badges";
+} from "@/components/badges";
 import { LandingGiveaway } from "@/lib/data/giveaway/getGiveaways";
 
 type GiveawayCardProps = {
@@ -63,45 +63,47 @@ const GiveawayCard = ({ giveaway }: GiveawayCardProps) => {
     <Link href={`/drops/${giveaway.id}`}>
       <div className="flex flex-col bg-secondary border-[2px] rounded-md border-primary hover:cursor-pointer hover:bg-black p-4 gap-3">
         <div className="flex flex-row items-stretch gap-[10px]">
-          <Image
-            src={giveaway.icon_url}
-            alt={giveaway.title}
-            width={63}
-            height={63}
-            className="w-[63px] md:w-[63px] relative rounded-md h-[63px] md:h-[63px]"
-          />
-          <div className="flex flex-col ">
-            <div className="flex flex-row gap-1">
-              {giveaway.badges.map((badge) =>
-                badge === "BASE" ? (
-                  <BaseBadge key={badge} />
-                ) : badge === "BNB" ? (
-                  <BNBBadge key={badge} />
-                ) : badge === "GOLD" ? (
-                  <GoldBadge key={badge} />
-                ) : badge === "FIST" ? (
-                  <FistBadge key={badge} />
-                ) : badge === "MATIC" ? (
-                  <MaticBadge key={badge} />
-                ) : badge === "MOON" ? (
-                  <MoonBadge key={badge} />
-                ) : badge === "PUMP_FUN" ? (
-                  <PumpFunBadge key={badge} />
-                ) : badge === "SOL" ? (
-                  <SolBadge key={badge} />
-                ) : badge === "TRENDING" ? (
-                  <TrendingBadge key={badge} />
-                ) : badge === "CTO" ? (
-                  <CTOBadge key={badge} />
-                ) : (
-                  <div
-                    key={badge}
-                    className="h-[21px] w-[21px] bg-placeholder rounded-full"
-                  />
-                )
-              )}
-            </div>
-            <h3 className="relative text-[20px] md:text-[32px] truncate w-[160px]">
+          <div className="w-[63px] md:w-[63px] relative overflow-hidden rounded-md h-[63px] md:h-[63px]">
+            <Image
+              src={giveaway.icon_url}
+              alt={giveaway.title}
+              width={63}
+              height={63}
+              className="w-auto h-auto"
+            />
+          </div>
+          <div className="flex flex-col justify-end gap-1">
+            {giveaway.badges.length > 0 && (
+              <div className="flex flex-row gap-1">
+                {giveaway.badges
+                  .sort(() => Math.random() - 0.5)
+                  .slice(0, 6)
+                  .map((badge) =>
+                    badge === "BASE" ? (
+                      <BaseBadge key={badge} />
+                    ) : badge === "BNB" ? (
+                      <BNBBadge key={badge} />
+                    ) : badge === "GOLD" ? (
+                      <GoldBadge key={badge} />
+                    ) : badge === "MATIC" ? (
+                      <MaticBadge key={badge} />
+                    ) : badge === "MOON" ? (
+                      <MoonBadge key={badge} />
+                    ) : badge === "PUMP_FUN" ? (
+                      <PumpFunBadge key={badge} />
+                    ) : badge === "SOL" ? (
+                      <SolBadge key={badge} />
+                    ) : badge === "TRENDING" ? (
+                      <TrendingBadge key={badge} />
+                    ) : badge === "CTO" ? (
+                      <CTOBadge key={badge} />
+                    ) : badge === "DEGEN_PUMP" ? (
+                      <DegenPumpFunBadge key={badge} />
+                    ) : null
+                  )}
+              </div>
+            )}
+            <h3 className="relative text-[28px] md:text-[32px] truncate w-[160px] -mt-2">
               ${giveaway.ticker}
             </h3>
           </div>

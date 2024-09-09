@@ -8,7 +8,7 @@ import {
   WalletConnectButton,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
-import { enterGiveaway } from "@/lib/actions/enterGiveaway";
+import { enterGiveaway } from "@/lib/actions/giveaways/enterGiveaway";
 import { getRequirementCount } from "@/lib/utils/getRequirementCount";
 import { toast } from "react-toastify";
 import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";

@@ -10,6 +10,7 @@ type SetSolGiveawayWinnersInstructionOptions = {
   giveawayId: number;
   program: Program<DropperGiveaway>;
   wallet: NodeWallet;
+  creatorKey: PublicKey;
 };
 
 export async function setSolGiveawayWinnersInstruction({
@@ -17,11 +18,16 @@ export async function setSolGiveawayWinnersInstruction({
   giveawayId,
   program,
   wallet,
+  creatorKey,
 }: SetSolGiveawayWinnersInstructionOptions) {
   if (!program.provider.publicKey) throw new Error("Wallet not connected");
 
   const instruction = await program.methods
-    .setSolGiveawayWinners({ winnerKeys, giveawayId: new BN(giveawayId) })
+    .setSolGiveawayWinners({
+      winnerKeys,
+      giveawayId: new BN(giveawayId),
+      creatorKey,
+    })
     .accounts({
       signer: program.provider.publicKey,
     })

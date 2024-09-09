@@ -1,6 +1,6 @@
 import { Notification, Confetti } from "@/components/icons";
 import Button from "@/components/ui/Button";
-import { claimGiveaway } from "@/lib/actions/claimGiveaway";
+import { claimGiveaway } from "@/lib/actions/giveaways/claimGiveaway";
 import { claimSolGiveawayInstruction } from "@/lib/solana/instructions/claimSolGiveaway";
 import { claimSplGiveawayInstruction } from "@/lib/solana/instructions/claimSplGiveaway";
 import { getDropperGiveaway } from "@/lib/solana/program";
@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 
 type GiveawayWinnerProps = {
   giveawayId: number;
+  creatorKey: PublicKey;
   tokenAddress: string | null;
   endDate: Date;
   winner: GiveawayWinnerRow;
@@ -29,6 +30,7 @@ type GiveawayWinnerProps = {
 
 export default function GiveawayWinner({
   giveawayId,
+  creatorKey,
   tokenAddress,
   endDate,
   winner,
@@ -78,11 +80,13 @@ export default function GiveawayWinner({
           program,
           giveawayId,
           mint: new PublicKey(tokenAddress),
+          creatorKey: new PublicKey(creatorKey),
         });
       } else {
         instruction = await claimSolGiveawayInstruction({
           program,
           giveawayId,
+          creatorKey: new PublicKey(creatorKey),
         });
       }
 

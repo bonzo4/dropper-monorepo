@@ -6,10 +6,15 @@ type GiveawayInsert = DatabaseTypes["public"]["Tables"]["giveaways"]["Insert"];
 type GiveawayRequirementsInsert =
   DatabaseTypes["public"]["Tables"]["giveaway_requirements"]["Insert"];
 
-export async function createGiveaways(supabase: SupabaseClient<DatabaseTypes>) {
+export async function createGiveaways(
+  supabase: SupabaseClient<DatabaseTypes>,
+  userId: string
+) {
   const giveaways: GiveawayInsert[] = [];
+  const giveawayRequirements: GiveawayRequirementsInsert[] = [];
   for (let i = 0; i < 100; i++) {
     giveaways.push({
+      id: i,
       description: faker.lorem.paragraph(),
       end_time: faker.date.future().toISOString(),
       icon_url: faker.image.urlLoremFlickr({
@@ -24,7 +29,6 @@ export async function createGiveaways(supabase: SupabaseClient<DatabaseTypes>) {
       start_time: faker.date.past().toISOString(),
       ticker: faker.lorem.word(),
       title: faker.lorem.words(),
-      badges: [],
       usd_value: faker.number.float({
         min: 0,
         max: 100,
@@ -33,12 +37,26 @@ export async function createGiveaways(supabase: SupabaseClient<DatabaseTypes>) {
         min: 0,
         max: 10,
       }),
-      tx: faker.lorem.words(),
+      tx_string: faker.lorem.words(),
       entries: faker.number.int({
         min: 0,
         max: 10000,
       }),
       created_at: faker.date.past().toISOString(),
+      badges: ["SOL", "DEGEN_PUMP", "GOLD", "MOON", "PUMP_FUN", "TRENDING"],
+      user_id: userId,
+    });
+    giveawayRequirements.push({
+      created_at: faker.date.past().toISOString(),
+      degenpumpfun_url: faker.internet.url(),
+      dexscreener_url: faker.internet.url(),
+      discord_url: faker.internet.url(),
+      giveaway_id: i,
+      moonshot_url: faker.internet.url(),
+      pumpdotfun_url: faker.internet.url(),
+      telegram_url: faker.internet.url(),
+      tweet_url: faker.internet.url(),
+      twitter_url: faker.internet.url(),
     });
   }
 

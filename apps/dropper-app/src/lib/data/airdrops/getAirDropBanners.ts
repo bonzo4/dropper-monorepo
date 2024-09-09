@@ -10,6 +10,7 @@ export async function getAirdropBanners({ supabase }: Options) {
     const { data, error } = await supabase
       .from("airdrop_banners")
       .select()
+      .eq("enabled", true)
       .order("order", { ascending: true });
 
     if (error) {

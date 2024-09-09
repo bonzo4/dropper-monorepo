@@ -14,7 +14,7 @@ export default async function Home() {
   const [banners] = await Promise.all([bannersData]);
 
   return (
-    <main className="flex flex-col items-center grow gap-[68px] py-16">
+    <main className="flex flex-col items-center grow gap-[64px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
         <Dropzone className="hidden sm:flex" />
         <DropzoneMobile className="flex sm:hidden" />

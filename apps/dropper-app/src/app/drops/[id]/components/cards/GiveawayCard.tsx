@@ -3,7 +3,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useEffect, useMemo, useState } from "react";
 import GiveawayClaimed from "./GiveawayClaimed";
 import GiveawayDone from "./GiveawayDone";
-import { revalidateGiveaway } from "@/lib/actions/revalidateGiveaway";
+import { revalidateGiveaway } from "@/lib/actions/giveaways/revalidateGiveaway";
 import GiveawayEnded from "./GiveawayEnded";
 import GiveawayEnter from "./GiveawayEnter";
 import GiveawayEntered from "./GiveawayEntered";
@@ -12,6 +12,7 @@ import GiveawayLoser from "./GiveawayLoser";
 import GiveawayNotStarted from "./GiveawayNotStarted";
 import GiveawayWinner from "./GiveawayWinner";
 import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";
+import { PublicKey } from "@solana/web3.js";
 
 type GiveawayCardProps = {
   giveaway: GiveawayPageData;
@@ -88,6 +89,7 @@ export default function GiveawayCard({
         tokenAddress={giveaway.token_address}
         giveawayId={giveaway.id}
         userId={userId}
+        creatorKey={new PublicKey(giveaway.creator_key)}
       />
     );
   if (entry && endDate < now) return <GiveawayLoser />;

@@ -33,6 +33,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "_giveaway_id",
               },
+              {
+                kind: "arg",
+                path: "_creator_key",
+              },
             ],
           },
         },
@@ -45,6 +49,10 @@ export const IDL: Idl = {
         {
           name: "_giveaway_id",
           type: "u64",
+        },
+        {
+          name: "_creator_key",
+          type: "pubkey",
         },
       ],
     },
@@ -104,6 +112,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "giveaway_id",
               },
+              {
+                kind: "arg",
+                path: "creator_key",
+              },
             ],
           },
         },
@@ -148,6 +160,10 @@ export const IDL: Idl = {
           name: "giveaway_id",
           type: "u64",
         },
+        {
+          name: "creator_key",
+          type: "pubkey",
+        },
       ],
     },
     {
@@ -178,6 +194,10 @@ export const IDL: Idl = {
               {
                 kind: "arg",
                 path: "options.giveaway_id",
+              },
+              {
+                kind: "account",
+                path: "signer",
               },
             ],
           },
@@ -259,6 +279,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "options.giveaway_id",
               },
+              {
+                kind: "account",
+                path: "signer",
+              },
             ],
           },
         },
@@ -336,6 +360,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "_giveaway_id",
               },
+              {
+                kind: "arg",
+                path: "_creator_key",
+              },
             ],
           },
         },
@@ -348,6 +376,10 @@ export const IDL: Idl = {
         {
           name: "_giveaway_id",
           type: "u64",
+        },
+        {
+          name: "_creator_key",
+          type: "pubkey",
         },
       ],
     },
@@ -411,6 +443,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "giveaway_id",
               },
+              {
+                kind: "arg",
+                path: "creator_key",
+              },
             ],
           },
         },
@@ -455,6 +491,10 @@ export const IDL: Idl = {
           name: "giveaway_id",
           type: "u64",
         },
+        {
+          name: "creator_key",
+          type: "pubkey",
+        },
       ],
     },
     {
@@ -485,6 +525,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "_giveaway_id",
               },
+              {
+                kind: "arg",
+                path: "_creator_key",
+              },
             ],
           },
         },
@@ -497,6 +541,10 @@ export const IDL: Idl = {
         {
           name: "_giveaway_id",
           type: "u64",
+        },
+        {
+          name: "_creator_key",
+          type: "pubkey",
         },
       ],
     },
@@ -560,6 +608,10 @@ export const IDL: Idl = {
                 kind: "arg",
                 path: "giveaway_id",
               },
+              {
+                kind: "arg",
+                path: "creator_key",
+              },
             ],
           },
         },
@@ -604,6 +656,10 @@ export const IDL: Idl = {
           name: "giveaway_id",
           type: "u64",
         },
+        {
+          name: "creator_key",
+          type: "pubkey",
+        },
       ],
     },
     {
@@ -629,6 +685,10 @@ export const IDL: Idl = {
               {
                 kind: "arg",
                 path: "options.giveaway_id",
+              },
+              {
+                kind: "arg",
+                path: "options.creator_key",
               },
             ],
           },
@@ -672,6 +732,10 @@ export const IDL: Idl = {
               {
                 kind: "arg",
                 path: "options.giveaway_id",
+              },
+              {
+                kind: "arg",
+                path: "options.creator_key",
               },
             ],
           },
@@ -775,6 +839,10 @@ export const IDL: Idl = {
               vec: "pubkey",
             },
           },
+          {
+            name: "creator_key",
+            type: "pubkey",
+          },
         ],
       },
     },
@@ -792,6 +860,10 @@ export const IDL: Idl = {
             type: {
               vec: "pubkey",
             },
+          },
+          {
+            name: "creator_key",
+            type: "pubkey",
           },
         ],
       },

@@ -15,8 +15,8 @@ export default function ListingBannerSliderRow({ banners, width }: Props) {
       }}
     >
       {banners.map((banner, index) => (
-        <div key={index} className="flex flex-row">
-          <ListingBanner banner={banner} />
+        <div key={banner.order} className="flex flex-row">
+          <ListingBanner banner={banner} index={index} />
         </div>
       ))}
     </div>

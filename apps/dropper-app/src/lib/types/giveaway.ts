@@ -27,6 +27,7 @@ export const DEFAULT_GIVEAWAY: GiveawayInsert = {
   winner_amount: 5,
   entries: 0,
   creator_key: "",
+  user_id: "",
 };
 
 export const DEFAULT_GIVEAWAY_REQUIREMENTS: GiveawayRequirementsInsert = {

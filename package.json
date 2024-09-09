@@ -7,8 +7,8 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db:seed": "npx tsx ./lib/utils/seed",
-    "db:start": "supabase start",
-    "db:reset": "supabase db reset",
+    "db:start": "supabase start && yarn db:seed",
+    "db:reset": "supabase db reset && yarn db:seed",
     "db:stop": "supabase stop --no-backup",
     "db:types": "supabase gen types typescript --local > ./packages/app-types/src/database/database-types.ts"
   },

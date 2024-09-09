@@ -61,7 +61,7 @@ const Giveaways = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3 px-4 lg:px-0 w-full lg:max-w-[1150px]">
+    <div className="flex flex-col gap-5 px-4 lg:px-0 w-full lg:max-w-[1150px]">
       <GiveawayQuery
         loading={loading}
         query={query}

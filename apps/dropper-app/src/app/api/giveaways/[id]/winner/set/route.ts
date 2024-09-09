@@ -27,7 +27,7 @@ export async function POST(
 
     const { data, error } = await supabase
       .from("giveaways")
-      .select("token_address, winner_amount")
+      .select("token_address, winner_amount, creator_key")
       .eq("id", id)
       .single();
 
@@ -50,6 +50,7 @@ export async function POST(
         program,
         giveawayId: id,
         wallet: managerWallet,
+        creatorKey: new PublicKey(data.creator_key),
       });
     } else {
       instruction = await setSolGiveawayWinnersInstruction({
@@ -57,6 +58,7 @@ export async function POST(
         giveawayId: id,
         program,
         wallet: managerWallet,
+        creatorKey: new PublicKey(data.creator_key),
       });
     }
 

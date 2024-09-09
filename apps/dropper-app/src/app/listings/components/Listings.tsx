@@ -11,7 +11,7 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { getProvider } from "@/lib/solana/getProvider";
 import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
-import { createListingBump } from "@/lib/actions/createListingBump";
+import { createListingBump } from "@/lib/actions/listings/createListingBump";
 
 export default function Listings() {
   const wallet = useWallet();
@@ -56,7 +56,7 @@ export default function Listings() {
       await createListingBump({
         listingId: id,
         payerKey: wallet.publicKey.toBase58(),
-        tx: tx,
+        tx,
       });
       toast.success(`Bumped listing: ${tx}`);
       hideBump();
