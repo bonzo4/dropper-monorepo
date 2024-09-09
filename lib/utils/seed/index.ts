@@ -19,13 +19,20 @@ const main = async () => {
 
   await createUsers(supabase);
 
+  let userId: string;
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  userId = user?.id!;
+
   await supabase.auth.signOut();
 
   await createCodes(supabase);
   await whitelistWallets(supabase);
   await createBanners(supabase);
-  await createGiveaways(supabase);
-  await createListings(supabase);
+  await createGiveaways(supabase, userId);
+  await createListings(supabase, userId);
   await createAirdrops(supabase);
 
   console.log("Database seeded successfully!");

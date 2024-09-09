@@ -46,7 +46,7 @@ export async function getGiveaways({
       .select(
         "id, title, description, icon_url, usd_value, end_time, entries, badges, reward_amount, winner_amount, ticker, token_address"
       )
-      .neq("tx", null);
+      .neq("tx_string", null);
 
     if (!type || type === "ongoing") {
       query.lt("start_time", now).gt("end_time", now);

@@ -5,7 +5,10 @@ import { DatabaseTypes } from "../../../packages/app-types/src/database";
 export type ListingInsert =
   DatabaseTypes["public"]["Tables"]["listings"]["Insert"];
 
-export async function createListings(supabase: SupabaseClient<DatabaseTypes>) {
+export async function createListings(
+  supabase: SupabaseClient<DatabaseTypes>,
+  userId: string
+) {
   const listings: ListingInsert[] = [];
   for (let i = 0; i < 100; i++) {
     listings.push({

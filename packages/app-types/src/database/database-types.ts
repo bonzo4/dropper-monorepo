@@ -594,21 +594,6 @@ export type Database = {
         }
         Relationships: []
       }
-      creator_wallets: {
-        Row: {
-          created_at: string
-          public_key: string
-        }
-        Insert: {
-          created_at?: string
-          public_key: string
-        }
-        Update: {
-          created_at?: string
-          public_key?: string
-        }
-        Relationships: []
-      }
       direct_referrals: {
         Row: {
           created_at: string
@@ -993,38 +978,6 @@ export type Database = {
           },
         ]
       }
-      giveaway_stats: {
-        Row: {
-          created_at: string
-          giveaways_created: number
-          giveaways_entered: number
-          giveaways_won: number
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          giveaways_created?: number
-          giveaways_entered?: number
-          giveaways_won?: number
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          giveaways_created?: number
-          giveaways_entered?: number
-          giveaways_won?: number
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "giveaway_stats_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       giveaway_winners: {
         Row: {
           created_at: string
@@ -1069,7 +1022,7 @@ export type Database = {
       }
       giveaways: {
         Row: {
-          badges: Database["public"]["Enums"]["badges"][]
+          badges: Database["public"]["Enums"]["giveaway_badges"][]
           created_at: string
           creator_key: string
           description: string
@@ -1084,12 +1037,13 @@ export type Database = {
           ticker: string
           title: string
           token_address: string | null
-          tx: string | null
+          tx_string: string | null
           usd_value: number
+          user_id: string | null
           winner_amount: number
         }
         Insert: {
-          badges: Database["public"]["Enums"]["badges"][]
+          badges?: Database["public"]["Enums"]["giveaway_badges"][]
           created_at?: string
           creator_key?: string
           description: string
@@ -1104,12 +1058,13 @@ export type Database = {
           ticker: string
           title: string
           token_address?: string | null
-          tx?: string | null
+          tx_string?: string | null
           usd_value: number
+          user_id?: string | null
           winner_amount: number
         }
         Update: {
-          badges?: Database["public"]["Enums"]["badges"][]
+          badges?: Database["public"]["Enums"]["giveaway_badges"][]
           created_at?: string
           creator_key?: string
           description?: string
@@ -1124,11 +1079,20 @@ export type Database = {
           ticker?: string
           title?: string
           token_address?: string | null
-          tx?: string | null
+          tx_string?: string | null
           usd_value?: number
+          user_id?: string | null
           winner_amount?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "giveaways_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       head_gear: {
         Row: {
@@ -1298,6 +1262,7 @@ export type Database = {
           listing_id: number
           payer_key: string
           tx_string: string
+          user_id: string
         }
         Insert: {
           created_at?: string
@@ -1305,6 +1270,7 @@ export type Database = {
           listing_id: number
           payer_key: string
           tx_string: string
+          user_id: string
         }
         Update: {
           created_at?: string
@@ -1312,6 +1278,7 @@ export type Database = {
           listing_id?: number
           payer_key?: string
           tx_string?: string
+          user_id?: string
         }
         Relationships: [
           {
@@ -1319,6 +1286,13 @@ export type Database = {
             columns: ["listing_id"]
             isOneToOne: false
             referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listing_bumps_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -1329,24 +1303,21 @@ export type Database = {
           created_at: string
           id: number
           listing_id: number
-          user_id: string | null
-          wallet_address: string | null
+          user_id: string
         }
         Insert: {
           content: string
           created_at?: string
           id?: number
           listing_id: number
-          user_id?: string | null
-          wallet_address?: string | null
+          user_id?: string
         }
         Update: {
           content?: string
           created_at?: string
           id?: number
           listing_id?: number
-          user_id?: string | null
-          wallet_address?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -1384,6 +1355,7 @@ export type Database = {
           token_address: string
           twitter_url: string | null
           tx_string: string
+          user_id: string | null
         }
         Insert: {
           ath: number
@@ -1403,6 +1375,7 @@ export type Database = {
           token_address: string
           twitter_url?: string | null
           tx_string: string
+          user_id?: string | null
         }
         Update: {
           ath?: number
@@ -1422,8 +1395,17 @@ export type Database = {
           token_address?: string
           twitter_url?: string | null
           tx_string?: string
+          user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "listings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       secondary_referrals: {
         Row: {
@@ -1486,54 +1468,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      spl_giveaways: {
-        Row: {
-          created_at: string
-          description: string
-          end_time: string
-          icon_url: string
-          id: number
-          reward_amount: number
-          start_time: string
-          status: string
-          ticker: string
-          title: string
-          token_address: string
-          user_id: string
-          winner_count: number
-        }
-        Insert: {
-          created_at?: string
-          description: string
-          end_time: string
-          icon_url: string
-          id?: number
-          reward_amount: number
-          start_time: string
-          status: string
-          ticker: string
-          title: string
-          token_address: string
-          user_id: string
-          winner_count: number
-        }
-        Update: {
-          created_at?: string
-          description?: string
-          end_time?: string
-          icon_url?: string
-          id?: number
-          reward_amount?: number
-          start_time?: string
-          status?: string
-          ticker?: string
-          title?: string
-          token_address?: string
-          user_id?: string
-          winner_count?: number
-        }
-        Relationships: []
       }
       tertiary_referrals: {
         Row: {
@@ -1601,6 +1535,38 @@ export type Database = {
           },
         ]
       }
+      user_giveaway_stats: {
+        Row: {
+          created_at: string
+          giveaways_created: number
+          giveaways_entered: number
+          giveaways_won: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          giveaways_created?: number
+          giveaways_entered?: number
+          giveaways_won?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          giveaways_created?: number
+          giveaways_entered?: number
+          giveaways_won?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "giveaway_stats_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_points: {
         Row: {
           activity_points: number
@@ -1609,7 +1575,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          activity_points: number
+          activity_points?: number
           created_at?: string
           referral_points?: number
           user_id: string
@@ -1683,7 +1649,17 @@ export type Database = {
       }
     }
     Enums: {
-      badges:
+      chains:
+        | "SOL"
+        | "TRON"
+        | "TON"
+        | "ETH"
+        | "MATIC"
+        | "BASE"
+        | "COSMOS"
+        | "BNB"
+        | "ADA"
+      giveaway_badges:
         | "GOLD"
         | "FIST"
         | "CTO"
@@ -1695,16 +1671,7 @@ export type Database = {
         | "MATIC"
         | "SOL"
         | "BASE"
-      chains:
-        | "SOL"
-        | "TRON"
-        | "TON"
-        | "ETH"
-        | "MATIC"
-        | "BASE"
-        | "COSMOS"
-        | "BNB"
-        | "ADA"
+        | "DEGEN_PUMP"
       rarities: "COMMON" | "UNCOMMON" | "RARE" | "MYTHIC" | "LEGENDARY"
       roles: "ADMIN" | "WRITER"
     }

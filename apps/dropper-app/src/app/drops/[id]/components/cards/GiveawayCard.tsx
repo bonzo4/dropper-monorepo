@@ -3,7 +3,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useEffect, useMemo, useState } from "react";
 import GiveawayClaimed from "./GiveawayClaimed";
 import GiveawayDone from "./GiveawayDone";
-import { revalidateGiveaway } from "@/lib/actions/revalidateGiveaway";
+import { revalidateGiveaway } from "@/lib/actions/giveaways/revalidateGiveaway";
 import GiveawayEnded from "./GiveawayEnded";
 import GiveawayEnter from "./GiveawayEnter";
 import GiveawayEntered from "./GiveawayEntered";

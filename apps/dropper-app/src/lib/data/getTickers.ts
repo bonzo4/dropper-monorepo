@@ -21,7 +21,7 @@ export async function getTickers({ supabase }: Options) {
       .from("giveaways")
       .select("id, icon_url, end_time, reward_amount, ticker, token_address")
       .order("end_time", { ascending: true })
-      .neq("tx", null)
+      .neq("tx_string", null)
       .lt("start_time", now)
       .gt("end_time", now)
       .limit(10);

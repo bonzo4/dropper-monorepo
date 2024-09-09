@@ -1,6 +1,6 @@
 import { Notification, Confetti } from "@/components/icons";
 import Button from "@/components/ui/Button";
-import { claimGiveaway } from "@/lib/actions/claimGiveaway";
+import { claimGiveaway } from "@/lib/actions/giveaways/claimGiveaway";
 import { claimSolGiveawayInstruction } from "@/lib/solana/instructions/claimSolGiveaway";
 import { claimSplGiveawayInstruction } from "@/lib/solana/instructions/claimSplGiveaway";
 import { getDropperGiveaway } from "@/lib/solana/program";
