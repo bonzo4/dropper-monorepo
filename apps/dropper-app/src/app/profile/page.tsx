@@ -44,9 +44,9 @@ export default async function ProfilePage() {
           giveawayStats={giveawayStats}
           listingStats={listingStats}
         />
-        {/* <Tab label="Connected Wallets"></Tab>
-        <Tab label="Contributions"></Tab>
-        <Tab label="Privacy"></Tab> */}
+        <Tab label="Connections"></Tab>
+        <Tab label="Referral Program"></Tab>
+        <Tab label="Activity History"></Tab>
       </div>
     </div>
   );
