@@ -788,6 +788,7 @@ export type Database = {
           exp_points: number
           has_claimed: boolean
           icon: string
+          referral_id: string
           user_id: string
           username: string
         }
@@ -798,6 +799,7 @@ export type Database = {
           exp_points?: number
           has_claimed?: boolean
           icon?: string
+          referral_id?: string
           user_id: string
           username: string
         }
@@ -808,6 +810,7 @@ export type Database = {
           exp_points?: number
           has_claimed?: boolean
           icon?: string
+          referral_id?: string
           user_id?: string
           username?: string
         }
@@ -1513,6 +1516,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_activities: {
+        Row: {
+          activity: string
+          created_at: string
+          id: number
+          points: number
+          user_id: string
+        }
+        Insert: {
+          activity: string
+          created_at?: string
+          id?: number
+          points: number
+          user_id: string
+        }
+        Update: {
+          activity?: string
+          created_at?: string
+          id?: number
+          points?: number
+          user_id?: string
+        }
+        Relationships: []
       }
       user_codes: {
         Row: {

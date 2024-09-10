@@ -14,7 +14,7 @@ export default function ProfileStats({
   listingStats,
 }: Options) {
   return (
-    <div className="w-full flex lg:flex-row flex-wrap items-center lg:justify-between justify-center md:justify-between text-[14px] lg:gap-0 gap-8 px-2">
+    <div className="w-full flex lg:flex-row flex-wrap justify-center sm:justify-between text-[14px] lg:gap-0 gap-8 px-8">
       <div className="flex flex-col space-y-2">
         <div className="flex flex-col">
           <span>Referral</span>
