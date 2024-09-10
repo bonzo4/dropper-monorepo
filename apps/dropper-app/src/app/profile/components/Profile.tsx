@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/ui/Button";
 import { logout } from "@/lib/actions/logout";
-import { ProfilePageData } from "@/lib/data/getProfilePage";
+import { ProfilePageData } from "@/lib/data/profile/getProfilePage";
 import Image from "next/image";
 
 type ProfileProps = {

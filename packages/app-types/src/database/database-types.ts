@@ -1579,6 +1579,30 @@ export type Database = {
           },
         ]
       }
+      user_listing_stats: {
+        Row: {
+          created_at: string
+          listing_bumps: number
+          listing_comments: number
+          listings_created: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          listing_bumps?: number
+          listing_comments?: number
+          listings_created?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          listing_bumps?: number
+          listing_comments?: number
+          listings_created?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_points: {
         Row: {
           activity_points: number

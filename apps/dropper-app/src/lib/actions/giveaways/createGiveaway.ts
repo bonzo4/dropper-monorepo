@@ -66,7 +66,7 @@ export async function createGiveaway({
     .from("giveaways")
     .insert({
       ...giveawayInsert,
-      id: 104,
+      id: 113,
       start_time: new Date(startDateMs).toISOString(),
       end_time: new Date(endDateMs).toISOString(),
       creator_key: creatorKey,
