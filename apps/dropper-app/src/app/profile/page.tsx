@@ -8,6 +8,8 @@ import { getProfilePageData } from "@/lib/data/profile/getProfilePage";
 import { getGiveawayStats } from "@/lib/data/profile/getGiveawayStats";
 import { getListingStats } from "@/lib/data/profile/getListingStats";
 import { getUserPoints } from "@/lib/data/profile/getUserPoints";
+import ReferralProgram from "./components/ReferralProgram";
+import ReferralList from "./components/ReferralList";
 
 export default async function ProfilePage() {
   const supabase = createSupabaseServer();
@@ -45,7 +47,10 @@ export default async function ProfilePage() {
           listingStats={listingStats}
         />
         <Tab label="Connections"></Tab>
-        <Tab label="Referral Program"></Tab>
+        <Tab label="Referral Program" className="flex flex-col gap-5">
+          <ReferralProgram referral_id={profile.referral_id} />
+          <ReferralList userId={user.id} />
+        </Tab>
         <Tab label="Activity History"></Tab>
       </div>
     </div>

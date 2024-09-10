@@ -22,7 +22,11 @@ const Tab = ({ label, ...props }: TabProps) => {
           <Arrow width={18} />
         )}
       </div>
-      {show && <div {...props} />}
+      {show && (
+        <div className="flex w-full">
+          <div {...props} />
+        </div>
+      )}
     </div>
   );
 };

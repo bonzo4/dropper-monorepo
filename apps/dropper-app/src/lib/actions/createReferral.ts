@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
@@ -11,13 +11,17 @@ type Options = {
 export async function createReferral({ supabase, userId, referral }: Options) {
   try {
     const { data, error } = await supabase
-      .from("dropmans")
+      .from("dropmans_view")
       .select("user_id")
       .eq("referral_id", referral)
       .single();
 
     if (error) {
-      throw new Error("Couldn't find referral");
+      throw new Error("Couldn't find referral: " + error.message);
+    }
+
+    if (!data.user_id) {
+      throw new Error("Referral not found");
     }
 
     await supabase.from("direct_referrals").insert({

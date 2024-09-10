@@ -14,20 +14,22 @@ import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
 import { mono } from "@/lib/utils/fonts";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function Login() {
   const supabase = createSupabaseClient();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
 
   const [newsletter, setNewsletter] = useState(true);
 
   const handleMagicLinkLogin = async () => {
+    const referral = searchParams.get("referral");
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}&referral=${referral}`,
       },
     });
     console.log(data);

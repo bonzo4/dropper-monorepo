@@ -1656,16 +1656,19 @@ export type Database = {
       dropmans_view: {
         Row: {
           icon: string | null
+          referral_id: string | null
           user_id: string | null
           username: string | null
         }
         Insert: {
           icon?: string | null
+          referral_id?: string | null
           user_id?: string | null
           username?: string | null
         }
         Update: {
           icon?: string | null
+          referral_id?: string | null
           user_id?: string | null
           username?: string | null
         }
