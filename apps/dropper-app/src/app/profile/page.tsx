@@ -10,6 +10,7 @@ import { getListingStats } from "@/lib/data/profile/getListingStats";
 import { getUserPoints } from "@/lib/data/profile/getUserPoints";
 import ReferralProgram from "./components/ReferralProgram";
 import ReferralList from "./components/ReferralList";
+import ActivityHistory from "./components/ActivityHistory";
 
 export default async function ProfilePage() {
   const supabase = createSupabaseServer();
@@ -51,7 +52,9 @@ export default async function ProfilePage() {
           <ReferralProgram referral_id={profile.referral_id} />
           <ReferralList userId={user.id} />
         </Tab>
-        <Tab label="Activity History"></Tab>
+        <Tab label="Activity History" className="w-full flex flex-col gap-5">
+          <ActivityHistory userId={user.id} />
+        </Tab>
       </div>
     </div>
   );

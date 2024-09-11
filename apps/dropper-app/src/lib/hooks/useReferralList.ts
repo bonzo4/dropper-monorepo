@@ -44,9 +44,26 @@ export function useReferralList({ supabase, userId, type, page }: Options) {
         return;
       }
 
-      console.log(data);
+      const referralsWithUser = await Promise.all(
+        data.map(async (referral) => {
+          const { data: user, error } = await supabase
+            .from("dropmans_view")
+            .select("username")
+            .eq("user_id", referral.user_id)
+            .single();
 
-      setReferrals(data);
+          if (error) {
+            console.error(error);
+            return referral;
+          }
+
+          return { ...referral, user: user?.username ?? "Unknown User" };
+        })
+      );
+
+      console.log(referralsWithUser);
+
+      setReferrals(referralsWithUser);
       setLoading(false);
     };
 

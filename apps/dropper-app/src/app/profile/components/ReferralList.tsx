@@ -1,6 +1,5 @@
 "use client";
 
-import { WhiteArrow } from "@/components/icons";
 import PageNav from "@/components/PageNav";
 import Button from "@/components/ui/Button";
 import { useReferralList } from "@/lib/hooks/useReferralList";
@@ -29,7 +28,7 @@ export default function ReferralList({ userId }: Options) {
   });
 
   return (
-    <div className="flex flex-col w-full gap-2 px-8">
+    <div className="flex flex-col w-full gap-4 px-8">
       <h2 className="text-3xl">Referral List</h2>
       <div className="flex flex-row gap-1">
         <Button
@@ -60,21 +59,31 @@ export default function ReferralList({ userId }: Options) {
         <p>Date</p>
         <p>Points</p>
       </div>
-      {loading ? (
-        <div className="flex w-full py-10 justify-center">
+      {loading && (
+        <div className="flex w-full justify-center">
           <CgSpinner size={75} className="animate-spin" />
         </div>
-      ) : (
-        <div className="flex flex-col gap-2">
-          {referrals.map((referral) => (
-            <div
+      )}
+      {referrals.length === 0 && !loading && (
+        <div className="flex w-full py-6 justify-center">
+          <p className="opacity-25 ">No referrals found</p>
+        </div>
+      )}
+      {!loading && referrals.length > 0 && (
+        <ul className="flex flex-col gap-2">
+          {referrals.map((referral, index) => (
+            <li
               key={referral.user_id}
               className={cn(
                 mono.className,
                 "flex flex-row gap-2 justify-between text-sm"
               )}
             >
-              <p>{new Date(referral.created_at).toDateString()}</p>
+              <p className="text-nowrap w-[200px] truncate overflow-hidden">
+                {10 * (page - 1) + index + 1}.{" "}
+                {new Date(referral.created_at).toLocaleDateString()}{" "}
+                <span className="">{referral.user}</span>
+              </p>
               <p>
                 {referralType === "direct"
                   ? 100
@@ -82,9 +91,9 @@ export default function ReferralList({ userId }: Options) {
                     ? 40
                     : 10}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
       <PageNav
         page={page}

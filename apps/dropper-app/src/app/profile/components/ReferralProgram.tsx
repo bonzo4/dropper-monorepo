@@ -17,19 +17,21 @@ export default function ReferralProgram({ referral_id }: Props) {
   };
 
   return (
-    <div className="flex flex-col w-full gap-2 px-8">
-      <h2 className="text-3xl">Referral Program</h2>
-      <p className={cn(mono.className, "text-sm")}>
-        Share this link and invite other users to Dropper to gain referral
-        points and earn prizes.
-      </p>
+    <div className="flex w-full px-8">
+      <div className="flex flex-col gap-4 border-2 border-primary rounded-md px-2 py-4">
+        <h2 className="text-3xl">Referral Program</h2>
+        <p className={cn(mono.className, "text-sm")}>
+          Share this link and invite other users to Dropper to gain referral
+          points and earn prizes.
+        </p>
 
-      <p className={cn(mono.className, "text-sm text-primary")}>
-        Your referral link: https://dropper.wtf/login/?code={referral_id}
-      </p>
-      <Button className="w-[100px]" onClick={handleCopy}>
-        Copy
-      </Button>
+        <p className={cn(mono.className, "text-sm text-primary")}>
+          Your referral link: https://dropper.wtf/login/?code={referral_id}
+        </p>
+        <Button className="w-[100px]" onClick={handleCopy}>
+          Copy Link
+        </Button>
+      </div>
     </div>
   );
 }
