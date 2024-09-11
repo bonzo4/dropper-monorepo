@@ -788,6 +788,7 @@ export type Database = {
           exp_points: number
           has_claimed: boolean
           icon: string
+          referral_id: string
           user_id: string
           username: string
         }
@@ -798,6 +799,7 @@ export type Database = {
           exp_points?: number
           has_claimed?: boolean
           icon?: string
+          referral_id?: string
           user_id: string
           username: string
         }
@@ -808,6 +810,7 @@ export type Database = {
           exp_points?: number
           has_claimed?: boolean
           icon?: string
+          referral_id?: string
           user_id?: string
           username?: string
         }
@@ -1514,6 +1517,30 @@ export type Database = {
           },
         ]
       }
+      user_activities: {
+        Row: {
+          activity: string
+          created_at: string
+          id: number
+          points: number
+          user_id: string
+        }
+        Insert: {
+          activity: string
+          created_at?: string
+          id?: number
+          points: number
+          user_id: string
+        }
+        Update: {
+          activity?: string
+          created_at?: string
+          id?: number
+          points?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_codes: {
         Row: {
           access_code: string
@@ -1579,6 +1606,30 @@ export type Database = {
           },
         ]
       }
+      user_listing_stats: {
+        Row: {
+          created_at: string
+          listing_bumps: number
+          listing_comments: number
+          listings_created: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          listing_bumps?: number
+          listing_comments?: number
+          listings_created?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          listing_bumps?: number
+          listing_comments?: number
+          listings_created?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_points: {
         Row: {
           activity_points: number
@@ -1605,16 +1656,19 @@ export type Database = {
       dropmans_view: {
         Row: {
           icon: string | null
+          referral_id: string | null
           user_id: string | null
           username: string | null
         }
         Insert: {
           icon?: string | null
+          referral_id?: string | null
           user_id?: string | null
           username?: string | null
         }
         Update: {
           icon?: string | null
+          referral_id?: string | null
           user_id?: string | null
           username?: string | null
         }

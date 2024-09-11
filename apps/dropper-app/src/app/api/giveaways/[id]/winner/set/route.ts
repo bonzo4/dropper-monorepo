@@ -68,6 +68,11 @@ export async function POST(
       wallet: managerWallet,
     });
 
+    await supabase
+      .from("giveaways")
+      .update({ set_winners_tx: txString })
+      .eq("id", id);
+
     return NextResponse.json(JSON.stringify(txString), {
       status: 200,
       headers: {

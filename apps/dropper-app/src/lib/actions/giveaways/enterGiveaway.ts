@@ -23,11 +23,13 @@ export async function enterGiveaway({
     wallet_key: walletKey,
   });
 
-  if (error)
+  if (error) {
+    console.error(error);
     return JSON.stringify({
       status: "error",
-      message: "Something went wrong entering this drop",
+      message: `Something went wrong entering this drop`,
     });
+  }
 
   revalidatePath(`/drops/${giveawayId}`, "page");
 

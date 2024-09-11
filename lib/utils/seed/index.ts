@@ -31,9 +31,9 @@ const main = async () => {
   await createCodes(supabase);
   await whitelistWallets(supabase);
   await createBanners(supabase);
-  await createGiveaways(supabase, userId);
-  await createListings(supabase, userId);
-  await createAirdrops(supabase);
+//   await createGiveaways(supabase, userId);
+//   await createListings(supabase, userId);
+//   await createAirdrops(supabase);
 
   console.log("Database seeded successfully!");
 

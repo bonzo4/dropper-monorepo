@@ -14,31 +14,22 @@ import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
 import { mono } from "@/lib/utils/fonts";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function Login() {
   const supabase = createSupabaseClient();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [emailSent, setEmailSent] = useState(false);
-  const router = useRouter();
 
   const [newsletter, setNewsletter] = useState(true);
 
-  const handleDevLogin = async () => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) return toast.error(error.message);
-    router.refresh();
-  };
-
   const handleMagicLinkLogin = async () => {
+    const referral = searchParams.get("referral");
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}&referral=${referral}`,
       },
     });
     console.log(data);
@@ -50,10 +41,6 @@ export default function Login() {
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
   return (
     <main className="flex flex-col items-center justify-center grow gap-12">
       <div className="flex flex-col items-center justify-center px-5 ">
@@ -61,25 +48,7 @@ export default function Login() {
       </div>
       <div className="flex flex-col items-center justify-center gap-[20px]">
         <div className="self-stretch flex flex-col items-center justify-center gap-[20px] text-primary ">
-          {process.env.NEXT_PUBLIC_ENV === "development" && (
-            <div className="flex flex-col items-center justify-center gap-[20px]">
-              <Input
-                className={cn(mono.className)}
-                value={email}
-                onChange={handleEmailChange}
-                placeholder="Email"
-              />
-              <Input
-                className={cn(mono.className)}
-                value={password}
-                onChange={handlePasswordChange}
-                placeholder="Password"
-                type="password"
-              />
-              <Button onClick={handleDevLogin}>Login</Button>
-            </div>
-          )}
-          {process.env.NEXT_PUBLIC_ENV !== "development" && !emailSent && (
+          {!emailSent && (
             <div className="flex flex-col gap-4">
               <Input
                 className={cn(mono.className)}
@@ -98,7 +67,7 @@ export default function Login() {
               </Button>
             </div>
           )}
-          {process.env.NEXT_PUBLIC_ENV !== "development" && emailSent && (
+          {emailSent && (
             <div>
               <span>Login Email sent, please check your inbox.</span>
             </div>

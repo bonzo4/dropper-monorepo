@@ -4,7 +4,13 @@ import { createSupabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import Profile from "./components/Profile";
 import ProfileStats from "./components/ProfileStats";
-import { getProfilePageData } from "@/lib/data/getProfilePage";
+import { getProfilePageData } from "@/lib/data/profile/getProfilePage";
+import { getGiveawayStats } from "@/lib/data/profile/getGiveawayStats";
+import { getListingStats } from "@/lib/data/profile/getListingStats";
+import { getUserPoints } from "@/lib/data/profile/getUserPoints";
+import ReferralProgram from "./components/ReferralProgram";
+import ReferralList from "./components/ReferralList";
+import ActivityHistory from "./components/ActivityHistory";
 
 export default async function ProfilePage() {
   const supabase = createSupabaseServer();
@@ -15,7 +21,18 @@ export default async function ProfilePage() {
   if (!user) {
     redirect("/login");
   }
-  const profile = await getProfilePageData({ supabase, userId: user.id });
+  const profileData = getProfilePageData({ supabase, userId: user.id });
+
+  const giveawayStatsData = getGiveawayStats({ supabase, userId: user.id });
+  const listingStatsData = getListingStats({ supabase, userId: user.id });
+  const userPointsData = getUserPoints({ supabase, userId: user.id });
+
+  const [profile, giveawayStats, listingStats, userPoints] = await Promise.all([
+    profileData,
+    giveawayStatsData,
+    listingStatsData,
+    userPointsData,
+  ]);
 
   if (!profile) {
     redirect("/login");
@@ -25,10 +42,19 @@ export default async function ProfilePage() {
     <div className="flex grow justify-center py-20">
       <div className="flex flex-col gap-8 w-full max-w-[737px]">
         <Profile profile={profile} />
-        <ProfileStats />
-        <Tab label="Connected Wallets"></Tab>
-        <Tab label="Contributions"></Tab>
-        <Tab label="Privacy"></Tab>
+        <ProfileStats
+          userPoints={userPoints}
+          giveawayStats={giveawayStats}
+          listingStats={listingStats}
+        />
+        <Tab label="Connections"></Tab>
+        <Tab label="Referral Program" className="flex flex-col gap-5">
+          <ReferralProgram referral_id={profile.referral_id} />
+          <ReferralList userId={user.id} />
+        </Tab>
+        <Tab label="Activity History" className="w-full flex flex-col gap-5">
+          <ActivityHistory userId={user.id} />
+        </Tab>
       </div>
     </div>
   );

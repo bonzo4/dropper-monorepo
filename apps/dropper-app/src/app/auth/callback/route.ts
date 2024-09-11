@@ -2,10 +2,12 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { type CookieOptions, createServerClient } from "@supabase/ssr";
 import { subscribe } from "@/lib/actions/subscribe";
+import { createReferral } from "@/lib/actions/createReferral";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
+  const referral = searchParams.get("referral");
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get("next") ?? "/";
 
@@ -35,17 +37,22 @@ export async function GET(request: Request) {
       error,
     } = await supabase.auth.exchangeCodeForSession(code);
 
-    if (error) {
+    if (error || !session) {
       return NextResponse.redirect(`${origin}/auth/auth-code-error`);
     }
-    if (!error) {
+
+    if (referral) {
+      const { user } = session;
+      await createReferral({ supabase, userId: user.id, referral });
     }
 
-    if (newsletter && session) {
+    if (newsletter) {
       const { user } = session;
       if (user.email) await subscribe(user.email);
     }
   }
+
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   // return the user to an error page with instructions
   return NextResponse.redirect(`${origin}${next}`);
