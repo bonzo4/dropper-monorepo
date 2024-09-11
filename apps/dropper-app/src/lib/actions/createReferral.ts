@@ -29,6 +29,6 @@ export async function createReferral({ supabase, userId, referral }: Options) {
       referrer_id: data.user_id,
     });
   } catch (error: any) {
-    console.log(error.message);
+    console.error(error.message);
   }
 }

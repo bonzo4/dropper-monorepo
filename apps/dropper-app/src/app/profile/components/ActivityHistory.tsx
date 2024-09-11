@@ -21,15 +21,15 @@ export default function ActivityHistory({ userId }: Options) {
   });
 
   return (
-    <div className="flex flex-col w-full gap-2 px-8">
-      <h2 className="text-3xl">Referral List</h2>
+    <div className="flex flex-col w-full gap-4 px-8">
+      <h2 className="text-3xl">Activity History</h2>
       <div
         className={cn(
           mono.className,
           "flex flex-row gap-2 justify-between text-base font-bold"
         )}
       >
-        <p>Date</p>
+        <p>Activity</p>
         <p>Points</p>
       </div>
       {loading && (
@@ -38,12 +38,12 @@ export default function ActivityHistory({ userId }: Options) {
         </div>
       )}
       {activities.length === 0 && !loading && (
-        <div className="flex w-full py-6 justify-center">
+        <div className="flex w-full py-7 justify-center">
           <p className="opacity-25 ">No account activity found</p>
         </div>
       )}
       {!loading && activities.length > 0 && (
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 py-6">
           {activities.map((activity, index) => (
             <li
               key={activity.id}
@@ -54,12 +54,13 @@ export default function ActivityHistory({ userId }: Options) {
             >
               <p>
                 {10 * (page - 1) + index + 1}.{" "}
-                {new Date(activity.created_at).toDateString()}{" "}
+                {new Date(activity.created_at).toLocaleDateString()}
+                {" | "}
                 {activity.activity}
               </p>
               <p>
                 {activity.points > 0 ? "+" : ""}
-                {activity.points} points
+                {activity.points}
               </p>
             </li>
           ))}

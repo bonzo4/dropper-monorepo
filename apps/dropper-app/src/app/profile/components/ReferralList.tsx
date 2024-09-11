@@ -56,7 +56,7 @@ export default function ReferralList({ userId }: Options) {
           "flex flex-row gap-2 justify-between text-base font-bold"
         )}
       >
-        <p>Date</p>
+        <p>Referral</p>
         <p>Points</p>
       </div>
       {loading && (
@@ -70,7 +70,7 @@ export default function ReferralList({ userId }: Options) {
         </div>
       )}
       {!loading && referrals.length > 0 && (
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 py-7">
           {referrals.map((referral, index) => (
             <li
               key={referral.user_id}
@@ -85,6 +85,7 @@ export default function ReferralList({ userId }: Options) {
                 <span className="">{referral.user}</span>
               </p>
               <p>
+                +
                 {referralType === "direct"
                   ? 100
                   : referralType === "secondary"

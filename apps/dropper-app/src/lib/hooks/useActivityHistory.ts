@@ -37,8 +37,6 @@ export function useActivityHistory({ supabase, userId, page }: Options) {
         return;
       }
 
-      console.log(data);
-
       setActivities(data);
       setLoading(false);
     };

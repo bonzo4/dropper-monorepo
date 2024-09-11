@@ -11,7 +11,7 @@ type Props = {
 export default function ReferralProgram({ referral_id }: Props) {
   const handleCopy = () => {
     navigator.clipboard.writeText(
-      `https://dropper.wtf/login/?code=${referral_id}`
+      `https://dropper.wtf/login/?referral=${referral_id}`
     );
     toast.success("Copied to clipboard");
   };
@@ -21,12 +21,12 @@ export default function ReferralProgram({ referral_id }: Props) {
       <div className="flex flex-col gap-4 border-2 border-primary rounded-md px-2 py-4">
         <h2 className="text-3xl">Referral Program</h2>
         <p className={cn(mono.className, "text-sm")}>
-          Share this link and invite other users to Dropper to gain referral
-          points and earn prizes.
+          Invite other users to Dropper to gain referral points and receive
+          exclusive benefits.
         </p>
 
         <p className={cn(mono.className, "text-sm text-primary")}>
-          Your referral link: https://dropper.wtf/login/?code={referral_id}
+          Your referral link: https://dropper.wtf/login/?referral={referral_id}
         </p>
         <Button className="w-[100px]" onClick={handleCopy}>
           Copy Link

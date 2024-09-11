@@ -3,6 +3,7 @@ import { SupabaseClient } from "@supabase/supabase-js";
 
 export type ProfilePageData = Pick<
   DatabaseTypes["public"]["Tables"]["dropmans"]["Row"],
+  | "user_id"
   | "username"
   | "created_at"
   | "exp_points"
@@ -21,7 +22,7 @@ export async function getProfilePageData({ supabase, userId }: Options) {
     const { data, error } = await supabase
       .from("dropmans")
       .select(
-        "username, icon, exp_points, created_at, drop_points, referral_id"
+        "user_id, username, icon, exp_points, created_at, drop_points, referral_id"
       )
       .eq("user_id", userId)
       .single();
