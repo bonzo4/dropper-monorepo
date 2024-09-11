@@ -61,8 +61,6 @@ export function useReferralList({ supabase, userId, type, page }: Options) {
         })
       );
 
-      console.log(referralsWithUser);
-
       setReferrals(referralsWithUser);
       setLoading(false);
     };

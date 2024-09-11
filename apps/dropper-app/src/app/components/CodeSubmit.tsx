@@ -56,13 +56,13 @@ export default function CodeSubmit() {
 
   return (
     <div className="flex flex-row gap-2">
-      {" "}
-      <Input
-        className={cn(mono.className, "")}
-        placeholder="Access Code"
-        value={code}
-        onChange={handleCodeChange}
-      />
+      <div className={cn(mono.className, "")}>
+        <Input
+          placeholder="Access Code"
+          value={code}
+          onChange={handleCodeChange}
+        />
+      </div>
       <Button onClick={checkCode}>Submit</Button>
     </div>
   );

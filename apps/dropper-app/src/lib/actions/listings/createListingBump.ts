@@ -26,8 +26,6 @@ export async function createListingBump({ listingId, payerKey, tx }: Options) {
     user_id: user.id,
   });
 
-  console.log(error);
-
   if (error) return JSON.stringify({ status: "error", error: error.message });
 
   return JSON.stringify({ status: "success" });

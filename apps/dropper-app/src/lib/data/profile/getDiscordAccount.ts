@@ -1,29 +1,16 @@
 import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-export type ProfilePageData = Pick<
-  DatabaseTypes["public"]["Tables"]["dropmans"]["Row"],
-  | "user_id"
-  | "username"
-  | "created_at"
-  | "exp_points"
-  | "icon"
-  | "drop_points"
-  | "referral_id"
->;
-
 type Options = {
   supabase: SupabaseClient<DatabaseTypes>;
   userId: string;
 };
 
-export async function getProfilePageData({ supabase, userId }: Options) {
+export async function getDiscordAccount({ supabase, userId }: Options) {
   try {
     const { data, error } = await supabase
-      .from("dropmans")
-      .select(
-        "user_id, username, icon, exp_points, created_at, drop_points, referral_id"
-      )
+      .from("discord_accounts")
+      .select("*")
       .eq("user_id", userId)
       .single();
 

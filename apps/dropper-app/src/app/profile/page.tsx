@@ -11,6 +11,8 @@ import { getUserPoints } from "@/lib/data/profile/getUserPoints";
 import ReferralProgram from "./components/ReferralProgram";
 import ReferralList from "./components/ReferralList";
 import ActivityHistory from "./components/ActivityHistory";
+import ConnectDiscord from "./components/ConnectDiscord";
+import { getDiscordAccount } from "@/lib/data/profile/getDiscordAccount";
 
 export default async function ProfilePage() {
   const supabase = createSupabaseServer();
@@ -23,16 +25,19 @@ export default async function ProfilePage() {
   }
   const profileData = getProfilePageData({ supabase, userId: user.id });
 
+  const discordAccountData = getDiscordAccount({ supabase, userId: user.id });
   const giveawayStatsData = getGiveawayStats({ supabase, userId: user.id });
   const listingStatsData = getListingStats({ supabase, userId: user.id });
   const userPointsData = getUserPoints({ supabase, userId: user.id });
 
-  const [profile, giveawayStats, listingStats, userPoints] = await Promise.all([
-    profileData,
-    giveawayStatsData,
-    listingStatsData,
-    userPointsData,
-  ]);
+  const [profile, discordAccount, giveawayStats, listingStats, userPoints] =
+    await Promise.all([
+      profileData,
+      discordAccountData,
+      giveawayStatsData,
+      listingStatsData,
+      userPointsData,
+    ]);
 
   if (!profile) {
     redirect("/login");
@@ -47,7 +52,9 @@ export default async function ProfilePage() {
           giveawayStats={giveawayStats}
           listingStats={listingStats}
         />
-        <Tab label="Connections"></Tab>
+        <Tab label="Connections" className="flex flex-col gap-5">
+          <ConnectDiscord discordAccount={discordAccount} />
+        </Tab>
         <Tab label="Referral Program" className="flex flex-col gap-5">
           <ReferralProgram referral_id={profile.referral_id} />
           <ReferralList userId={user.id} />

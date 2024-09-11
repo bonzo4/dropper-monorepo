@@ -630,6 +630,27 @@ export type Database = {
           },
         ]
       }
+      discord_accounts: {
+        Row: {
+          created_at: string
+          discord_id: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          discord_id: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          discord_id?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: []
+      }
       drop_rate_configs: {
         Row: {
           acceleration_rate: number

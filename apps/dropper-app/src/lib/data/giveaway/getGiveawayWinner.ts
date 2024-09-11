@@ -26,7 +26,6 @@ export async function getGiveawayWinner({ supabase, id, userId }: Options) {
 
     return data;
   } catch (error) {
-    // console.log(error);
     return null;
   }
 }
