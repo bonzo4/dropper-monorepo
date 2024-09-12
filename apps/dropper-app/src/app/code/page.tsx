@@ -1,7 +1,6 @@
 "use client";
 import { Icon, Logo, LogoWhite } from "@/components/icons";
 import CodeSubmit from "../components/CodeSubmit";
-import ToastStyling from "@/components/ToastStyling";
 
 export default function Code() {
   return (
@@ -20,7 +19,6 @@ export default function Code() {
           <CodeSubmit />
         </div>
       </div>
-      <ToastStyling />
     </main>
   );
 }

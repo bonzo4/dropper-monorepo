@@ -3,13 +3,7 @@
 import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
-import { toast } from "react-toastify";
-import { getRequirementCount } from "@/lib/utils/getRequirementCount";
-import { User } from "@supabase/supabase-js";
 import GiveawayCard from "./cards/GiveawayCard";
-import { enterGiveaway } from "@/lib/actions/giveaways/enterGiveaway";
-import ToastStyling from "@/components/ToastStyling";
-import { useWallet } from "@solana/wallet-adapter-react";
 import Wallet from "@/components/Wallet";
 import GiveawayRequirements from "./GiveawayRequirements";
 import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";
@@ -63,7 +57,6 @@ export default function GiveawayEntry({
             setCompletedCount={setCompletedCount}
           />
         )}
-        <ToastStyling />
       </div>
     </Wallet>
   );
