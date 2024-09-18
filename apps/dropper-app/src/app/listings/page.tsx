@@ -1,13 +1,13 @@
 import { GiveawayBannerRow, ListingBannerRow } from "@/lib/types/banner";
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import Link from "next/link";
 import Listings from "./components/Listings";
 import ListingBannerSlider from "./components/ListingBannerSlider";
 import { getListingBanners } from "@/lib/data/listings/getListingBanners";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 export default async function ListingsPage() {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const banners = await getListingBanners({ supabase });
 
   return (
@@ -19,7 +19,7 @@ export default async function ListingsPage() {
         </h1>
         <div className="flex flex-row gap-2">
           <Link href="/listings/create">
-            <Button className=" ">CREATE CTO</Button>
+            <Button className=" ">CREATE LISTING</Button>
           </Link>
         </div>
       </div>

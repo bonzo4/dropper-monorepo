@@ -1,5 +1,5 @@
-import { Notification, Confetti, Angry } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { Notification, Confetti, Angry } from "@repo/ui/icons";
+import { Button } from "@repo/ui";
 import { GiveawayWinnerRow } from "@/lib/types/giveaway";
 import Link from "next/link";
 

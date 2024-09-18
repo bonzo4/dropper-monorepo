@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { dropper } from "@/lib/utils/fonts";
-import { cn } from "@/lib/utils/classNames";
+import { dropper } from "@repo/ui/utils";
+import { cn } from "@repo/ui/utils";
 import Header from "@/components/header/Header";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { DropmanView } from "@/lib/types/user";
 import Login from "./login/page";
 import { UserCodeRow } from "@/lib/types/accessCode";
@@ -22,7 +22,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const userData = cache(() => supabase.auth.getUser())();
   const tickersData = getTickers({ supabase });
 

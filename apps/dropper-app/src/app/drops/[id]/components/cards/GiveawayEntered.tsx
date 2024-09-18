@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
-import { QuestionCoin } from "@/components/icons";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
+import { QuestionCoin } from "@repo/ui/icons";
 import Countdown from "react-countdown";
 
 type GiveawayEnteredOptions = {
@@ -28,10 +28,10 @@ export default function GiveawayEntered({ endDate }: GiveawayEnteredOptions) {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:

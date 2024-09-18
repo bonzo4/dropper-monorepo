@@ -1,7 +1,7 @@
-import { WhiteArrow } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { WhiteArrow } from "@repo/ui/icons";
+import { Button } from "@repo/ui";
 import Image from "next/image";
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui";
 import { AirdropBannerRow } from "@/lib/types/banner";
 
 type BannerProps = {

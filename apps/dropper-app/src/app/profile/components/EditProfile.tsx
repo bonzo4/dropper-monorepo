@@ -1,12 +1,11 @@
 "use client";
 import { ProfilePageData } from "@/lib/data/profile/getProfilePage";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { createSupabaseClient } from "@repo/lib/supabase";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ProfileIconUpload from "./ProfileIconUpload";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
-import { X } from "@/components/icons";
+import { Input } from "@repo/ui";
+import { Button } from "@repo/ui";
 
 type Options = {
   profile: ProfilePageData;
@@ -20,9 +19,16 @@ export default function EditProfile({ profile }: Options) {
   const [icon, setIcon] = useState(profile.icon);
   const [loading, setLoading] = useState(false);
 
-  const handleSave = async () => {
-    if (!username) return toast.error("Username is required");
-    if (!icon) return toast.error("Icon is required");
+  const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!username) {
+      toast.error("Username is required");
+      return;
+    }
+    if (!icon) {
+      toast.error("Icon is required");
+      return;
+    }
     setLoading(true);
     const { error } = await supabase
       .from("dropmans")

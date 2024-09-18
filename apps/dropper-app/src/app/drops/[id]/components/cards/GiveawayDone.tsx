@@ -1,4 +1,4 @@
-import { Notification, Confetti, Eyes } from "@/components/icons";
+import { Notification, Confetti, Eyes } from "@repo/ui/icons";
 
 export default function GiveawayDone() {
   return (

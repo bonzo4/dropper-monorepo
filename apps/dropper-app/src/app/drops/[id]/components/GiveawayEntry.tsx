@@ -2,7 +2,7 @@
 
 import { GiveawayEntryRow, GiveawayWinnerRow } from "@/lib/types/giveaway";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import GiveawayCard from "./cards/GiveawayCard";
 import Wallet from "@/components/Wallet";
 import GiveawayRequirements from "./GiveawayRequirements";

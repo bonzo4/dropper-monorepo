@@ -1,6 +1,6 @@
 import { GiveawayStats, ListingStats, UserPoints } from "@/lib/types/stats";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 
 type Options = {
   userPoints: UserPoints | null;
@@ -15,7 +15,7 @@ export default function ProfileStats({
 }: Options) {
   return (
     <div className="w-full flex lg:flex-row flex-wrap justify-center sm:justify-between text-[14px] lg:gap-0 gap-8 px-8">
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-2 w-[80px]">
         <div className="flex flex-col">
           <span>Referral</span>
           <span>Points</span>
@@ -25,7 +25,7 @@ export default function ProfileStats({
           {userPoints ? userPoints.referral_points : 0}
         </span>
       </div>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-2  w-[80px]">
         <div className="flex flex-col">
           <span>Activity</span>
           <span>Points</span>
@@ -34,7 +34,7 @@ export default function ProfileStats({
           {userPoints ? userPoints.activity_points : 0}
         </span>
       </div>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-2  w-[80px]">
         <div className="flex flex-col">
           <span>Giveaways</span>
           <span>Created</span>
@@ -43,7 +43,7 @@ export default function ProfileStats({
           {giveawayStats ? giveawayStats.giveaways_created : 0}
         </span>
       </div>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-2  w-[80px]">
         <div className="flex flex-col">
           <span>Giveaways</span>
           <span>Entered</span>
@@ -52,7 +52,7 @@ export default function ProfileStats({
           {giveawayStats ? giveawayStats.giveaways_entered : 0}
         </span>
       </div>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-2  w-[80px]">
         <div className="flex flex-col">
           <span>Listings</span>
           <span>Created</span>
@@ -61,7 +61,7 @@ export default function ProfileStats({
           {listingStats ? listingStats.listings_created : 0}
         </span>
       </div>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-2  w-[80px]">
         <div className="flex flex-col">
           <span>Listings</span>
           <span>Bumped</span>

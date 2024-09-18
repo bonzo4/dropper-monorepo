@@ -1,4 +1,4 @@
-import { ArrowWhite } from "@/components/icons";
+import { ArrowWhite } from "@repo/ui/icons";
 import Link from "next/link";
 
 type Props = {

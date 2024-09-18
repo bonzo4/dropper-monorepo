@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useState } from "react";
-import { Dropper, Falling, Login } from "../icons";
+import { Dropper, Falling, Login } from "@repo/ui/icons";
 import Image from "next/image";
 import { DropmanView } from "@/lib/types/user";
-import Button from "../ui/Button";
+import { Button } from "@repo/ui";
 
 type MobileNavMenuProps = {
   route: string;

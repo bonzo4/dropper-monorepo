@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createSupabaseClient } from "../supabase/client";
+import { createSupabaseClient } from "@repo/lib/supabase";
 
 type UseWhitelistWalletOptions = {
   publicKey: string | null;

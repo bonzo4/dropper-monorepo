@@ -1,8 +1,6 @@
 "use server";
 
-import { createSupabaseServer } from "@/lib/supabase/server";
-import { DatabaseTypes } from "@repo/app-types/database";
-import { SupabaseClient } from "@supabase/supabase-js";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 type Options = {
   userId: string;
@@ -15,7 +13,7 @@ export async function createDiscordAccount({
   discordId,
   username,
 }: Options) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const { error } = await supabase.from("discord_accounts").insert({
     user_id: userId,
     discord_id: discordId,

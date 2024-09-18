@@ -1,5 +1,5 @@
 import { useWallet } from "@solana/wallet-adapter-react";
-import Button from "./ui/Button";
+import { Button } from "@repo/ui";
 
 type WalletDisconnectButtonProps = {
   disconnect: () => void;

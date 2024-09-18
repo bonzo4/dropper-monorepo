@@ -82,17 +82,19 @@ export default function ProfileIconUpload({ supabase, icon, setIcon }: Props) {
   }
 
   return (
-    <div
-      {...getRootProps({
-        className:
-          "flex flex-row items-center justify-center w-36 h-36 px-2 outline-dashed rounded-md hover:cursor-pointer",
-      })}
-    >
-      <input {...getInputProps()} />
-      <p className="text-center text-sm">
-        {"Drag 'n' drop or upload your icon here"}
-      </p>
-      {icon && <span>{icon}</span>}
+    <div className="flex flex-col gap-1 items-center">
+      <div
+        {...getRootProps({
+          className:
+            "flex flex-row items-center justify-center w-36 h-36 px-2 outline-dashed rounded-md hover:cursor-pointer",
+        })}
+      >
+        <input {...getInputProps()} />
+        <p className="text-center text-sm">
+          {"Drag 'n' drop or upload your icon here"}
+        </p>
+        {icon && <span>{icon}</span>}
+      </div>
     </div>
   );
 }

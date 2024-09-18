@@ -1,7 +1,7 @@
-import { Notification, Confetti, Hold } from "@/components/icons";
-import Button from "@/components/ui/Button";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { Notification, Confetti, Hold } from "@repo/ui/icons";
+import { Button } from "@repo/ui";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import Link from "next/link";
 import Countdown from "react-countdown";
 
@@ -30,10 +30,10 @@ export default function GiveawayLogin({ endDate }: GiveawayLoginProps) {
               hours === 0 && minutes <= 9
                 ? "#ff2e2f"
                 : hours === 0 && minutes <= 29
-                ? "#ff822e"
-                : hours === 0 && minutes <= 49
-                ? "#ffcb2e"
-                : undefined,
+                  ? "#ff822e"
+                  : hours === 0 && minutes <= 49
+                    ? "#ffcb2e"
+                    : undefined,
           }}
         >
           {hours < 10 ? `0${hours}` : hours}:

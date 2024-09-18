@@ -4,7 +4,7 @@ import { setSplGiveawayWinnersInstruction } from "@/lib/solana/instructions/setS
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
 import { getManagerWallet } from "@/lib/solana/wallet";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import { NextResponse } from "next/server";
 
@@ -23,7 +23,7 @@ export async function POST(
     const winners = bodyData.winners as string[];
     const winnerKeys = winners.map((key) => new PublicKey(key));
 
-    const supabase = await createSupabaseServer();
+    const supabase = await await createSupabaseServer();
 
     const { data, error } = await supabase
       .from("giveaways")

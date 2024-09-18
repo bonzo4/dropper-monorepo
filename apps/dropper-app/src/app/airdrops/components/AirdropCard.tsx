@@ -1,4 +1,4 @@
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui";
 import { AirdropPreviewItem } from "@/lib/types/airdrop";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";

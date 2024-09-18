@@ -1,7 +1,7 @@
-import { Mark, SolanaMulti } from "@/components/icons";
-import Button from "@/components/ui/Button";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { Mark, SolanaMulti } from "@repo/ui/icons";
+import { Button } from "@repo/ui";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { WalletContextState } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useIsMounted } from "usehooks-ts";

@@ -45,6 +45,8 @@ export async function createListings(
         min: 0,
         max: 100_000_000,
       }),
+      user_id: userId,
+      is_cto: false,
     });
   }
 

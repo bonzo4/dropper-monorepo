@@ -1,6 +1,6 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { Arrow, WhiteArrow } from "@/components/icons";
+import { Button } from "@repo/ui";
+import { Arrow, WhiteArrow } from "@repo/ui/icons";
 import { useState } from "react";
 import QuestItem from "./QuestItem";
 import { QuestItemRow, QuestRow } from "@/lib/types/sections";

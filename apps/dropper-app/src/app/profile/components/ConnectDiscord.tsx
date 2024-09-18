@@ -1,9 +1,9 @@
 "use client";
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import { deleteDiscordAccount } from "@/lib/actions/profile/deleteDiscordAccount";
 import { DiscordAccount } from "@/lib/types/profile";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 

@@ -23,6 +23,8 @@ export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
     );
   }
 
+  let userId: string = "";
+
   const PASSWORD = "testuser";
   for (let i = 0; i < 5; i++) {
     const email = copycat.email(i).toLowerCase();
@@ -30,7 +32,9 @@ export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
     const fullName = copycat.fullName(i);
     const userName = copycat.username(i);
 
-    await supabase.auth.signUp({
+    const {
+      data: { user },
+    } = await supabase.auth.signUp({
       email,
       password: PASSWORD,
       options: {
@@ -41,7 +45,12 @@ export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
         },
       },
     });
+
+    if (user) {
+      userId = user.id;
+    }
   }
 
   console.log("users created");
+  return userId;
 }

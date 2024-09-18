@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
-import { Notification, Eyes } from "@/components/icons";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
+import { Notification, Eyes } from "@repo/ui/icons";
 import Countdown from "react-countdown";
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import { WalletContextState } from "@solana/wallet-adapter-react";
 import {
   WalletConnectButton,

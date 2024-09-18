@@ -1,4 +1,4 @@
-import Tab from "@/components/ui/Tab";
+import { Tab } from "@repo/ui";
 import AboutSection from "./components/AboutSection";
 import QuestsSections from "./components/QuestSection";
 import {
@@ -17,7 +17,7 @@ import AirdropStats from "./components/AirdropStats";
 import Image from "next/image";
 import CommunitySection from "./components/CommunitySection";
 import CommentSection from "./components/CommentSection";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { getAirdropPageData } from "@/lib/data/airdrops/getAirdropPage";
 
 export default async function Airdrop({
@@ -25,7 +25,7 @@ export default async function Airdrop({
 }: {
   params: { slug: string };
 }) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const airdrop = await getAirdropPageData({ supabase, slug });
 
   if (!airdrop || !airdrop.is_published) return null;

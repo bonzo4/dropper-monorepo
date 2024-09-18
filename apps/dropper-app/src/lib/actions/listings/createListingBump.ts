@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createSupabaseServer } from "../../supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 type Options = {
   listingId: number;
@@ -10,7 +10,7 @@ type Options = {
 };
 
 export async function createListingBump({ listingId, payerKey, tx }: Options) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
 
   const {
     data: { user },

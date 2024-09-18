@@ -1,5 +1,5 @@
 "use server";
-import { createSupabaseServer } from "../../supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { revalidatePath } from "next/cache";
 
 type ClaimGiveawayOptions = {
@@ -11,7 +11,7 @@ export async function claimGiveaway({
   userId,
   giveawayId,
 }: ClaimGiveawayOptions) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
 
   const { error } = await supabase
     .from("giveaway_winners")

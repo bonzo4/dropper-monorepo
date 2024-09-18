@@ -1,17 +1,16 @@
 "use client";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Input from "@/components/ui/Input";
-import TextArea from "@/components/ui/TextArea";
+import { Button } from "@repo/ui";
+import { Checkbox } from "@repo/ui";
+import { Input } from "@repo/ui";
+import { Textarea } from "@repo/ui";
 import { createSolGiveawayInstruction } from "@/lib/solana/instructions/createSolGiveaway";
 import { createSplGiveawayInstruction } from "@/lib/solana/instructions/createSplGiveaway";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { createSupabaseClient } from "@repo/lib/supabase";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import {
   useConnection,
-  useWallet,
   WalletContextState,
 } from "@solana/wallet-adapter-react";
 import { TransactionInstruction } from "@solana/web3.js";
@@ -26,7 +25,7 @@ import {
 } from "@/lib/types/giveaway";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import GiveawayReqInputs from "./GiveawayReqInputs";
-import { Solana, SolanaColor, Spl, SplColor } from "@/components/icons";
+import { Solana, SolanaColor, Spl, SplColor } from "@repo/ui/icons";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { checkGiveaway, checkGiveawayRequirements } from "../utils/checks";
 import { createGiveaway } from "@/lib/actions/giveaways/createGiveaway";
@@ -190,7 +189,7 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
                 handleGiveawayChange("ticker", e.target.value)
               }
             />
-            <TextArea
+            <Textarea
               placeholder="Description"
               value={giveaway.description}
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>

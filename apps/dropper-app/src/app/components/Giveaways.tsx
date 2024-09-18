@@ -8,7 +8,7 @@ import GiveawayQuery from "./GiveawayQuery";
 import { CgSpinner } from "react-icons/cg";
 import PageNav from "@/components/PageNav";
 import { LandingGiveawayQuery } from "@/lib/data/giveaway/getGiveaways";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { createSupabaseClient } from "@repo/lib/supabase";
 
 const Giveaways = () => {
   const supabase = createSupabaseClient();

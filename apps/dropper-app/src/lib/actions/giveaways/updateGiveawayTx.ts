@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createSupabaseServer } from "../../supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 type UpdateGiveawayTxOptions = {
   giveawayId: string;
@@ -12,7 +12,7 @@ export async function updateGiveawayTx({
   giveawayId,
   tx,
 }: UpdateGiveawayTxOptions) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const { error } = await supabase
     .from("giveaways")
     .update({ tx_string: tx })

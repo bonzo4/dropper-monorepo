@@ -13,15 +13,14 @@ import {
   TelegramColor,
   X,
   XColor,
-} from "@/components/icons";
-import Checkbox from "@/components/ui/Checkbox";
-import Input from "@/components/ui/Input";
+} from "@repo/ui/icons";
+import { Input } from "@repo/ui";
 import {
   DEFAULT_GIVEAWAY_REQUIREMENTS,
   GiveawayRequirementsInsert,
 } from "@/lib/types/giveaway";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { ChangeEvent, SetStateAction, useEffect } from "react";
 
 type GiveawayReqInputsOptions = {
@@ -63,7 +62,7 @@ export default function GiveawayReqInputs({
   return (
     <div className="flex flex-col gap-6 w-full">
       <h1 className="relative text-2xl md:text-[36px] py-5 ">REQUIREMENTS</h1>
-      <div className="flex flex-wrap gap-8 justify-between">
+      <div className="flex flex-wrap gap-8 justify-center sm:justify-between">
         <button
           type="button"
           className="flex flex-row gap-2 w-[126px] items-center"

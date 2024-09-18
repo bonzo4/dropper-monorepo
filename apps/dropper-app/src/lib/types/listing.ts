@@ -23,4 +23,5 @@ export const DEFAULT_LISTING: ListingInsert = {
   chain: "SOL",
   token_address: "",
   total_supply: 0,
+  is_cto: false,
 };

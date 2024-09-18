@@ -1,8 +1,8 @@
 import GiveawayInfo from "./components/GiveawayInfo";
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui";
 import GiveawayStats from "./components/GiveawayStats";
 import GiveawayEntry from "./components/GiveawayEntry";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import GiveawayRouter from "./components/GiveawayRouter";
 import { getGiveawayPage } from "@/lib/data/giveaway/getGiveawayPage";
 import { getGiveawayEntry } from "@/lib/data/giveaway/getGiveawayEntry";
@@ -13,7 +13,7 @@ export default async function GiveawayPage({
 }: {
   params: { id: number };
 }) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const {
     data: { user },
   } = await supabase.auth.getUser();
