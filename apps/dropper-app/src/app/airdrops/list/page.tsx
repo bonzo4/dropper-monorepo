@@ -1,13 +1,13 @@
 import { getAirdrops } from "@/lib/data/airdrops/getAirdrops";
 import AirdropList from "./components/AirdropList";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 type AirdropsProps = {
   searchParams: URLSearchParams;
 };
 
 export default async function Airdrops({ searchParams }: AirdropsProps) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const airdrops = await getAirdrops({ supabase });
 
   return (

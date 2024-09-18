@@ -1,11 +1,11 @@
 import BannerSlider from "./components/AirdropBannerSlider";
 import Airdrops from "./components/Airdrops";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { getAirdropBanners } from "@/lib/data/airdrops/getAirDropBanners";
 import { getFeaturedAirdrops } from "@/lib/data/airdrops/getFeatured";
 
 export default async function Home() {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const banners = await getAirdropBanners({ supabase });
   const airdrops = await getFeaturedAirdrops({ supabase });
 

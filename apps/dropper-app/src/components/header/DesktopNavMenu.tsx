@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Falling } from "../icons";
+import { Falling } from "@repo/ui/icons";
 
 type DesktopNavMenuProps = {
   route: string;

@@ -1,7 +1,7 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { Button } from "@repo/ui";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { toast } from "react-toastify";
 
 type Props = {

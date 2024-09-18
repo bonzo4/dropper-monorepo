@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./button": "./src/button.tsx",
-    "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    ".": "./src/index.tsx",
+    "./utils": "./src/utils/index.ts",
+    "./badges": "./src/badges.tsx",
+    "./icons": "./src/icons.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

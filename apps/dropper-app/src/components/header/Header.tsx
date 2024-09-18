@@ -2,15 +2,16 @@
 import { DropmanView } from "@/lib/types/user";
 import { usePathname, useRouter } from "next/navigation";
 import { useWindowSize } from "usehooks-ts";
-import { Dropper, HeaderLogo, Login, Menu } from "@/components/icons";
+import { Dropper, Login, Menu } from "@repo/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../ui/Button";
+import { Button } from "@repo/ui";
 import { useState } from "react";
 import Ticker from "./Ticker";
 import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
 import { TickerGiveaway } from "@/lib/data/getTickers";
+import headerLogo from "@/public/dropper-logo.png";
 
 type HeaderProps = {
   profile: DropmanView | null;
@@ -28,7 +29,7 @@ export default function Header({ profile, tickers }: HeaderProps) {
         <Ticker width={width} tickers={tickers} />
         <div className=" relative w-full min-h-[72px] flex flex-row items-center justify-between p-4">
           <Link href={"/"}>
-            <HeaderLogo height={34} className="" />
+            <Image src={headerLogo} alt="header logo" height={34} />
           </Link>
           <DesktopNavMenu route={pathname} />
           <Menu

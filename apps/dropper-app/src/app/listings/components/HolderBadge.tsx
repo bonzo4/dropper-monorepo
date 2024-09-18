@@ -3,7 +3,7 @@ import {
   Holder10kBadge,
   Holder1kBadge,
   Holder5kBadge,
-} from "@/components/badges";
+} from "@repo/ui/badges";
 
 type Props = {
   holders: number;

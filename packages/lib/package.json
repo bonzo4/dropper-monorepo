@@ -1,0 +1,17 @@
+{
+  "name": "@repo/lib",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "exports": {
+    "./supabase": "./src/supabase/index.ts"
+  },
+  "devDependencies": {
+    "@repo/app-types": "*",
+    "@repo/typescript-config": "*",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "next": "^14.2.11"
+  }
+}

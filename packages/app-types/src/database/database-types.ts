@@ -649,7 +649,15 @@ export type Database = {
           user_id?: string
           username?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "discord_accounts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       drop_rate_configs: {
         Row: {
@@ -1381,6 +1389,7 @@ export type Database = {
           holder_count: number
           icon_url: string
           id: number
+          is_cto: boolean
           last_bump: string
           name: string
           telegram_url: string | null
@@ -1402,6 +1411,7 @@ export type Database = {
           holder_count: number
           icon_url: string
           id?: number
+          is_cto: boolean
           last_bump?: string
           name: string
           telegram_url?: string | null
@@ -1423,6 +1433,7 @@ export type Database = {
           holder_count?: number
           icon_url?: string
           id?: number
+          is_cto?: boolean
           last_bump?: string
           name?: string
           telegram_url?: string | null
@@ -1480,26 +1491,23 @@ export type Database = {
         Row: {
           address: string
           created_at: string
-          id: number
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           address: string
           created_at?: string
-          id?: number
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           address?: string
           created_at?: string
-          id?: number
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: [
           {
             foreignKeyName: "solana_wallets_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           },
@@ -1723,12 +1731,6 @@ export type Database = {
           uid: string
         }
         Returns: boolean
-      }
-      select_and_insert_winners: {
-        Args: {
-          giveaway_doc_id: number
-        }
-        Returns: undefined
       }
       update_giveaway_sol_usd_value: {
         Args: Record<PropertyKey, never>

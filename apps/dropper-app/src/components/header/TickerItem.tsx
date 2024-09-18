@@ -1,7 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
-import { Dropper } from "@/components/icons";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
+import { Dropper } from "@repo/ui/icons";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,6 +1,5 @@
-import Tab from "@/components/ui/Tab";
-import { headers } from "next/headers";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { Tab } from "@repo/ui";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { redirect } from "next/navigation";
 import Profile from "./components/Profile";
 import ProfileStats from "./components/ProfileStats";
@@ -13,9 +12,12 @@ import ReferralList from "./components/ReferralList";
 import ActivityHistory from "./components/ActivityHistory";
 import ConnectDiscord from "./components/ConnectDiscord";
 import { getDiscordAccount } from "@/lib/data/profile/getDiscordAccount";
+import ConnectSolanaWallet from "./components/ConnectSolanaWallet";
+import { getSolanaWallet } from "@/lib/data/profile/getSolanaAccount";
+import ConnectTwitter from "./components/ConnectTwitter";
 
 export default async function ProfilePage() {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -26,18 +28,26 @@ export default async function ProfilePage() {
   const profileData = getProfilePageData({ supabase, userId: user.id });
 
   const discordAccountData = getDiscordAccount({ supabase, userId: user.id });
+  const solanaWalletData = getSolanaWallet({ supabase, userId: user.id });
   const giveawayStatsData = getGiveawayStats({ supabase, userId: user.id });
   const listingStatsData = getListingStats({ supabase, userId: user.id });
   const userPointsData = getUserPoints({ supabase, userId: user.id });
 
-  const [profile, discordAccount, giveawayStats, listingStats, userPoints] =
-    await Promise.all([
-      profileData,
-      discordAccountData,
-      giveawayStatsData,
-      listingStatsData,
-      userPointsData,
-    ]);
+  const [
+    profile,
+    discordAccount,
+    solanaWallet,
+    giveawayStats,
+    listingStats,
+    userPoints,
+  ] = await Promise.all([
+    profileData,
+    discordAccountData,
+    solanaWalletData,
+    giveawayStatsData,
+    listingStatsData,
+    userPointsData,
+  ]);
 
   if (!profile) {
     redirect("/login");
@@ -54,6 +64,8 @@ export default async function ProfilePage() {
         />
         <Tab label="Connections" className="flex flex-col gap-5">
           <ConnectDiscord discordAccount={discordAccount} />
+          <ConnectTwitter discordAccount={null} />
+          <ConnectSolanaWallet solanaWallet={solanaWallet} userId={user.id} />
         </Tab>
         <Tab label="Referral Program" className="flex flex-col gap-5">
           <ReferralProgram referral_id={profile.referral_id} />

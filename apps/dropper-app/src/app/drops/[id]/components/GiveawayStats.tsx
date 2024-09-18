@@ -1,9 +1,9 @@
 "use client";
 import { GiveawayRow } from "@/lib/types/giveaway";
 import { AirdropPageRow } from "@/lib/types/sections";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
-import { Arrow } from "@/components/icons";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
+import { Arrow } from "@repo/ui/icons";
 import { numString } from "@/lib/utils/numString";
 import Countdown from "react-countdown";
 import { useEffect, useState } from "react";

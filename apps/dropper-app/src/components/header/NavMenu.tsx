@@ -1,7 +1,7 @@
 import { PiGlobeBold } from "react-icons/pi";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
-import { Arrow, Contributor, Launchpad, List, Login } from "@/components/icons";
+import { Input } from "@repo/ui";
+import { Button } from "@repo/ui";
+import { Arrow, Contributor, Launchpad, List, Login } from "@repo/ui/icons";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import Link from "next/link";
 import { DropmanView } from "@/lib/types/user";

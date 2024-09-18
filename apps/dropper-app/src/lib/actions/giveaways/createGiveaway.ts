@@ -1,12 +1,12 @@
 "use server";
-import { createSupabaseServer } from "../../supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { GiveawayBadges } from "../../types/enums";
 import {
   GiveawayInsert,
   GiveawayRequirementsInsert,
 } from "../../types/giveaway";
-import { getRugScore } from "../getRugScore";
-import { getTokenPrice } from "../getTokenPrice";
+import { getRugScore } from "../../data/getRugScore";
+import { getTokenPrice } from "../../data/getTokenPrice";
 
 type CreateGiveawayOptions = {
   giveaway: string;
@@ -23,7 +23,7 @@ export async function createGiveaway({
   requirements,
   badges,
 }: CreateGiveawayOptions) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
 
   const {
     data: { user },

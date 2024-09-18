@@ -1,5 +1,5 @@
 import { WalletName } from "@solana/wallet-adapter-base";
-import Button from "./ui/Button";
+import { Button } from "@repo/ui";
 import {
   PhantomWalletName,
   SolflareWalletName,

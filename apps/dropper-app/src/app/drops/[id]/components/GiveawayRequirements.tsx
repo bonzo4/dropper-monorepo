@@ -1,4 +1,4 @@
-import GiveawayTab from "@/components/ui/GiveawayTab";
+import GiveawayTab from "@/components/GiveawayTab";
 import { GiveawayRequirementsRow } from "@/lib/types/giveaway";
 import { SetStateAction } from "react";
 

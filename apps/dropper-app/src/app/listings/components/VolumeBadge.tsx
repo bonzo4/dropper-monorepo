@@ -8,7 +8,7 @@ import {
   Volume500kBadge,
   Volume5mBadge,
   Volume750kBadge,
-} from "@/components/badges";
+} from "@repo/ui/badges";
 
 type Props = {
   volume: number;

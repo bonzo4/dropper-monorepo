@@ -1,13 +1,13 @@
-import { Notification, Confetti } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { Notification, Confetti } from "@repo/ui/icons";
+import { Button } from "@repo/ui";
 import { claimGiveaway } from "@/lib/actions/giveaways/claimGiveaway";
 import { claimSolGiveawayInstruction } from "@/lib/solana/instructions/claimSolGiveaway";
 import { claimSplGiveawayInstruction } from "@/lib/solana/instructions/claimSplGiveaway";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
 import { GiveawayWinnerRow } from "@/lib/types/giveaway";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import {
   useConnection,
   WalletContextState,
@@ -117,7 +117,7 @@ export default function GiveawayWinner({
       </div>
       <Confetti width={80} height={74} />
       <span className="text-xl">CONGRATULATIONS</span>
-      <span className="text-base text-primary">YOW WON THE DROP</span>
+      <span className="text-base text-primary">YOU WON THE DROP</span>
       <div className="flex flex-row items-center gap-6 border-2 border-primary rounded-md p-2">
         <span className="text-sm">TIME LEFT TO CLAIM</span>
         <Countdown

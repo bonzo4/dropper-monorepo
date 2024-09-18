@@ -1,11 +1,11 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
+import { Button } from "@repo/ui";
+import { Input } from "@repo/ui";
 import { submitCode } from "@/lib/actions/submitCode";
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { createSupabaseClient } from "@repo/lib/supabase";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -28,7 +28,8 @@ export default function CodeSubmit() {
     setCode(e.target.value);
   };
 
-  const checkCode = async () => {
+  const checkCode = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -55,7 +56,7 @@ export default function CodeSubmit() {
   };
 
   return (
-    <div className="flex flex-row gap-2">
+    <form className="flex flex-row gap-2" onSubmit={checkCode}>
       <div className={cn(mono.className, "")}>
         <Input
           placeholder="Access Code"
@@ -63,7 +64,7 @@ export default function CodeSubmit() {
           onChange={handleCodeChange}
         />
       </div>
-      <Button onClick={checkCode}>Submit</Button>
-    </div>
+      <Button type="submit">Submit</Button>
+    </form>
   );
 }

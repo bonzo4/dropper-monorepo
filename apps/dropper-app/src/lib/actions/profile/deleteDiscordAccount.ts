@@ -1,12 +1,12 @@
 "use server";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 type Options = {
   userId: string;
 };
 
 export async function deleteDiscordAccount({ userId }: Options) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
 
   const { error } = await supabase
     .from("discord_accounts")

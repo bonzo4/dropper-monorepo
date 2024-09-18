@@ -11,7 +11,7 @@ import {
   Mcap5mBadge,
   Mcap750kBadge,
   Mcap75mBadge,
-} from "@/components/badges";
+} from "@repo/ui/badges";
 
 type Props = {
   mcap: number;

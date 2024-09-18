@@ -1,4 +1,4 @@
-import { Arrow, ArrowWhite } from "@/components/icons";
+import { Arrow, ArrowWhite } from "@repo/ui/icons";
 import { LandingGiveawayQuery } from "@/lib/data/giveaway/getGiveaways";
 
 type GiveawayQueryProps = {

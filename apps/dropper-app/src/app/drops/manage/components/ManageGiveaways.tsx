@@ -1,7 +1,7 @@
 import GiveawayPageNav from "@/components/PageNav";
 import { useGiveaways } from "@/lib/hooks/useGiveaways";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { PublicKey } from "@solana/web3.js";
 import { useRef, useState } from "react";

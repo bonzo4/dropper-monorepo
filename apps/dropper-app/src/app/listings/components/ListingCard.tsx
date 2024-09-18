@@ -1,8 +1,8 @@
-import { Bump } from "@/components/icons";
+import { Bump } from "@repo/ui/icons";
 import { ListingCardData } from "@/lib/data/listings/getListings";
-import { SolBadge } from "@/components/badges";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { SolBadge } from "@repo/ui/badges";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { transferSolInstruction } from "@/lib/solana/instructions/transferSol";
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { createSupabaseClient } from "@repo/lib/supabase";
 import { DEFAULT_LISTING, ListingInsert } from "@/lib/types/listing";
 import {
   useConnection,
@@ -10,12 +10,31 @@ import {
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ListingIconUpload from "./ListingIconUpload";
-import Input from "@/components/ui/Input";
-import TextArea from "@/components/ui/TextArea";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
-import { Solana, SolanaColor } from "@/components/icons";
-import Button from "@/components/ui/Button";
+import { Checkbox, Input } from "@repo/ui";
+import { Textarea } from "@repo/ui";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
+import {
+  Base,
+  BaseColor,
+  Bnb,
+  BnbColor,
+  Cardano,
+  CardanoColor,
+  Cosmos,
+  CosmosColor,
+  Eth,
+  EthColor,
+  Polygon,
+  PolygonColor,
+  Solana,
+  SolanaColor,
+  Ton,
+  TonColor,
+  Tron,
+  TronColor,
+} from "@repo/ui/icons";
+import { Button } from "@repo/ui";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { getProvider } from "@/lib/solana/getProvider";
 import { checkListing } from "../utils/checkListing";
@@ -111,7 +130,14 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                 handleListingChange("ticker", e.target.value)
               }
             />
-            <TextArea
+            <Input
+              placeholder="Token Address"
+              value={listing.token_address}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                handleListingChange("token_address", e.target.value)
+              }
+            />
+            <Textarea
               className="min-h-[78px]"
               placeholder="Description"
               value={listing.description}
@@ -189,7 +215,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "TRON")}
                   disabled={disabled}
                 >
-                  {listing.chain === "TRON" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "TRON" ? <TronColor /> : <Tron />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -207,7 +233,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "TON")}
                   disabled={disabled}
                 >
-                  {listing.chain === "TON" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "TON" ? <TonColor /> : <Ton />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -225,7 +251,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "ETH")}
                   disabled={disabled}
                 >
-                  {listing.chain === "ETH" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "ETH" ? <EthColor /> : <Eth />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -243,7 +269,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "MATIC")}
                   disabled={disabled}
                 >
-                  {listing.chain === "MATIC" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "MATIC" ? <PolygonColor /> : <Polygon />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -261,7 +287,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "BASE")}
                   disabled={disabled}
                 >
-                  {listing.chain === "BASE" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "BASE" ? <BaseColor /> : <Base />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -279,7 +305,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "COSMOS")}
                   disabled={disabled}
                 >
-                  {listing.chain === "COSMOS" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "COSMOS" ? <CosmosColor /> : <Cosmos />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -297,7 +323,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "BNB")}
                   disabled={disabled}
                 >
-                  {listing.chain === "BNB" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "BNB" ? <BnbColor /> : <Bnb />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -315,7 +341,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
                   onClick={() => handleListingChange("chain", "ADA")}
                   disabled={disabled}
                 >
-                  {listing.chain === "ADA" ? <SolanaColor /> : <Solana />}
+                  {listing.chain === "ADA" ? <CardanoColor /> : <Cardano />}
                   <span
                     className={cn(mono.className, "")}
                     style={{
@@ -328,6 +354,15 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-4">
+          <span className={cn(mono.className, "min-w-[152px]")}>
+            Is this a CTO?
+          </span>
+          <Checkbox
+            checked={listing.is_cto}
+            onClick={() => handleListingChange("is_cto", !listing.is_cto)}
+          />
         </div>
         <div className="flex flex-row justify-between gap-4">
           <span className={cn(mono.className)}>

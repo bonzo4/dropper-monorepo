@@ -1,20 +1,16 @@
 "use client";
-import Button from "@/components/ui/Button";
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { cn } from "@/lib/utils/classNames";
-import {
-  Google,
-  Icon,
-  Logo,
-  LogoWhite,
-  Notification,
-} from "@/components/icons";
+import { Button } from "@repo/ui";
+import { createSupabaseClient } from "@repo/lib/supabase";
+import { cn } from "@repo/ui/utils";
+import { Notification } from "@repo/ui/icons";
 import { useState } from "react";
-import Checkbox from "@/components/ui/Checkbox";
-import Input from "@/components/ui/Input";
-import { mono } from "@/lib/utils/fonts";
+import { Checkbox } from "@repo/ui";
+import { Input } from "@repo/ui";
+import { mono } from "@repo/ui/utils";
 import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
+import logoWhite from "@/public/Dropper_Logo_White.png";
+import Image from "next/image";
 
 export default function Login() {
   const supabase = createSupabaseClient();
@@ -24,7 +20,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [newsletter, setNewsletter] = useState(true);
 
-  const handleMagicLinkLogin = async () => {
+  const handleMagicLinkLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
     const referral = searchParams.get("referral");
     const { data, error } = await supabase.auth.signInWithOtp({
@@ -34,7 +31,9 @@ export default function Login() {
       },
     });
     if (error) {
-      return toast.error(error.message);
+      toast.error(error.message);
+      setLoading(false);
+      return;
     }
     setEmailSent(true);
     setLoading(false);
@@ -47,15 +46,18 @@ export default function Login() {
   return (
     <main className="flex flex-col items-center justify-center grow gap-12">
       <div className="flex flex-col items-center justify-center px-5 ">
-        <LogoWhite height={100} />
+        <Image src={logoWhite} alt="Dropper Logo" height={100} />
       </div>
       <div className="flex flex-col items-center justify-center gap-[20px]">
         <div className="self-stretch flex flex-col items-center justify-center gap-[20px] text-primary ">
           {!emailSent && (
-            <div className="flex flex-col gap-4">
-              <div className={cn(mono.className)}>
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={handleMagicLinkLogin}
+            >
+              <div className={cn(mono.className, "w-full")}>
                 <Input
-                  className={cn(mono.className)}
+                  className={cn(mono.className, "w-full")}
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="Email"
@@ -63,15 +65,15 @@ export default function Login() {
               </div>
               <Button
                 className="self-stretch rounded-lg bg-secondary flex flex-row items-center justify-center py-2 pr-2.5 pl-3 gap-[8px]"
-                onClick={handleMagicLinkLogin}
                 disabled={loading}
+                type="submit"
               >
                 <Notification width={20} />
                 <span className="relative text-[14px]">
                   Login with Magic Link
                 </span>
               </Button>
-            </div>
+            </form>
           )}
           {emailSent && (
             <div>

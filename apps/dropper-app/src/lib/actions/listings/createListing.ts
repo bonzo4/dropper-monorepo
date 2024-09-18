@@ -1,6 +1,6 @@
 "use server";
 
-import { createSupabaseServer } from "../../supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { ListingInsert } from "../../types/listing";
 
 type Options = {
@@ -10,7 +10,7 @@ type Options = {
 };
 
 export async function createListing({ listing, creatorKey, tx }: Options) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
 
   const {
     data: { user },

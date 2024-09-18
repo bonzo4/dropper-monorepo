@@ -1,11 +1,11 @@
 "use client";
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
 import Countdown from "react-countdown";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import {
   BaseBadge,
   BNBBadge,
@@ -17,7 +17,7 @@ import {
   PumpFunBadge,
   SolBadge,
   TrendingBadge,
-} from "@/components/badges";
+} from "@repo/ui/badges";
 import { LandingGiveaway } from "@/lib/data/giveaway/getGiveaways";
 
 type GiveawayCardProps = {

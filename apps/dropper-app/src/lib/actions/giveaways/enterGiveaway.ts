@@ -1,7 +1,7 @@
 "use server";
 
 import { PublicKey } from "@solana/web3.js";
-import { createSupabaseServer } from "../../supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { revalidatePath } from "next/cache";
 
 type EnterGiveawayOptions = {
@@ -15,7 +15,7 @@ export async function enterGiveaway({
   giveawayId,
   walletKey,
 }: EnterGiveawayOptions) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
 
   const { error } = await supabase.from("giveaway_entries").insert({
     user_id: userId,

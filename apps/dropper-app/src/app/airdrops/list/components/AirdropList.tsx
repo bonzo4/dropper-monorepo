@@ -1,11 +1,11 @@
 "use client";
 import { AirdropPreviewItem } from "@/lib/types/airdrop";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import { Input } from "@repo/ui";
+import { Button } from "@repo/ui";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useAirdrops } from "@/lib/hooks/useAirdrops";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { createSupabaseClient } from "@repo/lib/supabase";
 import AirdropFilter from "./AirdropFilter";
 import AirdropCard from "../../components/AirdropCard";
 import AirdropListHeader from "./AirdropListHeader";

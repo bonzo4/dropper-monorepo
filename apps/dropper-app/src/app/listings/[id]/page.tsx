@@ -1,23 +1,23 @@
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui";
 import ListingInfo from "./components/ListingInfo";
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import {
   ArrowWhite,
   DexscreenerColor,
   TelegramColor,
   Twitter,
-} from "@/components/icons";
+} from "@repo/ui/icons";
 import Link from "next/link";
 import ListingRouter from "./components/ListingsRouter";
 import { getListingPage } from "@/lib/data/listings/getListingPage";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 
 export default async function ListingPage({
   params: { id },
 }: {
   params: { id: number };
 }) {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const listing = await getListingPage({ supabase, id });
 
   if (!listing) return null;

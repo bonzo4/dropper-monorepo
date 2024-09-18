@@ -1,14 +1,15 @@
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import Link from "next/link";
 import GiveawayBannerSlider from "./components/GiveawayBannerSlider";
 import Giveaways from "./components/Giveaways";
-import { Dropzone, DropzoneMobile } from "@/components/icons";
-import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { getGiveawayBanners } from "@/lib/data/giveaway/getGiveawayBanners";
-import { cache } from "react";
+import dropzone from "@/public/dropzone.gif";
+import dropzoneMobile from "@/public/dropzone-mobile.gif";
+import Image from "next/image";
 
 export default async function Home() {
-  const supabase = createSupabaseServer();
+  const supabase = await createSupabaseServer();
   const bannersData = getGiveawayBanners({ supabase });
 
   const [banners] = await Promise.all([bannersData]);
@@ -16,8 +17,12 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center grow gap-[64px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
-        <Dropzone className="hidden sm:flex" />
-        <DropzoneMobile className="flex sm:hidden" />
+        <Image src={dropzone} alt="dropzone" className="hidden sm:flex" />
+        <Image
+          src={dropzoneMobile}
+          alt="dropzone mobile"
+          className="flex sm:hidden"
+        />
         <div className="flex flex-row gap-2">
           <Link href="/drops/create">
             <Button className=" ">CREATE DROP</Button>

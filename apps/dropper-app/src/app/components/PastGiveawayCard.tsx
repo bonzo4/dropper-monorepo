@@ -1,5 +1,5 @@
 "use client";
-import { Paragraph } from "@/components/ui/Paragraph";
+import { Paragraph } from "@repo/ui";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,7 @@ import {
   PumpFunBadge,
   SolBadge,
   TrendingBadge,
-} from "@/components/badges";
+} from "@repo/ui/badges";
 import { LandingGiveaway } from "@/lib/data/giveaway/getGiveaways";
 
 type PastGiveawayCardProps = {

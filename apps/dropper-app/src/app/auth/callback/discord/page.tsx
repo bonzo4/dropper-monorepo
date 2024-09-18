@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { createSupabaseClient } from "@repo/lib/supabase";
 import { useSearchParams, useRouter } from "next/navigation";
-import Button from "@/components/ui/Button";
+import { Button } from "@repo/ui";
 import Link from "next/link";
 import { getDiscord } from "@/lib/actions/profile/getDiscord";
 import { createDiscordAccount } from "@/lib/actions/profile/createDiscordAccount";

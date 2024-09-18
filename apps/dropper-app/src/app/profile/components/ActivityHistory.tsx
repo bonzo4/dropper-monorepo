@@ -1,9 +1,9 @@
 "use client";
 import PageNav from "@/components/PageNav";
 import { useActivityHistory } from "@/lib/hooks/useActivityHistory";
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { cn } from "@/lib/utils/classNames";
-import { mono } from "@/lib/utils/fonts";
+import { createSupabaseClient } from "@repo/lib/supabase";
+import { cn } from "@repo/ui/utils";
+import { mono } from "@repo/ui/utils";
 import { useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 

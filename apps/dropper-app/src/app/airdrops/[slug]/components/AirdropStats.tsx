@@ -1,5 +1,5 @@
 import { AirdropPageRow } from "@/lib/types/sections";
-import { Arrow } from "@/components/icons";
+import { Arrow } from "@repo/ui/icons";
 import { numString } from "@/lib/utils/numString";
 
 type AirdropStatsProps = {

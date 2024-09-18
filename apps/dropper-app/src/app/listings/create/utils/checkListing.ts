@@ -13,4 +13,10 @@ export function checkListing(listing: ListingInsert) {
   if (!listing.icon_url) {
     throw new Error("Listing icon URL is required");
   }
+  if (!listing.chain) {
+    throw new Error("Listing chain is required");
+  }
+  if (!listing.token_address) {
+    throw new Error("Listing token address is required");
+  }
 }

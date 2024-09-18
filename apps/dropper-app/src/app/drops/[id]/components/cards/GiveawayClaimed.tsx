@@ -1,4 +1,4 @@
-import { Notification, Confetti } from "@/components/icons";
+import { Notification, Confetti } from "@repo/ui/icons";
 
 export default function GiveawayClaimed() {
   return (
@@ -8,7 +8,7 @@ export default function GiveawayClaimed() {
       </div>
       <Confetti width={80} height={74} />
       <span className="text-xl">CONGRATULATIONS</span>
-      <span className="text-base text-primary">YOW WON THE DROP</span>
+      <span className="text-base text-primary">YOU WON THE DROP</span>
       <div className="flex flex-row items-center gap-6 border-2 border-primary rounded-md p-2">
         Claimed
       </div>

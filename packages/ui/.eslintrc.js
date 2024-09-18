@@ -7,4 +7,13 @@ module.exports = {
     project: "./tsconfig.lint.json",
     tsconfigRootDir: __dirname,
   },
+  include: [
+
+    "packages/**/src/**/*.ts",
+
+    "packages/**/src/**/*.tsx",
+
+    "packages/**/src/**/*.d.ts"
+
+  ]
 };

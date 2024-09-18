@@ -1,4 +1,4 @@
-import { mono } from "@/lib/utils/fonts";
+import { mono } from "@repo/ui/utils";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

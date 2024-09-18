@@ -14,7 +14,6 @@ export async function createGiveaways(
   const giveawayRequirements: GiveawayRequirementsInsert[] = [];
   for (let i = 0; i < 100; i++) {
     giveaways.push({
-      id: i,
       description: faker.lorem.paragraph(),
       end_time: faker.date.future().toISOString(),
       icon_url: faker.image.urlLoremFlickr({
