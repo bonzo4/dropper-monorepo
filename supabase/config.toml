@@ -114,21 +114,21 @@ max_frequency = "1s"
 
 # Use a production-ready SMTP server
 [auth.email.smtp]
-host = "smtp.loops.so"
+host = "smtp-relay.brevo.com"
 port = 587
-user = "loops"
-pass = "env(LOOPS_PASSWORD)"
-admin_email = "info@email.syndicatenetwork.io"
+user = "7c6fb7001@smtp-brevo.com"
+pass = "env(BREVO_PASSWORD)"
+admin_email = "info@dropper.wtf"
 sender_name = "Dropper"
 
 # Uncomment to customize email template
 [auth.email.template.confirmation]
 subject = "Please confirm your email address"
-content_path = "./supabase/templates/confirmation.json"
+content_path = "./supabase/templates/magic_link.html"
 
 [auth.email.template.magic_link]
-subject = "Please confirm your email address to login"
-content_path = "./supabase/templates/magic_link.json"
+subject = "Your magic link"
+content_path = "./supabase/templates/magic_link.html"
 
 [auth.sms]
 # Allow/disallow new user signups via SMS to your project.

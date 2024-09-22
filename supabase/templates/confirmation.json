@@ -1,7 +1,0 @@
-{
-  "transactionalId": "cm0r0hik402kiksj82y6tbfod",
-  "email": "{{ .Email }}",
-  "dataVariables": {
-    "ConfirmationURL": "{{ .ConfirmationURL }}"
-  }
-}
