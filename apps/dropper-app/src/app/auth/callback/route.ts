@@ -39,6 +39,7 @@ export async function GET(request: Request) {
     } = await supabase.auth.exchangeCodeForSession(code);
 
     if (error || !session) {
+      console.log("wtf is happening 4143");
       return redirect(`${origin}/auth/auth-code-error`);
     }
 
@@ -55,6 +56,7 @@ export async function GET(request: Request) {
 
   // return the user to an error page with instructions
   const nextSearchParams = new URLSearchParams({ code: origin, next });
+  console.log("wtf is happening");
   return redirect(
     `${process.env.NEXT_PUBLIC_URL}/auth/redirect/?${searchParams.toString()}`
   );
