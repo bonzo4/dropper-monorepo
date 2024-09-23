@@ -204,6 +204,7 @@ function LayoutWrapper({
 }) {
   return (
     <html lang="en">
+      <meta name="format-detection" content="email=no" />
       <GoogleAnalytics gaId="G-2LSDNY7P0K" />
       <body
         className={cn(
