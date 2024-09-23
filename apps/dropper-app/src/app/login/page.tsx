@@ -93,8 +93,9 @@ export default function Login() {
             )}
           >
             By logging in you agree to sign up for the Dropper Newsletter and
-            receive emails from newsletter@syndicatenetwork.io to the email
-            associated with the connected account.
+            receive emails from <span>newsletter@</span>
+            <span>syndicatenetwork.io</span> to the email associated with the
+            connected account.
           </p>
         </div>
       </div>
