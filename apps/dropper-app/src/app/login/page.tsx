@@ -27,7 +27,7 @@ export default function Login() {
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback?newsletter=${newsletter}&referral=${referral}`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback/?newsletter=${newsletter}&referral=${referral}`,
       },
     });
     if (error) {
