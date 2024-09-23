@@ -23,6 +23,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = headers().get("x-next-pathname") as string;
+  if (pathname === "/auth/redirect") {
+    return (
+      <LayoutWrapper profile={null} tickers={[]}>
+        {children}
+      </LayoutWrapper>
+    );
+  }
+
   const supabase = await createSupabaseServer();
   const userData = cache(() => supabase.auth.getUser())();
   const tickersData = getTickers({ supabase });
