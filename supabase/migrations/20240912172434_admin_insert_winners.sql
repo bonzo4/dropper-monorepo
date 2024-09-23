@@ -37,7 +37,7 @@ BEGIN
     PERFORM cron.unschedule('giveaway_' || giveaway_doc_id);
     
     perform "net"."http_post"(
-        url:='http://host.docker.internal:3000/api/giveaways/' || giveaway_doc_id || '/winner/set',
+        url:='https://dropper.wtf/api/giveaways/' || giveaway_doc_id || '/winner/set',
         body:=json_build_object('winners', array_to_json(winner_keys))::jsonb,
         headers:=jsonb_build_object('Content-Type', 'application/json', 'password', giveaway_password),
         timeout_milliseconds:=60000
