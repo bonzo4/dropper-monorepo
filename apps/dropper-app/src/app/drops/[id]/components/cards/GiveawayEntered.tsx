@@ -44,9 +44,6 @@ export default function GiveawayEntered({ endDate }: GiveawayEnteredOptions) {
 
   return (
     <div className="relative flex flex-col items-center w-[300px] md:w-[570px] border-2 border-primary rounded-md p-8 gap-5">
-      <div className="absolute top-4 right-4">
-        <QuestionCoin width={26} height={20} />
-      </div>
       <QuestionCoin width={80} height={74} />
       <span className="text-xl">YOU COULD WIN!</span>
       <span className="text-base text-primary">YOU ARE ENTERED!</span>

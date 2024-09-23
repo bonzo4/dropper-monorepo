@@ -66,6 +66,9 @@ export default function GiveawayEnter({
 
   const submitEntry = async () => {
     try {
+      if (reqCount !== completedCount) {
+        throw new Error("Please complete all requirements");
+      }
       if (!wallet.publicKey)
         throw new Error("Please connect your wallet to enter");
       if (!wallet.signMessage)
@@ -93,9 +96,6 @@ export default function GiveawayEnter({
 
   return (
     <div className="relative flex flex-col items-center w-[300px] md:w-[570px] border-2 border-primary rounded-md p-4 gap-5">
-      <div className="flex w-full justify-end">
-        <Notification width={26} height={20} />
-      </div>
       <Eyes width={80} height={74} />
       <span className="text-xl">YOU COULD WIN!</span>
       <span className="text-base text-primary">ENTER NOW!</span>
@@ -103,9 +103,7 @@ export default function GiveawayEnter({
         <span className="text-sm">TIME LEFT TO ENTER</span>
         <Countdown date={endDate.getTime()} renderer={renderer} />
         {wallet.publicKey ? (
-          <Button disabled={reqCount !== completedCount} onClick={submitEntry}>
-            ENTER
-          </Button>
+          <Button onClick={submitEntry}>ENTER</Button>
         ) : (
           <WalletMultiButton />
         )}

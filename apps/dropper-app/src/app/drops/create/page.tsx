@@ -4,7 +4,6 @@ import CreateGiveawayForm from "./components/CreateGiveawayForm";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { cn } from "@repo/ui/utils";
 import { mono } from "@repo/ui/utils";
-import { useWhitelistWallet } from "@/lib/hooks/useWhitelistWallet";
 import { useIsMounted } from "usehooks-ts";
 
 export default function CreateGiveaway() {

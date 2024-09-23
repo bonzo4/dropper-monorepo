@@ -1070,6 +1070,7 @@ export type Database = {
           id: number
           reward_amount: number
           rug_score: number | null
+          set_winners_error: string | null
           set_winners_tx: string | null
           start_time: string
           ticker: string
@@ -1077,7 +1078,7 @@ export type Database = {
           token_address: string | null
           tx_string: string | null
           usd_value: number
-          user_id: string | null
+          user_id: string
           winner_amount: number
         }
         Insert: {
@@ -1091,6 +1092,7 @@ export type Database = {
           id?: number
           reward_amount: number
           rug_score?: number | null
+          set_winners_error?: string | null
           set_winners_tx?: string | null
           start_time: string
           ticker: string
@@ -1098,7 +1100,7 @@ export type Database = {
           token_address?: string | null
           tx_string?: string | null
           usd_value: number
-          user_id?: string | null
+          user_id: string
           winner_amount: number
         }
         Update: {
@@ -1112,6 +1114,7 @@ export type Database = {
           id?: number
           reward_amount?: number
           rug_score?: number | null
+          set_winners_error?: string | null
           set_winners_tx?: string | null
           start_time?: string
           ticker?: string
@@ -1119,7 +1122,7 @@ export type Database = {
           token_address?: string | null
           tx_string?: string | null
           usd_value?: number
-          user_id?: string | null
+          user_id?: string
           winner_amount?: number
         }
         Relationships: [

@@ -7,6 +7,7 @@ import {
 } from "../../types/giveaway";
 import { getRugScore } from "../../data/getRugScore";
 import { getTokenPrice } from "../../data/getTokenPrice";
+import { ListingRow } from "@/lib/types/listing";
 
 type CreateGiveawayOptions = {
   giveaway: string;
@@ -57,11 +58,24 @@ export async function createGiveaway({
     }
     giveawayInsert.usd_value = priceResponse * giveawayInsert.reward_amount;
   }
+
+  let ctoListing: { id: number } | null = null;
+  if (giveawayInsert.token_address) {
+    const { data: listing } = await supabase
+      .from("listings")
+      .select("id")
+      .eq("token_address", giveawayInsert.token_address)
+      .eq("is_cto", true)
+      .single();
+
+    ctoListing = listing;
+  }
+
   const now = new Date();
   //   now.setMinutes(now.getMinutes() + 1);
   now.setSeconds(0, 0);
   const startDateMs = now.getTime();
-  const endDateMs = startDateMs + 1000 * 60 * 5;
+  const endDateMs = startDateMs + 1000 * 60 * 1;
   const { data, error } = await supabase
     .from("giveaways")
     .insert({
@@ -69,7 +83,7 @@ export async function createGiveaway({
       start_time: new Date(startDateMs).toISOString(),
       end_time: new Date(endDateMs).toISOString(),
       creator_key: creatorKey,
-      badges,
+      badges: ctoListing ? [...badges, "CTO"] : badges,
       user_id: user.id,
     })
     .select("id")

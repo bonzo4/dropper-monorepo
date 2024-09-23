@@ -4,7 +4,7 @@ import { setSplGiveawayWinnersInstruction } from "@/lib/solana/instructions/setS
 import { getDropperGiveaway } from "@/lib/solana/program";
 import { sendTransaction } from "@/lib/solana/sendTransaction";
 import { getManagerWallet } from "@/lib/solana/wallet";
-import { createSupabaseServer } from "@repo/lib/supabase";
+import { createSupabaseService } from "@repo/lib/supabase";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import { NextResponse } from "next/server";
 
@@ -12,18 +12,15 @@ export async function POST(
   request: Request,
   { params: { id } }: { params: { id: number } }
 ) {
+  const supabase = await createSupabaseService();
+
   try {
-    if (
-      request.headers.get("user-agent") !==
-      "PostgreSQL 15.1 (Ubuntu 15.1-1.pgdg20.04+1) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit"
-    )
+    if (request.headers.get("password") !== process.env.GIVEAWAY_PASSWORD)
       throw new Error("Unauthorized");
     const bodyData = await request.json();
     if (!bodyData.winners) throw new Error("No winners provided");
     const winners = bodyData.winners as string[];
     const winnerKeys = winners.map((key) => new PublicKey(key));
-
-    const supabase = await await createSupabaseServer();
 
     const { data, error } = await supabase
       .from("giveaways")
@@ -81,6 +78,10 @@ export async function POST(
     });
   } catch (err: any) {
     console.error(err);
+    await supabase
+      .from("giveaways")
+      .update({ set_winners_error: err.message })
+      .eq("id", id);
     return NextResponse.json(JSON.stringify(err.message), {
       status: 500,
       headers: {

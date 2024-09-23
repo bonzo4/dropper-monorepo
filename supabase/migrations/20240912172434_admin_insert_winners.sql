@@ -4,46 +4,44 @@ CREATE OR REPLACE FUNCTION admin.select_and_insert_winners(giveaway_doc_id bigin
  RETURNS void
  LANGUAGE plpgsql
  SET statement_timeout TO '60s'
+ SECURITY DEFINER
 AS $function$
 DECLARE
-    giveaway giveaways; 
+    giveaway giveaways;
+    giveaway_password text;
     winner_ids uuid[];
     winner_keys text[];
     tx text;
 BEGIN
-    SELECT * into giveaway from giveaways WHERE id = giveaway_doc_id;
+    SELECT decrypted_secret INTO giveaway_password from vault.decrypted_secrets where name = 'giveaway_password'; 
+    SELECT * into giveaway from public.giveaways WHERE id = giveaway_doc_id;
     
     SELECT array_agg(user_id) INTO winner_ids
-    FROM giveaway_entries
+    FROM public.giveaway_entries
     WHERE giveaway_id = giveaway_doc_id
     ORDER BY random()
     LIMIT giveaway.winner_amount;
     
     SELECT array_agg(wallet_key) INTO winner_keys
-    FROM giveaway_entries
+    FROM public.giveaway_entries
     WHERE giveaway_id = giveaway_doc_id
     AND user_id = ANY(winner_ids);
     
-    INSERT INTO giveaway_winners (giveaway_id, reward_amount, user_id, wallet_key)
+    INSERT INTO public.giveaway_winners (giveaway_id, reward_amount, user_id, wallet_key)
     SELECT giveaway_doc_id, giveaway.reward_amount / giveaway.winner_amount, user_id, wallet_key
-    FROM giveaway_entries
+    FROM public.giveaway_entries
     WHERE giveaway_id = giveaway_doc_id
     AND user_id = ANY(winner_ids)
     AND wallet_key = ANY(winner_keys);
 
     PERFORM cron.unschedule('giveaway_' || giveaway_doc_id);
-
-    PERFORM http_set_curlopt('CURLOPT_TIMEOUT', '60');
-    PERFORM http_set_curlopt('CURLOPT_CONNECTTIMEOUT', '60');
     
-    PERFORM 
-        http_post(
-            'https://www.dropper.wtf/api/giveaways/' || giveaway.id || '/winner/set',
-            '{ "winners": ' || array_to_json(winner_keys) || ' }',
-            'application/json'
-        );
-    
-
+    perform "net"."http_post"(
+        url:='http://host.docker.internal:3000/api/giveaways/' || giveaway_doc_id || '/winner/set',
+        body:=json_build_object('winners', array_to_json(winner_keys))::jsonb,
+        headers:=jsonb_build_object('Content-Type', 'application/json', 'password', giveaway_password),
+        timeout_milliseconds:=60000
+    ) as request_id;
     
     RETURN;
 END;

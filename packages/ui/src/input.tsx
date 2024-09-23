@@ -10,7 +10,7 @@ export const Input = (props: InputProps) => {
         {...props}
         className={cn(
           mono.className,
-          "relative shadow-[0px_1px_2px_rgba(0,_0,_0,_0.05)] rounded-full bg-secondary box-border  flex flex-row items-start justify-start py-1 px-4 min-w-[256px] text-left text-[12px] text-text font-fff-forward ",
+          "relative shadow-[0px_1px_2px_rgba(0,_0,_0,_0.05)] rounded-full bg-secondary box-border  flex flex-row items-start justify-start py-1 px-4 min-w-[256px] text-left text-[12px] text-text font-fff-forward w-full",
           props.className
         )}
         style={{

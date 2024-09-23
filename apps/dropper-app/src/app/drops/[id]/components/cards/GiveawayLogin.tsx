@@ -46,9 +46,6 @@ export default function GiveawayLogin({ endDate }: GiveawayLoginProps) {
 
   return (
     <div className="relative flex flex-col items-center w-[300px] md:w-[570px] border-2 border-orange rounded-md p-4 gap-5">
-      <div className="flex w-full justify-end">
-        <Notification width={26} height={20} />
-      </div>
       <Hold width={80} height={74} />
       <span className="text-xl">HOLD UP...</span>
       <span className="text-base text-orange">
