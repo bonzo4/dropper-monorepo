@@ -89,12 +89,13 @@ export default function Login() {
           <p
             className={cn(
               mono.className,
-              "w-[300px] text-[12px] relative whitespace-pre-wrap text-wrap flex items-center shrink-0"
+              "w-[300px] text-[12px] relative whitespace-pre-wrap break-words flex items-center shrink-0"
             )}
           >
             By logging in you agree to sign up for the Dropper Newsletter and
-            receive emails from newsletter@syndicatenetwork.io to the email
-            associated with the connected account.
+            receive emails from
+            <span className="break-all">newsletter@syndicatenetwork.io</span>
+            to the email associated with the connected account.
           </p>
         </div>
       </div>
