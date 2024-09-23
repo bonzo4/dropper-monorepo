@@ -7,12 +7,77 @@ import GiveawayRouter from "./components/GiveawayRouter";
 import { getGiveawayPage } from "@/lib/data/giveaway/getGiveawayPage";
 import { getGiveawayEntry } from "@/lib/data/giveaway/getGiveawayEntry";
 import { getGiveawayWinner } from "@/lib/data/giveaway/getGiveawayWinner";
+import { Metadata, ResolvingMetadata } from "next";
 
-export default async function GiveawayPage({
-  params: { id },
-}: {
-  params: { id: number };
-}) {
+type Params = {
+  id: number;
+};
+
+type Props = {
+  params: Params;
+};
+
+export async function generateMetadata(
+  { params: { id } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const supabase = await createSupabaseServer();
+  const giveawayPage = await getGiveawayPage({ supabase, id });
+  if (!giveawayPage) throw new Error("Giveaway not found");
+  return {
+    title: `${giveawayPage.title} | Dropper`,
+    description: `dropper.wtf - ${giveawayPage.description}`,
+    keywords: [
+      "crypto",
+      "cryptocurrency",
+      "blockchain",
+      "token",
+      "meme-coin",
+      "drop",
+      "giveaway",
+      "airdrop",
+      "solana",
+      "ethereum",
+      "bitcoin",
+      giveawayPage.title,
+      giveawayPage.ticker,
+    ],
+    openGraph: {
+      title: `${giveawayPage.title} | Dropper`,
+      description: `dropper.wtf - ${giveawayPage.description}`,
+      type: "website",
+      url: `https://dropper.wtf/drops/${id}`,
+      images: [
+        {
+          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
+          width: 1440,
+          height: 1274,
+          alt: "Dropper",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${giveawayPage.title} | Dropper`,
+      description: `dropper.wtf - ${giveawayPage.description}`,
+      creator: "@DropperNTWRK",
+      site: "@DropperNTWRK",
+      images: [
+        {
+          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
+          width: 1440,
+          height: 1274,
+          alt: "Dropper",
+        },
+      ],
+    },
+    alternates: {
+      canonical: `https://dropper.wtf/drops/${id}`,
+    },
+  };
+}
+
+export default async function GiveawayPage({ params: { id } }: Props) {
   const supabase = await createSupabaseServer();
   const {
     data: { user },

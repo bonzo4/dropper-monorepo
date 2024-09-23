@@ -15,6 +15,56 @@ import { getDiscordAccount } from "@/lib/data/profile/getDiscordAccount";
 import ConnectSolanaWallet from "./components/ConnectSolanaWallet";
 import { getSolanaWallet } from "@/lib/data/profile/getSolanaAccount";
 import ConnectTwitter from "./components/ConnectTwitter";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile | Dropper",
+  description: "dropper.wtf - Discover Token and Meme-Coin drops.",
+  keywords: [
+    "crypto",
+    "cryptocurrency",
+    "blockchain",
+    "token",
+    "meme-coin",
+    "airdrop",
+    "solana",
+    "ethereum",
+    "bitcoin",
+    "profile",
+  ],
+  openGraph: {
+    url: "https://dropper.wtf/profile",
+    type: "website",
+    title: "Profile | Dropper",
+    description: "dropper.wtf - Discover Token and Meme-Coin drops.",
+    images: [
+      {
+        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail2.png",
+        width: 1440,
+        height: 1274,
+        alt: "Dropper",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Profile | Dropper",
+    description: "dropper.wtf - Discover Token and Meme-Coin drops.",
+    creator: "@DropperNTWRK",
+    site: "@DropperNTWRK",
+    images: [
+      {
+        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail2.png",
+        width: 1440,
+        height: 1274,
+        alt: "Dropper",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://dropper.wtf/profile",
+  },
+};
 
 export default async function ProfilePage() {
   const supabase = await createSupabaseServer();

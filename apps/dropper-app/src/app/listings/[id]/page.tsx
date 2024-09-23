@@ -1,22 +1,78 @@
 import { Paragraph } from "@repo/ui";
 import ListingInfo from "./components/ListingInfo";
 import { Button } from "@repo/ui";
-import {
-  ArrowWhite,
-  DexscreenerColor,
-  TelegramColor,
-  Twitter,
-} from "@repo/ui/icons";
-import Link from "next/link";
+import { DexscreenerColor, TelegramColor, Twitter } from "@repo/ui/icons";
 import ListingRouter from "./components/ListingsRouter";
 import { getListingPage } from "@/lib/data/listings/getListingPage";
 import { createSupabaseServer } from "@repo/lib/supabase";
+import { Metadata, ResolvingMetadata } from "next";
 
-export default async function ListingPage({
-  params: { id },
-}: {
-  params: { id: number };
-}) {
+type Params = {
+  id: number;
+};
+
+type Props = {
+  params: Params;
+};
+
+export async function generateMetadata(
+  { params: { id } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const supabase = await createSupabaseServer();
+  const listing = await getListingPage({ supabase, id });
+  if (!listing) throw new Error("Listing not found");
+  return {
+    title: `${listing.title} | Dropper`,
+    description: `dropper.wtf - ${listing.description}`,
+    keywords: [
+      "crypto",
+      "cryptocurrency",
+      "blockchain",
+      "token",
+      "meme-coin",
+      "listing",
+      "community",
+      "airdrop",
+      "solana",
+      "ethereum",
+      "bitcoin",
+      listing.title,
+      listing.ticker,
+    ],
+    openGraph: {
+      title: `${listing.title} | Dropper`,
+      description: `dropper.wtf - ${listing.description}`,
+      type: "website",
+      url: `https://dropper.wtf/listings/${id}`,
+      images: [
+        {
+          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail2.png",
+          width: 1440,
+          height: 1274,
+          alt: "Dropper",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${listing.title} | Dropper`,
+      description: `dropper.wtf - ${listing.description}`,
+      creator: "@DropperNTWRK",
+      site: "@DropperNTWRK",
+      images: [
+        {
+          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail2.png",
+          width: 1440,
+          height: 1274,
+          alt: "Dropper",
+        },
+      ],
+    },
+  };
+}
+
+export default async function ListingPage({ params: { id } }: Props) {
   const supabase = await createSupabaseServer();
   const listing = await getListingPage({ supabase, id });
 

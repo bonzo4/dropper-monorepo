@@ -11,11 +11,113 @@ import Code from "./code/page";
 import { getTickers, TickerGiveaway } from "@/lib/data/getTickers";
 import { cache } from "react";
 import { headers } from "next/headers";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "Dropper",
-  description:
-    "Get the latest info on the hottest airdrops on all Blockchains.",
+  metadataBase: new URL("https://dropper.wtf"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Dropper",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    googleBot: "index, follow",
+  },
+  applicationName: "Dropper",
+  appleWebApp: {
+    title: "Dropper",
+    statusBarStyle: "default",
+    capable: true,
+  },
+  // verification: {
+  //   google: process.env.GOOGLE_SEO_KEY,
+  // },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        type: "image/x-icon",
+      },
+      {
+        url: "/favicon-32x32.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        url: "/favicon-16x16.png",
+        type: "image/png",
+        sizes: "16x16",
+      },
+      {
+        url: "/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+      {
+        url: "/android-chrome-192x192.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
+    ],
+    shortcut: [
+      {
+        url: "/favicon.ico",
+        type: "image/x-icon",
+      },
+    ],
+    apple: [
+      {
+        url: "/apple-icon-57x57.png",
+        sizes: "57x57",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-60x60.png",
+        sizes: "60x60",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-72x72.png",
+        sizes: "72x72",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-76x76.png",
+        sizes: "76x76",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-114x114.png",
+        sizes: "114x114",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-120x120.png",
+        sizes: "120x120",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-144x144.png",
+        sizes: "144x144",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-152x152.png",
+        sizes: "152x152",
+        type: "image/png",
+      },
+      {
+        url: "/apple-icon-180x180.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
@@ -101,6 +203,7 @@ function LayoutWrapper({
 }) {
   return (
     <html lang="en">
+      <GoogleAnalytics gaId="G-2LSDNY7P0K" />
       <body
         className={cn(
           "relative flex flex-col min-h-screen w-full",
