@@ -9,15 +9,16 @@ export default function RedirectPage() {
 
   useEffect(() => {
     const redirect = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const redirectUrl = searchParams.get("next") || "/";
-      router.push(redirectUrl);
+      router.replace(redirectUrl);
+      router.refresh();
     };
     redirect();
   }, [router, searchParams]);
 
   return (
-    <main className="flex w-full grow items-center justify-center">
+    <main className="flex flex-col w-full grow items-center justify-center">
       <h1 className="text-2xl">Redirecting...</h1>
       <span>Please do not click away from this page. </span>
     </main>

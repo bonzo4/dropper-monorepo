@@ -19,7 +19,7 @@ export default function CodeSubmit() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
+    const code = urlParams.get("accessCode");
     if (code) {
       setCode(code);
     }

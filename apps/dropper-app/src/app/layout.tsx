@@ -10,6 +10,7 @@ import { UserCodeRow } from "@/lib/types/accessCode";
 import Code from "./code/page";
 import { getTickers, TickerGiveaway } from "@/lib/data/getTickers";
 import { cache } from "react";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Dropper",
@@ -22,6 +23,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = headers().get("x-next-pathname") as string;
+  if (pathname === "/auth/redirect") {
+    return (
+      <LayoutWrapper profile={null} tickers={[]}>
+        {children}
+      </LayoutWrapper>
+    );
+  }
+
   const supabase = await createSupabaseServer();
   const userData = cache(() => supabase.auth.getUser())();
   const tickersData = getTickers({ supabase });
