@@ -14,6 +14,7 @@ export default function CodeSubmit() {
   const supabase = createSupabaseClient();
 
   const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function CodeSubmit() {
 
   const checkCode = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -50,7 +52,10 @@ export default function CodeSubmit() {
       userId: user.id,
     });
 
-    if (response) return toast.error("Invalid access code");
+    if (response) {
+      setLoading(false);
+      return toast.error("Invalid access code");
+    }
 
     router.refresh();
   };
@@ -64,7 +69,9 @@ export default function CodeSubmit() {
           onChange={handleCodeChange}
         />
       </div>
-      <Button type="submit">Submit</Button>
+      <Button disabled={loading} type="submit">
+        Submit
+      </Button>
     </form>
   );
 }
