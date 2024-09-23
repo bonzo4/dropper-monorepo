@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { type CookieOptions, createServerClient } from "@supabase/ssr";
 import { subscribe } from "@/lib/actions/subscribe";
 import { createReferral } from "@/lib/actions/createReferral";
+import { redirect } from "next/navigation";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -38,7 +39,7 @@ export async function GET(request: Request) {
     } = await supabase.auth.exchangeCodeForSession(code);
 
     if (error || !session) {
-      return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+      return redirect(`${origin}/auth/auth-code-error`);
     }
 
     if (referral) {
@@ -54,7 +55,7 @@ export async function GET(request: Request) {
 
   // return the user to an error page with instructions
   const nextSearchParams = new URLSearchParams({ code: origin, next });
-  return NextResponse.redirect(
+  return redirect(
     `${process.env.NEXT_PUBLIC_URL}/auth/redirect/?${searchParams.toString()}`
   );
 }
