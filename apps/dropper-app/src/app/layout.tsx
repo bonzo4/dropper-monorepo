@@ -14,6 +14,7 @@ import { headers } from "next/headers";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
+  title: "Dropper",
   metadataBase: new URL("https://dropper.wtf"),
   openGraph: {
     type: "website",

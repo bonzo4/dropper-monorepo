@@ -7,61 +7,6 @@ import { useIsMounted } from "usehooks-ts";
 import CreateListingForm from "./components/CreateListingForm";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Create Listings | Dropper",
-  description:
-    "dropper.wtf - List and bump your favorite Tokens and Meme-Coins.",
-  keywords: [
-    "crypto",
-    "cryptocurrency",
-    "blockchain",
-    "token",
-    "meme-coin",
-    "listing",
-    "community",
-    "airdrop",
-    "solana",
-    "ethereum",
-    "bitcoin",
-    "create",
-  ],
-  openGraph: {
-    url: "https://dropper.wtf/listings/create",
-    type: "website",
-    title: "Create Listings | Dropper",
-    description:
-      "dropper.wtf - List and bump your favorite Tokens and Meme-Coins.",
-    images: [
-      {
-        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail2.png",
-        width: 1440,
-        height: 1274,
-        alt: "Dropper",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Create Listings | Dropper",
-    description:
-      "dropper.wtf - List and bump your favorite Tokens and Meme-Coins.",
-    creator: "@DropperNTWRK",
-    site: "@DropperNTWRK",
-    images: [
-      {
-        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail2.png",
-        width: 1440,
-        height: 1274,
-        alt: "Dropper",
-      },
-    ],
-  },
-  alternates: {
-    canonical: "https://dropper.wtf/listings/create",
-  },
-};
 
 export default function CreateListing() {
   const mounted = useIsMounted();

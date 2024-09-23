@@ -7,58 +7,6 @@ import { cn } from "@repo/ui/utils";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useIsMounted } from "usehooks-ts";
 import { createSupabaseClient } from "@repo/lib/supabase";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Manage Drops | Dropper",
-  description: "dropper.wtf - Discover Token and Meme-Coin drops.",
-  keywords: [
-    "crypto",
-    "cryptocurrency",
-    "blockchain",
-    "token",
-    "meme-coin",
-    "drop",
-    "giveaway",
-    "airdrop",
-    "solana",
-    "ethereum",
-    "bitcoin",
-    "manage",
-  ],
-  openGraph: {
-    url: "https://dropper.wtf/drops/manage",
-    type: "website",
-    title: "Manage Drops | Dropper",
-    description: "dropper.wtf - Discover Token and Meme-Coin drops.",
-    images: [
-      {
-        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
-        width: 1440,
-        height: 1274,
-        alt: "Dropper",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Manage Drops | Dropper",
-    description: "dropper.wtf - Discover Token and Meme-Coin drops.",
-    creator: "@DropperNTWRK",
-    site: "@DropperNTWRK",
-    images: [
-      {
-        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
-        width: 1440,
-        height: 1274,
-        alt: "Dropper",
-      },
-    ],
-  },
-  alternates: {
-    canonical: "https://dropper.wtf/drops/manage",
-  },
-};
 
 export default function ManageGiveawaysPage() {
   const supabase = createSupabaseClient();
