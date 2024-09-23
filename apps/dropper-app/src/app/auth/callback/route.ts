@@ -52,8 +52,9 @@ export async function GET(request: Request) {
     }
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}${next}`);
+  const nextSearchParams = new URLSearchParams({ code: origin, next });
+  return NextResponse.redirect(
+    `${process.env.NEXT_PUBLIC_URL}/auth/redirect/?${searchParams.toString()}`
+  );
 }
