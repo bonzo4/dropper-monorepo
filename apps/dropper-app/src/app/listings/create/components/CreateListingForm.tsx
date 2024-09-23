@@ -153,7 +153,6 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
               X Account
             </span>
             <Input
-              className="w-full"
               placeholder="@"
               value={listing.twitter_url || ""}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -166,7 +165,6 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
               Telegram Group
             </span>
             <Input
-              className="w-full"
               placeholder="Telegram Link"
               value={listing.twitter_url || ""}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -179,7 +177,6 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
               Dexscreener
             </span>
             <Input
-              className="w-full"
               placeholder="Dexscreener Link"
               value={listing.twitter_url || ""}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>

@@ -3,13 +3,7 @@ import { ListingInsert } from "@/lib/types/listing";
 import { uploadImage } from "@/lib/utils/saveImage";
 import { SupabaseClient } from "@supabase/supabase-js";
 import Image from "next/image";
-import {
-  ChangeEvent,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 
