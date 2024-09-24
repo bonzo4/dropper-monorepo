@@ -44,7 +44,7 @@ export default function ActivityHistory({ userId }: Options) {
       )}
       {!loading && activities.length > 0 && (
         <ul className="flex flex-col gap-2 py-6">
-          {activities.map((activity, index) => (
+          {activities.slice(0, 10).map((activity, index) => (
             <li
               key={activity.id}
               className={cn(

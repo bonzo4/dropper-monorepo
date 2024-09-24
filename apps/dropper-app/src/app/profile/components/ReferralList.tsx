@@ -71,7 +71,7 @@ export default function ReferralList({ userId }: Options) {
       )}
       {!loading && referrals.length > 0 && (
         <ul className="flex flex-col gap-2 py-7">
-          {referrals.map((referral, index) => (
+          {referrals.slice(0, 10).map((referral, index) => (
             <li
               key={referral.user_id}
               className={cn(
