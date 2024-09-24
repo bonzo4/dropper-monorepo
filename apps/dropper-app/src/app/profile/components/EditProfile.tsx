@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import ProfileIconUpload from "./ProfileIconUpload";
 import { Input } from "@repo/ui";
 import { Button } from "@repo/ui";
+import { useRouter } from "next/navigation";
+import { revalidatePage } from "@/lib/actions/revalidateHomePage";
 
 type Options = {
   profile: ProfilePageData;
@@ -17,6 +19,7 @@ export default function EditProfile({ profile }: Options) {
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState(profile.username);
   const [icon, setIcon] = useState(profile.icon);
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,9 +42,10 @@ export default function EditProfile({ profile }: Options) {
       toast.error(error.message);
     } else {
       toast.success("Profile updated");
+      setShowModal(false);
+      revalidatePage("/profile");
     }
     setLoading(false);
-    setShowModal(false);
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
