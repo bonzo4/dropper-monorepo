@@ -7,37 +7,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createSupabaseServer();
   const defaultPages: MetadataRoute.Sitemap = [
     {
-      url: "/",
+      url: "https://dropper.wtf/",
       priority: 1,
       lastModified: new Date(),
       changeFrequency: "daily",
     },
     {
-      url: "/drops/create",
+      url: "https://dropper.wtf/drops/create",
       priority: 0.7,
       lastModified: new Date(),
       changeFrequency: "never",
     },
     {
-      url: "/drops/manage",
+      url: "https://dropper.wtf/drops/manage",
       priority: 0.7,
       lastModified: new Date(),
       changeFrequency: "never",
     },
     {
-      url: "/listings",
+      url: "https://dropper.wtf/listings",
       priority: 0.9,
       lastModified: new Date(),
       changeFrequency: "daily",
     },
     {
-      url: "/listings/create",
+      url: "https://dropper.wtf/listings/create",
       priority: 0.7,
       lastModified: new Date(),
       changeFrequency: "never",
     },
     {
-      url: "/login",
+      url: "https://dropper.wtf/login",
+      priority: 0.7,
+      lastModified: new Date(),
+      changeFrequency: "never",
+    },
+    {
+      url: "https://dropper.wtf/code",
       priority: 0.7,
       lastModified: new Date(),
       changeFrequency: "never",
@@ -55,13 +61,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemap = [
     ...defaultPages,
     ...giveawayIds.map((id) => ({
-      url: `/giveaways/${id}`,
+      url: `https://dropper.wtf/drops/${id}`,
       priority: 0.8,
       lastModified: new Date(),
       changeFrequency: "daily" as "daily",
     })),
     ...listingIds.map((id) => ({
-      url: `/listings/${id}`,
+      url: `https://dropper.wtf/listings/${id}`,
       priority: 0.8,
       lastModified: new Date(),
       changeFrequency: "daily" as "daily",

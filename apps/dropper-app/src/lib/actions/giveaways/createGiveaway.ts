@@ -75,7 +75,7 @@ export async function createGiveaway({
   //   now.setMinutes(now.getMinutes() + 1);
   now.setSeconds(0, 0);
   const startDateMs = now.getTime();
-  const endDateMs = startDateMs + 1000 * 60 * 1;
+  const endDateMs = startDateMs + 1000 * 60 * 60 * 24;
   const { data, error } = await supabase
     .from("giveaways")
     .insert({
