@@ -127,7 +127,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = headers().get("x-next-pathname") as string;
-  if (pathname === "/auth/redirect") {
+  if (["robots.txt", "sitemap.xml"].includes(pathname)) {
     return (
       <LayoutWrapper profile={null} tickers={[]}>
         {children}
