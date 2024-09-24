@@ -147,8 +147,8 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-4 w-full">
-          <div className="flex flex-col lg:flex-row gap-2 lg:justify-stretch">
+        <div className="flex flex-col gap-4 w-full lg:justify-stretch">
+          <div className="flex flex-col lg:flex-row gap-2 w-full">
             <span className={cn(mono.className, "min-w-[152px]")}>
               X Account
             </span>
