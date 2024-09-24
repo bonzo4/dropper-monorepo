@@ -65,7 +65,7 @@ export default function EditProfile({ profile }: Options) {
               icon={icon}
               setIcon={setIcon}
             />
-            <div className="flex flex-col items-start gap-1">
+            <div className="flex flex-col items-start gap-1 w-full">
               <label htmlFor="username">Username</label>
               <Input
                 value={username}
