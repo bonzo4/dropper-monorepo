@@ -19,7 +19,6 @@ export default function EditProfile({ profile }: Options) {
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState(profile.username);
   const [icon, setIcon] = useState(profile.icon);
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,7 +55,7 @@ export default function EditProfile({ profile }: Options) {
     return <Button onClick={() => setShowModal(true)}>Edit</Button>;
 
   return (
-    <div className="z-20 absolute bg-opacity-75 bg-black flex items-center justify-center w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div className="z-20 absolute bg-opacity-75 bg-black flex items-center py-20 w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <div className="relative bg-background flex flex-col px-6 py-12 gap-4 border-2 border-primary rounded-md">
         <h2 className="text-3xl">Edit Profile</h2>
         <form className="flex flex-col gap-4" onSubmit={handleSave}>
