@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/dropper_giveaway.json`.
  */
 export type DropperGiveaway = {
-  address: "8s9yegeQK6UJPJq25jquj7vQQx6yJJtKZ7CFLjUaj5cL";
+  address: "DMvcnVsLb2KNE443utsyWSXv7MJYSrRDvCccgQNv28Pc";
   metadata: {
     name: "dropperGiveaway";
     version: "0.1.0";
@@ -278,7 +278,7 @@ export type DropperGiveaway = {
         {
           name: "dropperVault";
           writable: true;
-          address: "89LabAxMY6Bn9ak1Uz5LfQZtNybtFhpARatkm7wQHrJE";
+          address: "A2RAA1j1RvQ5VDVzpmGY7S5JYc2abTXyLBUdze7DJKeM";
         },
         {
           name: "giveaway";
@@ -341,7 +341,7 @@ export type DropperGiveaway = {
         {
           name: "dropperVault";
           writable: true;
-          address: "89LabAxMY6Bn9ak1Uz5LfQZtNybtFhpARatkm7wQHrJE";
+          address: "A2RAA1j1RvQ5VDVzpmGY7S5JYc2abTXyLBUdze7DJKeM";
         },
         {
           name: "tokenPayerAccount";

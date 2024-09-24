@@ -1,7 +1,7 @@
 import { Idl } from "@coral-xyz/anchor";
 
 export const IDL: Idl = {
-  address: "8s9yegeQK6UJPJq25jquj7vQQx6yJJtKZ7CFLjUaj5cL",
+  address: "DMvcnVsLb2KNE443utsyWSXv7MJYSrRDvCccgQNv28Pc",
   metadata: {
     name: "dropper_giveaway",
     version: "0.1.0",
@@ -178,7 +178,7 @@ export const IDL: Idl = {
         {
           name: "dropper_vault",
           writable: true,
-          address: "89LabAxMY6Bn9ak1Uz5LfQZtNybtFhpARatkm7wQHrJE",
+          address: "A2RAA1j1RvQ5VDVzpmGY7S5JYc2abTXyLBUdze7DJKeM",
         },
         {
           name: "giveaway",
@@ -230,7 +230,7 @@ export const IDL: Idl = {
         {
           name: "dropper_vault",
           writable: true,
-          address: "89LabAxMY6Bn9ak1Uz5LfQZtNybtFhpARatkm7wQHrJE",
+          address: "A2RAA1j1RvQ5VDVzpmGY7S5JYc2abTXyLBUdze7DJKeM",
         },
         {
           name: "token_payer_account",

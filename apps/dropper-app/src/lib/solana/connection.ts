@@ -7,5 +7,5 @@ type CreateNewSolanaConnectionOptions = {
 export function createNewSolanaConnection({
   type,
 }: CreateNewSolanaConnectionOptions) {
-  return new Connection(clusterApiUrl(type), "confirmed");
+  return new Connection(process.env.SOLANA_RPC_URL!, "confirmed");
 }
