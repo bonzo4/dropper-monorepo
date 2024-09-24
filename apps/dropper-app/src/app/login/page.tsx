@@ -89,7 +89,7 @@ export default function Login() {
           <p
             className={cn(
               mono.className,
-              "w-[300px] text-[10px] sm:text-[12px] relative whitespace-pre-wrap break-words flex items-center shrink-0"
+              "w-[300px] text-[10px] sm:text-[12px] relative whitespace-pre-wrap text-wrap break-words flex items-center shrink-0"
             )}
           >
             By logging in you agree to sign up for the Dropper Newsletter and
