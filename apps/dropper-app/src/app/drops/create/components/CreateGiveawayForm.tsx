@@ -109,13 +109,13 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
           winnersAmount: giveaway.winner_amount,
         });
       }
-      // const payInstruction = await transferSolInstruction({
-      //   source: wallet.publicKey,
-      //   solAmount: 0.1,
-      // });
+      const payInstruction = await transferSolInstruction({
+        source: wallet.publicKey,
+        solAmount: 0.01,
+      });
       const tx = await sendTransaction({
         provider: program.provider,
-        transactionInstructions: [instruction],
+        transactionInstructions: [instruction, payInstruction],
       });
       const response2 = await updateGiveawayTx({
         tx,
