@@ -46,7 +46,7 @@ export default function Listings() {
       const provider = getProvider(wallet, connection);
       const instruction = await transferSolInstruction({
         source: wallet.publicKey,
-        solAmount: 0.5,
+        solAmount: 0.01,
       });
       const tx = await sendTransaction({
         provider,

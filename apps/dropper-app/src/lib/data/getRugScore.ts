@@ -1,6 +1,4 @@
-export async function getRugScore(
-  address: string = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"
-) {
+export async function getRugScore(address: string) {
   const response = await fetch(
     `https://api.rugcheck.xyz/v1/tokens/${address}/report/summary`
   );

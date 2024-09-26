@@ -44,14 +44,22 @@ export async function createGiveaway({
     delete giveawayInsert.token_address;
   }
   if (giveawayType === "spl" && giveawayInsert.token_address) {
-    const rugResponse = await getRugScore();
+    const rugResponse = await getRugScore(giveawayInsert.token_address);
 
     if (rugResponse.status === "error") {
       return JSON.stringify(rugResponse);
     }
+
+    if (typeof rugResponse == "number" && rugResponse > 30000) {
+      return JSON.stringify({
+        status: "error",
+        error: "This token has a high rug score",
+      });
+    }
+
     giveawayInsert.rug_score = rugResponse;
 
-    const priceResponse = await getTokenPrice();
+    const priceResponse = await getTokenPrice(giveawayInsert.token_address);
 
     if (priceResponse.status === "error") {
       return JSON.stringify(priceResponse);
@@ -75,13 +83,12 @@ export async function createGiveaway({
   //   now.setMinutes(now.getMinutes() + 1);
   now.setSeconds(0, 0);
   const startDateMs = now.getTime();
-  const endDateMs = startDateMs + 1000 * 60 * 60 * 24;
   const { data, error } = await supabase
     .from("giveaways")
     .insert({
       ...giveawayInsert,
       start_time: new Date(startDateMs).toISOString(),
-      end_time: new Date(endDateMs).toISOString(),
+      end_time: giveawayInsert.end_time,
       creator_key: creatorKey,
       badges: ctoListing ? [...badges, "CTO"] : badges,
       user_id: user.id,

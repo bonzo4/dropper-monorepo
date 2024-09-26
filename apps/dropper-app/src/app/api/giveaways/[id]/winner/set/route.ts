@@ -34,9 +34,7 @@ export async function POST(
 
     let instruction: TransactionInstruction;
 
-    const connection = createNewSolanaConnection({
-      type: "devnet",
-    });
+    const connection = createNewSolanaConnection();
 
     const program = getDropperGiveaway(managerWallet, connection);
     if (!program) throw new Error("Program not found");

@@ -1,6 +1,4 @@
-export async function getTokenPrice(
-  address: string = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"
-) {
+export async function getTokenPrice(address: string) {
   const response = await fetch(
     `https://public-api.birdeye.so/defi/price?address=${address}`,
     {

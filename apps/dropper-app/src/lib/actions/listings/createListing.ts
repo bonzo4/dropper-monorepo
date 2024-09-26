@@ -2,6 +2,7 @@
 
 import { createSupabaseServer } from "@repo/lib/supabase";
 import { ListingInsert } from "../../types/listing";
+import { getTokenData } from "@/lib/data/getTokenData";
 
 type Options = {
   listing: string;
@@ -23,11 +24,16 @@ export async function createListing({ listing, creatorKey, tx }: Options) {
     });
 
   const listingInsert = JSON.parse(listing) as ListingInsert;
+
+  const tokenData = await getTokenData(listingInsert.token_address);
+
   const { error } = await supabase.from("listings").insert({
     ...listingInsert,
     creator_key: creatorKey,
     tx_string: tx,
     user_id: user.id,
+    ath: tokenData.ath,
+    atv: tokenData.atv,
   });
 
   if (error) return JSON.stringify({ status: "error", error: error.message });

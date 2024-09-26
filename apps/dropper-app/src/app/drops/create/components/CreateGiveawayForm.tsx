@@ -164,6 +164,10 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
       setGiveaway({ ...giveaway, reward_amount: 0, token_address: "" });
   };
 
+  const handleGiveawayEndTimeChange = (value: string) => {
+    setGiveaway({ ...giveaway, end_time: value });
+  };
+
   return (
     <form className="flex flex-col gap-6 w-full px-4" onSubmit={onSubmit}>
       <div className="flex flex-col gap-2 w-full">
@@ -196,6 +200,18 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
                 handleGiveawayChange("description", e.target.value)
               }
             />
+            <div className="flex flex-row gap-4 items-center">
+              <span className={cn(mono.className)}>End Time</span>
+              <Input
+                className="max-w-[200px]"
+                type="datetime-local"
+                placeholder="Drop End Time"
+                value={giveaway.end_time}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleGiveawayEndTimeChange(e.target.value)
+                }
+              />
+            </div>
           </div>
         </div>
       </div>

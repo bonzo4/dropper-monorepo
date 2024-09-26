@@ -99,7 +99,7 @@ export default function GiveawayEnter({
       <Eyes width={80} height={74} />
       <span className="text-xl">YOU COULD WIN!</span>
       <span className="text-base text-primary">ENTER NOW!</span>
-      <div className="flex flex-row items-center gap-6 border-2 border-primary rounded-md p-2">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 border-2 border-primary rounded-md p-2">
         <span className="text-sm">TIME LEFT TO ENTER</span>
         <Countdown date={endDate.getTime()} renderer={renderer} />
         {wallet.publicKey ? (

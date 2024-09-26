@@ -120,7 +120,7 @@ export default function GiveawayWinner({
       <Confetti width={80} height={74} />
       <span className="text-xl">CONGRATULATIONS</span>
       <span className="text-base text-primary">YOU WON THE DROP</span>
-      <div className="flex flex-row items-center gap-6 border-2 border-primary rounded-md p-2">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 border-2 border-primary rounded-md p-2">
         <span className="text-sm">
           CLAIM HERE ({winner.wallet_key.slice(0, 4)}...
           {winner.wallet_key.slice(-4)})
