@@ -176,14 +176,14 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
           />
           <div className="flex flex-col grow gap-3">
             <Input
-              placeholder="Token Title"
+              placeholder="Token Name"
               value={giveaway.title}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 handleGiveawayChange("title", e.target.value)
               }
             />
             <Input
-              placeholder="Token Ticker"
+              placeholder="Ticker"
               value={giveaway.ticker}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 handleGiveawayChange("ticker", e.target.value)
@@ -325,20 +325,18 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
         <h1 className="relative text-2xl md:text-[36px] py-5 ">DEPLOY</h1>
         <div className="flex flex-col gap-4">
           <div className="flex flex-row items-center gap-4">
-            <span className={cn(mono.className, "f")}>
-              Giveaway cost: 0.1 SOL
-            </span>
+            <span className={cn(mono.className, "f")}>Giveaway cost: Free</span>
 
             {wallet.publicKey && (
               <Button className="" type="submit" disabled={disabled}>
-                DEPLOY
+                DEPLOY NOW
               </Button>
             )}
             {mounted() && <WalletMultiButton />}
           </div>
           <span className={cn(mono.className, "")}>
-            All giveaways start in 5 minutes after purchase and end in 1 hour.
-            There will be 5 winners.
+            All drops start within 5 minutes after deployment. 5 winners will be
+            randomly selected.
           </span>
         </div>
       </div>

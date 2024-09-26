@@ -83,7 +83,7 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <GiveawayBannerSlider banners={banners} />
+      {/* <GiveawayBannerSlider banners={banners} /> */}
       <Giveaways />
     </main>
   );

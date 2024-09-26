@@ -93,7 +93,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
   const handleListingLinkChange = <
     K extends keyof Pick<
       ListingInsert,
-      "dexscreener_url" | "twitter_url" | "telegram_url"
+      "dexscreener_url" | "twitter_url" | "telegram_url" | "discord_url"
     >,
   >(
     key: K,
@@ -153,6 +153,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
               X Account
             </span>
             <Input
+              className="w-full"
               placeholder="@"
               value={listing.twitter_url || ""}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -161,29 +162,40 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
             />
           </div>
           <div className="flex flex-col lg:flex-row gap-2">
+            <span className={cn(mono.className, "min-w-[152px]")}>Discord</span>
+            <Input
+              placeholder="Discord Invite"
+              value={listing.discord_url || ""}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                handleListingLinkChange("discord_url", e.target.value)
+              }
+            />
+          </div>
+          <div className="flex flex-col lg:flex-row gap-2 w-full">
             <span className={cn(mono.className, "min-w-[152px]")}>
-              Telegram Group
+              Telegram
             </span>
             <Input
               placeholder="Telegram Link"
-              value={listing.twitter_url || ""}
+              value={listing.telegram_url || ""}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 handleListingLinkChange("telegram_url", e.target.value)
               }
             />
           </div>
-          <div className="flex flex-col lg:flex-row gap-2">
+          <div className="flex flex-col lg:flex-row gap-2 w-full">
             <span className={cn(mono.className, "min-w-[152px]")}>
               Dexscreener
             </span>
             <Input
               placeholder="Dexscreener Link"
-              value={listing.twitter_url || ""}
+              value={listing.dexscreener_url || ""}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 handleListingLinkChange("dexscreener_url", e.target.value)
               }
             />
           </div>
+
           <div className="flex flex-col lg:flex-row gap-4">
             <span className={cn(mono.className, "min-w-[152px]")}>Chain</span>
             <div className="flex flex-wrap gap-6">

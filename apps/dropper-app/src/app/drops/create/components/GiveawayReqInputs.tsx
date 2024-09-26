@@ -109,7 +109,7 @@ export default function GiveawayReqInputs({
               color: requirements.telegram_url !== null ? "#00fdd0" : "",
             }}
           >
-            Visit Telegram
+            Join Telegram
           </span>
         </button>
         <button
@@ -124,7 +124,7 @@ export default function GiveawayReqInputs({
               color: requirements.discord_url !== null ? "#00fdd0" : "",
             }}
           >
-            Visit Discord
+            Join Discord
           </span>
         </button>
         <button

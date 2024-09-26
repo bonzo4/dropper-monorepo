@@ -44,11 +44,7 @@ export default function Wallet({ children }: WalletProps) {
   );
 
   if (!rpcUrl || !wssUrl) {
-    return (
-      <div className="flex w-full grow items-center justify-center">
-        Loading...
-      </div>
-    );
+    return <>{children}</>;
   }
 
   return (

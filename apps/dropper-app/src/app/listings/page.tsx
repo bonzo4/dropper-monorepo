@@ -76,7 +76,7 @@ export default async function ListingsPage() {
           </Link>
         </div>
       </div>
-      <ListingBannerSlider banners={[...banners]} />
+      {/* <ListingBannerSlider banners={[...banners]} /> */}
       <Listings />
     </main>
   );

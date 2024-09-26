@@ -1,4 +1,6 @@
 import { ListingRow } from "@/lib/types/listing";
+import { DatabaseTypes } from "@repo/app-types/database";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 export type ListingPageData = {
   nextListingId: number | null;
@@ -6,7 +8,7 @@ export type ListingPageData = {
 } & ListingRow;
 
 type Options = {
-  supabase: any;
+  supabase: SupabaseClient<DatabaseTypes>;
   id: number;
 };
 

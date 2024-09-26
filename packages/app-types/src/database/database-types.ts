@@ -1389,6 +1389,7 @@ export type Database = {
           creator_key: string
           description: string
           dexscreener_url: string | null
+          discord_url: string | null
           holder_count: number
           icon_url: string
           id: number
@@ -1411,6 +1412,7 @@ export type Database = {
           creator_key: string
           description: string
           dexscreener_url?: string | null
+          discord_url?: string | null
           holder_count: number
           icon_url: string
           id?: number
@@ -1433,6 +1435,7 @@ export type Database = {
           creator_key?: string
           description?: string
           dexscreener_url?: string | null
+          discord_url?: string | null
           holder_count?: number
           icon_url?: string
           id?: number

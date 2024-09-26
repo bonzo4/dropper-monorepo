@@ -92,9 +92,8 @@ export default function Login() {
               "w-[300px] text-[10px] sm:text-[12px] relative whitespace-pre-wrap text-wrap break-words flex items-center shrink-0"
             )}
           >
-            By logging in you agree to sign up for the Dropper Newsletter and
-            receive emails from newsletter@dropper.wtf to the email associated
-            with the connected account.
+            I agree to subscribe to the Dropper Newsletter and consent to
+            receive emails at the address provided during sign-up.
           </p>
         </div>
       </div>

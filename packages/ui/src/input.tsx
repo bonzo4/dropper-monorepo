@@ -5,7 +5,7 @@ type InputProps = {} & React.HTMLProps<HTMLInputElement>;
 
 export const Input = (props: InputProps) => {
   return (
-    <div className={cn(mono.className, "flex")}>
+    <div className={cn(mono.className, "flex w-full")}>
       <input
         {...props}
         className={cn(

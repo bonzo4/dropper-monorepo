@@ -16,8 +16,16 @@ type Props = {
 };
 
 export default function ListingCard({ listing, showBump }: Props) {
+  const show = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    showBump(listing.id);
+  };
+
   return (
-    <div className="flex flex-col gap-2 p-3 border-2 border-primary rounded-md">
+    <Link
+      href={`/listings/${listing.id}`}
+      className="flex flex-col gap-2 p-3 border-2 border-primary rounded-md hover:bg-white hover:bg-opacity-10"
+    >
       <div className="flex flex-row gap-2">
         <Image
           src={listing.icon_url}
@@ -28,24 +36,18 @@ export default function ListingCard({ listing, showBump }: Props) {
         />
         <div className="flex flex-col gap-1 ">
           <div className="flex flex-row justify-between items-center w-[210px] lg:w-[250px] gap-1">
-            <Link
-              href={`/listings/${listing.id}`}
-              className="text-primary truncate -my-2 hover:underline"
-            >
-              <span className="text-2xl text-primary truncate">
-                ${listing.ticker.slice(0, 5)}
-              </span>
-            </Link>
+            <span className="text-2xl text-primary truncate -my-2 hover:underline-my-2">
+              ${listing.ticker.slice(0, 5)}
+            </span>
             <div className="flex flex-row gap-[2px]">
               <SolBadge />
               <McapBadge mcap={listing.ath * listing.total_supply} />
               <VolumeBadge volume={listing.atv} />
               <HolderBadge holders={listing.holder_count} />
             </div>
-            <Bump
-              className="hover:cursor-pointer"
-              onClick={() => showBump(listing.id)}
-            />
+            <button className="flex" onClick={show}>
+              <Bump className="" />
+            </button>
           </div>
           <span
             className={cn(
@@ -93,6 +95,6 @@ export default function ListingCard({ listing, showBump }: Props) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
