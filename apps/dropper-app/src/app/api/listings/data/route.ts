@@ -11,15 +11,13 @@ export async function POST(request: Request) {
 
     const { data, error, count } = await supabase
       .from("listings")
-      .select("token_address", { count: "exact" })
+      .select("token_address, ath", { count: "exact" })
       .order("created_at", { ascending: false })
       .limit(30);
 
     if (error || !count) throw new Error("Couldn't find listings");
 
-    const tokenData = await getMultipleTokens(
-      data.map((listing) => listing.token_address)
-    );
+    const tokenData = await getMultipleTokens(data);
 
     await Promise.all(
       tokenData.map(async (token) => {
@@ -39,13 +37,11 @@ export async function POST(request: Request) {
       for (let i = 2; i <= pages; i++) {
         const { data: nextData, error: nextError } = await supabase
           .from("listings")
-          .select("token_address")
+          .select("token_address, ath")
           .order("created_at", { ascending: false })
           .range((i - 1) * 30, i * 30 - 1);
         if (nextError) throw new Error("Couldn't find listings");
-        const nextTokenData = await getMultipleTokens(
-          nextData.map((listing) => listing.token_address)
-        );
+        const nextTokenData = await getMultipleTokens(nextData);
         await Promise.all(
           nextTokenData.map(async (token) => {
             await supabase

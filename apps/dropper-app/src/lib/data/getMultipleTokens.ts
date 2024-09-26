@@ -1,6 +1,8 @@
-export async function getMultipleTokens(addresses: string[]) {
+export async function getMultipleTokens(
+  tokens: { token_address: string; ath: number }[]
+) {
   const response = await fetch(
-    `https://api.dexscreener.com/latest/dex/tokens/${addresses.join(",")}`,
+    `https://api.dexscreener.com/latest/dex/tokens/${tokens.map((token) => token.token_address).join(",")}`,
     {
       method: "GET",
       headers: {},
@@ -14,15 +16,15 @@ export async function getMultipleTokens(addresses: string[]) {
 
   const tokenData: { tokenAddress: string; atv: number; ath: number }[] = [];
 
-  for (const address of addresses) {
-    const token = data.pairs.find(
-      (pair: any) => pair.baseToken.address === address
+  for (const token of tokens) {
+    const tokenPair = data.pairs.find(
+      (pair: any) => pair.baseToken.address === token.token_address
     );
-    if (token) {
+    if (tokenPair) {
       tokenData.push({
-        tokenAddress: address,
-        atv: token.volume.m5,
-        ath: token.priceUsd,
+        tokenAddress: token.token_address,
+        atv: tokenPair.volume.m5,
+        ath: token.ath > tokenPair.priceUsd ? token.ath : tokenPair.priceUsd,
       });
     }
   }
