@@ -26,7 +26,8 @@ export function useReferralList({ supabase, userId, type, page }: Options) {
       const query = supabase
         .from(`${type}_referrals`)
         .select("*")
-        .eq("referrer_id", userId);
+        .eq("referrer_id", userId)
+        .order("created_at", { ascending: false });
 
       if (page > 1) {
         const start = (page - 1) * 10;

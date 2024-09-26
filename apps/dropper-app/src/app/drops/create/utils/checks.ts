@@ -14,6 +14,15 @@ export function checkGiveaway(
   if (!giveaway.reward_amount) throw new Error("Reward amount is required");
   if (giveawayType === "spl" && !giveaway.token_address)
     throw new Error("Token address is required");
+  if (
+    giveawayType === "solana" &&
+    ![0.1, 0.25, 0.5].includes(giveaway.reward_amount)
+  ) {
+    throw new Error("Reward amount must be 0.1, 0.25, or 0.5");
+  }
+  const now = new Date();
+  const dayFromNow = new Date(now);
+  dayFromNow.setDate(now.getDate() + 1);
   if (!giveaway.end_time && new Date(giveaway.end_time).valueOf() < Date.now())
     throw new Error("End time must be in the future");
   if (!giveaway.winner_amount) throw new Error("Winner count is required");

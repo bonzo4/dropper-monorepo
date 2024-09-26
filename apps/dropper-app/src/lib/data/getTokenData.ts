@@ -12,12 +12,15 @@ export async function getTokenData(address: string) {
 
   const data = await response.json();
 
-  if (!data.pairs[0]) {
+  if (!data.pairs.length) {
     throw new Error("No data found");
   }
 
   return {
-    atv: data.pairs[0].volume.m5,
+    atv: data.pairs.reduce(
+      (acc: number, pair: any) => acc + pair.volume.h24,
+      0
+    ),
     ath: data.pairs[0].priceUsd,
   };
 }

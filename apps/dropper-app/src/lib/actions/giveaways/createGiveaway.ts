@@ -37,7 +37,7 @@ export async function createGiveaway({
     });
 
   const giveawayInsert = JSON.parse(giveaway) as GiveawayInsert;
-  const requirmentsInsert = JSON.parse(
+  const requirementsInsert = JSON.parse(
     requirements
   ) as GiveawayRequirementsInsert;
   if (giveawayType === "solana") {
@@ -80,15 +80,22 @@ export async function createGiveaway({
   }
 
   const now = new Date();
-  //   now.setMinutes(now.getMinutes() + 1);
-  now.setSeconds(0, 0);
+  now.setMinutes(now.getMinutes() + 5);
   const startDateMs = now.getTime();
+  const endDateMs =
+    giveawayInsert.end_time === "12"
+      ? new Date(now).setHours(now.getHours() + 12)
+      : giveawayInsert.end_time === "6"
+        ? new Date(now).setHours(now.getHours() + 6)
+        : giveawayInsert.end_time === "2"
+          ? new Date(now).setHours(now.getHours() + 2)
+          : new Date(now).setHours(now.getHours() + 1);
   const { data, error } = await supabase
     .from("giveaways")
     .insert({
       ...giveawayInsert,
       start_time: new Date(startDateMs).toISOString(),
-      end_time: giveawayInsert.end_time,
+      end_time: new Date(endDateMs).toISOString(),
       creator_key: creatorKey,
       badges: ctoListing ? [...badges, "CTO"] : badges,
       user_id: user.id,
@@ -100,7 +107,7 @@ export async function createGiveaway({
 
   const { error: error2 } = await supabase
     .from("giveaway_requirements")
-    .insert({ ...requirmentsInsert, giveaway_id: data.id });
+    .insert({ ...requirementsInsert, giveaway_id: data.id });
 
   if (error2) return JSON.stringify({ status: "error", error: error2.message });
 

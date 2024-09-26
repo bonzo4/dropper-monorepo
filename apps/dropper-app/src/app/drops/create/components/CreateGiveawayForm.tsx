@@ -109,13 +109,13 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
           winnersAmount: giveaway.winner_amount,
         });
       }
-      const payInstruction = await transferSolInstruction({
-        source: wallet.publicKey,
-        solAmount: 0.01,
-      });
+      // const payInstruction = await transferSolInstruction({
+      //   source: wallet.publicKey,
+      //   solAmount: 0.01,
+      // });
       const tx = await sendTransaction({
         provider: program.provider,
-        transactionInstructions: [instruction, payInstruction],
+        transactionInstructions: [instruction],
       });
       const response2 = await updateGiveawayTx({
         tx,
@@ -164,10 +164,6 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
       setGiveaway({ ...giveaway, reward_amount: 0, token_address: "" });
   };
 
-  const handleGiveawayEndTimeChange = (value: string) => {
-    setGiveaway({ ...giveaway, end_time: value });
-  };
-
   return (
     <form className="flex flex-col gap-6 w-full px-4" onSubmit={onSubmit}>
       <div className="flex flex-col gap-2 w-full">
@@ -201,16 +197,30 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
               }
             />
             <div className="flex flex-row gap-4 items-center">
-              <span className={cn(mono.className)}>End Time</span>
-              <Input
-                className="max-w-[200px]"
-                type="datetime-local"
-                placeholder="Drop End Time"
-                value={giveaway.end_time}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleGiveawayEndTimeChange(e.target.value)
-                }
-              />
+              <span className={cn(mono.className)}>Drop Duration</span>
+              <div className="flex flex-row gap-4">
+                <Checkbox
+                  label="2 Hours"
+                  checked={giveaway.end_time === "2"}
+                  onClick={() => handleGiveawayChange("end_time", "2")}
+                  disabled={disabled}
+                  type="button"
+                />
+                <Checkbox
+                  label="6 Hours"
+                  checked={giveaway.end_time === "6"}
+                  onClick={() => handleGiveawayChange("end_time", "6")}
+                  disabled={disabled}
+                  type="button"
+                />
+                <Checkbox
+                  label="12 Hours"
+                  checked={giveaway.end_time === "12"}
+                  onClick={() => handleGiveawayChange("end_time", "12")}
+                  disabled={disabled}
+                  type="button"
+                />
+              </div>
             </div>
           </div>
         </div>

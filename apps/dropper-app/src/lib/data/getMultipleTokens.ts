@@ -17,16 +17,19 @@ export async function getMultipleTokens(
   const tokenData: { tokenAddress: string; atv: number; ath: number }[] = [];
 
   for (const token of tokens) {
-    const tokenPair = data.pairs.find(
+    const tokenPairs = data.pairs.filter(
       (pair: any) => pair.baseToken.address === token.token_address
     );
-    if (tokenPair) {
-      tokenData.push({
-        tokenAddress: token.token_address,
-        atv: tokenPair.volume.m5,
-        ath: token.ath > tokenPair.priceUsd ? token.ath : tokenPair.priceUsd,
-      });
-    }
+    if (!tokenPairs.length) continue;
+    tokenData.push({
+      tokenAddress: token.token_address,
+      atv: tokenPairs.reduce(
+        (acc: number, pair: any) => acc + pair.volume.h24,
+        0
+      ),
+      ath:
+        token.ath > tokenPairs[0].priceUsd ? token.ath : tokenPairs[0].priceUsd,
+    });
   }
 
   return tokenData;
