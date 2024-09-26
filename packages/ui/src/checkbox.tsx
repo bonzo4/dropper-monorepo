@@ -22,7 +22,7 @@ export function Checkbox({ label, checked, onClick, ...props }: CheckboxProps) {
     >
       {checked ? (
         <div className="flex w-7 h-7 items-center justify-center border-2 border-primary">
-          <CheckBoxFillIcon width={24} />
+          <CheckBoxFillIcon width={20} />
         </div>
       ) : (
         <div className="flex w-7 h-7 border-2 border-primary" />
