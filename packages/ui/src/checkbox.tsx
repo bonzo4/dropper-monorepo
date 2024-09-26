@@ -1,5 +1,6 @@
 import { cn } from "@repo/ui/utils";
 import { mono } from "@repo/ui/utils";
+import { CheckBoxFillIcon } from "./icons";
 
 type CheckboxProps = {
   label?: string;
@@ -21,7 +22,7 @@ export function Checkbox({ label, checked, onClick, ...props }: CheckboxProps) {
     >
       {checked ? (
         <div className="flex w-7 h-7 items-center justify-center border-2 border-primary">
-          <span>X</span>
+          <CheckBoxFillIcon width={24} />
         </div>
       ) : (
         <div className="flex w-7 h-7 border-2 border-primary" />

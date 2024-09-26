@@ -67,8 +67,13 @@ import ton from "../public/icons/ton.png";
 import tonColor from "../public/icons/ton-color.png";
 import tron from "../public/icons/tron.png";
 import tronColor from "../public/icons/tron-color.png";
+import CheckBoxFill from "../public/icons/check-box-fill.png";
 
 type IconProps = {} & Omit<ImageProps, "src" | "alt">;
+
+export const CheckBoxFillIcon = ({ ...props }: IconProps) => (
+  <Image {...props} src={CheckBoxFill} alt="CheckBoxFill" />
+);
 
 export const Base = ({ ...props }: IconProps) => (
   <Image
