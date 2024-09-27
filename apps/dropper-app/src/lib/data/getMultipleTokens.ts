@@ -27,8 +27,7 @@ export async function getMultipleTokens(
         (acc: number, pair: any) => acc + pair.volume.h24,
         0
       ),
-      ath:
-        token.ath > tokenPairs[0].priceUsd ? token.ath : tokenPairs[0].priceUsd,
+      ath: tokenPairs[0].priceUsd,
     });
   }
 

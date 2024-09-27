@@ -73,7 +73,7 @@ export default function ListingCard({ listing, showBump }: Props) {
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">
-          <span className="text-[12px]">ATH</span>
+          <span className="text-[12px]">USD PRICE</span>
           <span
             className={cn(
               mono.className,
