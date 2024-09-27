@@ -1,14 +1,11 @@
 import { Bump } from "@repo/ui/icons";
 import { ListingCardData } from "@/lib/data/listings/getListings";
-import { SolBadge } from "@repo/ui/badges";
 import { cn } from "@repo/ui/utils";
 import { mono } from "@repo/ui/utils";
 import { numString } from "@/lib/utils/numString";
 import Image from "next/image";
 import Link from "next/link";
-import McapBadge from "./McapBadge";
-import VolumeBadge from "./VolumeBadge";
-import HolderBadge from "./HolderBadge";
+import ChainBadge from "./ChainBadge";
 
 type Props = {
   listing: ListingCardData;
@@ -40,10 +37,10 @@ export default function ListingCard({ listing, showBump }: Props) {
               ${listing.ticker.slice(0, 5)}
             </span>
             <div className="flex flex-row gap-[2px]">
-              <SolBadge />
-              <McapBadge mcap={listing.ath * listing.total_supply} />
-              <VolumeBadge volume={listing.atv} />
-              <HolderBadge holders={listing.holder_count} />
+              <ChainBadge chain={listing.chain} />
+              {/* <McapBadge mcap={listing.ath * listing.total_supply} /> */}
+              {/* <VolumeBadge volume={listing.atv} /> */}
+              {/* <HolderBadge holders={listing.holder_count} /> */}
             </div>
             <button className="flex" onClick={show}>
               <Bump className="" />

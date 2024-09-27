@@ -1,3 +1,4 @@
+import { Chains } from "@/lib/types/enums";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
@@ -11,6 +12,7 @@ export type ListingCardData = {
   icon_url: string;
   description: string;
   id: number;
+  chain: Chains;
 };
 
 type Options = {
