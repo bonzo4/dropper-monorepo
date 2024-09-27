@@ -25,6 +25,7 @@ export default function ManageGiveaways({ publicKey, supabase }: Props) {
     sort: "descending",
     sortBy: "created_at",
     page: 1,
+    walletKey: publicKey?.toBase58(),
   });
 
   const { giveaways, loading } = useGiveaways({
