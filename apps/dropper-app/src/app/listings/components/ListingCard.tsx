@@ -62,14 +62,14 @@ export default function ListingCard({ listing, showBump }: Props) {
       </div>
       <div className="flex flex-row justify-between w-full">
         <div className="flex flex-col items-center gap-1">
-          <span className="text-[12px]">HOLDER COUNT</span>
+          <span className="text-[12px]">TOTAL SUPPLY</span>
           <span
             className={cn(
               mono.className,
               "text-[14px] text-primary font-semibold"
             )}
           >
-            {listing.holder_count}
+            {listing.total_supply}
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">
@@ -84,7 +84,7 @@ export default function ListingCard({ listing, showBump }: Props) {
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">
-          <span className="text-[12px]">ALL-TIME VOLUME</span>
+          <span className="text-[12px]">24H VOLUME</span>
           <span
             className={cn(
               mono.className,

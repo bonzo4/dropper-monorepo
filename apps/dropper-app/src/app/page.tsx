@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     description: "dropper.wtf - Discover Token and Meme-Coin drops.",
     images: [
       {
-        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
-        width: 1440,
-        height: 1274,
+        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/Dropper_banner.png",
+        width: 2460,
+        height: 820,
         alt: "Dropper",
       },
     ],
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     site: "@DropperNTWRK",
     images: [
       {
-        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
-        width: 1440,
-        height: 1274,
+        url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/Dropper_banner.png",
+        width: 2460,
+        height: 820,
         alt: "Dropper",
       },
     ],

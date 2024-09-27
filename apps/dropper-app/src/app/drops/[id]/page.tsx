@@ -49,9 +49,9 @@ export async function generateMetadata(
       url: `https://dropper.wtf/drops/${id}`,
       images: [
         {
-          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
-          width: 1440,
-          height: 1274,
+          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/Dropper_banner.png",
+          width: 2460,
+          height: 820,
           alt: "Dropper",
         },
       ],
@@ -64,9 +64,9 @@ export async function generateMetadata(
       site: "@DropperNTWRK",
       images: [
         {
-          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/thumbnail.png",
-          width: 1440,
-          height: 1274,
+          url: "https://pmlweoiqgtcwuxpclgql.supabase.co/storage/v1/object/public/website/Dropper_banner.png",
+          width: 2460,
+          height: 820,
           alt: "Dropper",
         },
       ],

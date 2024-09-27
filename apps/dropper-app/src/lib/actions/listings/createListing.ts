@@ -34,6 +34,7 @@ export async function createListing({ listing, creatorKey, tx }: Options) {
     user_id: user.id,
     ath: tokenData.ath,
     atv: tokenData.atv,
+    total_supply: Math.round(tokenData.total_supply),
   });
 
   if (error) return JSON.stringify({ status: "error", error: error.message });

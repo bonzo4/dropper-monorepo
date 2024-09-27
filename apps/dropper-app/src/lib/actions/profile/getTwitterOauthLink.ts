@@ -4,11 +4,11 @@ import { TwitterApi } from "twitter-api-v2";
 
 export async function getTwitterOauthLink() {
   const client = new TwitterApi({
-    clientId: process.env.TWITTER_CLIENT_ID!,
-    clientSecret: process.env.TWITTER_CLIENT_SECRET!,
+    appKey: process.env.TWITTER_CONSUMER_KEY!,
+    appSecret: process.env.TWITTER_CONSUMER_SECRET!,
   });
 
-  const authLink = client.generateOAuth2AuthLink(
+  const authLink = await client.generateAuthLink(
     `${process.env.NEXT_PUBLIC_URL}/auth/callback/twitter`
   );
 
