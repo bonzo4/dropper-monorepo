@@ -268,7 +268,7 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
         </div>
         <div className="flex flex-col lg:flex-row gap-4 p-2.5 w-full">
           <span className={cn(mono.className, "min-w-[180px]")}>
-            Giveaway Amount
+            Reward Amount
           </span>
           {giveawayType === "spl" && (
             <div className="flex flex-col gap-2 w-full">
@@ -325,7 +325,7 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
         <h1 className="relative text-2xl md:text-[36px] py-5 ">DEPLOY</h1>
         <div className="flex flex-col gap-4">
           <div className="flex flex-row items-center gap-4">
-            <span className={cn(mono.className, "f")}>Giveaway cost: Free</span>
+            {/* <span className={cn(mono.className, "f")}>Deploy Now:</span> */}
 
             {wallet.publicKey && (
               <Button className="" type="submit" disabled={disabled}>
