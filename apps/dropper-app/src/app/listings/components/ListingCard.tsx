@@ -69,7 +69,7 @@ export default function ListingCard({ listing, showBump }: Props) {
               "text-[14px] text-primary font-semibold"
             )}
           >
-            {listing.total_supply}
+            {numString(listing.total_supply)}
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">
