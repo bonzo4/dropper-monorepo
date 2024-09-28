@@ -183,16 +183,16 @@ export default function GiveawayReqInputs({
         <button
           type="button"
           className="flex flex-row gap-2 w-[126px] items-center"
-          onClick={() => handleAddRequirements("degenpumpfun_url")}
+          onClick={() => handleAddRequirements("moontok_url")}
         >
-          {requirements.degenpumpfun_url !== null ? <DegenColor /> : <Degen />}
+          {requirements.moontok_url !== null ? <DegenColor /> : <Degen />}
           <span
             className={cn(mono.className, "text-sm w-full")}
             style={{
-              color: requirements.degenpumpfun_url !== null ? "#00fdd0" : "",
+              color: requirements.moontok_url !== null ? "#00fdd0" : "",
             }}
           >
-            Visit Degenpumpfun
+            Visit Moontok
           </span>
         </button>
       </div>
@@ -268,15 +268,13 @@ export default function GiveawayReqInputs({
             value={requirements.moonshot_url ? requirements.moonshot_url : ""}
           />
           <Input
-            disabled={requirements.degenpumpfun_url === null}
-            placeholder="Degenpumpfun URL"
+            disabled={requirements.moontok_url === null}
+            placeholder="Moontok URL"
             className="w-full"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleRequirementsChange("degenpumpfun_url", e.target.value)
+              handleRequirementsChange("moontok_url", e.target.value)
             }
-            value={
-              requirements.degenpumpfun_url ? requirements.degenpumpfun_url : ""
-            }
+            value={requirements.moontok_url ? requirements.moontok_url : ""}
           />
         </div>
       </div>

@@ -81,7 +81,6 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
       let badges: GiveawayBadges[] = ["SOL"];
       if (requirements.pumpdotfun_url) badges.push("PUMP_FUN");
       if (requirements.moonshot_url) badges.push("MOON");
-      if (requirements.degenpumpfun_url) badges.push("DEGEN_PUMP");
       let response = await createGiveaway({
         giveaway: JSON.stringify(giveaway),
         requirements: JSON.stringify(requirements),

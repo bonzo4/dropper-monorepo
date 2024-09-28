@@ -53,12 +53,10 @@ export function checkGiveawayRequirements(
   )
     throw new Error("Please enter a valid telegram url");
   if (
-    requirements.degenpumpfun_url &&
-    !requirements.degenpumpfun_url.startsWith(
-      "https://crash.degencoinflip.com/"
-    )
+    requirements.moontok_url &&
+    !requirements.moontok_url.startsWith("https://moontok.io/coins/")
   )
-    throw new Error("Please enter a valid degenpump.fun url");
+    throw new Error("Please enter a valid moontok.io url");
 
   if (
     requirements.dexscreener_url &&

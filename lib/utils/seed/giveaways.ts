@@ -11,7 +11,6 @@ export async function createGiveaways(
   userId: string
 ) {
   const giveaways: GiveawayInsert[] = [];
-  const giveawayRequirements: GiveawayRequirementsInsert[] = [];
   for (let i = 0; i < 100; i++) {
     giveaways.push({
       description: faker.lorem.paragraph(),
@@ -26,7 +25,7 @@ export async function createGiveaways(
         max: 100,
       }),
       start_time: faker.date.past().toISOString(),
-      ticker: faker.lorem.word(),
+      ticker: faker.lorem.word({ length: 8 }),
       title: faker.lorem.words(),
       usd_value: faker.number.float({
         min: 0,
@@ -44,18 +43,6 @@ export async function createGiveaways(
       created_at: faker.date.past().toISOString(),
       badges: ["SOL", "DEGEN_PUMP", "GOLD", "MOON", "PUMP_FUN", "TRENDING"],
       user_id: userId,
-    });
-    giveawayRequirements.push({
-      created_at: faker.date.past().toISOString(),
-      degenpumpfun_url: faker.internet.url(),
-      dexscreener_url: faker.internet.url(),
-      discord_url: faker.internet.url(),
-      giveaway_id: i,
-      moonshot_url: faker.internet.url(),
-      pumpdotfun_url: faker.internet.url(),
-      telegram_url: faker.internet.url(),
-      tweet_url: faker.internet.url(),
-      twitter_url: faker.internet.url(),
     });
   }
 
@@ -80,7 +67,7 @@ export async function createGiveaways(
         dexscreener_url: faker.internet.url(),
         pumpdotfun_url: faker.internet.url(),
         moonshot_url: faker.internet.url(),
-        degenpumpfun_url: faker.internet.url(),
+        moontok_url: faker.internet.url(),
       };
       await supabase.from("giveaway_requirements").insert(giveawayRequirements);
     })

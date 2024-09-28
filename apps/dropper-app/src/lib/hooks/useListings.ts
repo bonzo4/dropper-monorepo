@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createSupabaseClient } from "@repo/lib/supabase";
-import { ListingRow } from "../types/listing";
+import { ListingBumpRow, ListingRow } from "../types/listing";
 import { getListings, ListingCardData } from "../data/listings/getListings";
 
 type Options = {
@@ -22,19 +22,17 @@ export function useListings({ page }: Options) {
 
     if (page === 1) {
       fetchListings();
-      const channel = supabase
+      const listingsChannel = supabase
         .channel("realtime listings")
         .on(
           "postgres_changes",
           {
-            event: "UPDATE",
+            event: "INSERT",
             schema: "public",
             table: "listings",
           },
           (payload) => {
             const updatedListing = payload.new as ListingRow;
-            const oldListing = payload.old as ListingRow;
-            if (updatedListing.last_bump === oldListing.last_bump) return;
             setListings((listings) => {
               const newListings = listings.slice(0, -1);
               return [updatedListing, ...newListings];
@@ -43,8 +41,30 @@ export function useListings({ page }: Options) {
         )
         .subscribe();
 
+      const bumpsChannel = supabase.channel("realtime bumps").on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "bumps",
+        },
+        async (payload) => {
+          const updatedBump = payload.new as ListingBumpRow;
+          const { data: listingData } = await supabase
+            .from("listings")
+            .select("*")
+            .eq("id", updatedBump.listing_id)
+            .single();
+          if (!listingData) return;
+          setListings((listings) => {
+            const newListings = listings.slice(0, -1);
+            return [listingData, ...newListings];
+          });
+        }
+      );
+
       return () => {
-        channel.unsubscribe();
+        listingsChannel.unsubscribe();
       };
     }
 

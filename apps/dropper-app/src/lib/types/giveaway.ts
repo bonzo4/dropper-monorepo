@@ -39,5 +39,5 @@ export const DEFAULT_GIVEAWAY_REQUIREMENTS: GiveawayRequirementsInsert = {
   dexscreener_url: null,
   pumpdotfun_url: null,
   moonshot_url: null,
-  degenpumpfun_url: null,
+  moontok_url: null,
 };

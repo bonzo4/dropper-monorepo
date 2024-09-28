@@ -24,7 +24,7 @@ export async function getMultipleTokenPrice(
     if (tokenPair) {
       tokenData.push({
         tokenAddress: token.token_address,
-        price: tokenPair.priceUsd,
+        price: tokenPair.priceUsd * token.reward_amount,
       });
     }
   }

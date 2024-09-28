@@ -633,21 +633,21 @@ export type Database = {
       discord_accounts: {
         Row: {
           created_at: string
-          discord_id: string
+          discord_id: string | null
           user_id: string
-          username: string
+          username: string | null
         }
         Insert: {
           created_at?: string
-          discord_id: string
+          discord_id?: string | null
           user_id: string
-          username: string
+          username?: string | null
         }
         Update: {
           created_at?: string
-          discord_id?: string
+          discord_id?: string | null
           user_id?: string
-          username?: string
+          username?: string | null
         }
         Relationships: [
           {
@@ -972,11 +972,11 @@ export type Database = {
       giveaway_requirements: {
         Row: {
           created_at: string
-          degenpumpfun_url: string | null
           dexscreener_url: string | null
           discord_url: string | null
           giveaway_id: number
           moonshot_url: string | null
+          moontok_url: string | null
           pumpdotfun_url: string | null
           telegram_url: string | null
           tweet_url: string | null
@@ -984,11 +984,11 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          degenpumpfun_url?: string | null
           dexscreener_url?: string | null
           discord_url?: string | null
           giveaway_id: number
           moonshot_url?: string | null
+          moontok_url?: string | null
           pumpdotfun_url?: string | null
           telegram_url?: string | null
           tweet_url?: string | null
@@ -996,11 +996,11 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          degenpumpfun_url?: string | null
           dexscreener_url?: string | null
           discord_url?: string | null
           giveaway_id?: number
           moonshot_url?: string | null
+          moontok_url?: string | null
           pumpdotfun_url?: string | null
           telegram_url?: string | null
           tweet_url?: string | null
@@ -1545,6 +1545,38 @@ export type Database = {
           },
           {
             foreignKeyName: "tertiary_referrals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      twitter_accounts: {
+        Row: {
+          code_verifier: string | null
+          created_at: string
+          twitter_id: string | null
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          code_verifier?: string | null
+          created_at?: string
+          twitter_id?: string | null
+          user_id?: string
+          username?: string | null
+        }
+        Update: {
+          code_verifier?: string | null
+          created_at?: string
+          twitter_id?: string | null
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "twitter_account_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
             referencedRelation: "users"

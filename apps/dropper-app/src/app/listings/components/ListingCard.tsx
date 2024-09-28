@@ -21,20 +21,22 @@ export default function ListingCard({ listing, showBump }: Props) {
   return (
     <Link
       href={`/listings/${listing.id}`}
-      className="flex flex-col gap-2 p-3 border-2 border-primary rounded-md hover:bg-white hover:bg-opacity-10"
+      className="flex flex-col gap-2 p-3 border-2 border-primary rounded-md hover:bg-white hover:bg-opacity-15 bg-secondary"
     >
       <div className="flex flex-row gap-2">
-        <Image
-          src={listing.icon_url}
-          alt={listing.ticker}
-          width={83}
-          height={83}
-          className="rounded-md"
-        />
+        <div className="w-[83px] h-[83px] overflow-hidden rounded-md flex items-center justify-center">
+          <Image
+            src={listing.icon_url}
+            alt={listing.ticker}
+            width={83}
+            height={83}
+            className="object-cover"
+          />
+        </div>
         <div className="flex flex-col gap-1 ">
           <div className="flex flex-row justify-between items-center w-[210px] lg:w-[250px] gap-1">
             <span className="text-2xl text-primary truncate -my-2 hover:underline-my-2">
-              ${listing.ticker.slice(0, 5)}
+              ${listing.ticker.slice(0, 8)}
             </span>
             <div className="flex flex-row gap-[2px]">
               <ChainBadge chain={listing.chain} />

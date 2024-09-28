@@ -10,7 +10,6 @@ import {
   BaseBadge,
   BNBBadge,
   CTOBadge,
-  DegenPumpFunBadge,
   GoldBadge,
   MaticBadge,
   MoonBadge,
@@ -62,8 +61,8 @@ const GiveawayCard = ({ giveaway }: GiveawayCardProps) => {
   return (
     <Link href={`/drops/${giveaway.id}`}>
       <div className="flex flex-col bg-secondary border-[2px] rounded-md border-primary hover:cursor-pointer hover:bg-black p-4 gap-3">
-        <div className="flex flex-row items-stretch gap-[10px]">
-          <div className="w-[63px] md:w-[63px] relative overflow-hidden rounded-md h-[63px] md:h-[63px]">
+        <div className="flex flex-row items-stretch gap-[8px]">
+          <div className="w-[63px] h-[63px] overflow-hidden rounded-md flex items-center justify-center">
             <Image
               src={giveaway.icon_url}
               alt={giveaway.title}
@@ -72,7 +71,7 @@ const GiveawayCard = ({ giveaway }: GiveawayCardProps) => {
               className="w-auto h-auto"
             />
           </div>
-          <div className="flex flex-col justify-end gap-1">
+          <div className="flex flex-col justify-end gap-2">
             {giveaway.badges.length > 0 && (
               <div className="flex flex-row gap-1">
                 {giveaway.badges
@@ -97,36 +96,36 @@ const GiveawayCard = ({ giveaway }: GiveawayCardProps) => {
                       <TrendingBadge key={badge} />
                     ) : badge === "CTO" ? (
                       <CTOBadge key={badge} />
-                    ) : badge === "DEGEN_PUMP" ? (
-                      <DegenPumpFunBadge key={badge} />
                     ) : null
                   )}
               </div>
             )}
-            <h3 className="relative text-[28px] md:text-[32px] truncate w-[160px] -mt-2">
-              ${giveaway.ticker}
+            <h3 className="relative text-[26px] md:text-[28px] truncate w-[160px] -mt-2">
+              ${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}
             </h3>
           </div>
         </div>
         <Paragraph className="w-[221px] h-[80px] text-[14px]">
           {giveaway.title} : {giveaway.description}
         </Paragraph>
-        <div className="flex flex-row gap-6">
+        <div className="flex flex-row gap-4">
           <div className="flex flex-col items-start justify-center">
-            <span className="relative text-[14px] tracking-widest">Reward</span>
+            <span className="relative text-[14px] tracking-widest">
+              Reward 🔥
+            </span>
             <Paragraph className="relative text-[16px] text-primary font-semibold">
-              {numString(giveaway.reward_amount)}{" "}
+              {numString(giveaway.reward_amount)} $
               {giveaway.token_address
-                ? `$${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 5)}`
-                : "SOL"}
+                ? `${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`
+                : "SOLLLLLL"}
             </Paragraph>
           </div>
           <div className="flex flex-col items-start justify-center">
             <span className="relative text-[14px] tracking-widest">
-              USDC VAL. 🔥
+              USD VAL.
             </span>
             <Paragraph className="relative text-[16px] text-primary font-semibold">
-              {giveaway.usd_value.toFixed(2)}
+              ${numString(giveaway.usd_value)}
             </Paragraph>
           </div>
         </div>

@@ -66,10 +66,10 @@ export default function GiveawayRequirements({
           setCompletedCount={setCompletedCount}
         />
       )}
-      {requirements.degenpumpfun_url && (
+      {requirements.moontok_url && (
         <GiveawayTab
-          label="Visit Degenpumpfun"
-          link={requirements.degenpumpfun_url}
+          label="Visit Moontok"
+          link={requirements.moontok_url}
           setCompletedCount={setCompletedCount}
         />
       )}

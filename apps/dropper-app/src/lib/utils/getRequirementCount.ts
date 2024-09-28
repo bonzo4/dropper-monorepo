@@ -5,7 +5,7 @@ export function getRequirementCount(
 ) {
   if (!requirements) return 0;
   let count = 0;
-  if (requirements.degenpumpfun_url) count++;
+  if (requirements.moontok_url) count++;
   if (requirements.dexscreener_url) count++;
   if (requirements.discord_url) count++;
   if (requirements.moonshot_url) count++;
