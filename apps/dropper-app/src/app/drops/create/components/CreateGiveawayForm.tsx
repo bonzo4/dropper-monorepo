@@ -220,6 +220,13 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
                   disabled={disabled}
                   type="button"
                 />
+                <Checkbox
+                  label="24 Hours"
+                  checked={giveaway.end_time === "24"}
+                  onClick={() => handleGiveawayChange("end_time", "24")}
+                  disabled={disabled}
+                  type="button"
+                />
               </div>
             </div>
           </div>

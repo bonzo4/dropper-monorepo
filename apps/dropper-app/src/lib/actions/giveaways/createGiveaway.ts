@@ -83,13 +83,15 @@ export async function createGiveaway({
   now.setMinutes(now.getMinutes() + 5);
   const startDateMs = now.getTime();
   const endDateMs =
-    giveawayInsert.end_time === "12"
-      ? new Date(now).setHours(now.getHours() + 12)
-      : giveawayInsert.end_time === "6"
-        ? new Date(now).setHours(now.getHours() + 6)
-        : giveawayInsert.end_time === "2"
-          ? new Date(now).setHours(now.getHours() + 2)
-          : new Date(now).setHours(now.getHours() + 1);
+    giveawayInsert.end_time === "24"
+      ? new Date(now).setHours(now.getHours() + 24)
+      : giveawayInsert.end_time === "12"
+        ? new Date(now).setHours(now.getHours() + 12)
+        : giveawayInsert.end_time === "6"
+          ? new Date(now).setHours(now.getHours() + 6)
+          : giveawayInsert.end_time === "2"
+            ? new Date(now).setHours(now.getHours() + 2)
+            : new Date(now).setHours(now.getHours() + 1);
   const { data, error } = await supabase
     .from("giveaways")
     .insert({

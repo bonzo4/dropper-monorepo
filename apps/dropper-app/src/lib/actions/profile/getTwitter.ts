@@ -1,39 +1,29 @@
 "use server";
+
+import TwitterApi from "twitter-api-v2";
+
 type Options = {
   code: string;
+  codeVerifier: string;
 };
 
-export async function getDiscord({ code }: Options) {
-  const tokenResponseData = await fetch(
-    "https://discord.com/api/oauth2/token",
-    {
-      method: "POST",
-      body: new URLSearchParams({
-        client_id: process.env.DISCORD_CLIENT_ID!,
-        client_secret: process.env.DISCORD_CLIENT_SECRET!,
-        code,
-        grant_type: "authorization_code",
-        redirect_uri: `http://localhost:${3000}/auth/callback/discord`,
-        scope: "identify",
-      }).toString(),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    }
-  );
-
-  const oauthData = await tokenResponseData.json();
-
-  const userResponse = await fetch("https://discord.com/api/users/@me", {
-    headers: {
-      authorization: `${oauthData.token_type} ${oauthData.access_token}`,
-    },
+export async function getTwitter({ code, codeVerifier }: Options) {
+  const client = new TwitterApi({
+    clientId: process.env.TWITTER_CLIENT_ID!,
   });
 
-  const userData = await userResponse.json();
+  const { client: userClient } = await client.loginWithOAuth2({
+    code,
+    codeVerifier,
+    redirectUri: `${process.env.NEXT_PUBLIC_URL}/auth/callback/twitter`,
+  });
+
+  const user = await userClient.currentUserV2();
+
+  console.log(user);
 
   return JSON.stringify({
-    username: userData.username,
-    id: userData.id,
+    username: user.data.username,
+    id: user.data.id,
   });
 }
