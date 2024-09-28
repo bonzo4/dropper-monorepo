@@ -115,8 +115,11 @@ const GiveawayCard = ({ giveaway }: GiveawayCardProps) => {
           <div className="flex flex-col items-start justify-center">
             <span className="relative text-[14px] tracking-widest">Reward</span>
             <Paragraph className="relative text-[16px] text-primary font-semibold">
-              {numString(giveaway.reward_amount)} $
-              {giveaway.token_address ? `$${giveaway.ticker}` : "SOL"}
+              {numString(giveaway.reward_amount)}
+              {""}
+              {giveaway.token_address
+                ? `$${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 5)}`
+                : "SOL"}
             </Paragraph>
           </div>
           <div className="flex flex-col items-start justify-center">

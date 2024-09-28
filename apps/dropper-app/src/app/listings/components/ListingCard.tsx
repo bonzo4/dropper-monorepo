@@ -77,7 +77,12 @@ export default function ListingCard({ listing, showBump }: Props) {
               "text-[14px] text-primary font-semibold"
             )}
           >
-            ${numString(listing.ath)}
+            $
+            {listing.ath > 1000
+              ? numString(listing.ath)
+              : listing.ath < 0.01
+                ? listing.ath.toFixed(5)
+                : listing.ath.toFixed(2)}
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">

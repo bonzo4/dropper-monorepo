@@ -79,9 +79,12 @@ const PastGiveawayCard = ({ giveaway }: PastGiveawayCardProps) => {
             <span className="relative text-[9px] md:text-[14px] tracking-widest">
               Reward
             </span>
-            <Paragraph className="relative text-[10px] md:text-[16px] text-white opacity-25 font-semibold">
-              {numString(giveaway.reward_amount)} $
-              {giveaway.token_address ? `$${giveaway.ticker}` : "SOL"}
+            <Paragraph className="relative text-[16px] text-white opacity-25 font-semibold">
+              {numString(giveaway.reward_amount)}
+              {""}
+              {giveaway.token_address
+                ? `$${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 5)}`
+                : "SOL"}
             </Paragraph>
           </div>
           <div className="flex flex-col items-start justify-center">

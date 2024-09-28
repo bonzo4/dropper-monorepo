@@ -101,6 +101,7 @@ export async function createGiveaway({
       creator_key: creatorKey,
       badges: ctoListing ? [...badges, "CTO"] : badges,
       user_id: user.id,
+      ticker: giveawayInsert.ticker.replaceAll("$", "").toUpperCase(),
     })
     .select("id")
     .single();
