@@ -38,7 +38,7 @@ export function ListingBump({
         appear first on the homepage every time it is refreshed
       </span>
       <div className="flex flex-row justify-between border-2 border-primary w-[300px] px-4 py-1 rounded-md">
-        <span className={cn(mono.className)}>0.5</span>
+        <span className={cn(mono.className)}>0.001</span>
         <div className="flex flex-row gap-1">
           <span className={cn(mono.className)}>SOL</span>
           <SolanaMulti width={15} height={15} />

@@ -375,7 +375,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
         </div>
         <div className="flex flex-row justify-between gap-4">
           <span className={cn(mono.className)}>
-            Dropboard listing fee: 0.5 SOL
+            Dropboard listing fee: 0.0001 SOL
           </span>
           <div className="flex flex-col lg:flex-row gap-2">
             {mounted() && <WalletMultiButton />}
