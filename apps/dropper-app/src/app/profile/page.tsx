@@ -16,6 +16,7 @@ import ConnectSolanaWallet from "./components/ConnectSolanaWallet";
 import { getSolanaWallet } from "@/lib/data/profile/getSolanaAccount";
 import ConnectTwitter from "./components/ConnectTwitter";
 import { Metadata } from "next";
+import { getTwitterAccount } from "@/lib/data/profile/getTwitterAccount";
 
 export const metadata: Metadata = {
   title: "Profile | Dropper",
@@ -78,6 +79,7 @@ export default async function ProfilePage() {
   const profileData = getProfilePageData({ supabase, userId: user.id });
 
   const discordAccountData = getDiscordAccount({ supabase, userId: user.id });
+  const twitterAccountData = getTwitterAccount({ supabase, userId: user.id });
   const solanaWalletData = getSolanaWallet({ supabase, userId: user.id });
   const giveawayStatsData = getGiveawayStats({ supabase, userId: user.id });
   const listingStatsData = getListingStats({ supabase, userId: user.id });
@@ -86,6 +88,7 @@ export default async function ProfilePage() {
   const [
     profile,
     discordAccount,
+    twitterAccount,
     solanaWallet,
     giveawayStats,
     listingStats,
@@ -93,6 +96,7 @@ export default async function ProfilePage() {
   ] = await Promise.all([
     profileData,
     discordAccountData,
+    twitterAccountData,
     solanaWalletData,
     giveawayStatsData,
     listingStatsData,
@@ -114,7 +118,7 @@ export default async function ProfilePage() {
         />
         <Tab label="Connections" className="flex flex-col gap-5">
           <ConnectDiscord discordAccount={discordAccount} />
-          <ConnectTwitter discordAccount={null} />
+          <ConnectTwitter twitterAccount={twitterAccount} userId={user.id} />
           <ConnectSolanaWallet solanaWallet={solanaWallet} userId={user.id} />
         </Tab>
         <Tab label="Referral Program" className="flex flex-col gap-5">

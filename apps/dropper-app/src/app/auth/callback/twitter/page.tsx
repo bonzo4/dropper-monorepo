@@ -2,11 +2,8 @@
 import { useEffect, useState } from "react";
 import { createSupabaseClient } from "@repo/lib/supabase";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Button } from "@repo/ui";
-import Link from "next/link";
-import { getDiscord } from "@/lib/actions/profile/getDiscord";
-import { createDiscordAccount } from "@/lib/actions/profile/createDiscordAccount";
 import { getTwitter } from "@/lib/actions/profile/getTwitter";
+import { createTwitterAccount } from "@/lib/actions/profile/createTwitterAccount";
 
 export default function TwitterCallback() {
   const router = useRouter();
@@ -16,52 +13,45 @@ export default function TwitterCallback() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function connectDiscord() {
+    async function connectTwitter() {
       const {
         data: { user },
       } = await supabase.auth.getUser();
 
       const code = searchParams.get("code");
-      const state = searchParams.get("state");
 
       if (!user) {
         router.push("/login");
         return;
       }
 
-      if (!code || !state) {
+      if (!code) {
         setError("Missing code");
         return;
       }
 
-      const twitterAccount = await getTwitter({
+      const twitterAccountData = await getTwitter({
         code,
-        codeVerifier:
-          "r9PeebMI3VSsi5DvhYikTqa6-3xAgGhZ~z_B6Qfy.3jyb2zwxqAGwvUipUZThWRdd72SJnTYJuc1GAKaPfpeM6fFGLX_t_UYylXRjqFrknrfr5FCNcD~9Ky4XuD~NK59",
+        userId: user.id,
       });
 
-      console.log(twitterAccount);
+      const twitterAccount = await JSON.parse(twitterAccountData);
 
-      // const discordResponse = await getDiscord({ code });
-      // console.log(discordResponse);
+      if (!twitterAccount.id) {
+        setError("Failed to get twitter account");
+        return;
+      }
 
-      // const discordAccount = await JSON.parse(discordResponse);
+      await createTwitterAccount({
+        userId: user.id,
+        twitterId: twitterAccount.id,
+        username: twitterAccount.username,
+      });
 
-      // if (!discordAccount.id) {
-      //   setError("Failed to get discord user");
-      //   return;
-      // }
-
-      // await createDiscordAccount({
-      //   userId: user.id,
-      //   discordId: discordAccount.id,
-      //   username: discordAccount.username,
-      // });
-
-      // router.push("/profile");
+      router.push("/profile");
     }
 
-    connectDiscord();
+    connectTwitter();
   }, [router, searchParams, supabase]);
 
   return (

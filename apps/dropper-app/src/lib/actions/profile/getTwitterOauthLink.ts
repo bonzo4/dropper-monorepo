@@ -1,8 +1,11 @@
 "use server";
 
+import { createSupabaseServer } from "@repo/lib/supabase";
 import { TwitterApi } from "twitter-api-v2";
 
-export async function getTwitterOauthLink() {
+export async function getTwitterOauthLink(userId: string) {
+  const supabase = await createSupabaseServer();
+
   const client = new TwitterApi({
     clientId: process.env.TWITTER_CLIENT_ID!,
   });
@@ -12,7 +15,12 @@ export async function getTwitterOauthLink() {
     { scope: ["users.read", "tweet.read"] }
   );
 
-  console.log(authLink.codeVerifier);
+  const { error } = await supabase.from("twitter_accounts").insert({
+    user_id: userId,
+    code_verifier: authLink.codeVerifier,
+  });
+
+  if (error) return JSON.stringify({ status: "error", error: error.message });
 
   return authLink.url;
 }
