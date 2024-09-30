@@ -92,7 +92,7 @@ export async function POST(request: Request) {
 
     const { data: giveawayData, error: giveawayError } = await supabase
       .from("giveaways")
-      .select("token_address, reward_amount")
+      .select("token_address")
       .neq("token_address", null)
       .not("token_address", "in", addresses)
       .lt("start_time", now)
@@ -100,26 +100,36 @@ export async function POST(request: Request) {
 
     if (giveawayError) throw new Error("Couldn't find giveaways");
 
-    const giveawayCount = giveawayData.length;
-    const giveawayPages = Math.ceil(giveawayCount / 30);
+    const giveawayAddresses = Array.from(
+      new Set(giveawayData.map((d) => d.token_address!))
+    );
 
-    for (let i = 1; i <= giveawayPages; i++) {
-      const giveaways = giveawayData.slice((i - 1) * 30, i * 30);
-      const tokenData2 = await getMultipleTokenData(
-        Array.from(new Set(giveaways.map((d) => d.token_address!)))
-      );
+    const addressCount = giveawayAddresses.length;
+    const addressPages = Math.ceil(addressCount / 30);
+
+    for (let i = 1; i <= addressPages; i++) {
+      const addressesSlice = giveawayAddresses.slice((i - 1) * 30, i * 30);
+      const tokenData2 = await getMultipleTokenData(addressesSlice);
 
       await Promise.all(
         tokenData2.map(async (token) => {
-          await supabase
+          const { data: giveawayData } = await supabase
             .from("giveaways")
-            .update({
-              usd_value:
-                token.price *
-                giveaways.find((d) => d.token_address === token.tokenAddress)!
-                  .reward_amount,
+            .select("id, reward_amount")
+            .eq("token_address", token.tokenAddress)
+            .lt("start_time", now)
+            .gt("end_time", now);
+          if (!giveawayData) return;
+          await Promise.all(
+            giveawayData.map(async (giveaway) => {
+              await supabase
+                .from("giveaways")
+                .update({
+                  usd_value: token.price * giveaway.reward_amount,
+                })
+                .eq("id", giveaway.id);
             })
-            .eq("token_address", token.tokenAddress);
+          );
         })
       );
     }
