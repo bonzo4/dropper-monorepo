@@ -975,11 +975,11 @@ export type Database = {
       giveaway_requirements: {
         Row: {
           created_at: string
-          degenpumpfun_url: string | null
           dexscreener_url: string | null
           discord_url: string | null
           giveaway_id: number
           moonshot_url: string | null
+          moontok_url: string | null
           pumpdotfun_url: string | null
           telegram_url: string | null
           tweet_url: string | null
@@ -987,11 +987,11 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          degenpumpfun_url?: string | null
           dexscreener_url?: string | null
           discord_url?: string | null
           giveaway_id: number
           moonshot_url?: string | null
+          moontok_url?: string | null
           pumpdotfun_url?: string | null
           telegram_url?: string | null
           tweet_url?: string | null
@@ -999,11 +999,11 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          degenpumpfun_url?: string | null
           dexscreener_url?: string | null
           discord_url?: string | null
           giveaway_id?: number
           moonshot_url?: string | null
+          moontok_url?: string | null
           pumpdotfun_url?: string | null
           telegram_url?: string | null
           tweet_url?: string | null
@@ -1772,10 +1772,6 @@ export type Database = {
           uid: string
         }
         Returns: boolean
-      }
-      update_giveaway_sol_usd_value: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
       }
     }
     Enums: {

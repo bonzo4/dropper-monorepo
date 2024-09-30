@@ -80,11 +80,11 @@ export default function ListingCard({ listing, showBump }: Props) {
             )}
           >
             $
-            {listing.ath > 1000
-              ? numString(listing.ath)
-              : listing.ath < 0.01
-                ? listing.ath.toFixed(5)
-                : listing.ath.toFixed(2)}
+            {listing.usd_price > 1000
+              ? numString(listing.usd_price)
+              : listing.usd_price < 0.01
+                ? listing.usd_price.toFixed(5)
+                : listing.usd_price.toFixed(2)}
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">
@@ -95,7 +95,7 @@ export default function ListingCard({ listing, showBump }: Props) {
               "text-[14px] text-primary font-semibold"
             )}
           >
-            ${numString(listing.atv)}
+            ${numString(listing.volume_24h)}
           </span>
         </div>
       </div>

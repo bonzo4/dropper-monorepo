@@ -369,7 +369,7 @@ export default function CreateListingForm({ wallet, mounted }: Props) {
             Is this a CTO?
           </span>
           <Checkbox
-            checked={listing.is_cto}
+            checked={listing.is_cto || false}
             onClick={() => handleListingChange("is_cto", !listing.is_cto)}
           />
         </div>

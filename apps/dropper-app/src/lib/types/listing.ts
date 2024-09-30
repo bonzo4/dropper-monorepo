@@ -10,8 +10,8 @@ export type ListingBumpInsert =
   DatabaseTypes["public"]["Tables"]["listing_bumps"]["Insert"];
 
 export const DEFAULT_LISTING: ListingInsert = {
-  ath: 0,
-  atv: 0,
+  usd_price: 0,
+  volume_24h: 0,
   creator_key: "",
   description: "",
   dexscreener_url: null,

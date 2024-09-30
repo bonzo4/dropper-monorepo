@@ -17,11 +17,11 @@ export async function getTokenData(address: string) {
   }
 
   return {
-    atv: data.pairs.reduce(
+    volume24h: data.pairs.reduce(
       (acc: number, pair: any) => acc + pair.volume.h24,
       0
     ),
-    ath: data.pairs[0].priceUsd,
+    usdPrice: data.pairs[0].priceUsd,
     total_supply: data.pairs[0].marketCap / data.pairs[0].priceUsd,
   };
 }

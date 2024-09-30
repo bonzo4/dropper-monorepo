@@ -196,31 +196,31 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
               }
             />
             <div className="flex flex-row gap-4 items-center">
-              <span className={cn(mono.className)}>Drop Duration</span>
+              <span className={cn(mono.className)}>Drop Duration (Hours)</span>
               <div className="flex flex-row gap-4">
                 <Checkbox
-                  label="2 Hours"
+                  label="2"
                   checked={giveaway.end_time === "2"}
                   onClick={() => handleGiveawayChange("end_time", "2")}
                   disabled={disabled}
                   type="button"
                 />
                 <Checkbox
-                  label="6 Hours"
+                  label="6"
                   checked={giveaway.end_time === "6"}
                   onClick={() => handleGiveawayChange("end_time", "6")}
                   disabled={disabled}
                   type="button"
                 />
                 <Checkbox
-                  label="12 Hours"
+                  label="12"
                   checked={giveaway.end_time === "12"}
                   onClick={() => handleGiveawayChange("end_time", "12")}
                   disabled={disabled}
                   type="button"
                 />
                 <Checkbox
-                  label="24 Hours"
+                  label="24"
                   checked={giveaway.end_time === "24"}
                   onClick={() => handleGiveawayChange("end_time", "24")}
                   disabled={disabled}

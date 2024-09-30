@@ -32,8 +32,8 @@ export async function createListing({ listing, creatorKey, tx }: Options) {
     creator_key: creatorKey,
     tx_string: tx,
     user_id: user.id,
-    ath: tokenData.ath,
-    atv: tokenData.atv,
+    usd_price: tokenData.usdPrice,
+    volume_24h: tokenData.volume24h,
     total_supply: Math.round(tokenData.total_supply),
   });
 

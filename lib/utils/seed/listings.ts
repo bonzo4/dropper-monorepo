@@ -21,11 +21,11 @@ export async function createListings(
       ticker: faker.lorem.word(),
       name: faker.lorem.words(),
       tx_string: faker.lorem.word(),
-      ath: faker.number.float({
+      usd_price: faker.number.float({
         min: 0,
         max: 1,
       }),
-      atv: faker.number.float({
+      volume_24h: faker.number.float({
         min: 0,
         max: 20_000_000,
       }),
