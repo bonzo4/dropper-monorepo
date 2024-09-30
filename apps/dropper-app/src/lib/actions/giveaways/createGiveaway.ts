@@ -41,7 +41,14 @@ export async function createGiveaway({
     requirements
   ) as GiveawayRequirementsInsert;
   if (giveawayType === "solana") {
-    delete giveawayInsert.token_address;
+    giveawayInsert.token_address =
+      "So11111111111111111111111111111111111111112";
+    const priceResponse = await getTokenPrice(giveawayInsert.token_address);
+
+    if (priceResponse.status === "error") {
+      return JSON.stringify(priceResponse);
+    }
+    giveawayInsert.usd_value = priceResponse * giveawayInsert.reward_amount;
   }
   if (giveawayType === "spl" && giveawayInsert.token_address) {
     const rugResponse = await getRugScore(giveawayInsert.token_address);
