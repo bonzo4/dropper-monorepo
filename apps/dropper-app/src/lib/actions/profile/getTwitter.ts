@@ -23,6 +23,8 @@ export async function getTwitter({ code, userId }: Options) {
   if (error) throw new Error(error.message);
   if (!data.code_verifier) throw new Error("No code verifier found");
 
+  console.log(data.code_verifier);
+
   const { client: userClient } = await client.loginWithOAuth2({
     code,
     codeVerifier: data.code_verifier,

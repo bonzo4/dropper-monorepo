@@ -118,7 +118,7 @@ export default async function ProfilePage() {
         />
         <Tab label="Connections" className="flex flex-col gap-5">
           <ConnectDiscord discordAccount={discordAccount} />
-          <ConnectTwitter twitterAccount={twitterAccount} userId={user.id} />
+          {/* <ConnectTwitter twitterAccount={twitterAccount} userId={user.id} /> */}
           <ConnectSolanaWallet solanaWallet={solanaWallet} userId={user.id} />
         </Tab>
         <Tab label="Referral Program" className="flex flex-col gap-5">
