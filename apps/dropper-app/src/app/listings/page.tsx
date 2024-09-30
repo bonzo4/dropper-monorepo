@@ -67,8 +67,8 @@ export default async function ListingsPage() {
     <main className="relative flex flex-col items-center grow gap-[68px] py-16">
       <div className="flex flex-col items-center gap-5 px-4">
         {/* <Dropzone className="" /> */}
-        <h1 className="flex text-md text-center font-bold text-yellow">
-          YOU HAVE ENTERED THE DROP BOARD: ...
+        <h1 className="flex text-md text-center font-bold text-[#FD00D0]">
+          YOU HAVE ENTERED THE DROPBOARD: LISTINGS & CTOs
         </h1>
         <div className="flex flex-row gap-2">
           <Link href="/listings/create">
