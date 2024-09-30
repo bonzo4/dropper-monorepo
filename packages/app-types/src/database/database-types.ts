@@ -90,17 +90,20 @@ export type Database = {
         Row: {
           code: string
           created_at: string
-          id: number
+          limit: number | null
+          used_count: number
         }
         Insert: {
           code: string
           created_at?: string
-          id?: number
+          limit?: number | null
+          used_count?: number
         }
         Update: {
           code?: string
           created_at?: string
-          id?: number
+          limit?: number | null
+          used_count?: number
         }
         Relationships: []
       }
@@ -972,11 +975,11 @@ export type Database = {
       giveaway_requirements: {
         Row: {
           created_at: string
+          degenpumpfun_url: string | null
           dexscreener_url: string | null
           discord_url: string | null
           giveaway_id: number
           moonshot_url: string | null
-          moontok_url: string | null
           pumpdotfun_url: string | null
           telegram_url: string | null
           tweet_url: string | null
@@ -984,11 +987,11 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          degenpumpfun_url?: string | null
           dexscreener_url?: string | null
           discord_url?: string | null
           giveaway_id: number
           moonshot_url?: string | null
-          moontok_url?: string | null
           pumpdotfun_url?: string | null
           telegram_url?: string | null
           tweet_url?: string | null
@@ -996,11 +999,11 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          degenpumpfun_url?: string | null
           dexscreener_url?: string | null
           discord_url?: string | null
           giveaway_id?: number
           moonshot_url?: string | null
-          moontok_url?: string | null
           pumpdotfun_url?: string | null
           telegram_url?: string | null
           tweet_url?: string | null
@@ -1382,8 +1385,6 @@ export type Database = {
       }
       listings: {
         Row: {
-          ath: number
-          atv: number
           chain: Database["public"]["Enums"]["chains"]
           created_at: string
           creator_key: string
@@ -1402,11 +1403,11 @@ export type Database = {
           total_supply: number
           twitter_url: string | null
           tx_string: string
+          usd_price: number
           user_id: string | null
+          volume_24h: number
         }
         Insert: {
-          ath: number
-          atv: number
           chain: Database["public"]["Enums"]["chains"]
           created_at?: string
           creator_key: string
@@ -1416,7 +1417,7 @@ export type Database = {
           holder_count: number
           icon_url: string
           id?: number
-          is_cto: boolean
+          is_cto?: boolean
           last_bump?: string
           name: string
           telegram_url?: string | null
@@ -1425,11 +1426,11 @@ export type Database = {
           total_supply: number
           twitter_url?: string | null
           tx_string: string
+          usd_price: number
           user_id?: string | null
+          volume_24h: number
         }
         Update: {
-          ath?: number
-          atv?: number
           chain?: Database["public"]["Enums"]["chains"]
           created_at?: string
           creator_key?: string
@@ -1448,7 +1449,9 @@ export type Database = {
           total_supply?: number
           twitter_url?: string | null
           tx_string?: string
+          usd_price?: number
           user_id?: string | null
+          volume_24h?: number
         }
         Relationships: [
           {

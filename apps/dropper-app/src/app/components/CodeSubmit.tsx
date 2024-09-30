@@ -47,6 +47,10 @@ export default function CodeSubmit() {
       return toast.error("Invalid access code");
     }
 
+    if (data.limit && data.used_count >= data.limit) {
+      return toast.error("Access code has been used too many times");
+    }
+
     const response = await submitCode({
       code,
       userId: user.id,
