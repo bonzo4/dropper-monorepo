@@ -15,12 +15,10 @@ export async function getTwitterOauthLink(userId: string) {
     { scope: ["users.read", "tweet.read"] }
   );
 
-  const { error } = await supabase.from("twitter_accounts").insert({
+  await supabase.from("twitter_accounts").insert({
     user_id: userId,
     code_verifier: authLink.codeVerifier,
   });
-
-  if (error) return JSON.stringify({ status: "error", error: error.message });
 
   return authLink.url;
 }

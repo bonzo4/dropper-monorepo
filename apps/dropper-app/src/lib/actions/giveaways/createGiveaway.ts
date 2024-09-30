@@ -114,6 +114,7 @@ export async function createGiveaway({
     .single();
 
   if (error) return JSON.stringify({ status: "error", error: error.message });
+  delete (requirementsInsert as any).degenpumpfun_url;
 
   const { error: error2 } = await supabase
     .from("giveaway_requirements")

@@ -1,4 +1,5 @@
 "use client";
+import ToastStyling from "@/components/ToastStyling";
 import CodeSubmit from "../components/CodeSubmit";
 import logoWhite from "@/public/Dropper_Logo_White.png";
 import Image from "next/image";
@@ -20,6 +21,7 @@ export default function Code() {
           <CodeSubmit />
         </div>
       </div>
+      <ToastStyling />
     </main>
   );
 }

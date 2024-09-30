@@ -37,17 +37,20 @@ export default function CodeSubmit() {
     } = await supabase.auth.getUser();
 
     if (!user) return toast.error("You must be logged in to submit a code");
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("access_codes")
       .select("*")
       .eq("code", code)
       .single();
 
-    if (!data) {
-      return toast.error("Invalid access code");
+    if (error) {
+      setLoading(false);
+      toast.error("Invalid access code");
+      return;
     }
 
     if (data.limit && data.used_count >= data.limit) {
+      setLoading(false);
       return toast.error("Access code has been used too many times");
     }
 
@@ -65,7 +68,10 @@ export default function CodeSubmit() {
   };
 
   return (
-    <form className="flex flex-row gap-2" onSubmit={checkCode}>
+    <form
+      className="flex flex-row gap-2 items-center justify-center"
+      onSubmit={checkCode}
+    >
       <div className={cn(mono.className, "")}>
         <Input
           placeholder="Access Code"

@@ -21,11 +21,6 @@ export default function ConnectTwitter({ twitterAccount, userId }: Props) {
     const generateLink = async () => {
       const link = await getTwitterOauthLink(userId);
 
-      if (JSON.parse(link).status === "error") {
-        toast.error("Error generating Twitter link. Please try again.");
-        return;
-      }
-
       setLink(link);
     };
 
