@@ -43,13 +43,9 @@ export default function Wallet({ children }: WalletProps) {
     [network]
   );
 
-  if (!rpcUrl || !wssUrl) {
-    return <>{children}</>;
-  }
-
   return (
     <ConnectionProvider
-      endpoint={rpcUrl}
+      endpoint={rpcUrl || clusterApiUrl(network)}
       config={{
         wsEndpoint: wssUrl,
       }}
