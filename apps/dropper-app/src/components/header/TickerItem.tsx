@@ -55,7 +55,9 @@ export default function TickerItem({ ticker, index }: TickerItemOptions) {
       <div className="flex flex-row gap-1 items-center mr-8">
         <span className="text-placeholder">#{index + 1}</span>
         <Image width={14} height={14} src={ticker.icon_url} alt="icon" />
-        <span>{ticker.ticker}</span>
+        <span>
+          ${ticker.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}
+        </span>
         <span className={cn(mono.className, "text-primary font-semibold")}>
           {numString(ticker.reward_amount)}{" "}
           {ticker.token_address ? ticker.ticker : "SOL"}

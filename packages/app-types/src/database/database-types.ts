@@ -1078,7 +1078,7 @@ export type Database = {
           start_time: string
           ticker: string
           title: string
-          token_address: string | null
+          token_address: string
           tx_string: string | null
           usd_value: number
           user_id: string
@@ -1100,7 +1100,7 @@ export type Database = {
           start_time: string
           ticker: string
           title: string
-          token_address?: string | null
+          token_address?: string
           tx_string?: string | null
           usd_value: number
           user_id: string
@@ -1122,7 +1122,7 @@ export type Database = {
           start_time?: string
           ticker?: string
           title?: string
-          token_address?: string | null
+          token_address?: string
           tx_string?: string | null
           usd_value?: number
           user_id?: string
@@ -1426,9 +1426,9 @@ export type Database = {
           total_supply: number
           twitter_url?: string | null
           tx_string: string
-          usd_price: number
+          usd_price?: number
           user_id?: string | null
-          volume_24h: number
+          volume_24h?: number
         }
         Update: {
           chain?: Database["public"]["Enums"]["chains"]

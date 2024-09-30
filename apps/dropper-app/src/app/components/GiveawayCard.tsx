@@ -115,9 +115,10 @@ const GiveawayCard = ({ giveaway }: GiveawayCardProps) => {
             </span>
             <Paragraph className="relative text-[16px] text-primary font-semibold">
               {numString(giveaway.reward_amount)} $
-              {giveaway.token_address
-                ? `${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`
-                : "SOL"}
+              {giveaway.token_address ===
+              "So11111111111111111111111111111111111111112"
+                ? "SOL"
+                : `${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`}
             </Paragraph>
           </div>
           <div className="flex flex-col items-start justify-center">

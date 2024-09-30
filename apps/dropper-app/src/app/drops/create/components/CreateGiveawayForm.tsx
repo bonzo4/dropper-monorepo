@@ -158,7 +158,11 @@ export default function CreateGiveawayForm({ wallet, mounted }: Props) {
   const handleGiveawayTypeChange = (type: "solana" | "spl") => {
     setGiveawayType(type);
     if (type == "solana")
-      setGiveaway({ ...giveaway, reward_amount: 0.1, token_address: null });
+      setGiveaway({
+        ...giveaway,
+        reward_amount: 0.1,
+        token_address: "So11111111111111111111111111111111111111112",
+      });
     else if (type == "spl")
       setGiveaway({ ...giveaway, reward_amount: 0, token_address: "" });
   };

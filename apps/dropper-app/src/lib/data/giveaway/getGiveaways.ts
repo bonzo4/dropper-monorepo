@@ -13,7 +13,7 @@ export type LandingGiveaway = {
   reward_amount: number;
   winner_amount: number;
   ticker: string;
-  token_address: string | null;
+  token_address: string;
 };
 
 export type LandingGiveawayQuery = {
