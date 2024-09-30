@@ -93,8 +93,7 @@ export async function POST(request: Request) {
     const { data: giveawayData, error: giveawayError } = await supabase
       .from("giveaways")
       .select("token_address")
-      .neq("token_address", null)
-      .not("token_address", "in", addresses)
+      .not("token_address", "in", `(${addresses.join(",")})`)
       .lt("start_time", now)
       .gt("end_time", now);
 
