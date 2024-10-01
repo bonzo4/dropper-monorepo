@@ -39,19 +39,19 @@ export async function POST(
     const program = getDropperGiveaway(managerWallet, connection);
     if (!program) throw new Error("Program not found");
 
-    if (data.token_address) {
-      instruction = await setSplGiveawayWinnersInstruction({
-        winnerKeys,
-        program,
-        giveawayId: id,
-        wallet: managerWallet,
-        creatorKey: new PublicKey(data.creator_key),
-      });
-    } else {
+    if (data.token_address === "So11111111111111111111111111111111111111112") {
       instruction = await setSolGiveawayWinnersInstruction({
         winnerKeys,
         giveawayId: id,
         program,
+        wallet: managerWallet,
+        creatorKey: new PublicKey(data.creator_key),
+      });
+    } else {
+      instruction = await setSplGiveawayWinnersInstruction({
+        winnerKeys,
+        program,
+        giveawayId: id,
         wallet: managerWallet,
         creatorKey: new PublicKey(data.creator_key),
       });
