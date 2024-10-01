@@ -91,7 +91,10 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
           <span className={cn(mono.className, "text-white")}>Reward</span>
           <span className={cn(mono.className, "text-primary")}>
             {numString(giveaway.reward_amount)} $
-            {giveaway.token_address ? giveaway.ticker : "SOL"}
+            {giveaway.token_address ===
+            "So11111111111111111111111111111111111111112"
+              ? "SOL"
+              : `${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`}
           </span>
         </div>
         <div className="flex flex-col space-y-2">

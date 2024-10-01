@@ -59,8 +59,11 @@ export default function TickerItem({ ticker, index }: TickerItemOptions) {
           ${ticker.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}
         </span>
         <span className={cn(mono.className, "text-primary font-semibold")}>
-          {numString(ticker.reward_amount)}{" "}
-          {ticker.token_address ? ticker.ticker : "SOL"}
+          {numString(ticker.reward_amount)} $
+          {ticker.token_address ===
+          "So11111111111111111111111111111111111111112"
+            ? "SOL"
+            : `${ticker.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`}
         </span>
         <Dropper />
         <Countdown date={endDate} renderer={renderer} />
