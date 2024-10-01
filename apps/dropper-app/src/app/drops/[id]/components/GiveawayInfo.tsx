@@ -12,13 +12,16 @@ const GiveawayInfo = ({ giveaway, ...props }: GiveawayInfoProps) => {
       {...props}
       className="w-full relative overflow-hidden flex flex-row items-center pl-4 sm:pl-0 sm:justify-start gap-[20px] text-[24px] sm:text-[37px] text-text font-fff-forward b"
     >
-      <Image
-        src={giveaway.icon_url}
-        alt={giveaway.title}
-        width={119}
-        height={119}
-        className="rounded-sm"
-      />
+      <div className="w-[119px] h-[119px] overflow-hidden rounded-md flex items-center justify-center">
+        <Image
+          src={giveaway.icon_url}
+          alt={giveaway.title}
+          width={119}
+          height={119}
+          className="w-auto h-auto"
+        />
+      </div>
+
       <div className="self-stretch overflow-hidden flex flex-col items-start justify-start">
         <div className="flex flex-row items-center justify-start">
           <h1 className="relative text-[32px] sm:text-[50px]">
