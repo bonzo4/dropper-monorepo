@@ -4,8 +4,19 @@ export type ListingRow = DatabaseTypes["public"]["Tables"]["listings"]["Row"];
 export type ListingInsert =
   DatabaseTypes["public"]["Tables"]["listings"]["Insert"];
 
+export type ListingStats =
+  DatabaseTypes["public"]["Tables"]["listing_stats"]["Row"];
+
 export type ListingBumpRow =
-  DatabaseTypes["public"]["Tables"]["listing_bumps"]["Row"];
+  DatabaseTypes["public"]["Tables"]["listing_bumps"]["Row"] & {
+    user?: string;
+  };
+
+export type ListingCommentRow =
+  DatabaseTypes["public"]["Tables"]["listing_comments"]["Row"] & {
+    user?: string;
+  };
+
 export type ListingBumpInsert =
   DatabaseTypes["public"]["Tables"]["listing_bumps"]["Insert"];
 

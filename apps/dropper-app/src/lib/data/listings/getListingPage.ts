@@ -1,8 +1,9 @@
-import { ListingRow } from "@/lib/types/listing";
+import { ListingRow, ListingStats } from "@/lib/types/listing";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export type ListingPageData = {
+  stats: ListingStats | null;
   nextListingId: number | null;
   prevListingId: number | null;
 } & ListingRow;
@@ -22,6 +23,12 @@ export async function getListingPage({ supabase, id }: Options) {
   if (error) {
     throw new Error(error.message);
   }
+
+  const { data: stats } = await supabase
+    .from("listing_stats")
+    .select("*")
+    .eq("listing_id", id)
+    .single();
 
   let nextListingId = null;
   let prevListingId = null;
@@ -48,5 +55,5 @@ export async function getListingPage({ supabase, id }: Options) {
     prevListingId = prev.id;
   }
 
-  return { ...data, nextListingId, prevListingId };
+  return { ...data, stats, nextListingId, prevListingId };
 }

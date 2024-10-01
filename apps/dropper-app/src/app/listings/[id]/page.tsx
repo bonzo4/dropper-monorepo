@@ -1,4 +1,4 @@
-import { Paragraph } from "@repo/ui";
+import { Paragraph, Tab } from "@repo/ui";
 import ListingInfo from "./components/ListingInfo";
 import { Button } from "@repo/ui";
 import {
@@ -11,6 +11,10 @@ import ListingRouter from "./components/ListingsRouter";
 import { getListingPage } from "@/lib/data/listings/getListingPage";
 import { createSupabaseServer } from "@repo/lib/supabase";
 import { Metadata, ResolvingMetadata } from "next";
+import ListingStats from "./components/ListingStats";
+import BumpList from "./components/BumpList";
+import ListingCommentList from "./components/ListingCommentList";
+import { listingPageView } from "@/lib/actions/listings/listingPageView";
 
 type Params = {
   id: number;
@@ -83,6 +87,8 @@ export default async function ListingPage({ params: { id } }: Props) {
 
   if (!listing) return null;
 
+  await listingPageView({ listing });
+
   return (
     <main className="relative flex flex-col items-center justify-start grow py-20">
       <ListingRouter
@@ -91,6 +97,7 @@ export default async function ListingPage({ params: { id } }: Props) {
       />
       <div className="w-full relative overflow-hidden flex flex-col items-start justify-start gap-[40px] max-w-[737px]">
         <ListingInfo listing={listing} />
+        <ListingStats listing={listing} />
         <Paragraph className="px-20">{listing.description}</Paragraph>
         <div className="flex flex-wrap gap-[30px] w-full justify-center">
           {listing.twitter_url && (
@@ -126,6 +133,12 @@ export default async function ListingPage({ params: { id } }: Props) {
             </a>
           )}
         </div>
+        <Tab label="Bumps">
+          <BumpList listingId={id} />
+        </Tab>
+        <Tab label="Comments">
+          <ListingCommentList listingId={id} />
+        </Tab>
       </div>
     </main>
   );

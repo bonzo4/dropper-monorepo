@@ -63,7 +63,7 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
   return (
     <div className="w-full flex md:flex-row flex-col items-center justify-center text-[14px] gap-6 md:gap-8 ">
       <div className="flex flex-row gap-6 md:gap-8">
-        <div className="flex flex-col space-y-2 justify-between">
+        <div className="flex flex-col space-y-2 justify-between w-[80px]">
           <span className={cn(mono.className, "text-white")}>Status</span>
           <span className={cn(mono.className, "text-primary")}>
             {startDate > now
@@ -73,13 +73,13 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
                 : "Ended"}
           </span>
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 w-[80px]">
           <span className={cn(mono.className, "text-white")}>
             Campaign Ends in:
           </span>
           <Countdown date={giveaway.end_time} renderer={renderer} />
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 w-[80px]">
           <span className={cn(mono.className, "text-white")}># of Winners</span>
           <span className={cn(mono.className, "text-primary")}>
             {giveaway.winner_amount}
@@ -87,7 +87,7 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
         </div>
       </div>
       <div className="flex flex-row gap-6 md:gap-8">
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 w-[80px]">
           <span className={cn(mono.className, "text-white")}>Reward</span>
           <span className={cn(mono.className, "text-primary")}>
             {numString(giveaway.reward_amount)} $
@@ -97,13 +97,13 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
               : `${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`}
           </span>
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 w-[80px]">
           <span className={cn(mono.className, "text-white")}>Reward Value</span>
           <span className={cn(mono.className, "text-primary")}>
             ${giveaway.usd_value.toFixed(2)}
           </span>
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 w-[80px]">
           <span className={cn(mono.className, "text-white")}>
             Creator Address
           </span>

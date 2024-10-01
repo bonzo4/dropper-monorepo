@@ -9,11 +9,11 @@ import { mono } from "@repo/ui/utils";
 import { useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 
-type Options = {
+type Props = {
   userId: string;
 };
 
-export default function ReferralList({ userId }: Options) {
+export default function ReferralList({ userId }: Props) {
   const supabase = createSupabaseClient();
   const [referralType, setReferralType] = useState<
     "direct" | "secondary" | "tertiary"

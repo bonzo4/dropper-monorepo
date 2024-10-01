@@ -1383,6 +1383,38 @@ export type Database = {
           },
         ]
       }
+      listing_stats: {
+        Row: {
+          bumps: number
+          comments: number
+          created_at: string
+          listing_id: number
+          views: number
+        }
+        Insert: {
+          bumps?: number
+          comments?: number
+          created_at?: string
+          listing_id?: number
+          views?: number
+        }
+        Update: {
+          bumps?: number
+          comments?: number
+          created_at?: string
+          listing_id?: number
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listing_stats_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: true
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       listings: {
         Row: {
           chain: Database["public"]["Enums"]["chains"]
