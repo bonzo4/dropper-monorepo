@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 type GiveawayWinnerProps = {
   giveawayId: number;
   creatorKey: PublicKey;
-  tokenAddress: string | null;
+  tokenAddress: string;
   endDate: Date;
   winner: GiveawayWinnerRow;
   wallet: WalletContextState;
@@ -75,17 +75,17 @@ export default function GiveawayWinner({
       if (!wallet.publicKey) throw new Error("Please connect a wallet");
       if (!program) throw new Error("Program not found");
       let instruction: TransactionInstruction;
-      if (tokenAddress) {
+      if (tokenAddress === "So11111111111111111111111111111111111111112") {
+        instruction = await claimSolGiveawayInstruction({
+          program,
+          giveawayId,
+          creatorKey: new PublicKey(creatorKey),
+        });
+      } else {
         instruction = await claimSplGiveawayInstruction({
           program,
           giveawayId,
           mint: new PublicKey(tokenAddress),
-          creatorKey: new PublicKey(creatorKey),
-        });
-      } else {
-        instruction = await claimSolGiveawayInstruction({
-          program,
-          giveawayId,
           creatorKey: new PublicKey(creatorKey),
         });
       }
