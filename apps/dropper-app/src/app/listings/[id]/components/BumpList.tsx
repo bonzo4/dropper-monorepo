@@ -52,7 +52,7 @@ export default function BumpList({ listingId }: Props) {
                 {10 * (page - 1) + index + 1}.{" "}
                 <span className="">{bump.user}</span>
               </p>
-              <p className="text-nowrap w-[200px] truncate overflow-hidden">
+              <p className="text-nowrap truncate overflow-hidden">
                 {new Date(bump.created_at).toLocaleDateString()}
               </p>
             </li>

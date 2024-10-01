@@ -30,7 +30,7 @@ export default function ListingCommentList({ listingId }: Props) {
           "flex flex-row gap-2 justify-between text-base font-bold"
         )}
       >
-        <p>Date</p>
+        <p>Comment</p>
       </div>
       {loading && (
         <div className="flex w-full justify-center">
@@ -56,8 +56,8 @@ export default function ListingCommentList({ listingId }: Props) {
                 {10 * (page - 1) + index + 1}.{" "}
                 <span className="">{comment.user}</span>
               </p>
-              <p className="text-nowrap w-[200px] truncate overflow-hidden">
-                {new Date(comment.created_at).toLocaleDateString()}
+              <p className="text-nowrap truncate overflow-hidden">
+                {comment.content}
               </p>
             </li>
           ))}
