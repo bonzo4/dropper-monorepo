@@ -54,6 +54,7 @@ export function useBumps({ supabase, listingId, page }: Options) {
           return { ...bump, user: user?.username ?? "Unknown User" };
         })
       );
+      setLoading(false);
       setBumps(bumpsWithUser);
     };
 

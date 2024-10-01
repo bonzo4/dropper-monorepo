@@ -54,6 +54,7 @@ export function useListingComments({ supabase, listingId, page }: Options) {
           return { ...comment, user: user?.username ?? "Unknown User" };
         })
       );
+      setLoading(false);
       setComments(commentsWithUser);
     };
 

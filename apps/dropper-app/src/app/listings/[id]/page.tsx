@@ -133,10 +133,10 @@ export default async function ListingPage({ params: { id } }: Props) {
             </a>
           )}
         </div>
-        <Tab label="Bumps">
+        <Tab label="Bumps" className="w-full flex">
           <BumpList listingId={id} />
         </Tab>
-        <Tab label="Comments">
+        <Tab label="Comments" className="w-full flex">
           <ListingCommentList listingId={id} />
         </Tab>
       </div>
