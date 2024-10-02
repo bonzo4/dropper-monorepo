@@ -6,12 +6,13 @@ alter table "public"."giveaways" add column "is_repo" boolean not null default f
 
 set check_function_bodies = off;
 
-CREATE OR REPLACE FUNCTION public.update_listing_bump_statsa()
+CREATE OR REPLACE FUNCTION public.update_listing_bump_stats()
  RETURNS trigger
  LANGUAGE plpgsql
  SECURITY DEFINER
 AS $function$begin
   update public.listing_stats set bumps = bumps + 1 where listing_id = new.id;
+  return new;
 end$function$
 ;
 
@@ -21,6 +22,7 @@ CREATE OR REPLACE FUNCTION public.create_listing_stats()
  SECURITY DEFINER
 AS $function$begin
   insert into public.listing_stats (listing_id) values (new.id);
+  return new;
 end$function$
 ;
 
@@ -30,9 +32,10 @@ CREATE OR REPLACE FUNCTION public.update_listing_comment_stats()
  SECURITY DEFINER
 AS $function$begin
   update public.listing_stats set comments = comments + 1 where listing_id = new.id;
+  return new;
 end$function$
 ;
 
-CREATE TRIGGER on_listing_bump_create AFTER INSERT ON public.listing_bumps FOR EACH ROW EXECUTE FUNCTION update_listing_bump_statsa();
+CREATE TRIGGER on_listing_bump_create AFTER INSERT ON public.listing_bumps FOR EACH ROW EXECUTE FUNCTION update_listing_bump_stats();
 
 
