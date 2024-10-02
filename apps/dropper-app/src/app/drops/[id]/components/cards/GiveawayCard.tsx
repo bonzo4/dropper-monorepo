@@ -81,6 +81,7 @@ export default function GiveawayCard({
   if (entry && endDate > now) return <GiveawayEntered endDate={endDate} />;
   if (now < new Date(endDate.getTime() + 35000)) return <GiveawayDone />;
   if (winner && winner.has_claimed) return <GiveawayClaimed />;
+  if (winner && giveaway.is_repo) return <GiveawayRepo />;
   if (winner)
     return (
       <GiveawayWinner
@@ -93,7 +94,6 @@ export default function GiveawayCard({
         creatorKey={new PublicKey(giveaway.creator_key)}
       />
     );
-  if (winner && giveaway.is_repo) return <GiveawayRepo />;
   if (entry && endDate < now) return <GiveawayLoser />;
   return <GiveawayEnded />;
 }
