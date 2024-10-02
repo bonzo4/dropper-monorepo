@@ -1071,6 +1071,7 @@ export type Database = {
           entries: number
           icon_url: string
           id: number
+          is_repo: boolean
           reward_amount: number
           rug_score: number | null
           set_winners_error: string | null
@@ -1093,6 +1094,7 @@ export type Database = {
           entries?: number
           icon_url: string
           id?: number
+          is_repo?: boolean
           reward_amount: number
           rug_score?: number | null
           set_winners_error?: string | null
@@ -1115,6 +1117,7 @@ export type Database = {
           entries?: number
           icon_url?: string
           id?: number
+          is_repo?: boolean
           reward_amount?: number
           rug_score?: number | null
           set_winners_error?: string | null

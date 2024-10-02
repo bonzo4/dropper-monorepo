@@ -13,6 +13,7 @@ import GiveawayNotStarted from "./GiveawayNotStarted";
 import GiveawayWinner from "./GiveawayWinner";
 import { GiveawayPageData } from "@/lib/data/giveaway/getGiveawayPage";
 import { PublicKey } from "@solana/web3.js";
+import GiveawayRepo from "./GiveawayRepo";
 
 type GiveawayCardProps = {
   giveaway: GiveawayPageData;
@@ -92,6 +93,7 @@ export default function GiveawayCard({
         creatorKey={new PublicKey(giveaway.creator_key)}
       />
     );
+  if (winner && giveaway.is_repo) return <GiveawayRepo />;
   if (entry && endDate < now) return <GiveawayLoser />;
   return <GiveawayEnded />;
 }
