@@ -12,7 +12,14 @@ export async function listingPageView({ listing }: Options) {
 
   if (!listing.stats) return;
 
-  await supabase.from("listing_stats").update({
-    views: listing.stats.views + 1,
-  });
+  const { error } = await supabase
+    .from("listing_stats")
+    .update({
+      views: listing.stats.views + 1,
+    })
+    .eq("listing_id", listing.id);
+
+  if (error) {
+    console.error("Error updating listing stats", error);
+  }
 }
