@@ -26,7 +26,7 @@ export default function Header({ profile, tickers }: HeaderProps) {
   return (
     <div className="relative flex flex-col ">
       <div className="flex flex-col overflow-hidden">
-        <Ticker width={width} tickers={tickers} />
+        <Ticker width={width} tickers={[]} />
         <div className=" relative w-full min-h-[72px] flex flex-row items-center justify-between p-4">
           <Link href={"/"}>
             <Image src={headerLogo} alt="header logo" height={34} />
