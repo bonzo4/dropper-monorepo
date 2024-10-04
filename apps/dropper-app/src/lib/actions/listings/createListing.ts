@@ -34,7 +34,7 @@ export async function createListing({ listing, creatorKey, tx }: Options) {
     user_id: user.id,
     usd_price: tokenData.usdPrice,
     volume_24h: tokenData.volume24h,
-    total_supply: Math.round(tokenData.total_supply),
+    market_cap: Math.round(tokenData.marketCap),
   });
 
   if (error) return JSON.stringify({ status: "error", error: error.message });

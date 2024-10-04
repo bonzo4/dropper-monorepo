@@ -14,7 +14,7 @@ type CommentSectionProps = {
 
 const CommentSection = ({ airdropId }: CommentSectionProps) => {
   const supabase = createSupabaseClient();
-  const { user } = useUser({ supabase });
+  const { dropman } = useUser({ supabase });
   const [comment, setComment] = useState("");
   const [page, setPage] = useState(1);
   const [sortBy, setSortBy] = useState<"best" | "newest">("best");
@@ -22,11 +22,11 @@ const CommentSection = ({ airdropId }: CommentSectionProps) => {
   const { comments } = useComments({ supabase, airdropId, sortBy, page });
 
   const createComment = async (comment: string) => {
-    if (!user) return;
+    if (!dropman) return;
     if (!comment) return;
     await supabase
       .from("airdrop_comments")
-      .insert({ airdrop_id: airdropId, comment, user_id: user.id });
+      .insert({ airdrop_id: airdropId, comment, user_id: dropman.user_id });
     setPage(1);
     setSortBy("newest");
   };

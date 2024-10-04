@@ -61,14 +61,14 @@ export default function ListingCard({ listing, showBump }: Props) {
       </div>
       <div className="flex flex-row justify-between w-full">
         <div className="flex flex-col items-center gap-1">
-          <span className="text-[12px]">TOTAL SUPPLY</span>
+          <span className="text-[12px]">MARKET CAP</span>
           <span
             className={cn(
               mono.className,
               "text-[14px] text-primary font-semibold"
             )}
           >
-            {numString(listing.total_supply)}
+            {numString(listing.market_cap)}
           </span>
         </div>
         <div className="flex flex-col items-center gap-1">

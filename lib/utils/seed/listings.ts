@@ -41,7 +41,7 @@ export async function createListings(
       created_at: faker.date.past().toISOString(),
       last_bump: faker.date.past().toISOString(),
       token_address: faker.lorem.words(),
-      total_supply: faker.number.int({
+      market_cap: faker.number.int({
         min: 0,
         max: 100_000_000,
       }),

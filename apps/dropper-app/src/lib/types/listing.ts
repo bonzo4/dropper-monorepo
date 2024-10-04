@@ -14,8 +14,14 @@ export type ListingBumpRow =
 
 export type ListingCommentRow =
   DatabaseTypes["public"]["Tables"]["listing_comments"]["Row"] & {
-    user?: string;
+    user?: string | null;
+    icon_url?: string | null;
+    is_upvote?: boolean;
+    bump_count?: number;
   };
+
+export type ListingCommentVoteRow =
+  DatabaseTypes["public"]["Tables"]["listing_comment_votes"]["Row"];
 
 export type ListingBumpInsert =
   DatabaseTypes["public"]["Tables"]["listing_bumps"]["Insert"];
@@ -33,6 +39,6 @@ export const DEFAULT_LISTING: ListingInsert = {
   icon_url: "",
   chain: "SOL",
   token_address: "",
-  total_supply: 0,
+  market_cap: 0,
   is_cto: false,
 };

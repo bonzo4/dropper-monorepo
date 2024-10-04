@@ -13,12 +13,12 @@ export default function ListingStats({ listing }: Options) {
     <div className="w-full flex lg:flex-row flex-wrap justify-center sm:justify-between text-[14px] lg:gap-0 gap-8 px-8">
       <div className="flex flex-col gap-2 w-[80px]">
         <div className="flex flex-col">
-          <span>Total</span>
-          <span>Supply</span>
+          <span>Market</span>
+          <span>Cap</span>
         </div>
 
         <span className={cn(mono.className, "text-primary")}>
-          {numString(listing.total_supply)}
+          {numString(listing.market_cap)}
         </span>
       </div>
       <div className="flex flex-col gap-2  w-[80px]">

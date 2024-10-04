@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { ListingCommentRow } from "../types/listing";
+import { ListingCommentRow, ListingCommentVoteRow } from "../types/listing";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { useEffect, useState } from "react";
 
@@ -7,9 +7,15 @@ type Options = {
   supabase: SupabaseClient<DatabaseTypes>;
   listingId: number;
   page: number;
+  userId: string | null;
 };
 
-export function useListingComments({ supabase, listingId, page }: Options) {
+export function useListingComments({
+  supabase,
+  listingId,
+  page,
+  userId,
+}: Options) {
   const [comments, setComments] = useState<ListingCommentRow[]>([]);
 
   const [loading, setLoading] = useState(true);
@@ -40,18 +46,37 @@ export function useListingComments({ supabase, listingId, page }: Options) {
 
       const commentsWithUser = await Promise.all(
         data.map(async (comment) => {
-          const { data: user, error } = await supabase
+          const { data: user } = await supabase
             .from("dropmans_view")
-            .select("username")
+            .select("username, icon")
             .eq("user_id", comment.user_id)
             .single();
 
-          if (error) {
-            console.error(error);
-            return comment;
+          const voteQuery = supabase
+            .from("listing_comment_votes")
+            .select("is_upvote")
+            .eq("comment_id", comment.id);
+
+          let vote: { is_upvote: boolean } | null = null;
+          if (userId) {
+            voteQuery.eq("user_id", userId);
+            const { data: voteData } = await voteQuery.single();
+            vote = voteData;
           }
 
-          return { ...comment, user: user?.username ?? "Unknown User" };
+          const { count } = await supabase
+            .from("listing_bumps")
+            .select(undefined, { count: "exact" })
+            .eq("user_id", comment.user_id)
+            .single();
+
+          return {
+            ...comment,
+            user: user?.username ?? "Unknown User",
+            icon_url: user?.icon,
+            is_upvote: vote ? vote.is_upvote : undefined,
+            bump_count: count ?? 0,
+          };
         })
       );
       setLoading(false);
@@ -59,7 +84,7 @@ export function useListingComments({ supabase, listingId, page }: Options) {
     };
 
     fetchComments();
-  }, [supabase, listingId, page]);
+  }, [supabase, listingId, page, userId]);
 
   return { comments, loading };
 }

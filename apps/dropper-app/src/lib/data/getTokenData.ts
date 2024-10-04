@@ -22,6 +22,6 @@ export async function getTokenData(address: string) {
       0
     ),
     usdPrice: data.pairs[0].priceUsd,
-    total_supply: data.pairs[0].marketCap / data.pairs[0].priceUsd,
+    marketCap: data.pairs[0].marketCap,
   };
 }

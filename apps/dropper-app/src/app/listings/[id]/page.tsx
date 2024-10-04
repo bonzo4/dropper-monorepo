@@ -15,6 +15,8 @@ import ListingStats from "./components/ListingStats";
 import BumpList from "./components/BumpList";
 import ListingCommentList from "./components/ListingCommentList";
 import { listingPageView } from "@/lib/actions/listings/listingPageView";
+import ListingCommentCreate from "./components/ListingCommentCreate";
+import { DropmanRow } from "@/lib/types/user";
 
 type Params = {
   id: number;
@@ -83,6 +85,21 @@ export async function generateMetadata(
 
 export default async function ListingPage({ params: { id } }: Props) {
   const supabase = await createSupabaseServer();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  //   setUser(user);
+  let dropman: DropmanRow | null = null;
+  if (user) {
+    const { data } = await supabase
+      .from("dropmans")
+      .select("*")
+      .eq("user_id", user.id)
+      .single();
+
+    if (data) dropman = data;
+  }
+
   const listing = await getListingPage({ supabase, id });
 
   if (!listing) return null;
@@ -136,8 +153,12 @@ export default async function ListingPage({ params: { id } }: Props) {
         <Tab label="Bumps" className="w-full flex">
           <BumpList listingId={id} />
         </Tab>
-        <Tab label="Comments" className="w-full flex">
-          <ListingCommentList listingId={id} />
+        <Tab label="Comments" className="w-full flex flex-col gap-4">
+          <ListingCommentCreate listingId={id} dropman={dropman} />
+          <ListingCommentList
+            listingId={id}
+            userId={dropman?.user_id || null}
+          />
         </Tab>
       </div>
     </main>

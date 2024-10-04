@@ -1347,12 +1347,52 @@ export type Database = {
           },
         ]
       }
+      listing_comment_votes: {
+        Row: {
+          comment_id: number
+          created_at: string
+          id: number
+          is_upvote: boolean
+          user_id: string
+        }
+        Insert: {
+          comment_id: number
+          created_at?: string
+          id?: number
+          is_upvote: boolean
+          user_id: string
+        }
+        Update: {
+          comment_id?: number
+          created_at?: string
+          id?: number
+          is_upvote?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listing_comment_votes_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "listing_comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "listing_comment_votes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       listing_comments: {
         Row: {
           content: string
           created_at: string
           id: number
           listing_id: number
+          score: number
           user_id: string
         }
         Insert: {
@@ -1360,6 +1400,7 @@ export type Database = {
           created_at?: string
           id?: number
           listing_id: number
+          score?: number
           user_id?: string
         }
         Update: {
@@ -1367,6 +1408,7 @@ export type Database = {
           created_at?: string
           id?: number
           listing_id?: number
+          score?: number
           user_id?: string
         }
         Relationships: [
@@ -1431,11 +1473,11 @@ export type Database = {
           id: number
           is_cto: boolean
           last_bump: string
+          market_cap: number
           name: string
           telegram_url: string | null
           ticker: string
           token_address: string
-          total_supply: number
           twitter_url: string | null
           tx_string: string
           usd_price: number
@@ -1454,11 +1496,11 @@ export type Database = {
           id?: number
           is_cto?: boolean
           last_bump?: string
+          market_cap?: number
           name: string
           telegram_url?: string | null
           ticker: string
           token_address: string
-          total_supply: number
           twitter_url?: string | null
           tx_string: string
           usd_price?: number
@@ -1477,11 +1519,11 @@ export type Database = {
           id?: number
           is_cto?: boolean
           last_bump?: string
+          market_cap?: number
           name?: string
           telegram_url?: string | null
           ticker?: string
           token_address?: string
-          total_supply?: number
           twitter_url?: string | null
           tx_string?: string
           usd_price?: number

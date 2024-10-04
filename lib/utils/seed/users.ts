@@ -26,7 +26,7 @@ export async function createUsers(supabase: SupabaseClient<DatabaseTypes>) {
   let userId: string = "";
 
   const PASSWORD = "testuser";
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 1; i++) {
     const email = copycat.email(i).toLowerCase();
     const avatar = faker.image.avatarGitHub();
     const fullName = copycat.fullName(i);
