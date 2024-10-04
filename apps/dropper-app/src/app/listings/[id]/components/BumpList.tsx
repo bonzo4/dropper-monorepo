@@ -9,9 +9,10 @@ import { CgSpinner } from "react-icons/cg";
 
 type Props = {
   listingId: number;
+  bumpCount: number;
 };
 
-export default function BumpList({ listingId }: Props) {
+export default function BumpList({ listingId, bumpCount }: Props) {
   const supabase = createSupabaseClient();
   const [page, setPage] = useState(1);
 
@@ -23,7 +24,7 @@ export default function BumpList({ listingId }: Props) {
       <div
         className={cn(
           mono.className,
-          "flex flex-row gap-2 justify-between text-base font-bold"
+          "flex flex-row gap-2 justify-end text-base font-bold"
         )}
       >
         <p>Date</p>
@@ -49,7 +50,7 @@ export default function BumpList({ listingId }: Props) {
               )}
             >
               <p className="text-nowrap w-[200px] truncate overflow-hidden">
-                {10 * (page - 1) + index + 1}.{" "}
+                {bumpCount - (10 * (page - 1) + index)}.{" "}
                 <span className="">{bump.user}</span>
               </p>
               <p className="text-nowrap truncate overflow-hidden">

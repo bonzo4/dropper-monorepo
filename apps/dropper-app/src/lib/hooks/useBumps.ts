@@ -55,7 +55,7 @@ export function useBumps({ supabase, listingId, page }: Options) {
         })
       );
       setLoading(false);
-      setBumps(bumpsWithUser);
+      setBumps([...bumpsWithUser]);
     };
 
     fetchBumps();
