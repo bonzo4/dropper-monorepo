@@ -26,7 +26,7 @@ export function useListingComments({
         .from("listing_comments")
         .select("*")
         .eq("listing_id", listingId)
-        .order("created_at", { ascending: false });
+        .order("score", { ascending: false });
 
       if (page > 1) {
         const start = (page - 1) * 10;
@@ -86,5 +86,5 @@ export function useListingComments({
     fetchComments();
   }, [supabase, listingId, page, userId]);
 
-  return { comments, loading };
+  return { comments, loading, setComments };
 }

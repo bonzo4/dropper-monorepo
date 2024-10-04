@@ -16,8 +16,11 @@ type Props = {
 export default function ListingComment({ comment, userId }: Props) {
   const [showMore, setShowMore] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [score, setScore] = useState(comment.score);
+  const [isUpvote, setIsUpvote] = useState(comment.is_upvote);
 
   const vote = async (direction: "up" | "down") => {
+    setDisabled(true);
     if (!userId) {
       toast.error("You must be logged in to vote on comments");
       return;
@@ -36,6 +39,8 @@ export default function ListingComment({ comment, userId }: Props) {
     }
 
     toast.success("Thank you for voting");
+    setScore((prev) => prev + (direction === "up" ? 1 : -1));
+    setIsUpvote(direction === "up");
     setDisabled(true);
   };
 
@@ -60,7 +65,7 @@ export default function ListingComment({ comment, userId }: Props) {
           <div className="w-[50px] h-[50px] bg-placeholder rounded-full" />
         )}
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full gap-2">
         <p className="flex flex-row gap-2 text-nowrap w-[250px] ">
           <span className={cn(dropper.className, "truncate overflow-hidden")}>
             {comment.user}
@@ -92,25 +97,19 @@ export default function ListingComment({ comment, userId }: Props) {
           <div className="flex flex-row items-center justify-center gap-2">
             <button
               onClick={() => vote("down")}
-              disabled={comment.is_upvote !== undefined || disabled}
+              disabled={isUpvote !== undefined || disabled}
               style={{
-                opacity:
-                  comment.is_upvote !== undefined && !comment.is_upvote
-                    ? 1
-                    : 0.25,
+                opacity: isUpvote === undefined || !isUpvote ? 1 : 0.25,
               }}
             >
               <ArrowWhite className="w-3 h-3 rotate-90 mt-px hover:opacity-50 hover:cursor-pointer" />
             </button>
-            <span>{comment.score}</span>
+            <span>{score}</span>
             <button
               onClick={() => vote("up")}
-              disabled={comment.is_upvote !== undefined || disabled}
+              disabled={isUpvote !== undefined || disabled}
               style={{
-                opacity:
-                  comment.is_upvote !== undefined && comment.is_upvote
-                    ? 1
-                    : 0.25,
+                opacity: isUpvote === undefined || isUpvote ? 1 : 0.25,
               }}
             >
               <ArrowWhite className="w-3 h-3 -rotate-90 mb-px hover:opacity-50 hover:cursor-pointer" />

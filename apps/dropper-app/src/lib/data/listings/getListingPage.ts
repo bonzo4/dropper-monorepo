@@ -6,14 +6,16 @@ export type ListingPageData = {
   stats: ListingStats | null;
   nextListingId: number | null;
   prevListingId: number | null;
+  userBumps: number;
 } & ListingRow;
 
 type Options = {
   supabase: SupabaseClient<DatabaseTypes>;
   id: number;
+  userId: string | null;
 };
 
-export async function getListingPage({ supabase, id }: Options) {
+export async function getListingPage({ supabase, id, userId }: Options) {
   const { data, error } = await supabase
     .from("listings")
     .select("*")
@@ -55,5 +57,16 @@ export async function getListingPage({ supabase, id }: Options) {
     prevListingId = prev.id;
   }
 
-  return { ...data, stats, nextListingId, prevListingId };
+  let userBumps: number = 0;
+  if (userId) {
+    const { count } = await supabase
+      .from("listing_bumps")
+      .select(undefined, { count: "exact" })
+      .eq("listing_id", id)
+      .eq("user_id", userId)
+      .single();
+    userBumps = count || 0;
+  }
+
+  return { ...data, stats, nextListingId, prevListingId, userBumps };
 }

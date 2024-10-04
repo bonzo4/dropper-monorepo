@@ -15,9 +15,7 @@ import ListingStats from "./components/ListingStats";
 import BumpList from "./components/BumpList";
 import ListingCommentList from "./components/ListingCommentList";
 import { listingPageView } from "@/lib/actions/listings/listingPageView";
-import ListingCommentCreate from "./components/ListingCommentCreate";
 import { DropmanRow } from "@/lib/types/user";
-import BumpListing from "./components/BumpListing";
 
 type Params = {
   id: number;
@@ -32,7 +30,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const supabase = await createSupabaseServer();
-  const listing = await getListingPage({ supabase, id });
+  const listing = await getListingPage({ supabase, id, userId: null });
   if (!listing) throw new Error("Listing not found");
   return {
     title: `${listing.name} | Dropper`,
@@ -101,7 +99,11 @@ export default async function ListingPage({ params: { id } }: Props) {
     if (data) dropman = data;
   }
 
-  const listing = await getListingPage({ supabase, id });
+  const listing = await getListingPage({
+    supabase,
+    id,
+    userId: user?.id || null,
+  });
 
   if (!listing) return null;
 
@@ -155,10 +157,16 @@ export default async function ListingPage({ params: { id } }: Props) {
           <BumpList listingId={id} />
         </Tab>
         <Tab label="Comments" className="w-full flex flex-col gap-4">
-          <ListingCommentCreate listingId={id} dropman={dropman} />
+          {/* <ListingCommentCreate
+            listingId={id}
+            dropman={dropman}
+            listingName={listing.name}
+          /> */}
           <ListingCommentList
             listingId={id}
-            userId={dropman?.user_id || null}
+            dropman={dropman}
+            listingName={listing.name}
+            userBumps={listing.userBumps}
           />
         </Tab>
       </div>

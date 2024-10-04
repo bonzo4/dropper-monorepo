@@ -15,11 +15,15 @@ export async function createListingComment({
 }: Options) {
   const supabase = await createSupabaseService();
 
-  const { error } = await supabase.from("listing_comments").insert({
-    listing_id: listingId,
-    user_id: userId,
-    content: content,
-  });
+  const { data, error } = await supabase
+    .from("listing_comments")
+    .insert({
+      listing_id: listingId,
+      user_id: userId,
+      content: content,
+    })
+    .select("*")
+    .single();
 
   if (error) {
     return JSON.stringify({
@@ -30,6 +34,6 @@ export async function createListingComment({
 
   return JSON.stringify({
     status: "success",
-    message: "Comment created successfully",
+    comment: data,
   });
 }

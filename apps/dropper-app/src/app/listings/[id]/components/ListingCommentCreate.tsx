@@ -1,9 +1,8 @@
 "use client";
 
 import { createListingComment } from "@/lib/actions/listings/createListingComment";
-import { useUser } from "@/lib/hooks/useUser";
+import { ListingCommentRow } from "@/lib/types/listing";
 import { DropmanRow } from "@/lib/types/user";
-import { createSupabaseClient } from "@repo/lib/supabase";
 import { Button, Textarea } from "@repo/ui";
 import Image from "next/image";
 import { useState } from "react";
@@ -11,10 +10,19 @@ import { toast } from "react-toastify";
 
 type Props = {
   listingId: number;
+  listingName: string;
   dropman: DropmanRow | null;
+  setComments: React.Dispatch<React.SetStateAction<ListingCommentRow[]>>;
+  userBumps: number;
 };
 
-export default function ListingCommentCreate({ listingId, dropman }: Props) {
+export default function ListingCommentCreate({
+  listingId,
+  listingName,
+  dropman,
+  setComments,
+  userBumps,
+}: Props) {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -47,6 +55,17 @@ export default function ListingCommentCreate({ listingId, dropman }: Props) {
       return;
     }
 
+    const newComment = data.comment as ListingCommentRow;
+
+    setComments((prev) => [
+      {
+        ...newComment,
+        user: dropman.username,
+        icon_url: dropman.icon,
+        bump_count: userBumps,
+      },
+      ...prev,
+    ]);
     setComment("");
     setLoading(false);
     toast.success("Comment posted!");
@@ -65,7 +84,7 @@ export default function ListingCommentCreate({ listingId, dropman }: Props) {
   }
 
   return (
-    <form onSubmit={submitComment} className="flex flex-col w-full gap-4 px-8">
+    <form onSubmit={submitComment} className="flex flex-col w-full gap-4">
       <h2 className="text-3xl">Submit a Comment</h2>
       <div className="flex flex-row gap-4 w-full items-start">
         <div className="flex rounded-full items-center justify-center overflow-hidden w-[50px] h-[50px] min-w-[50px] min-h-[50px]">
@@ -79,6 +98,7 @@ export default function ListingCommentCreate({ listingId, dropman }: Props) {
         </div>
         <div className="flex flex-col w-full grow items-end gap-2">
           <Textarea
+            placeholder={`I love ${listingName}!`}
             value={comment}
             onChange={handleCommentChange}
             className="w-full"

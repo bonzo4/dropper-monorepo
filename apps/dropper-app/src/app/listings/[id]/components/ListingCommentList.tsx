@@ -8,25 +8,41 @@ import { useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import Image from "next/image";
 import ListingComment from "./ListingComment";
+import ListingCommentCreate from "./ListingCommentCreate";
+import { DropmanRow } from "@/lib/types/user";
 
 type Props = {
   listingId: number;
-  userId: string | null;
+  listingName: string;
+  dropman: DropmanRow | null;
+  userBumps: number;
 };
 
-export default function ListingCommentList({ listingId, userId }: Props) {
+export default function ListingCommentList({
+  listingId,
+  listingName,
+  dropman,
+  userBumps,
+}: Props) {
   const supabase = createSupabaseClient();
   const [page, setPage] = useState(1);
 
-  const { comments, loading } = useListingComments({
+  const { comments, loading, setComments } = useListingComments({
     supabase,
     listingId,
     page,
-    userId,
+    userId: dropman?.user_id || null,
   });
 
   return (
     <div className="flex flex-col w-full gap-4 px-8">
+      <ListingCommentCreate
+        setComments={setComments}
+        listingId={listingId}
+        listingName={listingName}
+        dropman={dropman}
+        userBumps={userBumps}
+      />
       <h2 className="text-3xl">Top Comments</h2>
       {loading && (
         <div className="flex w-full justify-center">
@@ -46,7 +62,7 @@ export default function ListingCommentList({ listingId, userId }: Props) {
             <ListingComment
               key={comment.id}
               comment={comment}
-              userId={userId}
+              userId={dropman?.user_id || null}
             />
           ))}
         </ul>
