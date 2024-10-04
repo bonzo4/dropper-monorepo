@@ -16,6 +16,7 @@ export async function getMultipleTokenData(tokenAddresses: string[]) {
     tokenAddress: string;
     price: number;
     volume24h: number;
+    marketCap: number;
   }[] = [];
 
   for (const address of tokenAddresses) {
@@ -30,6 +31,7 @@ export async function getMultipleTokenData(tokenAddresses: string[]) {
         0
       ),
       price: tokenPairs[0].priceUsd,
+      marketCap: tokenPairs[0].marketCap,
     });
   }
 

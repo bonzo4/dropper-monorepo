@@ -31,6 +31,7 @@ export async function POST(request: Request) {
           .update({
             usd_price: token.price,
             volume_24h: token.volume24h,
+            market_cap: token.marketCap,
           })
           .eq("token_address", token.tokenAddress);
         const { data: giveawayData } = await supabase
