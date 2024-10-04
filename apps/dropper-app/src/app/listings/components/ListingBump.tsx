@@ -37,11 +37,13 @@ export function ListingBump({
         The ranking can be updated at any time, and your favorite drop will
         appear first on the homepage every time it is refreshed
       </span>
-      <div className="flex flex-row justify-between border-2 border-primary w-[300px] px-4 py-1 rounded-md">
+      <div className="flex flex-row items-center justify-between border-2 border-primary w-[300px] px-4 py-1 rounded-md text-lg">
         <span className={cn(mono.className)}>0.001</span>
-        <div className="flex flex-row gap-1">
-          <span className={cn(mono.className)}>SOL</span>
-          <SolanaMulti width={15} height={15} />
+        <div className="flex flex-row gap-1 items-center">
+          <span className={cn(mono.className)}>$SOL</span>
+          <div className="">
+            <SolanaMulti height={18} />
+          </div>
         </div>
       </div>
       <div className="flex flex-row items-center gap-2">

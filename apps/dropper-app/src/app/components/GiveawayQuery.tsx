@@ -30,7 +30,7 @@ export default function GiveawayQuery({
         >
           ONGOING
         </button>
-        <button
+        {/* <button
           disabled={loading}
           className=""
           onClick={() => handleType("not_started")}
@@ -40,7 +40,7 @@ export default function GiveawayQuery({
           }}
         >
           NOT STARTED
-        </button>
+        </button> */}
         <button
           disabled={loading}
           className=""

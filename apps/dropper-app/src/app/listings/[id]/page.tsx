@@ -17,6 +17,7 @@ import ListingCommentList from "./components/ListingCommentList";
 import { listingPageView } from "@/lib/actions/listings/listingPageView";
 import ListingCommentCreate from "./components/ListingCommentCreate";
 import { DropmanRow } from "@/lib/types/user";
+import BumpListing from "./components/BumpListing";
 
 type Params = {
   id: number;
@@ -119,7 +120,7 @@ export default async function ListingPage({ params: { id } }: Props) {
         <div className="flex flex-wrap gap-[30px] w-full justify-center">
           {listing.twitter_url && (
             <a href={listing.twitter_url} target="_blank">
-              <Button className="px-14 py-2 flex gap-[10px]">
+              <Button className="px-14 py-2 flex gap-[10px] w-[320px]">
                 <Twitter height={30} />
                 <span className="text-2xl">X (TWITTER)</span>
               </Button>
@@ -127,7 +128,7 @@ export default async function ListingPage({ params: { id } }: Props) {
           )}
           {listing.discord_url && (
             <a href={listing.discord_url} target="_blank">
-              <Button className="px-12 py-2 flex gap-[10px]">
+              <Button className="px-12 py-2 flex gap-[10px] w-[320px]">
                 <DiscordColor height={30} />
                 <span className="text-2xl">DISCORD</span>
               </Button>
@@ -135,7 +136,7 @@ export default async function ListingPage({ params: { id } }: Props) {
           )}
           {listing.telegram_url && (
             <a href={listing.telegram_url} target="_blank">
-              <Button className="px-14 py-2 flex gap-[10px]">
+              <Button className="px-14 py-2 flex gap-[10px] w-[320px]">
                 <TelegramColor height={30} />
                 <span className="text-2xl">TELEGRAM</span>
               </Button>
@@ -143,7 +144,7 @@ export default async function ListingPage({ params: { id } }: Props) {
           )}
           {listing.dexscreener_url && (
             <a href={listing.dexscreener_url} target="_blank">
-              <Button className="px-12 py-2 flex gap-[10px]">
+              <Button className="px-12 py-2 flex gap-[10px] w-[320px]">
                 <DexscreenerColor height={30} />
                 <span className="text-2xl">DEXSCREENER</span>
               </Button>
