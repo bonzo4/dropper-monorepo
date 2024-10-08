@@ -1019,6 +1019,47 @@ export type Database = {
           },
         ]
       }
+      giveaway_stats: {
+        Row: {
+          created_at: string
+          giveaway_id: number
+          period_entries: number
+          period_link_clicks: number
+          period_views: number
+          total_entries: number
+          total_link_clicks: number
+          total_views: number
+        }
+        Insert: {
+          created_at?: string
+          giveaway_id?: number
+          period_entries?: number
+          period_link_clicks?: number
+          period_views?: number
+          total_entries?: number
+          total_link_clicks?: number
+          total_views?: number
+        }
+        Update: {
+          created_at?: string
+          giveaway_id?: number
+          period_entries?: number
+          period_link_clicks?: number
+          period_views?: number
+          total_entries?: number
+          total_link_clicks?: number
+          total_views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "giveaway_stats_giveaway_id_fkey"
+            columns: ["giveaway_id"]
+            isOneToOne: true
+            referencedRelation: "giveaways"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       giveaway_winners: {
         Row: {
           created_at: string
@@ -1080,6 +1121,7 @@ export type Database = {
           ticker: string
           title: string
           token_address: string
+          trending_score: number
           tx_string: string | null
           usd_value: number
           user_id: string
@@ -1103,6 +1145,7 @@ export type Database = {
           ticker: string
           title: string
           token_address?: string
+          trending_score?: number
           tx_string?: string | null
           usd_value: number
           user_id: string
@@ -1126,6 +1169,7 @@ export type Database = {
           ticker?: string
           title?: string
           token_address?: string
+          trending_score?: number
           tx_string?: string | null
           usd_value?: number
           user_id?: string
@@ -1430,25 +1474,34 @@ export type Database = {
       }
       listing_stats: {
         Row: {
-          bumps: number
-          comments: number
           created_at: string
           listing_id: number
-          views: number
+          period_bumps: number
+          period_comments: number
+          period_views: number
+          total_bumps: number
+          total_comments: number
+          total_views: number
         }
         Insert: {
-          bumps?: number
-          comments?: number
           created_at?: string
           listing_id?: number
-          views?: number
+          period_bumps?: number
+          period_comments?: number
+          period_views?: number
+          total_bumps?: number
+          total_comments?: number
+          total_views?: number
         }
         Update: {
-          bumps?: number
-          comments?: number
           created_at?: string
           listing_id?: number
-          views?: number
+          period_bumps?: number
+          period_comments?: number
+          period_views?: number
+          total_bumps?: number
+          total_comments?: number
+          total_views?: number
         }
         Relationships: [
           {
@@ -1478,6 +1531,7 @@ export type Database = {
           telegram_url: string | null
           ticker: string
           token_address: string
+          trending_score: number
           twitter_url: string | null
           tx_string: string
           usd_price: number
@@ -1501,6 +1555,7 @@ export type Database = {
           telegram_url?: string | null
           ticker: string
           token_address: string
+          trending_score?: number
           twitter_url?: string | null
           tx_string: string
           usd_price?: number
@@ -1524,6 +1579,7 @@ export type Database = {
           telegram_url?: string | null
           ticker?: string
           token_address?: string
+          trending_score?: number
           twitter_url?: string | null
           tx_string?: string
           usd_price?: number

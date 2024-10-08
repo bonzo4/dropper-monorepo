@@ -8,6 +8,7 @@ import { getGiveawayPage } from "@/lib/data/giveaway/getGiveawayPage";
 import { getGiveawayEntry } from "@/lib/data/giveaway/getGiveawayEntry";
 import { getGiveawayWinner } from "@/lib/data/giveaway/getGiveawayWinner";
 import { Metadata, ResolvingMetadata } from "next";
+import { giveawayPageView } from "@/lib/actions/giveaways/giveawayPageView";
 
 type Params = {
   id: number;
@@ -101,6 +102,9 @@ export default async function GiveawayPage({ params: { id } }: Props) {
   ]);
 
   if (!giveaway || !giveaway.tx_string) return null;
+
+  await giveawayPageView({ giveaway });
+
   return (
     <div className=" relative flex flex-col items-center justify-start grow py-20">
       <GiveawayRouter

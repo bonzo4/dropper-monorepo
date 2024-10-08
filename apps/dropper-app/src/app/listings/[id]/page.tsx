@@ -154,7 +154,10 @@ export default async function ListingPage({ params: { id } }: Props) {
           )}
         </div>
         <Tab label="Bumps" className="w-full flex">
-          <BumpList listingId={id} bumpCount={listing.stats?.bumps || 0} />
+          <BumpList
+            listingId={id}
+            bumpCount={listing.stats?.total_bumps || 0}
+          />
         </Tab>
         <Tab label="Comments" className="w-full flex flex-col gap-4">
           {/* <ListingCommentCreate

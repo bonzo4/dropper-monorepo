@@ -4,6 +4,9 @@ export type GiveawayRow = DatabaseTypes["public"]["Tables"]["giveaways"]["Row"];
 export type GiveawayRequirementsRow =
   DatabaseTypes["public"]["Tables"]["giveaway_requirements"]["Row"];
 
+export type GiveawayStatsRow =
+  DatabaseTypes["public"]["Tables"]["giveaway_stats"]["Row"];
+
 export type GiveawayInsert =
   DatabaseTypes["public"]["Tables"]["giveaways"]["Insert"];
 export type GiveawayRequirementsInsert =

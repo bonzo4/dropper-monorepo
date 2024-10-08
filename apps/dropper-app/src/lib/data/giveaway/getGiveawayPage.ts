@@ -1,9 +1,14 @@
-import { GiveawayRequirementsRow, GiveawayRow } from "@/lib/types/giveaway";
+import {
+  GiveawayRequirementsRow,
+  GiveawayRow,
+  GiveawayStatsRow,
+} from "@/lib/types/giveaway";
 import { DatabaseTypes } from "@repo/app-types/database";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export type GiveawayPageData = {
   giveaway_requirements: GiveawayRequirementsRow | null;
+  giveaway_stats: GiveawayStatsRow | null;
   entryIcons: string[];
   prevGiveawayId: number | null;
   nextGiveawayId: number | null;
@@ -18,7 +23,7 @@ export async function getGiveawayPage({ supabase, id }: Options) {
   try {
     const { data, error } = await supabase
       .from("giveaways")
-      .select("*, giveaway_requirements(*)")
+      .select("*, giveaway_requirements(*), giveaway_stats(*)")
       .eq("id", id)
       .single();
 

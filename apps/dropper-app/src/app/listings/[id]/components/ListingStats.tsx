@@ -50,7 +50,7 @@ export default function ListingStats({ listing }: Options) {
           <span>Views</span>
         </div>
         <span className={cn(mono.className, "text-primary")}>
-          {listing.stats ? listing.stats.views : 0}
+          {listing.stats ? listing.stats.total_views : 0}
         </span>
       </div>
       <div className="flex flex-col gap-2  w-[80px]">
@@ -59,7 +59,7 @@ export default function ListingStats({ listing }: Options) {
           <span>Bumps</span>
         </div>
         <span className={cn(mono.className, "text-primary")}>
-          {listing.stats ? listing.stats.bumps : 0}
+          {listing.stats ? listing.stats.total_bumps : 0}
         </span>
       </div>
       <div className="flex flex-col gap-2  w-[80px]">
@@ -68,7 +68,7 @@ export default function ListingStats({ listing }: Options) {
           <span>Comments</span>
         </div>
         <span className={cn(mono.className, "text-primary")}>
-          {listing.stats ? listing.stats.comments : 0}
+          {listing.stats ? listing.stats.total_comments : 0}
         </span>
       </div>
     </div>

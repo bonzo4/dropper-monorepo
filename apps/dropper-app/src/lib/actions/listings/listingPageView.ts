@@ -15,7 +15,8 @@ export async function listingPageView({ listing }: Options) {
   const { error } = await supabase
     .from("listing_stats")
     .update({
-      views: listing.stats.views + 1,
+      total_views: listing.stats.total_views + 1,
+      period_views: listing.stats.period_views + 1,
     })
     .eq("listing_id", listing.id);
 
