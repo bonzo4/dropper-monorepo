@@ -13,7 +13,7 @@ export async function GET(
   const { data, error } = await supabase
     .from("listing_stats")
     .select("total_link_clicks, period_link_clicks")
-    .eq("id", id)
+    .eq("listing_id", id)
     .single();
 
   if (error) {
@@ -25,7 +25,7 @@ export async function GET(
         total_link_clicks: data.total_link_clicks + 1,
         period_link_clicks: data.period_link_clicks + 1,
       })
-      .eq("id", id);
+      .eq("listing_id", id);
   }
 
   return NextResponse.redirect(redirectUrl);
