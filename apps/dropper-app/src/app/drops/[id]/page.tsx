@@ -102,7 +102,6 @@ export default async function GiveawayPage({ params: { id } }: Props) {
   ]);
 
   if (!giveaway || !giveaway.tx_string) return null;
-
   await giveawayPageView({ giveaway });
 
   return (
