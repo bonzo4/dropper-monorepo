@@ -121,7 +121,10 @@ export default async function ListingPage({ params: { id } }: Props) {
         <Paragraph className="px-20">{listing.description}</Paragraph>
         <div className="flex flex-wrap gap-[30px] w-full justify-center">
           {listing.twitter_url && (
-            <a href={listing.twitter_url} target="_blank">
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}/api/listings/${listing.id}/redirect/?next=${listing.twitter_url}`}
+              target="_blank"
+            >
               <Button className="px-14 py-2 flex gap-[10px] w-[320px]">
                 <Twitter height={30} />
                 <span className="text-2xl">X (TWITTER)</span>
@@ -129,7 +132,10 @@ export default async function ListingPage({ params: { id } }: Props) {
             </a>
           )}
           {listing.discord_url && (
-            <a href={listing.discord_url} target="_blank">
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}/api/listings/${listing.id}/redirect/?next=${listing.discord_url}`}
+              target="_blank"
+            >
               <Button className="px-12 py-2 flex gap-[10px] w-[320px]">
                 <DiscordColor height={30} />
                 <span className="text-2xl">DISCORD</span>
@@ -137,7 +143,10 @@ export default async function ListingPage({ params: { id } }: Props) {
             </a>
           )}
           {listing.telegram_url && (
-            <a href={listing.telegram_url} target="_blank">
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}/api/listings/${listing.id}/redirect/?next=${listing.telegram_url}`}
+              target="_blank"
+            >
               <Button className="px-14 py-2 flex gap-[10px] w-[320px]">
                 <TelegramColor height={30} />
                 <span className="text-2xl">TELEGRAM</span>
@@ -145,7 +154,10 @@ export default async function ListingPage({ params: { id } }: Props) {
             </a>
           )}
           {listing.dexscreener_url && (
-            <a href={listing.dexscreener_url} target="_blank">
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}/api/listings/${listing.id}/redirect/?next=${listing.dexscreener_url}`}
+              target="_blank"
+            >
               <Button className="px-12 py-2 flex gap-[10px] w-[320px]">
                 <DexscreenerColor height={30} />
                 <span className="text-2xl">DEXSCREENER</span>
@@ -160,11 +172,6 @@ export default async function ListingPage({ params: { id } }: Props) {
           />
         </Tab>
         <Tab label="Comments" className="w-full flex flex-col gap-4">
-          {/* <ListingCommentCreate
-            listingId={id}
-            dropman={dropman}
-            listingName={listing.name}
-          /> */}
           <ListingCommentList
             listingId={id}
             dropman={dropman}

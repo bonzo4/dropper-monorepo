@@ -1478,9 +1478,11 @@ export type Database = {
           listing_id: number
           period_bumps: number
           period_comments: number
+          period_link_clicks: number
           period_views: number
           total_bumps: number
           total_comments: number
+          total_link_clicks: number
           total_views: number
         }
         Insert: {
@@ -1488,9 +1490,11 @@ export type Database = {
           listing_id?: number
           period_bumps?: number
           period_comments?: number
+          period_link_clicks?: number
           period_views?: number
           total_bumps?: number
           total_comments?: number
+          total_link_clicks?: number
           total_views?: number
         }
         Update: {
@@ -1498,9 +1502,11 @@ export type Database = {
           listing_id?: number
           period_bumps?: number
           period_comments?: number
+          period_link_clicks?: number
           period_views?: number
           total_bumps?: number
           total_comments?: number
+          total_link_clicks?: number
           total_views?: number
         }
         Relationships: [
@@ -1905,6 +1911,14 @@ export type Database = {
           uid: string
         }
         Returns: boolean
+      }
+      update_giveaway_trending_scores: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      update_listing_trending_scores: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
     }
     Enums: {

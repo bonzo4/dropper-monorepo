@@ -4,12 +4,14 @@ import { Button } from "@repo/ui";
 import { SetStateAction, useState } from "react";
 
 type GiveawayTabProps = {
+  giveawayId: number;
   label: string;
   link: string;
   setCompletedCount: (args_0: SetStateAction<number>) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const GiveawayTab = ({
+  giveawayId,
   label,
   link,
   setCompletedCount,
@@ -22,6 +24,8 @@ const GiveawayTab = ({
     setCompletedCount((prev) => prev + 1);
   };
 
+  const url = `${process.env.NEXT_PUBLIC_URL}/api/giveaways/${giveawayId}/redirect/?next=${link}`;
+
   return (
     <div className="w-full relative flex flex-col items-center justify-start gap-[40px] text-left text-xl text-text font-fff-forward md:px-0 px-4">
       {!done ? (
@@ -30,7 +34,7 @@ const GiveawayTab = ({
           {done ? (
             <span>Done</span>
           ) : (
-            <a href={link} target="_blank" rel="noopener noreferrer">
+            <a href={url} target="_blank" rel="noopener noreferrer">
               <Button
                 className="py-0 z-20 hover:bg-black"
                 onClick={handleComplete}
@@ -42,7 +46,7 @@ const GiveawayTab = ({
         </div>
       ) : (
         <a
-          href={link}
+          href={url}
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 w-full relative rounded-md bg-secondary box-border overflow-hidden shrink-0 flex flex-row items-center justify-between py-4 px-5 gap-[28px] max-w-[737px] text-left  text-primary font-fff-forward border-[2px] border-solid border-primary hover:cursor-pointer z-10 hover:bg-black"
