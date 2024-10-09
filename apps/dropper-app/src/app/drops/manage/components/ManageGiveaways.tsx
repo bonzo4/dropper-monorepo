@@ -62,7 +62,12 @@ export default function ManageGiveaways({ publicKey, supabase }: Props) {
   };
 
   const handleOrder = (
-    newSortBy: "usd_value" | "end_time" | "entries" | "created_at"
+    newSortBy:
+      | "usd_value"
+      | "end_time"
+      | "entries"
+      | "created_at"
+      | "trending_score"
   ) => {
     if (query.sortBy === newSortBy) {
       setQuery((prev) => ({
