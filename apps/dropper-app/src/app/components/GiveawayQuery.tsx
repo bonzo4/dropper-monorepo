@@ -5,7 +5,12 @@ type GiveawayQueryProps = {
   handleType: (type: "ongoing" | "past" | "not_started") => void;
   query: LandingGiveawayQuery;
   handleOrder: (
-    sortBy: "usd_value" | "end_time" | "entries" | "created_at"
+    sortBy:
+      | "usd_value"
+      | "end_time"
+      | "entries"
+      | "created_at"
+      | "trending_score"
   ) => void;
   loading: boolean;
 };
@@ -55,7 +60,22 @@ export default function GiveawayQuery({
       </div>
       <span className="text-white opacity-25 sm:flex hidden">|</span>
       <div className="sm:hidden flex w-full h-px bg-white opacity-25 mx-4" />
-      <div className="flex flex-row gap-2 lg:gap-4">
+
+      <div className="flex flex-wrap justify-center px-12 lg:px-0 gap-2 lg:gap-4">
+        <div className="flex flex-row gap-2">
+          <button
+            disabled={loading}
+            className=""
+            onClick={() => handleOrder("trending_score")}
+            style={{
+              color: sortBy === "trending_score" ? "#00fdd0" : "#fff",
+              opacity: sortBy === "trending_score" ? "100%" : "25%",
+              padding: sortBy === "trending_score" ? "0rem 0.5rem" : "",
+            }}
+          >
+            TRENDING
+          </button>
+        </div>
         <div className="flex flex-row gap-2">
           <button
             disabled={loading}

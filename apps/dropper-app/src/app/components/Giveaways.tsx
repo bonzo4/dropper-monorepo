@@ -35,9 +35,15 @@ const Giveaways = () => {
   };
 
   const handleOrder = (
-    newSortBy: "usd_value" | "end_time" | "entries" | "created_at"
+    newSortBy:
+      | "usd_value"
+      | "end_time"
+      | "entries"
+      | "created_at"
+      | "trending_score"
   ) => {
     if (query.sortBy === newSortBy) {
+      if (query.sortBy === "trending_score") return;
       setQuery((prev) => ({
         ...prev,
         sort: query.sort === "ascending" ? "descending" : "ascending",

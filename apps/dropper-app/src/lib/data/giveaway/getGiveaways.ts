@@ -19,7 +19,12 @@ export type LandingGiveaway = {
 export type LandingGiveawayQuery = {
   type?: "ongoing" | "past" | "not_started";
   sort?: "ascending" | "descending";
-  sortBy?: "usd_value" | "end_time" | "entries" | "created_at";
+  sortBy?:
+    | "usd_value"
+    | "end_time"
+    | "entries"
+    | "created_at"
+    | "trending_score";
   walletKey?: string;
   page?: number;
 };

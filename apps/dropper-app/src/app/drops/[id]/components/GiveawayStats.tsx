@@ -56,36 +56,28 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
     }
   };
 
-  const startDate = new Date(giveaway.start_time);
-
-  const endDate = new Date(giveaway.end_time);
-
   return (
     <div className="w-full flex md:flex-row flex-col items-center justify-center text-[14px] gap-6 md:gap-8 ">
       <div className="flex flex-row gap-6 md:gap-8">
-        <div className="flex flex-col space-y-2 justify-between w-[80px]">
-          <span className={cn("text-white")}>Status</span>
-          <span className={cn(mono.className, "text-primary")}>
-            {startDate > now
-              ? "Not Started"
-              : endDate > now
-                ? "Ongoing"
-                : "Ended"}
-          </span>
-        </div>
-        <div className="flex flex-col space-y-2 w-[80px]">
+        <div className="flex flex-col space-y-2 w-[90px]">
           <span className={cn("text-white")}>Campaign Ends in:</span>
           <Countdown date={giveaway.end_time} renderer={renderer} />
         </div>
-        <div className="flex flex-col space-y-2 w-[80px] justify-between">
-          <span className={cn("text-white")}># of Winners</span>
+        <div className="flex flex-col space-y-2 justify-between w-[90px]">
+          <span className={cn("text-white")}>Entries</span>
+          <span className={cn(mono.className, "text-primary")}>
+            {giveaway.entries}
+          </span>
+        </div>
+        <div className="flex flex-col space-y-2 w-[90px] justify-between">
+          <span className={cn("text-white")}>Potential Winners</span>
           <span className={cn(mono.className, "text-primary")}>
             {giveaway.winner_amount}
           </span>
         </div>
       </div>
       <div className="flex flex-row gap-6 md:gap-8">
-        <div className="flex flex-col space-y-2 w-[80px] justify-between">
+        <div className="flex flex-col space-y-2 w-[90px] justify-between">
           <span className={cn("text-white")}>Reward</span>
           <span className={cn(mono.className, "text-primary")}>
             {numString(giveaway.reward_amount)} $
@@ -95,13 +87,14 @@ const GiveawayStats = ({ giveaway, ...props }: GiveawayStatsProps) => {
               : `${giveaway.ticker.replaceAll("$", "").toUpperCase().slice(0, 8)}`}
           </span>
         </div>
-        <div className="flex flex-col space-y-2 w-[80px] justify-between">
+        <div className="flex flex-col space-y-2 w-[90px] justify-between">
           <span className={cn("text-white")}>Reward Value</span>
           <span className={cn(mono.className, "text-primary")}>
             ${giveaway.usd_value.toFixed(2)}
           </span>
         </div>
-        <div className="flex flex-col space-y-2 w-[80px] justify-between">
+
+        <div className="flex flex-col space-y-2 w-[90px] justify-between">
           <span className={cn("text-white")}>Creator Address</span>
           <span className={cn(mono.className, "text-primary")}>
             {giveaway.creator_key
