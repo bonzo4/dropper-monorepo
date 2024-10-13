@@ -1,3 +1,4 @@
+"use client";
 import { createSupabaseClient } from "@repo/lib/supabase";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
