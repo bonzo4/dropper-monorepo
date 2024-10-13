@@ -1661,6 +1661,35 @@ export type Database = {
           },
         ]
       }
+      telegram_accounts: {
+        Row: {
+          created_at: string
+          telegram_id: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          telegram_id: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          telegram_id?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "telegram_accounts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tertiary_referrals: {
         Row: {
           created_at: string

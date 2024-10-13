@@ -8,3 +8,6 @@ export type TwitterAccount =
 
 export type SolanaWallet =
   DatabaseTypes["public"]["Tables"]["solana_wallets"]["Row"];
+
+export type TelegramAccount =
+  DatabaseTypes["public"]["Tables"]["telegram_accounts"]["Row"];

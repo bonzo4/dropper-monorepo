@@ -17,6 +17,7 @@ import { getSolanaWallet } from "@/lib/data/profile/getSolanaAccount";
 import ConnectTwitter from "./components/ConnectTwitter";
 import { Metadata } from "next";
 import { getTwitterAccount } from "@/lib/data/profile/getTwitterAccount";
+import ConnectTelegram from "./components/ConnectTelegram";
 
 export const metadata: Metadata = {
   title: "Profile | Dropper",
@@ -118,6 +119,7 @@ export default async function ProfilePage() {
         />
         <Tab label="Connections" className="flex flex-col gap-5">
           <ConnectDiscord discordAccount={discordAccount} />
+          {/* <ConnectTelegram /> */}
           {/* <ConnectTwitter twitterAccount={twitterAccount} userId={user.id} /> */}
           <ConnectSolanaWallet solanaWallet={solanaWallet} userId={user.id} />
         </Tab>

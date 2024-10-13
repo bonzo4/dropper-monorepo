@@ -68,6 +68,17 @@ export async function POST(
       .update({ set_winners_tx: txString })
       .eq("id", id);
 
+    await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/telegram/giveaways/${id}/winner`,
+      {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          password: process.env.TELEGRAM_PASSWORD!,
+        }),
+      }
+    );
+
     return NextResponse.json(JSON.stringify(txString), {
       status: 200,
       headers: {

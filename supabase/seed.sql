@@ -13,3 +13,8 @@ SELECT vault.create_secret(
     'http://host.docker.internal:3000',
     'app_url'
 );
+
+SELECT vault.create_secret(
+    'telegram',
+    'telegram_password'
+);
