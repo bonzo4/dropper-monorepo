@@ -1,3 +1,37 @@
+```
+apps/dropper-app/*                   # Dropper app
+apps/dropper-app/src/app/*           # Dropper app pages
+apps/dropper-app/src/components/*    # Dropper app components
+apps/dropper-app/src/lib/*           # Dropper app library
+apps/dropper-app/src/lib/actions/*   # Dropper app server actions
+apps/dropper-app/src/lib/data/*      # Dropper app data fetching
+apps/dropper-app/src/lib/hooks/*     # Dropper app hooks
+apps/dropper-app/src/lib/telegram/*  # Dropper app telegram utils
+apps/dropper-app/src/lib/types/*     # Dropper app types
+apps/dropper-app/src/lib/utils/*     # Dropper app utils
+apps/dropper-admin/*                 # Dropper admin app
+lib/utils/seed/*                     # test local data
+packages/*                           # Component and Type packages shared across apps
+supabase/*                           # Supabase database
+```
+
+## Features
+
+- Turborepo monorepo
+- Next.js
+- TypeScript
+- ESLint
+- Prettier
+- Supabase Database, Storage, and Auth
+- Tailwind CSS
+- Hosted on Hetzner Cloud
+- Managed on Coolify via Nixpacks
+- Local supabase database for development(install supabase, run `supabase start`, run `yarn db:seed` to seed test data)
+- Solana wallet integration
+- Telegram bot integration
+- Dropper Contract integration
+-
+
 # Turborepo starter
 
 This is an official starter Turborepo.
