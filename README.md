@@ -30,7 +30,6 @@ supabase/*                           # Supabase database
 - Solana wallet integration
 - Telegram bot integration
 - Dropper Contract integration
--
 
 # Turborepo starter
 
